@@ -2,7 +2,7 @@
 
 namespace Krosoft.Extensions.Samples.Library.Models;
 
-public class Item    
+public class Item
 {
     public Guid Id { get; set; }
     public string? Code { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Krosoft.Extensions.Core.Models.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
 
 namespace Krosoft.Extensions.Core.Converters;
 

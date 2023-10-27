@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-
 		<TargetFramework>net7.0</TargetFramework>
-
 		<Nullable>warnings</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -21,8 +19,6 @@
 	  <EmbeddedResource Include="Files\Item.json" />
 	  <EmbeddedResource Include="Files\sample1.pdf" />
 	</ItemGroup>
-
-
 	<ItemGroup>
 		<PackageReference Include="coverlet.msbuild" Version="6.0.0">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -38,16 +34,10 @@
 		<PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
 		<PackageReference Include="NFluent" Version="3.0.1.352" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-
 	</ItemGroup>
-
-
 	<ItemGroup>
 	  <ProjectReference Include="..\Krosoft.Extensions.Core\Krosoft.Extensions.Core.csproj" />
 	  <ProjectReference Include="..\Krosoft.Extensions.Samples.Library\Krosoft.Extensions.Samples.Library.csproj" />
 	  <ProjectReference Include="..\Krosoft.Extensions.Testing\Krosoft.Extensions.Testing.csproj" />
 	</ItemGroup>
-
-
-
 </Project>
