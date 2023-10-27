@@ -9,6 +9,102 @@ namespace Krosoft.Extensions.Core.Tests.Helpers;
 public class StringHelperTests
 {
     [TestMethod]
+    public void FormatDateTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void GenerateStreamFromStringTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void TrimTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void TryParseToBooleanTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void TryParseToIntTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void TryParseToLongTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void ClearFilePathTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void TrimIfNotNullTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void TrimTest1()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void JoinTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void DateStringToDateTimeTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void RandomStringTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void TruncateTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void KeepDigitsOnlyTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void FormatNumberTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
+    public void FormatCurrencyTest()
+    {
+        Assert.Fail();
+    }
+
+    [TestMethod]
     public void ToBase64Test()
     {
         var base64 = StringHelper.ToBase64("jwtToken");
