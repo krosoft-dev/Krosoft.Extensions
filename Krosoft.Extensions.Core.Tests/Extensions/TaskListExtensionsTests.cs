@@ -102,7 +102,7 @@ public class TaskListExtensionsTests
     {
         var adresses = AddressFactory.GetAdresses();
         Task<IEnumerable<Address>> task = Task.FromResult(adresses);
-        var adressesUnique = await task.DistinctBy(x => x.City);
+        var adressesUnique = await task.DistinctBy(x => x.City).ToList();
 
         Check.That(adressesUnique).HasSize(5);
         Check.That(adressesUnique!.Select(x => x.City)).ContainsExactly("city3", "city4", "city", "city1", "city2");

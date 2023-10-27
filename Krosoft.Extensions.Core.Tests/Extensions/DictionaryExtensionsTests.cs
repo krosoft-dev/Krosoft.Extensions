@@ -12,7 +12,7 @@ public class DictionaryExtensionsTests
     [TestMethod]
     public void GetValueOrDefaultDictionaryTest()
     {
-        Dictionary<string, Address> adressesParStreetLine1 = AddressFactory.GetAdresses().ToDictionary(x => x.StreetLine1!);
+        Dictionary<string, Address> adressesParStreetLine1 = AddressFactory.GetAdresses().ToDictionary(x => x.StreetLine1);
 
         var address = adressesParStreetLine1.GetValueOrDefault("street1Line1");
         Check.That(address).IsNotNull();

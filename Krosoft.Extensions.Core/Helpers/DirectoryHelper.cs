@@ -39,7 +39,7 @@ public static class DirectoryHelper
             filePaths = filePaths.Where(s =>
             {
                 var extension = Path.GetExtension(s);
-                return extension != null && extensionsFilter.Contains(extension.ToLower());
+                return !string.IsNullOrEmpty(extension) && extensionsFilter.Contains(extension.ToLower());
             });
         }
 
@@ -108,7 +108,7 @@ public static class DirectoryHelper
         {
             while (File.Exists(newFullPath))
             {
-                var tempFileName = string.Format("{0}_{1}", fileNameOnly, count++);
+                var tempFileName = $"{fileNameOnly}_{count++}";
                 newFullPath = Path.Combine(path, tempFileName + extension);
             }
 
