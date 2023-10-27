@@ -9,102 +9,6 @@ namespace Krosoft.Extensions.Core.Tests.Helpers;
 public class StringHelperTests
 {
     [TestMethod]
-    public void FormatDateTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void GenerateStreamFromStringTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void TrimTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void TryParseToBooleanTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void TryParseToIntTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void TryParseToLongTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void ClearFilePathTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void TrimIfNotNullTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void TrimTest1()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void JoinTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void DateStringToDateTimeTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void RandomStringTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void TruncateTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void KeepDigitsOnlyTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void FormatNumberTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
-    public void FormatCurrencyTest()
-    {
-        Assert.Fail();
-    }
-
-    [TestMethod]
     public void ToBase64Test()
     {
         var base64 = StringHelper.ToBase64("jwtToken");
@@ -139,23 +43,49 @@ public class StringHelperTests
     }
 
     [TestMethod]
-    public void GetAbbreviationTest()
+    [DataRow("T", "T")]
+    [DataRow("T ", "T")]
+    [DataRow(" T", "T")]
+    [DataRow(" T ", "T")]
+    [DataRow("au", "AU")]
+    [DataRow("AU", "AU")]
+    [DataRow("Au", "AU")]
+    [DataRow("Thibault de Montaigu", "TD")]
+    [DataRow("thibault De montaigu", "TD")]
+    [DataRow("Thibault de Montaigu de Lyon en Lausane", "TD")]
+    [DataRow("Admin", "AD")]
+    [DataRow("Administrator", "AD")]
+    [DataRow("administrator", "AD")]
+    [DataRow("AdministratorAuService", "AA")]
+    [DataRow("Pierre Louis-Calixte de la Comédie-Française", "PL")]
+    [DataRow("Claire de La Rüe du Can de la Comédie-Française", "CD")]
+    public void GetAbbreviationTest(string input, string expected)
     {
-        Check.That(StringHelper.GetAbbreviation("T")).IsEqualTo("T");
-        Check.That(StringHelper.GetAbbreviation("T ")).IsEqualTo("T");
-        Check.That(StringHelper.GetAbbreviation(" T")).IsEqualTo("T");
-        Check.That(StringHelper.GetAbbreviation(" T ")).IsEqualTo("T");
-        Check.That(StringHelper.GetAbbreviation("au")).IsEqualTo("AU");
-        Check.That(StringHelper.GetAbbreviation("AU")).IsEqualTo("AU");
-        Check.That(StringHelper.GetAbbreviation("Au")).IsEqualTo("AU");
-        Check.That(StringHelper.GetAbbreviation("Thibault de Montaigu")).IsEqualTo("TD");
-        Check.That(StringHelper.GetAbbreviation("thibault De montaigu")).IsEqualTo("TD");
-        Check.That(StringHelper.GetAbbreviation("Thibault de Montaigu de Lyon en Lausane")).IsEqualTo("TD");
-        Check.That(StringHelper.GetAbbreviation("Admin")).IsEqualTo("AD");
-        Check.That(StringHelper.GetAbbreviation("Administrator")).IsEqualTo("AD");
-        Check.That(StringHelper.GetAbbreviation("administrator")).IsEqualTo("AD");
-        Check.That(StringHelper.GetAbbreviation("AdministratorAuService")).IsEqualTo("AA");
-        Check.That(StringHelper.GetAbbreviation("Pierre Louis-Calixte de la Comédie-Française")).IsEqualTo("PL");
-        Check.That(StringHelper.GetAbbreviation("Claire de La Rüe du Can de la Comédie-Française")).IsEqualTo("CD");
+        var formatDate = StringHelper.GetAbbreviation(input);
+        Check.That(formatDate).IsEqualTo(expected);
+    }
+
+    [TestMethod]
+    [DataRow("test", "01/01/0001")]
+    [DataRow(null!, "01/01/0001")]
+    [DataRow("", "01/01/0001")]
+    [DataRow("12/08/1988", "12/08/1988")]
+    [DataRow("2012-04-23T18:25:43.511Z", "23/04/2012")]
+    public void FormatDateStringIncorrectTest(string input, string expected)
+    {
+        var formatDate = StringHelper.FormatDate(input);
+        Check.That(formatDate).IsEqualTo(expected);
+    }
+
+    [TestMethod]
+    [DataRow(null, "")]
+    [DataRow("", "")]
+    [DataRow("   test   ", "test")]
+    [DataRow("test   ", "test")]
+    [DataRow("     test   ", "test")]
+    public void TrimTest(string input, string expected)
+    {
+        var formatDate = StringHelper.Trim(input);
+        Check.That(formatDate).IsEqualTo(expected);
     }
 }
