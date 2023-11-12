@@ -42,14 +42,17 @@ stages:
             parameters:
               packages: ${{ parameters.packages }}
 
-          - task: PublishBuildArtifacts@1
-            displayName: Publish
-            inputs:
-              pathtoPublish: $(build.artifactStagingDirectory)
+          # - task: DotNetCoreCLI@2
+          #   displayName: "Push"
+          #   inputs:
+          #     command: "push"
+          #     packagesToPush: "$(Build.ArtifactStagingDirectory)/*.nupkg"
+          #     nuGetFeedType: "external"
+          #     publishFeedCredentials: "nuget.org"
 
-          - task: DotNetCoreCLI@2
+          - task: NuGetCommand@2
             inputs:
               command: "push"
-              packagesToPush: "$(Build.ArtifactStagingDirectory)/*.nupkg"
+              packagesToPush: "$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg"
               nuGetFeedType: "external"
               publishFeedCredentials: "nuget.org"
