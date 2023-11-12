@@ -46,7 +46,7 @@ stages:
             displayName: Publish
             inputs:
               pathtoPublish: $(build.artifactStagingDirectory)
-              artifactName: ${{ parameters.project }}
+              # artifactName: ${{ parameters.project }}
 
   # - task: DotNetCoreCLI@2
   #   displayName: "dotnet push"
