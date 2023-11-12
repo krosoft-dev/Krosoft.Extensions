@@ -1,11 +1,6 @@
-# File: start.yml
 parameters:
-  - name: project
-    type: string
   - name: packages
     type: object
-
-# name: Nuget '${{ parameters.project }}' - $(Date:yyyy.MM.dd).$(Rev:r)
 
 # pr: none
 
