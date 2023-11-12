@@ -19,7 +19,7 @@ public class ClaimsBuilderService : IClaimsBuilderService
 
         var claims = new List<Claim>
         {
-            new Claim(KrosoftClaimNames.Id, krosoftToken.Id, ClaimValueTypes.String),
+            new Claim(KrosoftClaimNames.Id, krosoftToken.Id!, ClaimValueTypes.String),
             new Claim(KrosoftClaimNames.Nom, krosoftToken.Nom, ClaimValueTypes.String),
             new Claim(KrosoftClaimNames.Email, krosoftToken.Email, ClaimValueTypes.Email),
             new Claim(KrosoftClaimNames.RoleId, krosoftToken.RoleId, ClaimValueTypes.String),

@@ -1,5 +1,4 @@
 ﻿using Krosoft.Extensions.Core.Models;
-using Krosoft.Extensions.Core.Models.Business;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 
 namespace Krosoft.Extensions.Identity.Services;

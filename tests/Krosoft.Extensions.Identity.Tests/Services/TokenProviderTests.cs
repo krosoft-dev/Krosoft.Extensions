@@ -132,7 +132,7 @@ namespace Krosoft.Extensions.Identity.Tests.Services
                 TokenLifespan = 2
             }));
             var serviceProvider = services.BuildServiceProvider();
-            var tokenProvider = serviceProvider.GetService<ITokenProvider>();
+            var tokenProvider = serviceProvider.GetRequiredService<ITokenProvider>();
             return tokenProvider;
         }
     }
