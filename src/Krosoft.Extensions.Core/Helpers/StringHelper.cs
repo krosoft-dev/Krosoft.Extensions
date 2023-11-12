@@ -76,7 +76,7 @@ public static class StringHelper
     /// </summary>
     /// <param name="value">la chaine de caractère à convertir</param>
     /// <returns>la chaine convertie, zero si echec</returns>
-    public static int TryParseToInt(string value)
+    public static int TryParseToInt(string? value)
     {
         var result = int.TryParse(value, out var number);
         if (result)

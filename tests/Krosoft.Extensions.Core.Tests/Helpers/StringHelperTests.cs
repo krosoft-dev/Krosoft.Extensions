@@ -1,8 +1,8 @@
-﻿using Krosoft.Extensions.Core.Helpers;
+﻿using System.Globalization;
+using Krosoft.Extensions.Core.Helpers;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
-using System.Globalization;
 
 namespace Krosoft.Extensions.Core.Tests.Helpers;
 
@@ -88,6 +88,23 @@ public class StringHelperTests
     public void TrimTest(string input, string expected)
     {
         var formatDate = StringHelper.Trim(input);
+        Check.That(formatDate).IsEqualTo(expected);
+    }
+
+    [TestMethod]
+    [DataRow(null, 0)]
+    [DataRow("", 0)]
+    [DataRow("160519", 160519)]
+    [DataRow("9432.0", 0)]
+    [DataRow("16,667", 0)]
+    [DataRow("42.42", 0)]
+    [DataRow("   -322   ", -322)]
+    [DataRow("+4302", 4302)]
+    [DataRow("(100);", 0)]
+    [DataRow("01FA", 0)]
+    public void TryParseToIntTest(string input, int expected)
+    {
+        var formatDate = StringHelper.TryParseToInt(input);
         Check.That(formatDate).IsEqualTo(expected);
     }
 }
