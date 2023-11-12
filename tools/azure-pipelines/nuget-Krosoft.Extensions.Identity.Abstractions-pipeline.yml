@@ -10,7 +10,7 @@ trigger:
       - "**/Krosoft.Extensions.Identity.Abstractions/*"
 
 extends:
-  template: ./templates/pipelines/nuget-pipeline.yml
+  template: ./templates/pipelines/nuget-template.yml
   parameters:
     packages:
       - "Krosoft.Extensions.Core"
