@@ -4,33 +4,22 @@ trigger:
   branches:
     include:
       - main
+
   paths:
     include:
-    - $/Krosoft.Extensions/Trunk/Krosoft.Extensions.Core
+      - "**/Krosoft.Extensions.Core/*"
 
 variables:
   - template: ./vars/vars.yml
 
 stages:
-  - template: ./templates/stages/build-template.yml
+  - template: ./templates/stages/pack-template.yml
     parameters:
       vmImage: ${{ variables.vmImage }}
       dotNetVersion: ${{ variables.dotNetVersion }}
       buildConfiguration: ${{ variables.buildConfiguration }}
       buildPlatform: ${{ variables.buildPlatform }}
       buildProjects: ${{ variables.buildProjects }}
-      testProjects: ${{ variables.testProjects }}
-      warningThreshold: ${{ variables.warningThreshold }}
-      coverageThreshold: ${{ variables.coverageThreshold }}
-
-
-
-
-
-
-
-
-
 # trigger:
 
 # name: $(Date:yyyy.MM.dd).$(BuildID)
@@ -65,8 +54,6 @@ stages:
 #       command: push
 #       feedPublish: 42eb94c8-6de1-4fd4-9c69-ac4774babdd3
 # ...
-
-
 
 # trigger:
 #   paths:
