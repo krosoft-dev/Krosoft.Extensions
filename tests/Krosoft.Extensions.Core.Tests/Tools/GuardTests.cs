@@ -21,9 +21,9 @@ public class GuardTests
     [TestMethod]
     public void IsNotNullKoTest()
     {
-        Addresse address = null;
+        Addresse? addresse = null;
 
-        Check.ThatCode(() => Guard.IsNotNull(nameof(address), address))
+        Check.ThatCode(() => Guard.IsNotNull(nameof(addresse), addresse))
              .Throws<KrosoftTechniqueException>()
              .WithMessage("La variable address n'est pas renseignée.");
     }

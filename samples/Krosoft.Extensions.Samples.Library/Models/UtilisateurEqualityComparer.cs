@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Krosoft.Extensions.Samples.Library.Models;
+﻿namespace Krosoft.Extensions.Samples.Library.Models;
 
 public class UtilisateurEqualityComparer : IEqualityComparer<Utilisateur>
 {

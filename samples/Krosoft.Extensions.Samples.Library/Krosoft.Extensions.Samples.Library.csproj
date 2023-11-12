@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../../Common.target" />
   <PropertyGroup>
 	  <TargetFramework>netstandard2.0</TargetFramework>
-	  <Nullable>enable</Nullable>
-	  <LangVersion>default</LangVersion>
+ 
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

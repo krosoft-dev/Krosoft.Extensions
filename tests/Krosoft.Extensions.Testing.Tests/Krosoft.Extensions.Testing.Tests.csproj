@@ -1,10 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
  
 	<Import Project="../../Test.target" />
-  <PropertyGroup>
-         
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
+ 
   <ItemGroup>
     <None Remove="Files\ExportUsers.csv" />
   </ItemGroup>

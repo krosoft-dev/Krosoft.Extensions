@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Krosoft.Extensions.Samples.Library.Models;
+﻿using Krosoft.Extensions.Samples.Library.Models;
 
 namespace Krosoft.Extensions.Samples.Library.Factories;
 

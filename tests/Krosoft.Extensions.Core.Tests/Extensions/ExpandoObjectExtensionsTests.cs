@@ -18,6 +18,6 @@ public class ExpandoObjectExtensionsTests
         var expandoObject = JsonConvert.DeserializeObject<ExpandoObject>(json, new ExpandoObjectConverter());
         var titre = expandoObject!.GetString("titre");
 
-        Check.That<string>(titre).IsEqualTo("Forgotten password");
+        Check.That(titre).IsEqualTo("Forgotten password");
     }
 }
