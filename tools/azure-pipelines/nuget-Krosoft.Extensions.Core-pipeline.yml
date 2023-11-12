@@ -21,4 +21,4 @@ stages:
       buildPlatform: ${{ variables.buildPlatform }}
       buildProjects: ${{ variables.buildProjects }}
       packages:
-        - "**/Krosoft.Extensions.Core.csproj"
+        - "Krosoft.Extensions.Core"
