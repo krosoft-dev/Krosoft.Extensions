@@ -6,7 +6,7 @@ parameters:
 steps:
   - ${{ each package in parameters.packages }}:
       - task: DotNetCoreCLI@2
-        displayName: "Pack"
+        displayName: "Pack ${{ package }}"
         inputs:
           command: "pack"
           packagesToPack: ${{ package }}
