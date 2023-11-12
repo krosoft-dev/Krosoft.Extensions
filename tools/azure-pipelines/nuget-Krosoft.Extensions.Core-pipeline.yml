@@ -1,6 +1,6 @@
 name: Nuget 'Krosoft.Extensions.Core' - $(Date:yyyy.MM.dd).$(Rev:r)
 
-pr: none
+# pr: none
 trigger:
   branches:
     include:
@@ -21,22 +21,11 @@ stages:
       buildConfiguration: ${{ variables.buildConfiguration }}
       buildPlatform: ${{ variables.buildPlatform }}
       buildProjects: ${{ variables.buildProjects }}
-# trigger:
+ 
 
 # name: $(Date:yyyy.MM.dd).$(BuildID)
-# resources:
-#   repositories:
-#   - repository: self
-#     type: git
-#     ref: $/Krosoft.Extensions/Trunk
-# jobs:
-# - job: Job_1
-#   displayName: Agent job 1
-#   pool:
-#     name: Default
-#   steps:
-#   - checkout: self
-#     clean: true
+ 
+ 
 #   - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
 #     displayName: Version .NET Core Assemblies
 #     inputs:
