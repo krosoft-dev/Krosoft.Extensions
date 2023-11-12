@@ -42,6 +42,12 @@ stages:
             parameters:
               project: ${{ parameters.project }}
 
+          - task: PublishBuildArtifacts@1
+            displayName: Publish
+            inputs:
+              pathtoPublish: $(build.artifactStagingDirectory)
+              artifactName: ${{ parameters.project }}
+
   # - task: DotNetCoreCLI@2
   #   displayName: "dotnet push"
   #   condition: eq(variables['PACK_RUN'], 'true')
