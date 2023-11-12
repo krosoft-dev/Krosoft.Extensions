@@ -1,16 +1,15 @@
 ﻿using System.Security.Claims;
-using Krosoft.Extensions.Identity.Abstractions.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Identity.Abstractions.Constantes;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Krosoft.Extensions.Identity.Abstractions.Models;
 using Krosoft.Extensions.Identity.Helpers;
 using Krosoft.Extensions.Identity.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Krosoft.Extensions.Identity.Extensions;
 
@@ -64,8 +63,8 @@ public static class ServiceCollectionExtensions
         if (jwtSettings == null)
         {
             throw new KrosoftTechniqueException($"Impossible d'instancier l'objet de type '{nameof(JwtSettings)}'.");
-        }   
-        
+        }
+
         if (string.IsNullOrEmpty(jwtSettings.SecurityKey))
         {
             throw new KrosoftTechniqueException($"'{nameof(jwtSettings.SecurityKey)}' non définie.");

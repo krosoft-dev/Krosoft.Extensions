@@ -17,19 +17,45 @@ public class ClaimsBuilderService : IClaimsBuilderService
         Guard.IsNotNullOrWhiteSpace(nameof(krosoftToken.LangueId), krosoftToken.LangueId);
         Guard.IsNotNullOrWhiteSpace(nameof(krosoftToken.RoleId), krosoftToken.RoleId);
 
-        var claims = new List<Claim>
+        var claims = new List<Claim>();
+        if (krosoftToken.Id != null)
         {
-            new Claim(KrosoftClaimNames.Id, krosoftToken.Id!, ClaimValueTypes.String),
-            new Claim(KrosoftClaimNames.Nom, krosoftToken.Nom, ClaimValueTypes.String),
-            new Claim(KrosoftClaimNames.Email, krosoftToken.Email, ClaimValueTypes.Email),
-            new Claim(KrosoftClaimNames.RoleId, krosoftToken.RoleId, ClaimValueTypes.String),
-            new Claim(KrosoftClaimNames.RoleIsInterne, krosoftToken.RoleIsInterne.ToString(), ClaimValueTypes.Boolean),
-            new Claim(KrosoftClaimNames.RoleHomePage, krosoftToken.RoleHomePage, ClaimValueTypes.String),
-            new Claim(KrosoftClaimNames.LangueId, krosoftToken.LangueId, ClaimValueTypes.String),
-            new Claim(KrosoftClaimNames.LangueCode, krosoftToken.LangueCode, ClaimValueTypes.String),
-            new Claim(KrosoftClaimNames.Droits, JsonConvert.SerializeObject(krosoftToken.DroitsCode),
-                      CustomClaimTypes.JsonArray)
-        };
+            claims.Add(new Claim(KrosoftClaimNames.Id, krosoftToken.Id, ClaimValueTypes.String));
+        }
+
+        if (krosoftToken.Nom != null)
+        {
+            claims.Add(new Claim(KrosoftClaimNames.Nom, krosoftToken.Nom, ClaimValueTypes.String));
+        }
+
+        if (krosoftToken.Email != null)
+        {
+            claims.Add(new Claim(KrosoftClaimNames.Email, krosoftToken.Email, ClaimValueTypes.Email));
+        }
+
+        if (krosoftToken.RoleId != null)
+        {
+            claims.Add(new Claim(KrosoftClaimNames.RoleId, krosoftToken.RoleId, ClaimValueTypes.String));
+        }
+
+        claims.Add(new Claim(KrosoftClaimNames.RoleIsInterne, krosoftToken.RoleIsInterne.ToString(), ClaimValueTypes.Boolean));
+        if (krosoftToken.RoleHomePage != null)
+        {
+            claims.Add(new Claim(KrosoftClaimNames.RoleHomePage, krosoftToken.RoleHomePage, ClaimValueTypes.String));
+        }
+
+        if (krosoftToken.LangueId != null)
+        {
+            claims.Add(new Claim(KrosoftClaimNames.LangueId, krosoftToken.LangueId, ClaimValueTypes.String));
+        }
+
+        if (krosoftToken.LangueCode != null)
+        {
+            claims.Add(new Claim(KrosoftClaimNames.LangueCode, krosoftToken.LangueCode, ClaimValueTypes.String));
+        }
+
+        claims.Add(new Claim(KrosoftClaimNames.Droits, JsonConvert.SerializeObject(krosoftToken.DroitsCode),
+                             CustomClaimTypes.JsonArray));
 
         if (!string.IsNullOrEmpty(krosoftToken.TenantId))
         {
