@@ -18,7 +18,7 @@ stages:
         pool:
           vmImage: ${{ parameters.vmImage }}
         steps:
-          - task: VersionDotNetCoreAssemblies@2
+          - task: VersionDotNetCoreAssemblies@3
             displayName: "Set FileVersion on *.csproj $(Build.BuildNumber)"
             inputs:
               Path: "$(Build.SourcesDirectory)"
