@@ -1,0 +1,81 @@
+name: Nuget 'Krosoft.Extensions.Identity.Abstractions' - $(Date:yyyy.MM.dd).$(Rev:r)
+
+# pr: none
+trigger:
+  branches:
+    include:
+      - main
+
+  paths:
+    include:
+      - "**/Krosoft.Extensions.Identity.Abstractions/*"
+
+variables:
+  - template: ./vars/vars.yml
+
+stages:
+  - template: ./templates/stages/pack-template.yml
+    parameters:
+      vmImage: ${{ variables.vmImage }}
+      dotNetVersion: ${{ variables.dotNetVersion }}
+      buildConfiguration: ${{ variables.buildConfiguration }}
+      buildPlatform: ${{ variables.buildPlatform }}
+      buildProjects: ${{ variables.buildProjects }}
+      project: "Krosoft.Extensions.Identity.Abstractions"
+# name: $(Date:yyyy.MM.dd).$(BuildID)
+
+#   - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
+#     displayName: Version .NET Core Assemblies
+#     inputs:
+#       AddDefault: true
+#   - task: DotNetCoreCLI@2
+#     displayName: dotnet pack
+#     inputs:
+#       command: pack
+#       projects: '**/Krosoft.Extensions.sln'
+#       arguments: --configuration $(BuildConfiguration)
+#       searchPatternPack: '**/Krosoft.Extensions.Identity.Abstractions.csproj'
+#       versioningScheme: byBuildNumber
+#   - task: DotNetCoreCLI@2
+#     displayName: dotnet push
+#     inputs:
+#       command: push
+#       feedPublish: 42eb94c8-6de1-4fd4-9c69-ac4774babdd3
+# ...
+
+# trigger:
+#   paths:
+#     include:
+#     - $/Krosoft.Extensions/Trunk/Krosoft.Extensions.Data.EntityFramework
+# name: $(Date:yyyy.MM.dd).$(BuildID)
+# resources:
+#   repositories:
+#   - repository: self
+#     type: git
+#     ref: $/Krosoft.Extensions/Trunk
+# jobs:
+# - job: Job_1
+#   displayName: Agent job 1
+#   pool:
+#     name: Default
+#   steps:
+#   - checkout: self
+#     clean: true
+#   - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
+#     displayName: Version .NET Core Assemblies
+#     inputs:
+#       AddDefault: true
+#   - task: DotNetCoreCLI@2
+#     displayName: dotnet pack
+#     inputs:
+#       command: pack
+#       projects: '**/Krosoft.Extensions.sln'
+#       arguments: --configuration $(BuildConfiguration)
+#       searchPatternPack: '**/Krosoft.Extensions.Identity.Abstractions.csproj;**/Krosoft.Extensions.Data.Abstractions.csproj;**/Krosoft.Extensions.Data.EntityFramework.csproj'
+#       versioningScheme: byBuildNumber
+#   - task: DotNetCoreCLI@2
+#     displayName: dotnet push
+#     inputs:
+#       command: push
+#       feedPublish: 42eb94c8-6de1-4fd4-9c69-ac4774babdd3
+# ...

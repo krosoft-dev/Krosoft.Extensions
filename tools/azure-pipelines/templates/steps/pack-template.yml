@@ -7,7 +7,7 @@ steps:
     displayName: "Pack ${{ parameters.project }}"
     inputs:
       command: "pack"
-      packagesToPack: "$(Build.SourcesDirectory)/${{ parameters.project }}/*.csproj"
+      packagesToPack: "**/${{ parameters.project }}/*.csproj"
       nobuild: true
       versioningScheme: "byBuildNumber"
       arguments: "--no-restore"
