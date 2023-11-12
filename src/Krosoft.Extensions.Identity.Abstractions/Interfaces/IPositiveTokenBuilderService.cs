@@ -1,4 +1,4 @@
-﻿using Krosoft.Extensions.Core.Models.Business;
+﻿using Krosoft.Extensions.Core.Models;
 
 namespace Krosoft.Extensions.Identity.Abstractions.Interfaces;
 
