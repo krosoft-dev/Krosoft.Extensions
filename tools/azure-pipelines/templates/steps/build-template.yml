@@ -15,14 +15,6 @@ steps:
       packageType: "sdk"
       version: ${{ parameters.dotNetVersion }}
 
-  - task: NuGetCommand@2
-    displayName: "Restore via Nuget"
-    inputs:
-      command: "restore"
-      restoreSolution: "**/*.sln"
-      feedsToUse: "select"
-      noCache: true
-
   - task: DotNetCoreCLI@2
     displayName: "Restore"
     inputs:
