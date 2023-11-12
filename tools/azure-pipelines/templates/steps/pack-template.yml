@@ -1,0 +1,35 @@
+parameters:
+  - name: project
+    type: string
+
+steps:
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: "pack"
+      packagesToPack: $(Build.SourcesDirectory)/${{ parameters.project }}
+      nobuild: true
+      versioningScheme: "byBuildNumber"
+      arguments: "--no-restore"
+
+    # - ${{ each dependency in parameters.dependencies }}:
+    #     - task: DotNetCoreCLI@2
+    #       displayName: "Pack ${{ dependency }}"
+    #       condition: eq(variables['SOURCE_CODE_CHANGED'], 'true')
+    #       inputs:
+    #         command: "pack"
+    #         packagesToPack: $(Build.SourcesDirectory)/${{ dependency }}
+    #         versioningScheme: "byBuildNumber"
+# #!/bin/bash
+# echo Executing after success scripts on branch $GITHUB_REF_NAME
+# echo Triggering Nuget package build
+
+# cd src/Convey.Auth/src/Convey.Auth
+# dotnet pack -c release /p:PackageVersion=1.1.$GITHUB_RUN_NUMBER --no-restore -o .
+
+# echo Uploading Convey.Auth package to Nuget using branch $GITHUB_REF_NAME
+
+# case "$GITHUB_REF_NAME" in
+#   "master")
+#     dotnet nuget push *.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
+#     ;;
+# esac
