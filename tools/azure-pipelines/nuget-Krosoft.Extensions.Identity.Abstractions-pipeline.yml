@@ -21,7 +21,7 @@ stages:
       buildConfiguration: ${{ variables.buildConfiguration }}
       buildPlatform: ${{ variables.buildPlatform }}
       buildProjects: ${{ variables.buildProjects }}
-      project: "Krosoft.Extensions.Identity.Abstractions"
+      project: "**/Krosoft.Extensions.Core.csproj;**/Krosoft.Extensions.Identity.Abstractions.csproj;"
 # name: $(Date:yyyy.MM.dd).$(BuildID)
 
 #   - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
