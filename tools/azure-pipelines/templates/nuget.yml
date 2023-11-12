@@ -5,7 +5,7 @@ parameters:
   - name: packages
     type: object
 
-name: Nuget '${{ parameters.project }}' - $(Date:yyyy.MM.dd).$(Rev:r)
+# name: Nuget '${{ parameters.project }}' - $(Date:yyyy.MM.dd).$(Rev:r)
 
 # pr: none
 
