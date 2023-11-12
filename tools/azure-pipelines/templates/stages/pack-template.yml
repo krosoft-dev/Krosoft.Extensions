@@ -9,8 +9,8 @@ parameters:
     type: string
   - name: buildProjects
     type: string
-  - name: project
-    type: string
+  - name: packages
+    type: object
 
 stages:
   - stage: Pack
@@ -40,13 +40,12 @@ stages:
 
           - template: ../steps/pack-template.yml
             parameters:
-              project: ${{ parameters.project }}
+              packages: ${{ parameters.packages }}
 
           - task: PublishBuildArtifacts@1
             displayName: Publish
             inputs:
               pathtoPublish: $(build.artifactStagingDirectory)
-              # artifactName: ${{ parameters.project }}
 
   # - task: DotNetCoreCLI@2
   #   displayName: "dotnet push"
