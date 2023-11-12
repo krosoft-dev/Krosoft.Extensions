@@ -4,10 +4,10 @@ parameters:
 
 steps:
   - task: DotNetCoreCLI@2
-    displayName: "Pack ${{ parameters.project }}"
+    displayName: "Pack"
     inputs:
       command: "pack"
-      packagesToPack: "**/${{ parameters.project }}/*.csproj"
+      packagesToPack: ${{ parameters.project }}
       nobuild: true
       versioningScheme: "byBuildNumber"
       arguments: "--no-restore"
