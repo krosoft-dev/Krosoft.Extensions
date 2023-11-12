@@ -47,11 +47,9 @@ stages:
             inputs:
               pathtoPublish: $(build.artifactStagingDirectory)
 
-  # - task: DotNetCoreCLI@2
-  #   displayName: "dotnet push"
-  #   condition: eq(variables['PACK_RUN'], 'true')
-  #   inputs:
-  #     command: "push"
-  #     packagesToPush: "$(Build.ArtifactStagingDirectory)/*.nupkg"
-  #     nuGetFeedType: "internal"
-  #     publishVstsFeed: "9c9efb62-bded-45a2-b46b-0511633df679/c81626eb-ca9d-4a1c-8591-72ddfa135a6c"
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: "push"
+              packagesToPush: "$(Build.ArtifactStagingDirectory)/*.nupkg"
+              nuGetFeedType: "external"
+              publishFeedCredentials: "nuget.org"

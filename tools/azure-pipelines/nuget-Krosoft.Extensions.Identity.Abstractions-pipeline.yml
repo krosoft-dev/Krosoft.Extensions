@@ -1,6 +1,6 @@
 name: Nuget 'Krosoft.Extensions.Identity.Abstractions' - $(Date:yyyy.MM.dd).$(Rev:r)
 
-pr: none
+# pr: none
 trigger:
   branches:
     include:
@@ -10,7 +10,7 @@ trigger:
       - "**/Krosoft.Extensions.Identity.Abstractions/*"
 
 extends:
-  template: ./templates/nuget.yml
+  template: ./templates/pipelines/nuget-pipeline.yml
   parameters:
     packages:
       - "Krosoft.Extensions.Core"

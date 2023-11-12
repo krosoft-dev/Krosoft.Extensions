@@ -3,10 +3,10 @@ parameters:
     type: object
 
 variables:
-  - template: ../vars/vars.yml
+  - template: ../../vars/vars.yml
 
 stages:
-  - template: ./stages/pack-template.yml
+  - template: ../stages/pack-template.yml
     parameters:
       vmImage: ${{ variables.vmImage }}
       dotNetVersion: ${{ variables.dotNetVersion }}
