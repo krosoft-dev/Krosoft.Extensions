@@ -13,6 +13,6 @@ public class DateTimeHelperTests : BaseTest
     {
         const long dateInTimestamp = 1372061224000;
         var dateInDateTime = DateTimeHelper.TimestampToDateTime(dateInTimestamp);
-        Assert.AreEqual("24/06/2013 10:07:04", dateInDateTime.ToString(CultureInfo.InvariantCulture));
+        Assert.AreEqual("24/06/2013 10:07:04", dateInDateTime.ToString(CultureInfo.CurrentCulture));
     }
 }
