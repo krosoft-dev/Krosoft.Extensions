@@ -1,11 +1,12 @@
 ﻿using System.Globalization;
 using Krosoft.Extensions.Core.Helpers;
+using Krosoft.Extensions.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Krosoft.Extensions.Core.Tests.Helpers;
 
 [TestClass]
-public class DateTimeHelperTests
+public class DateTimeHelperTests : BaseTest
 {
     [TestMethod]
     public void TimestampToDateTimeTest()
