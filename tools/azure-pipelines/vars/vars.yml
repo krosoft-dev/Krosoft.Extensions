@@ -11,3 +11,4 @@ variables:
   publishProjects: "**/*Api.csproj"
   warningThreshold: 10
   coverageThreshold: 10
+  disable.coverage.autogenerate: "true"
