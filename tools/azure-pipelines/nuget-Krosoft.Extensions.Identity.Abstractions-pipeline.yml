@@ -1,6 +1,6 @@
 name: Nuget 'Krosoft.Extensions.Identity.Abstractions' - $(Date:yyyy.MM.dd).$(Rev:r)
 
-# pr: none
+pr: none
 trigger:
   branches:
     include:
