@@ -27,7 +27,7 @@ public class StringHelperTests
     {
         Check.ThatCode(() => StringHelper.ToBase64(null))
              .Throws<KrosoftTechniqueException>()
-             .WithMessage("La variable payload n'est pas renseignée.");
+             .WithMessage("La variable 'payload' n'est pas renseignée.");
     }
 
     [TestMethod]

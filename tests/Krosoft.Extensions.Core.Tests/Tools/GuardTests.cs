@@ -25,7 +25,7 @@ public class GuardTests
 
         Check.ThatCode(() => Guard.IsNotNull(nameof(addresse), addresse))
              .Throws<KrosoftTechniqueException>()
-             .WithMessage("La variable address n'est pas renseignée.");
+             .WithMessage("La variable 'addresse' n'est pas renseignée.");
     }
 
     [TestMethod]
@@ -43,7 +43,7 @@ public class GuardTests
         var pdfFilepath = string.Empty;
         Check.ThatCode(() => Guard.IsNotNullOrWhiteSpace(nameof(pdfFilepath), pdfFilepath))
              .Throws<KrosoftTechniqueException>()
-             .WithMessage("La variable pdfFilepath est vide ou non renseignée.");
+             .WithMessage("La variable 'pdfFilepath' est vide ou non renseignée.");
     }
 
     [TestMethod]
@@ -52,6 +52,6 @@ public class GuardTests
         var pdfFilepath = "      ";
         Check.ThatCode(() => Guard.IsNotNullOrWhiteSpace(nameof(pdfFilepath), pdfFilepath))
              .Throws<KrosoftTechniqueException>()
-             .WithMessage("La variable pdfFilepath est vide ou non renseignée.");
+             .WithMessage("La variable 'pdfFilepath' est vide ou non renseignée.");
     }
 }
