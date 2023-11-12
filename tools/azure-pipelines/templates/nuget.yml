@@ -2,8 +2,6 @@ parameters:
   - name: packages
     type: object
 
-pr: none
-
 variables:
   - template: ../vars/vars.yml
 
