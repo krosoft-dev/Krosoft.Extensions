@@ -2,6 +2,7 @@
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
+using System.Globalization;
 
 namespace Krosoft.Extensions.Core.Tests.Helpers;
 
@@ -73,6 +74,7 @@ public class StringHelperTests
     [DataRow("2012-04-23T18:25:43.511Z", "23/04/2012")]
     public void FormatDateStringIncorrectTest(string input, string expected)
     {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-fr");
         var formatDate = StringHelper.FormatDate(input);
         Check.That(formatDate).IsEqualTo(expected);
     }
