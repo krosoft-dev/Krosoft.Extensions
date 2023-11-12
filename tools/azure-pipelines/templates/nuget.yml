@@ -1,0 +1,23 @@
+# File: start.yml
+parameters:
+  - name: project
+    type: string
+  - name: packages
+    type: object
+
+name: Nuget '${{ parameters.project }}' - $(Date:yyyy.MM.dd).$(Rev:r)
+
+# pr: none
+
+variables:
+  - template: ./vars/vars.yml
+
+stages:
+  - template: ./templates/stages/pack-template.yml
+    parameters:
+      vmImage: ${{ variables.vmImage }}
+      dotNetVersion: ${{ variables.dotNetVersion }}
+      buildConfiguration: ${{ variables.buildConfiguration }}
+      buildPlatform: ${{ variables.buildPlatform }}
+      buildProjects: ${{ variables.buildProjects }}
+      packages: ${{ parameters.packages }}

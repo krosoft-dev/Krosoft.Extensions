@@ -1,6 +1,27 @@
-name: Nuget 'Krosoft.Extensions.Identity.Abstractions' - $(Date:yyyy.MM.dd).$(Rev:r)
+# name: Nuget 'Krosoft.Extensions.Identity.Abstractions' - $(Date:yyyy.MM.dd).$(Rev:r)
 
-# pr: none
+# # pr: none
+# trigger:
+#   branches:
+#     include:
+#       - main
+#   paths:
+#     include:
+#       - "**/Krosoft.Extensions.Identity.Abstractions/*"
+
+# variables:
+#   - template: ./vars/vars.yml
+
+# stages:
+#   - template: ./templates/stages/pack-template.yml
+#     parameters:
+#       vmImage: ${{ variables.vmImage }}
+#       dotNetVersion: ${{ variables.dotNetVersion }}
+#       buildConfiguration: ${{ variables.buildConfiguration }}
+#       buildPlatform: ${{ variables.buildPlatform }}
+#       buildProjects: ${{ variables.buildProjects }}
+#       packages:
+
 trigger:
   branches:
     include:
@@ -9,17 +30,10 @@ trigger:
     include:
       - "**/Krosoft.Extensions.Identity.Abstractions/*"
 
-variables:
-  - template: ./vars/vars.yml
-
-stages:
-  - template: ./templates/stages/pack-template.yml
-    parameters:
-      vmImage: ${{ variables.vmImage }}
-      dotNetVersion: ${{ variables.dotNetVersion }}
-      buildConfiguration: ${{ variables.buildConfiguration }}
-      buildPlatform: ${{ variables.buildPlatform }}
-      buildProjects: ${{ variables.buildProjects }}
-      packages:
-        - "Krosoft.Extensions.Core"
-        - "Krosoft.Extensions.Identity.Abstractions"
+extends:
+  template: ./templates/nuget.yml
+  parameters:
+    project: "Krosoft.Extensions.Identity.Abstractions"
+    packages:
+      - "Krosoft.Extensions.Core"
+      - "Krosoft.Extensions.Identity.Abstractions"
