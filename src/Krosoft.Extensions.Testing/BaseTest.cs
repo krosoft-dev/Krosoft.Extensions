@@ -37,7 +37,7 @@ public abstract class BaseTest
         return services.BuildServiceProvider();
     }
 
-    protected virtual void AddServices(ServiceCollection services, IConfiguration configuration)
+    protected virtual void AddServices(IServiceCollection services, IConfiguration configuration)
     {
     }
 }
