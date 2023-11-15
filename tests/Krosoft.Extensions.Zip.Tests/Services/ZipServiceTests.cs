@@ -31,9 +31,9 @@ public class ZipServiceTests : BaseTest
     public async Task ZipAsync_Ok()
     {
         var filesPath = new List<string>();
-        filesPath.Add(@"Files\fichier1.txt");
-        filesPath.Add(@"Files\fichier2.txt");
-        filesPath.Add(@"Files\fichier3.txt");
+        filesPath.Add( "Files/fichier1.txt");
+        filesPath.Add( "Files/fichier2.txt");
+        filesPath.Add( "Files/fichier3.txt");
 
         var dictionary = new Dictionary<string, string>();
         foreach (var filePath in filesPath)
@@ -54,7 +54,6 @@ public class ZipServiceTests : BaseTest
 
         await FileHelper.WriteAsync(zipPath, zipfile.Stream, CancellationToken.None);
         Check.That(File.Exists(zipPath)).IsTrue();
- 
     }
 
     [TestMethod]
@@ -62,7 +61,7 @@ public class ZipServiceTests : BaseTest
     {
         var extractPath = "ExtractZipTest";
 
-        _zipService.ExtractZip(@"Files\zip.zip", extractPath);
+        _zipService.ExtractZip("Files/zip.zip", extractPath);
 
         var numberFileExtract = Directory.GetFiles(extractPath).Select(Path.GetFileName).ToList();
         Check.That(numberFileExtract.Count).IsEqualTo(3);
@@ -77,9 +76,9 @@ public class ZipServiceTests : BaseTest
         var filePath = $"UnitTest_{date.Year}_{date.Month}_{date.Day}_{date.Hour}_{date.Minute}_{date.Second}.zip";
         var extractPath = "UnitTestExtract";
 
-        streams.Add("file1.txt", File.OpenRead(@"Files\fichier1.txt"));
-        streams.Add("file2.txt", File.OpenRead(@"Files\fichier2.txt"));
-        streams.Add("file3.txt", File.OpenRead(@"Files\fichier3.txt"));
+        streams.Add("file1.txt", File.OpenRead( "Files/fichier1.txt"));
+        streams.Add("file2.txt", File.OpenRead( "Files/fichier2.txt"));
+        streams.Add("file3.txt", File.OpenRead( "Files/fichier3.txt"));
 
         var zip = _zipService.Zip(streams);
         FileHelper.Write(filePath, zip);
