@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+#if NET8_0_OR_GREATER
+using Microsoft.AspNetCore.Http;
+#endif
 
 namespace Krosoft.Extensions.Identity.Extensions;
 
