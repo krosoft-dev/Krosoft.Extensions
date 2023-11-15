@@ -21,7 +21,7 @@ public abstract class BaseTest
         Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-fr");
     }
 
-    protected ServiceProvider CreateServiceCollection(Action<IServiceCollection> action = null)
+    protected ServiceProvider CreateServiceCollection(Action<IServiceCollection>? action = null)
     {
         var services = new ServiceCollection();
 

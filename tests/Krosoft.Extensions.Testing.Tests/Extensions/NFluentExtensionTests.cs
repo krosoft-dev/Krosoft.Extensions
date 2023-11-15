@@ -60,8 +60,8 @@ public class NFluentExtensionTests
         Check.That(datatable).IsNotNull();
         Check.That(datatable.TableName).IsEqualTo(nomDataTable);
         Check.That(datatable.Rows).HasSize(2);
-        Check.That(datatable.Extracting<UtilisateurBasique>(d => d.Nom)).ContainsExactly("nom1", "nom2");
-        Check.That(datatable.Extracting<UtilisateurBasique>(d => d.Prenom)).ContainsExactly("prenom1", "prenom3");
+        Check.That(datatable.Extracting<UtilisateurBasique>(d => d.Nom!)).ContainsExactly("nom1", "nom2");
+        Check.That(datatable.Extracting<UtilisateurBasique>(d => d.Prenom!)).ContainsExactly("prenom1", "prenom3");
     }
 
     [TestMethod]

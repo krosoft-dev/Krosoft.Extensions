@@ -4,4 +4,18 @@
 	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Testing\Krosoft.Extensions.Testing.csproj" />
 	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Zip\Krosoft.Extensions.Zip.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Files\fichier1.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Files\fichier2.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Files\fichier3.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Files\zip.zip">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 </Project>

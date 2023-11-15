@@ -1,0 +1,21 @@
+version: "3.4"
+
+services:
+
+  positive-extensions.postgres:
+    image: "postgres:14.3-alpine"
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "positive_extensions"
+
+  positive-extensions.redis:
+    image: redis:7.0.2-alpine
+    restart: on-failure
+
+    
+  positive-extensions.samples.api:
+    image: ${DOCKER_REGISTRY-}positive-extensions.samples.api:${TAG_VERSION}
+
+  positive-extensions.samples.dotnet7.api:
+    image: ${DOCKER_REGISTRY-}positive-extensions.samples.dotnet7.api:${TAG_VERSION}

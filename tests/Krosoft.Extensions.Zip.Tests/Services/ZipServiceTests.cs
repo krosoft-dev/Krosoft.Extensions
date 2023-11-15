@@ -46,7 +46,15 @@ public class ZipServiceTests : BaseTest
 
         var zipfile = await _zipService.ZipAsync(dictionary, zipPath, CancellationToken.None);
 
-        Check.That(zipfile).IsEqualTo("Compte K");
+        Check.That(File.Exists(zipPath)).IsFalse();
+        Check.That(zipfile.ContentType).IsEqualTo("application/zip");
+        Check.That(zipfile.FileName).IsEqualTo(zipPath);
+        Check.That(zipfile.Stream).IsNotNull();
+        Check.That(zipfile.Stream.CanRead).IsTrue();
+
+        await FileHelper.WriteAsync(zipPath, zipfile.Stream, CancellationToken.None);
+        Check.That(File.Exists(zipPath)).IsTrue();
+ 
     }
 
     [TestMethod]
