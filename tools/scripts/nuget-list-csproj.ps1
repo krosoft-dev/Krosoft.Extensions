@@ -1,4 +1,4 @@
-(Get-ChildItem -Filter *.csproj -Recurse) | ForEach-Object {
+(Get-ChildItem ./src -Filter *.csproj -Recurse) | ForEach-Object {
   Write-Host =========== $_.BaseName
   Get-Content $_.FullName `
   | Find "<ProjectReference Include=" `
