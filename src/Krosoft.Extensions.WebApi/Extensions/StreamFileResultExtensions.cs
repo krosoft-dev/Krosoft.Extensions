@@ -11,15 +11,9 @@ public static class StreamFileResultExtensions
         return fileStreamResult;
     }
 
-    public static async Task<FileStreamResult> ToFileStreamResult(this Task<IStreamFileResult> task)
+    public static async Task<FileStreamResult> ToFileStreamResult<T>(this Task<T> task) where T : IStreamFileResult
     {
         var file = await task;
         return file.ToFileStreamResult();
     }
-
-    //public static FileStreamResult ToFileStreamResult<T>(this CsvStreamFile<T> csvStreamFile)
-    //{
-    //    var memoryStream = csvStreamFile.ToMemoryStream();
-    //    return new FileStreamResult(memoryStream, "text/csv") { FileDownloadName = csvStreamFile.FileName.Sanitize() };
-    //}
 }

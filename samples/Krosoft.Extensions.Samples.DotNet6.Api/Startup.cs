@@ -20,6 +20,9 @@
 //using Krosoft.Extensions.Samples.DotNet6.Api.Strategies;
 //using Krosoft.Extensions.WebApi.Extensions;
 
+using Krosoft.Extensions.WebApi.Extensions;
+using System.Reflection;
+
 namespace Krosoft.Extensions.Samples.DotNet6.Api;
 
 public class Startup
@@ -35,12 +38,14 @@ public class Startup
     public void Configure(IApplicationBuilder app,
                           IWebHostEnvironment env)
     {
-        //app.UseKrosoftExtension(env, _configuration, builder => builder.UseBlocking());
+        app.UseWebApi(env, _configuration);
     }
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
-    {
+    {        services.AddWebApi( Assembly.GetExecutingAssembly(), _configuration );
+
+        //
         //services.AddApplication(Assembly.GetExecutingAssembly());
         //services.AddInfrastructure(_configuration);
         //services.AddJwtAuthentication(_configuration).AddBlocking(_configuration);

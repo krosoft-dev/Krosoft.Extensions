@@ -13,7 +13,7 @@ public class ControllerTests : SampleBaseApiTest<Startup>
     {
         var response = await Factory.CreateClient().GetAsync("/");
 
-        Check.That<HttpStatusCode>(response.StatusCode).IsEqualTo(HttpStatusCode.NotFound);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.NotFound);
     }
 
     [TestMethod]
@@ -21,6 +21,6 @@ public class ControllerTests : SampleBaseApiTest<Startup>
     {
         var response = await Factory.CreateClient().GetAsync("/azerty");
 
-        Check.That<HttpStatusCode>(response.StatusCode).IsEqualTo(HttpStatusCode.NotFound);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.NotFound);
     }
 }

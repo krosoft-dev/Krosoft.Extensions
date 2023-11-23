@@ -7,8 +7,8 @@
 		<ProjectGuid>f7ef3b40-7c46-4a58-b5dc-9e765c39dc00</ProjectGuid>
 		<DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
 		<DockerServiceUrl>{Scheme}://localhost:{ServicePort}/Health/Check</DockerServiceUrl>
-		<DockerServiceName>positive-extensions.samples.api</DockerServiceName>
-		<DockerComposeProjectName>positive-extensions</DockerComposeProjectName>
+		<DockerServiceName>krosoft-extensions.samples.dotnet6.api</DockerServiceName>
+		<DockerComposeProjectName>krosoft-extensions</DockerComposeProjectName>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include=".env" />

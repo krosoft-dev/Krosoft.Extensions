@@ -11,15 +11,15 @@ namespace Krosoft.Extensions.WebApi.Extensions;
 
 public static class ApplicationBuilderExtensions
 {
-    public static IApplicationBuilder UseKrosoftExtension(this IApplicationBuilder builder,
-                                                          IWebHostEnvironment env,
-                                                          IConfiguration configuration) =>
-        builder.UseKrosoftExtension(env, configuration, null);
+    public static IApplicationBuilder UseWebApi(this IApplicationBuilder builder,
+                                                IWebHostEnvironment env,
+                                                IConfiguration configuration) =>
+        builder.UseWebApi(env, configuration, null);
 
-    public static IApplicationBuilder UseKrosoftExtension(this IApplicationBuilder builder,
-                                                          IWebHostEnvironment env,
-                                                          IConfiguration configuration,
-                                                          Action<IApplicationBuilder>? action)
+    public static IApplicationBuilder UseWebApi(this IApplicationBuilder builder,
+                                                IWebHostEnvironment env,
+                                                IConfiguration configuration,
+                                                Action<IApplicationBuilder>? action)
     {
         if (env.IsDevelopment())
         {
@@ -94,3 +94,4 @@ public static class ApplicationBuilderExtensions
         return builder;
     }
 }
+

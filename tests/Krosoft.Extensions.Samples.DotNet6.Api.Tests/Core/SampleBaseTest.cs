@@ -1,16 +1,17 @@
 ﻿using Krosoft.Extensions.Testing;
+using Krosoft.Extensions.WebApi.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 //using Moq;
-//using Positive.Extensions.Application.Extensions;
-//using Positive.Extensions.Data.EntityFramework.Extensions;
-//using Positive.Extensions.Data.EntityFramework.InMemory.Extensions;
-//using Positive.Extensions.Identity.Abstractions.Interfaces;
-//using Positive.Extensions.Infrastructure.Extensions;
-//using Positive.Extensions.Samples.Api.Data;
-//using Positive.Extensions.Testing;
-//using Positive.Extensions.Testing.Extensions;
+//using Krosoft.Extensions.Application.Extensions;
+//using Krosoft.Extensions.Data.EntityFramework.Extensions;
+//using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
+//using Krosoft.Extensions.Identity.Abstractions.Interfaces;
+//using Krosoft.Extensions.Infrastructure.Extensions;
+//using Krosoft.Extensions.Samples.Api.Data;
+//using Krosoft.Extensions.Testing;
+//using Krosoft.Extensions.Testing.Extensions;
 
 namespace Krosoft.Extensions.Samples.DotNet6.Api.Tests.Core;
 
@@ -18,10 +19,11 @@ public abstract class SampleBaseTest<TEntry> : BaseTest
 {
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
-        //var executingAssembly = typeof(TEntry).Assembly;
+        var executingAssembly = typeof(TEntry).Assembly;
         //services.AddApplication(executingAssembly)
         //        .AddInfrastructure(configuration)
         //    ;
+        services.AddWebApi(executingAssembly, configuration);
 
         ////Data.
         //services.AddRepositories();

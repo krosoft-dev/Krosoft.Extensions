@@ -6,10 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Moq.Protected;
 
-//using Positive.Extensions.Cache.Distributed.Redis.Interfaces;
-//using Positive.Extensions.Core.Models.Business;
-//using Positive.Extensions.Data.EntityFramework.Contexts;
-//using Positive.Extensions.Testing.Extensions;
+//using Krosoft.Extensions.Cache.Distributed.Redis.Interfaces;
+//using Krosoft.Extensions.Core.Models.Business;
+//using Krosoft.Extensions.Data.EntityFramework.Contexts;
+//using Krosoft.Extensions.Testing.Extensions;
 
 namespace Krosoft.Extensions.Testing.WebApi;
 

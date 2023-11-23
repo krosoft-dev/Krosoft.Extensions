@@ -1,9 +1,9 @@
 //using System.Net;
-//using Positive.Extensions.Core.Extensions;
-//using Positive.Extensions.Samples.Api.Models.Dto;
-//using Positive.Extensions.Samples.Api.Tests.Core;
+//using Krosoft.Extensions.Core.Extensions;
+//using Krosoft.Extensions.Samples.Api.Models.Dto;
+//using Krosoft.Extensions.Samples.Api.Tests.Core;
 
-//namespace Positive.Extensions.Samples.Api.Tests.Functional;
+//namespace Krosoft.Extensions.Samples.Api.Tests.Functional;
 
 //[TestClass]
 //public class ItemsControllerTests : SampleBaseApiTest<Startup>

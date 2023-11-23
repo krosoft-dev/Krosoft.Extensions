@@ -1,10 +1,10 @@
 //using System.Net;
 //using HealthChecks.UI.Core;
-//using Positive.Extensions.AspNetCore.HealthChecks.Models;
-//using Positive.Extensions.Core.Extensions;
-//using Positive.Extensions.Samples.Api.Tests.Core;
+//using Krosoft.Extensions.AspNetCore.HealthChecks.Models;
+//using Krosoft.Extensions.Core.Extensions;
+//using Krosoft.Extensions.Samples.Api.Tests.Core;
 
-//namespace Positive.Extensions.Samples.Api.Tests.Functional;
+//namespace Krosoft.Extensions.Samples.Api.Tests.Functional;
 
 //[TestClass]
 //public class HealthCheckTests : SampleBaseApiTest<Startup>

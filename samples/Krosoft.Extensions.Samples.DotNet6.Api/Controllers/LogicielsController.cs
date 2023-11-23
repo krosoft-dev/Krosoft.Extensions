@@ -12,7 +12,7 @@ namespace Krosoft.Extensions.Samples.DotNet6.Api.Controllers;
 public class LogicielsController : ApiControllerBase
 {
     [HttpGet]
-    public Task<IEnumerable<LogicielDto>> GetAsync(LogicielsQuery query,
+    public Task<IEnumerable<LogicielDto>> GetAsync([FromQuery] LogicielsQuery query,
                                                    CancellationToken cancellationToken)
         => Mediator.Send(query, cancellationToken);
 
@@ -39,10 +39,20 @@ public class LogicielsController : ApiControllerBase
         return await Mediator.Send(new LogicielImportCommand(files), cancellationToken);
     }
 
-    [HttpGet("Export")]
-    public Task<FileStreamResult> ExportAsync(CancellationToken cancellationToken)
-        => Mediator.Send(new LogicielsExportQuery(), cancellationToken)
+    [HttpGet("Export/Csv")]
+    public Task<FileStreamResult> ExportCsvAsync(CancellationToken cancellationToken)
+        => Mediator.Send(new LogicielsExportCsvQuery(), cancellationToken)
                    .ToCsvStreamResult()
+                   .ToFileStreamResult();
+
+    [HttpGet("Export/Pdf")]
+    public Task<FileStreamResult> ExportPdfAsync(CancellationToken cancellationToken)
+        => Mediator.Send(new LogicielsExportPdfQuery(), cancellationToken)
+                   .ToFileStreamResult();
+
+    [HttpGet("Export/Zip")]
+    public Task<FileStreamResult> ExportZipAsync(CancellationToken cancellationToken)
+        => Mediator.Send(new LogicielsExportZipQuery(), cancellationToken)
                    .ToFileStreamResult();
 
     [HttpDelete]
