@@ -1,8 +1,8 @@
 ﻿namespace Krosoft.Extensions.Reporting.Csv.Models;
 
-public class CsvFile<T>
+public   struct CsvFileData<T>
 {
-    public CsvFile(IEnumerable<T> data, string fileName, string culture)
+    public CsvFileData(IEnumerable<T> data, string fileName, string culture)
     {
         Data = data;
         FileName = fileName;

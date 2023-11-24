@@ -2,9 +2,9 @@
 
 namespace Krosoft.Extensions.Core.Models;
 
-public class StreamFileResult : IStreamFileResult
+public class GenericFileStream  : IFileStream
 {
-    public StreamFileResult(Stream stream, string fileName, string contentType)
+    public GenericFileStream(Stream stream, string fileName, string contentType)
     {
         Stream = stream;
         FileName = fileName.Sanitize();

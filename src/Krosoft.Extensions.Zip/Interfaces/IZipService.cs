@@ -4,9 +4,9 @@ namespace Krosoft.Extensions.Zip.Interfaces;
 
 public interface IZipService
 {
-    Task<ZipStreamFileResult> ZipAsync(IReadOnlyDictionary<string, string> dictionary,
-                                       string fileName,
-                                       CancellationToken cancellationToken);
+    Task<ZipFileStream> ZipAsync(IReadOnlyDictionary<string, string> dictionary,
+                                 string fileName,
+                                 CancellationToken cancellationToken);
 
     Stream Zip(IDictionary<string, Stream> streams);
 

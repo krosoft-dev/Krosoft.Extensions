@@ -11,7 +11,7 @@ namespace Krosoft.Extensions.Zip.Services;
 /// </summary>
 public class ZipService : IZipService
 {
-    public async Task<ZipStreamFileResult> ZipAsync(IReadOnlyDictionary<string, string> dictionary,
+    public async Task<ZipFileStream> ZipAsync(IReadOnlyDictionary<string, string> dictionary,
                                                     string fileName,
                                                     CancellationToken cancellationToken)
     {
@@ -36,7 +36,7 @@ public class ZipService : IZipService
             ms.Seek(0, SeekOrigin.Begin);
         }
 
-        return new ZipStreamFileResult(ms, fileName.Sanitize());
+        return new ZipFileStream(ms, fileName.Sanitize());
     }
 
     public Stream Zip(Stream stream, string fileName)

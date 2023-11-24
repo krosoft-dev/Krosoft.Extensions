@@ -94,4 +94,3 @@ public static class ApplicationBuilderExtensions
         return builder;
     }
 }
-

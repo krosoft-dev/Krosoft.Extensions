@@ -2,10 +2,10 @@
 
 namespace Krosoft.Extensions.Core.Models;
 
-public class ZipStreamFileResult : StreamFileResult
+public class ZipFileStream : GenericFileStream
 {
-    public ZipStreamFileResult(Stream stream,
-                               string fileName)
+    public ZipFileStream(Stream stream,
+                         string fileName)
         : base(stream, fileName, MediaTypeNames.Application.Zip)
     {
     }

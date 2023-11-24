@@ -1,9 +1,9 @@
 ﻿namespace Krosoft.Extensions.Core.Models;
 
-public class CsvStreamFileResult : StreamFileResult
+public class CsvFileStream : GenericFileStream
 {
-    public CsvStreamFileResult(Stream stream,
-                               string fileName)
+    public CsvFileStream(Stream stream,
+                         string fileName)
         : base(stream, fileName, "text/csv")
     {
     }

@@ -45,7 +45,7 @@ public class CsvReaderTests : BaseTest
                     VarianteNom = "TEST"
                 }
             };
-        var exportFile = new CsvFile<PrixCsvDto>(lignesExport, "test.csv", "");
+        var exportFile = new CsvFileData<PrixCsvDto>(lignesExport, "test.csv", "");
         var export = Convert.ToBase64String(exportFile.ToBytes());
         await FileHelper.WriteBase64Async("test.csv", export, CancellationToken.None);
 
