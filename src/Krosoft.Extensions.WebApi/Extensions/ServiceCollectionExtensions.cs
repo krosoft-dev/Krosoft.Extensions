@@ -1,7 +1,6 @@
 ﻿using System.IO.Compression;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
@@ -13,9 +12,9 @@ namespace Krosoft.Extensions.WebApi.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddWebApi(this IServiceCollection services,Assembly assembly,
-                                               IConfiguration configuration
-                                               )
+    public static IServiceCollection AddWebApi(this IServiceCollection services,
+                                               Assembly assembly,
+                                               IConfiguration configuration)
     {
         services.AddAuthorization();
         services.AddCors();

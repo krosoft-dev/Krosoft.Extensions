@@ -12,8 +12,8 @@ namespace Krosoft.Extensions.Zip.Services;
 public class ZipService : IZipService
 {
     public async Task<ZipFileStream> ZipAsync(IReadOnlyDictionary<string, string> dictionary,
-                                                    string fileName,
-                                                    CancellationToken cancellationToken)
+                                              string fileName,
+                                              CancellationToken cancellationToken)
     {
         Guard.IsNotNull(nameof(dictionary), dictionary);
         Guard.IsNotNullOrWhiteSpace(nameof(fileName), fileName);

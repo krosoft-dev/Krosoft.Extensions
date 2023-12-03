@@ -33,10 +33,7 @@ public abstract class BaseApiTest<TStartup, TPositiveContext> : BaseTest
     [TestCleanup]
     public void TestCleanup()
     {
-        if (Factory != null)
-        {
-            Factory.Dispose();
-        }
+        Factory.Dispose();
     }
 
     protected CustomWebApplicationFactory<TStartup, TPositiveContext> GetFactoryRedis(bool fakeRedis)

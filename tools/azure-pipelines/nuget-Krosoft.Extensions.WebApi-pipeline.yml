@@ -1,4 +1,4 @@
-name: Nuget 'Krosoft.Extensions.Core' - $(Date:yyyy.MM.dd).$(Rev:r)
+name: Nuget 'Krosoft.Extensions.WebApi' - $(Date:yyyy.MM.dd).$(Rev:r)
 
 pr: none
 
@@ -8,11 +8,12 @@ trigger:
       - main
   paths:
     include:
-      - "**/Krosoft.Extensions.Core/*"
+      - "**/Krosoft.Extensions.WebApi/*"
 
 extends:
   template: ./templates/pipelines/nuget-template.yml
   parameters:
     packages:
+     - "Krosoft.Extensions.WebApi"
      - "Krosoft.Extensions.Core"
 
