@@ -1,27 +1,27 @@
 ﻿using AutoMapper;
+using Krosoft.Extensions.Core.Extensions;
+using Krosoft.Extensions.Core.Models.Exceptions;
+using Krosoft.Extensions.Mapping.Extensions;
+using Krosoft.Extensions.Samples.Library.Mappings;
+using Krosoft.Extensions.Samples.Library.Models;
+using Krosoft.Extensions.Samples.Library.Models.Dto;
 using Krosoft.Extensions.Testing;
+using Krosoft.Extensions.WebApi.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
-using Positive.Extensions.Application.Extensions;
-using Positive.Extensions.Core.Extensions;
-using Positive.Extensions.Core.Models.Exceptions;
-using Positive.Extensions.Mapping.Extensions;
-using Positive.Extensions.Samples.Api;
-using Positive.Extensions.Samples.Api.Models;
-using Positive.Extensions.Testing;
 
-namespace Positive.Extensions.Mapping.Tests.Extensions;
+namespace Krosoft.Extensions.Mapping.Tests.Extensions;
 
 [TestClass]
 public class MapperExtensionsTests : BaseTest
 {
-    private IMapper _mapper;
+    private IMapper _mapper = null!;
 
-    protected override void AddServices(ServiceCollection services, IConfiguration configuration)
+    protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddApplication(typeof(Startup).Assembly);
+        services.AddWebApi(typeof(CompteProfile).Assembly, configuration);
     }
 
     [TestInitialize]
@@ -32,9 +32,20 @@ public class MapperExtensionsTests : BaseTest
     }
 
     [TestMethod]
-    public void MapIfExistDictionaryTest()
+    public void MapIfExist_Ok()
     {
-        var comptesParId = GetComptes().ToDictionary(x => x.Id);
+        var source = new Compte { Name = "Test" };
+        var destination = new CompteDto();
+
+        _mapper.MapIfExist(source, destination);
+
+        Check.That(destination.Name).IsEqualTo("Test");
+    }
+
+    [TestMethod]
+    public void MapIfExist_Dictionary()
+    {
+        var comptesParId = GetComptes().ToDictionary(x => x.Id!);
 
         var compteDto = new CompteDto();
         _mapper.MapIfExist(comptesParId, "K", compteDto);
@@ -43,9 +54,9 @@ public class MapperExtensionsTests : BaseTest
     }
 
     [TestMethod]
-    public void MapIfExistReadOnlyDictionaryTest()
+    public void MapIfExist_ReadOnlyDictionary()
     {
-        var comptesParId = GetComptes().ToReadOnlyDictionary(x => x.Id);
+        var comptesParId = GetComptes().ToReadOnlyDictionary(x => x.Id!);
 
         var compteDto = new CompteDto();
         _mapper.MapIfExist((IDictionary<string, Compte>)comptesParId, "K", compteDto);
@@ -54,9 +65,9 @@ public class MapperExtensionsTests : BaseTest
     }
 
     [TestMethod]
-    public void MapIfExistConcurrentDictionaryTest()
+    public void MapIfExist_ConcurrentDictionary()
     {
-        var comptesParId = GetComptes().ToConcurrentDictionary(x => x.Id);
+        var comptesParId = GetComptes().ToConcurrentDictionary(x => x.Id!);
 
         var compteDto = new CompteDto();
         _mapper.MapIfExist(comptesParId, "K", compteDto);
@@ -65,20 +76,9 @@ public class MapperExtensionsTests : BaseTest
     }
 
     [TestMethod]
-    public void MapIfExistTest()
+    public void MapIfExist_Null()
     {
-        var source = new Compte { Name = "Test" };
-        var destination = new CompteDto();
-
-        _mapper.MapIfExist(source, destination);
-
-        Check.That(destination.Name).IsEqualTo("Test");
-    }
-
-    [TestMethod]
-    public void MapIfExistNullTest()
-    {
-        Compte source = null;
+        Compte? source = null;
         var destination = new CompteDto();
 
         _mapper.MapIfExist(source, destination);
@@ -87,24 +87,24 @@ public class MapperExtensionsTests : BaseTest
     }
 
     [TestMethod]
-    public void MapIfExistActionTest()
+    public void MapIfExist_Action()
     {
         var source = new Compte { Name = "Test" };
         var destination = new CompteDto();
 
-        _mapper.MapIfExist(source, destination, () => throw new PositiveTechniqueException("Test"));
+        _mapper.MapIfExist(source, destination, () => throw new KrosoftTechniqueException("Test"));
 
         Check.That(destination.Name).IsEqualTo("Test");
     }
 
     [TestMethod]
-    public void MapIfExistActionNullTest()
+    public void MapIfExist_ActionNull()
     {
-        Compte source = null;
+        Compte? source = null;
         var destination = new CompteDto();
 
-        Check.ThatCode(() => _mapper.MapIfExist(source, destination, () => throw new PositiveTechniqueException("Test")))
-             .Throws<PositiveTechniqueException>()
+        Check.ThatCode(() => _mapper.MapIfExist(source, destination, () => throw new KrosoftTechniqueException("Test")))
+             .Throws<KrosoftTechniqueException>()
              .WithMessage("Test");
     }
 
@@ -121,19 +121,20 @@ public class MapperExtensionsTests : BaseTest
     }
 
     [TestMethod]
-    public void MapIfExistToTypeTest()
+    public void MapIfExist_ToType()
     {
         var source = new Compte { Name = "Test" };
 
         var destination = _mapper.MapIfExist<CompteDto>(source);
 
-        Check.That(destination.Name).IsEqualTo("Test");
+        Check.That(destination).IsNotNull();
+        Check.That(destination!.Name).IsEqualTo("Test");
     }
 
     [TestMethod]
-    public void MapIfExistToTypeNullTest()
+    public void MapIfExist_ToTypeNull()
     {
-        Compte source = null;
+        Compte? source = null;
 
         var destination = _mapper.MapIfExist<CompteDto>(source);
 
@@ -141,22 +142,22 @@ public class MapperExtensionsTests : BaseTest
     }
 
     [TestMethod]
-    public void MapIfExistToTypeActionTest()
+    public void MapIfExist_ToTypeAction()
     {
         var source = new Compte { Name = "Test" };
 
-        var destination = _mapper.MapIfExist<CompteDto>(source, () => throw new PositiveTechniqueException("Test"));
+        var destination = _mapper.MapIfExist<CompteDto>(source, () => throw new KrosoftTechniqueException("Test"));
 
         Check.That(destination.Name).IsEqualTo("Test");
     }
 
     [TestMethod]
-    public void MapIfExistToTypeActionNullTest()
+    public void MapIfExist_ToTypeActionNull()
     {
-        Compte source = null;
+        Compte? source = null;
 
-        Check.ThatCode(() => _mapper.MapIfExist<CompteDto>(source, () => throw new PositiveTechniqueException("Test")))
-             .Throws<PositiveTechniqueException>()
+        Check.ThatCode(() => _mapper.MapIfExist<CompteDto>(source, () => throw new KrosoftTechniqueException("Test")))
+             .Throws<KrosoftTechniqueException>()
              .WithMessage("Test");
     }
 }
