@@ -11,11 +11,46 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
     [TestMethod]
     public async Task Logiciels_Ok()
     {
-        var nom = "Excel";
-        var url = $"/Logiciels?Nom={nom}";
+        var httpClient = Factory.CreateClient();
+        var response = await httpClient.GetAsync("/Logiciels");
+
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+    }
+
+    [TestMethod]
+    public async Task Logiciels_Query_Ok()
+    {
+        const string nom = "Excel";
 
         var httpClient = Factory.CreateClient();
-        var response = await httpClient.GetAsync(url);
+        var response = await httpClient.GetAsync($"/Logiciels?Nom={nom}");
+
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+    }
+
+    [TestMethod]
+    public async Task Csv_Ok()
+    {
+        var httpClient = Factory.CreateClient();
+        var response = await httpClient.GetAsync("/Logiciels/Export/Csv");
+
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+    }
+
+    [TestMethod]
+    public async Task Pdf_Ok()
+    {
+        var httpClient = Factory.CreateClient();
+        var response = await httpClient.GetAsync("/Logiciels/Export/Pdf");
+
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+    }
+
+    [TestMethod]
+    public async Task Zip_Ok()
+    {
+        var httpClient = Factory.CreateClient();
+        var response = await httpClient.GetAsync("/Logiciels/Export/Zip");
 
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
     }

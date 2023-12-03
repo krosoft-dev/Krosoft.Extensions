@@ -15,4 +15,5 @@ extends:
   parameters:
     packages:
      - "Krosoft.Extensions.WebApi.Identity"
+     - "Krosoft.Extensions.Core"
 
