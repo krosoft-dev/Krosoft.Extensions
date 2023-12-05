@@ -63,7 +63,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Samples.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Cqrs", "src\Krosoft.Extensions.Cqrs\Krosoft.Extensions.Cqrs.csproj", "{6E8C7F2B-FDBF-46F6-A616-2753AABB6E5F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.CQRS", "01.CQRS", "{699E6411-C1FC-49BC-8853-66CDCB0B863A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Cqrs", "01.Cqrs", "{699E6411-C1FC-49BC-8853-66CDCB0B863A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Samples.DotNet6.Api.Tests", "tests\Krosoft.Extensions.Samples.DotNet6.Api.Tests\Krosoft.Extensions.Samples.DotNet6.Api.Tests.csproj", "{6E906DF3-BADF-4162-81A5-3CD1D38585F3}"
 EndProject

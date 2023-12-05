@@ -13,7 +13,6 @@ public class CompteProfile : Profile
     {
         CreateMap<Compte, CompteDto>()
             .ForMember(dest => dest.Name, o => o.MapFrom(src => src.Name))
-            //.ForAllOtherMembers(m => m.Ignore())
-            ;
+            .ForAllOtherMembers(m => m.Ignore());
     }
 }

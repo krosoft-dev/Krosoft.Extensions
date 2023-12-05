@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace Krosoft.Extensions.WebApi.Extensions;
+namespace Krosoft.Extensions.WebApi.Swagger.Extensions;
 
 public static class ApplicationBuilderExtensions
 {
     public static IApplicationBuilder UseSwaggerExt(this IApplicationBuilder builder,
-                                                    bool useSwagger)
+                                                    bool useSwagger = true)
     {
         if (useSwagger)
         {

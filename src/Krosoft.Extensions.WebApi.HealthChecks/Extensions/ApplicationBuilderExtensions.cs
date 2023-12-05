@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json; 
+using Newtonsoft.Json;
 
-namespace Positive.Extensions.AspNetCore.HealthChecks.Extensions;
+namespace Krosoft.Extensions.WebApi.HealthChecks.Extensions;
 
 public static class ApplicationBuilderExtensions
 {

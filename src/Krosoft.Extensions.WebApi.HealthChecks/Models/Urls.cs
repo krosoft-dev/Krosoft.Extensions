@@ -4,8 +4,8 @@ public static class Urls
 {
     public static class Health
     {
-        public const string Check = "/Health/Check";
-        public const string Readiness = "/Health/Readiness";
-        public const string Liveness = "/Health/Liveness";
+        public const string Check = $"/{nameof(Health)}/Check";
+        public const string Readiness = $"/{nameof(Health)}/Readiness";
+        public const string Liveness = $"/{nameof(Health)}/Liveness";
     }
 }

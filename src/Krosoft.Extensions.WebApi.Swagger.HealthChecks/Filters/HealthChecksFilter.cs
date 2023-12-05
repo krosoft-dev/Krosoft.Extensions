@@ -1,9 +1,8 @@
-﻿using IzRoadbook.Extensions.Models;
-using Krosoft.Extensions.WebApi.HealthChecks.Models;
+﻿using Krosoft.Extensions.WebApi.HealthChecks.Models;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace IzRoadbook.Extensions.Filters;
+namespace Krosoft.Extensions.WebApi.Swagger.HealthChecks.Filters;
 
 public class HealthChecksFilter : IDocumentFilter
 {
@@ -38,7 +37,7 @@ public class HealthChecksFilter : IDocumentFilter
         });
 
         var operation = new OpenApiOperation();
-        operation.Tags.Add(new OpenApiTag { Name = "Health" });
+        operation.Tags.Add(new OpenApiTag { Name = nameof(Urls.Health) });
         operation.Responses.Add("200", response);
 
         var pathItem = new OpenApiPathItem();
