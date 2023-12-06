@@ -25,6 +25,7 @@ using Krosoft.Extensions.WebApi.Extensions;
 using Krosoft.Extensions.WebApi.HealthChecks.Extensions;
 using Krosoft.Extensions.WebApi.Swagger.Extensions;
 using Krosoft.Extensions.WebApi.Swagger.HealthChecks.Extensions;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Krosoft.Extensions.Samples.DotNet6.Api;
 
@@ -59,10 +60,11 @@ public class Startup
         //services.AddInfrastructure(_configuration);
         //services.AddJwtAuthentication(_configuration).AddBlocking(_configuration);
 
-        //services.AddHealthChecks()
-        //        .AddCheck("test", () => HealthCheckResult.Healthy())
+         services.AddHealthChecks()
+                 .AddCheck("Test_Endpoint", () => HealthCheckResult.Healthy())
         //        .AddRedisCheck()
-        //        .AddDbContextCheck<KrosoftExtensionTenantContext>("KrosoftExtensionTenantContext");
+        //        .AddDbContextCheck<KrosoftExtensionTenantContext>("KrosoftExtensionTenantContext")
+        ;
 
         ////Data.
         //services.AddRepositories();
