@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using FluentValidation;
+﻿using FluentValidation;
 using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Data.Json.Extensions;
@@ -49,7 +48,7 @@ public class JsonDataServiceTests : BaseTest
     public void Init_Ko()
     {
         Check.ThatCode(() => new JsonDataService<Shortcut>(Options.Create(new JsonDataSettings()),
-                                                         new List<IValidator<Shortcut>>()).Query())
+                                                           new List<IValidator<Shortcut>>()).Query())
              .Throws<KrosoftTechniqueException>()
              .WithMessage("DataFileName non renseigné.");
     }
@@ -59,40 +58,67 @@ public class JsonDataServiceTests : BaseTest
     {
         var countBefore = _jsonDataServiceShortcut.Query().Count();
 
-
         var max = _jsonDataServiceShortcut.Query().MaxOrDefault(x => x.Id);
 
         var id = max + 1;
-        
 
-        var shortcut = new Shortcut { Id =id, Code = "test"};
+        var shortcut = new Shortcut { Id = id, Code = "test" };
         await _jsonDataServiceShortcut.InsertAsync(shortcut, CancellationToken.None);
 
         var countAfter = _jsonDataServiceShortcut.Query().Count();
         Check.That(countAfter).IsEqualTo(countBefore + 1);
 
-
-        var fromBdd = _jsonDataServiceShortcut.Query().FirstOrDefault(x=>x.Id == id);
+        var fromBdd = _jsonDataServiceShortcut.Query().FirstOrDefault(x => x.Id == id);
         Check.That(fromBdd).IsNotNull();
         Check.That(fromBdd!.Id).IsEqualTo(id);
         Check.That(fromBdd.Code).IsEqualTo("test");
-
-
-
-
-
-
     }
 
     [TestMethod]
-    public void DeleteAsyncTest()
+    public async Task DeleteAsyncTest()
     {
-        Assert.Inconclusive();
+        var countBefore = _jsonDataServiceShortcut.Query().Count();
+
+        var max = _jsonDataServiceShortcut.Query().MaxOrDefault(x => x.Id);
+
+        var id = max + 1;
+
+        var shortcut = new Shortcut { Id = id, Code = "test" };
+        await _jsonDataServiceShortcut.InsertAsync(shortcut, CancellationToken.None);
+
+        var countAfter = _jsonDataServiceShortcut.Query().Count();
+        Check.That(countAfter).IsEqualTo(countBefore + 1);
+
+        var fromBdd = _jsonDataServiceShortcut.Query().FirstOrDefault(x => x.Id == id);
+        Check.That(fromBdd).IsNotNull();
+
+        await _jsonDataServiceShortcut.DeleteAsync(id, CancellationToken.None);
+        var fromBddAfterDelete = _jsonDataServiceShortcut.Query().FirstOrDefault(x => x.Id == id);
+        Check.That(fromBddAfterDelete).IsNull();
     }
 
     [TestMethod]
-    public void UpdateAsyncTest()
+    public async Task UpdateAsyncTest()
     {
-        Assert.Inconclusive();
+        var countBefore = _jsonDataServiceShortcut.Query().Count();
+
+        var max = _jsonDataServiceShortcut.Query().MaxOrDefault(x => x.Id);
+
+        var id = max + 1;
+
+        var shortcut = new Shortcut { Id = id, Code = "test" };
+        await _jsonDataServiceShortcut.InsertAsync(shortcut, CancellationToken.None);
+
+        var countAfter = _jsonDataServiceShortcut.Query().Count();
+        Check.That(countAfter).IsEqualTo(countBefore + 1);
+
+        var fromBdd = _jsonDataServiceShortcut.Query().FirstOrDefault(x => x.Id == id);
+        Check.That(fromBdd).IsNotNull();
+        fromBdd!.Code = "Test 42";
+
+        await _jsonDataServiceShortcut.UpdateAsync(id, fromBdd, CancellationToken.None);
+        var fromBddAfterUpdate = _jsonDataServiceShortcut.Query().FirstOrDefault(x => x.Id == id);
+        Check.That(fromBddAfterUpdate).IsNotNull();
+        Check.That(fromBddAfterUpdate!.Code).IsEqualTo("Test 42");
     }
 }
