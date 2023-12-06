@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Krosoft.Extensions.Mapping.Extensions;
 using Krosoft.Extensions.Samples.Library.Models;
 using Krosoft.Extensions.Samples.Library.Models.Dto;
 

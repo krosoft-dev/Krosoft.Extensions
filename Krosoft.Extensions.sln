@@ -77,11 +77,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Mapping"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Mapping.Tests", "tests\Krosoft.Extensions.Mapping.Tests\Krosoft.Extensions.Mapping.Tests.csproj", "{452EFF0C-2E5F-4F21-A12E-B4C8EAB3AE6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krosoft.Extensions.WebApi.Swagger", "src\Krosoft.Extensions.WebApi.Swagger\Krosoft.Extensions.WebApi.Swagger.csproj", "{2E0FCF20-E8B3-4E37-A87B-675D214D8CE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.WebApi.Swagger", "src\Krosoft.Extensions.WebApi.Swagger\Krosoft.Extensions.WebApi.Swagger.csproj", "{2E0FCF20-E8B3-4E37-A87B-675D214D8CE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krosoft.Extensions.WebApi.HealthChecks", "src\Krosoft.Extensions.WebApi.HealthChecks\Krosoft.Extensions.WebApi.HealthChecks.csproj", "{9A797F7C-8190-4B48-A067-D138BDB30681}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.WebApi.HealthChecks", "src\Krosoft.Extensions.WebApi.HealthChecks\Krosoft.Extensions.WebApi.HealthChecks.csproj", "{9A797F7C-8190-4B48-A067-D138BDB30681}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krosoft.Extensions.WebApi.Swagger.HealthChecks", "src\Krosoft.Extensions.WebApi.Swagger.HealthChecks\Krosoft.Extensions.WebApi.Swagger.HealthChecks.csproj", "{04DB236D-05CE-436C-826D-70706489730E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.WebApi.Swagger.HealthChecks", "src\Krosoft.Extensions.WebApi.Swagger.HealthChecks\Krosoft.Extensions.WebApi.Swagger.HealthChecks.csproj", "{04DB236D-05CE-436C-826D-70706489730E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10.Mapping", "10.Mapping", "{79DAB45B-8E6B-4D4B-8508-F57CD539ABE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -571,6 +573,8 @@ Global
 		{2B9968C9-D657-4A44-8170-1283C69461D5} = {BFBCA122-F9F1-4A26-BD18-DFBA1A0E69D5}
 		{F7EF3B40-7C46-4A58-B5DC-9E765C39DC00} = {1BA9DB0A-8961-4AA1-BB81-F8C2820FCB52}
 		{D3025DD4-7AA0-435D-B59C-2F7E582EEDC3} = {BFBCA122-F9F1-4A26-BD18-DFBA1A0E69D5}
+		{958BE4ED-0503-4A4A-922E-435B7AB7F0BC} = {79DAB45B-8E6B-4D4B-8508-F57CD539ABE2}
+		{452EFF0C-2E5F-4F21-A12E-B4C8EAB3AE6C} = {79DAB45B-8E6B-4D4B-8508-F57CD539ABE2}
 		{2E0FCF20-E8B3-4E37-A87B-675D214D8CE5} = {49F53C0E-6503-4CBD-B5ED-B83D053C6DA2}
 		{9A797F7C-8190-4B48-A067-D138BDB30681} = {49F53C0E-6503-4CBD-B5ED-B83D053C6DA2}
 		{04DB236D-05CE-436C-826D-70706489730E} = {49F53C0E-6503-4CBD-B5ED-B83D053C6DA2}

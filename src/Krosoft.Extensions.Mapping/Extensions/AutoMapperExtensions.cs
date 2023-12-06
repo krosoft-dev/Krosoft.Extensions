@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-#if NET7_0_OR_GREATER
 using System.Reflection;
 using AutoMapper.Configuration;
-#endif
+
 
 namespace Krosoft.Extensions.Mapping.Extensions;
 
@@ -15,7 +14,7 @@ public static class AutoMapperExtensions
 
         return mapper.Map<TDestination>(item);
     }
-#if NET7_0_OR_GREATER
+
     private static readonly PropertyInfo TypeMapActionsProperty = typeof(TypeMapConfiguration).GetProperty("TypeMapActions", BindingFlags.NonPublic | BindingFlags.Instance) ?? throw new InvalidOperationException();
 
     public static void ForAllOtherMembers<TSource, TDestination>(this IMappingExpression<TSource, TDestination> expression, Action<IMemberConfigurationExpression<TSource, TDestination, object>> memberOptions)
@@ -38,5 +37,5 @@ public static class AutoMapperExtensions
             });
         }
     }
-#endif
+
 }

@@ -52,7 +52,7 @@ public class Startup
     {
         var currentAssembly = Assembly.GetExecutingAssembly();
         services.AddWebApi(currentAssembly, _configuration)
-                .AddSwagger(currentAssembly, options => options.AddHealthChecks().AddSecurityBearer().AddSecurityBearer());
+                .AddSwagger(currentAssembly, options => options.AddHealthChecks().AddSecurityBearer().AddSecurityApiKey());
 
         //
         //services.AddApplication(Assembly.GetExecutingAssembly());
