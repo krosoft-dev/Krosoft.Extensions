@@ -4,7 +4,8 @@ using Newtonsoft.Json;
 namespace Krosoft.Extensions.Core.Converters;
 
 public class NullableIntegerConverter : JsonConverter<int?>
-{    private readonly CultureInfo _culture;
+{
+    private readonly CultureInfo _culture;
 
     public NullableIntegerConverter(CultureInfo? culture = null)
     {
@@ -17,6 +18,7 @@ public class NullableIntegerConverter : JsonConverter<int?>
             _culture = culture;
         }
     }
+
     public override void WriteJson(JsonWriter writer, int? value, JsonSerializer serializer)
     {
         writer.WriteValue(value);
