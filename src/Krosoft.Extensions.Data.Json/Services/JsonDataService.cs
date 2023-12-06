@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using JsonFlatFileDataStore;
-using Krosoft.Extensions.Core.Legacy.Models;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Data.Json.Interfaces;
+using Krosoft.Extensions.Data.Json.Models;
 using Microsoft.Extensions.Options;
 
 namespace Krosoft.Extensions.Data.Json.Services;
@@ -63,8 +63,13 @@ internal class JsonDataService<T> : IJsonDataService<T> where T : class
         await collection.UpdateOneAsync(id, item);
     }
 
-    public IDocumentCollection<T> GetCollection()
+    private IDocumentCollection<T> GetCollection()
     {
+        if (string.IsNullOrEmpty(_jsonDataSettings.DataFileName))
+        {
+            throw new KrosoftTechniqueException($"{nameof(_jsonDataSettings.DataFileName)} non renseigné.");
+        }
+
         var store = new DataStore(_jsonDataSettings.DataFileName);
         var collection = store.GetCollection<T>();
         return collection;

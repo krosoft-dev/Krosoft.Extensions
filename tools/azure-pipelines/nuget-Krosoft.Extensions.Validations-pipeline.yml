@@ -1,4 +1,4 @@
-name: Nuget 'Krosoft.Extensions.Data.Json' - $(Date:yyyy.MM.dd).$(BuildID)
+name: Nuget 'Krosoft.Extensions.Validations' - $(Date:yyyy.MM.dd).$(BuildID)
 
 pr: none
 
@@ -8,12 +8,12 @@ trigger:
       - main
   paths:
     include:
-      - "**/Krosoft.Extensions.Data.Json/*"
+      - "**/Krosoft.Extensions.Validations/*"
 
 extends:
   template: ./templates/pipelines/nuget-template.yml
   parameters:
     packages:
-     - "Krosoft.Extensions.Data.Json"
+     - "Krosoft.Extensions.Validations"
      - "Krosoft.Extensions.Core"
 

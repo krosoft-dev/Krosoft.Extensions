@@ -1,4 +1,4 @@
-﻿namespace Krosoft.Extensions.Core.Legacy.Models;
+﻿namespace Krosoft.Extensions.Data.Json.Models;
 
 public class JsonDataSettings
 {
