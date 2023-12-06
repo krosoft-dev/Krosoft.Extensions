@@ -1,4 +1,4 @@
-﻿namespace Krosoft.Extensions.Core.Legacy.Interfaces;
+﻿namespace Krosoft.Extensions.Data.Json.Interfaces;
 
 public interface IJsonDataService<T> where T : class
 {

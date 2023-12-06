@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using JsonFlatFileDataStore;
-using Krosoft.Extensions.Core.Legacy.Interfaces;
 using Krosoft.Extensions.Core.Legacy.Models;
 using Krosoft.Extensions.Core.Models.Exceptions;
+using Krosoft.Extensions.Data.Json.Interfaces;
 using Microsoft.Extensions.Options;
 
-namespace Krosoft.Extensions.Core.Legacy.Services;
+namespace Krosoft.Extensions.Data.Json.Services;
 
 internal class JsonDataService<T> : IJsonDataService<T> where T : class
 {

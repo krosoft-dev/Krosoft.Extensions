@@ -1,6 +1,5 @@
-using Krosoft.Extensions.Core.Legacy.Interfaces;
 using Krosoft.Extensions.Core.Legacy.Models;
-using Krosoft.Extensions.Core.Legacy.Services;
+using Krosoft.Extensions.Data.Json.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
