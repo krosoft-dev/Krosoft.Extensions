@@ -33,7 +33,7 @@ public class NullableIntegerConverterTests
         Check.That(obj).IsEmpty();
     }
 
-    [TestMethod] 
+    [TestMethod]
     [DataRow("           ", null)]
     [DataRow("null", null)]
     [DataRow("999", 999)]
@@ -49,5 +49,4 @@ public class NullableIntegerConverterTests
         Check.That(obj).IsNotNull();
         Check.That(obj!.ValeurInt).IsEqualTo(expected);
     }
- 
 }
