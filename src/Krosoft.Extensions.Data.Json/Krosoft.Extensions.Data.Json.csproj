@@ -5,6 +5,11 @@
 		<Description>Package pour faciliter l'utilisation de fichiers JSON comme source de données.</Description>
 	</PropertyGroup>
 	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>Krosoft.Extensions.Data.Json.Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="11.8.1" />
 		<PackageReference Include="JsonFlatFileDataStore" Version="2.4.2" /> 
 	</ItemGroup>
