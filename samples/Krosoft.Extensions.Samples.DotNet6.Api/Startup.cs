@@ -60,11 +60,11 @@ public class Startup
         //services.AddInfrastructure(_configuration);
         //services.AddJwtAuthentication(_configuration).AddBlocking(_configuration);
 
-         services.AddHealthChecks()
-                 .AddCheck("Test_Endpoint", () => HealthCheckResult.Healthy())
-        //        .AddRedisCheck()
-        //        .AddDbContextCheck<KrosoftExtensionTenantContext>("KrosoftExtensionTenantContext")
-        ;
+        services.AddHealthChecks()
+                .AddCheck("Test_Endpoint", () => HealthCheckResult.Healthy())
+            //        .AddRedisCheck()
+            //        .AddDbContextCheck<KrosoftExtensionTenantContext>("KrosoftExtensionTenantContext")
+            ;
 
         ////Data.
         //services.AddRepositories();
