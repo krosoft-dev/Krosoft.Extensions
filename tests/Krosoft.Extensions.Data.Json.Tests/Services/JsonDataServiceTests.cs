@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using Krosoft.Extensions.Core.Extensions;
+﻿using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Data.Json.Extensions;
 using Krosoft.Extensions.Data.Json.Interfaces;
@@ -47,8 +46,7 @@ public class JsonDataServiceTests : BaseTest
     [TestMethod]
     public void Init_Ko()
     {
-        Check.ThatCode(() => new JsonDataService<Shortcut>(Options.Create(new JsonDataSettings()),
-                                                           new List<IValidator<Shortcut>>()).Query())
+        Check.ThatCode(() => new JsonDataService<Shortcut>(Options.Create(new JsonDataSettings())).Query())
              .Throws<KrosoftTechniqueException>()
              .WithMessage("DataFileName non renseigné.");
     }

@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
-using JsonFlatFileDataStore;
+﻿using JsonFlatFileDataStore;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Data.Json.Interfaces;
 using Krosoft.Extensions.Data.Json.Models;
@@ -11,12 +9,9 @@ namespace Krosoft.Extensions.Data.Json.Services;
 internal class JsonDataService<T> : IJsonDataService<T> where T : class
 {
     private readonly JsonDataSettings _jsonDataSettings;
-    private readonly IEnumerable<IValidator<T>> _validators;
 
-    public JsonDataService(IOptions<JsonDataSettings> options,
-                           IEnumerable<IValidator<T>> validators)
+    public JsonDataService(IOptions<JsonDataSettings> options)
     {
-        _validators = validators;
         _jsonDataSettings = options.Value;
     }
 
@@ -29,25 +24,6 @@ internal class JsonDataService<T> : IJsonDataService<T> where T : class
     public async Task InsertAsync(T item, CancellationToken cancellationToken)
     {
         var collection = GetCollection();
-
-        if (_validators.Any())
-        {
-            var failures = new List<ValidationFailure>();
-            foreach (var validator in _validators)
-            {
-                var validationResult = await validator.ValidateAsync(item, cancellationToken);
-                if (validationResult != null)
-                {
-                    failures.AddRange(validationResult.Errors);
-                }
-            }
-
-            if (failures.Any())
-            {
-                throw new KrosoftMetierException(failures.Select(x => x.ErrorMessage).ToHashSet());
-            }
-        }
-
         await collection.InsertOneAsync(item);
     }
 
