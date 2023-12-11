@@ -1,14 +1,14 @@
 ﻿using System.Reflection;
+using Krosoft.Extensions.Core.Extensions;
+using Krosoft.Extensions.Core.Helpers;
+using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Pdf.Extensions;
+using Krosoft.Extensions.Pdf.Interfaces;
 using Krosoft.Extensions.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
-using Krosoft.Extensions.Core.Extensions;
-using Krosoft.Extensions.Core.Helpers;
-using Krosoft.Extensions.Core.Models.Exceptions;
-using Krosoft.Extensions.Pdf.Interfaces;
 
 namespace Krosoft.Extensions.Pdf.Tests.Services;
 
@@ -32,7 +32,7 @@ public class PdfServiceTests : BaseTest
     {
         Check.ThatCode(() => { _pdfService.Merge((IEnumerable<Stream>)null!); })
              .Throws<KrosoftTechniqueException>()
-             .WithMessage("La variable streams n'est pas renseignée.");
+             .WithMessage("La variable 'streams' n'est pas renseignée.");
     }
 
     [TestMethod]
@@ -40,7 +40,7 @@ public class PdfServiceTests : BaseTest
     {
         Check.ThatCode(() => { _pdfService.Merge((IEnumerable<byte[]>)null!); })
              .Throws<KrosoftTechniqueException>()
-             .WithMessage("La variable files n'est pas renseignée.");
+             .WithMessage("La variable 'files' n'est pas renseignée.");
     }
 
     [TestMethod]
