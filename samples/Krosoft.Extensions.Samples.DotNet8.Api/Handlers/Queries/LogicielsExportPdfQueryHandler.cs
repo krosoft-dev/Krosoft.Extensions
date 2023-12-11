@@ -33,8 +33,8 @@ public class LogicielsExportPdfQueryHandler : IRequestHandler<LogicielsExportPdf
 
         var files = new List<Stream>
         {
-            pdf1,
-            pdf2
+            //pdf1,
+            //pdf2
         };
         var data = _pdfService.Merge(files);
 
