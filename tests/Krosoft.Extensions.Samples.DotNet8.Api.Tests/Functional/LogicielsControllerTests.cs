@@ -1,5 +1,8 @@
 using System.Net;
+using Krosoft.Extensions.Core.Extensions;
+using Krosoft.Extensions.Core.Helpers;
 using Krosoft.Extensions.Samples.DotNet8.Api.Tests.Core;
+using Krosoft.Extensions.Samples.Library.Models.Dto;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
 
@@ -15,6 +18,9 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var response = await httpClient.GetAsync("/Logiciels");
 
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
+        var logiciels = await response.Content.ReadAsJsonAsync<IEnumerable<LogicielDto>>(CancellationToken.None);
+        Check.That(logiciels).IsNotNull();
+        Check.That(logiciels).HasSize(10);
     }
 
     [TestMethod]
@@ -26,6 +32,9 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var response = await httpClient.GetAsync($"/Logiciels?Nom={nom}");
 
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
+        var logiciels = await response.Content.ReadAsJsonAsync<IEnumerable<LogicielDto>>(CancellationToken.None);
+        Check.That(logiciels).IsNotNull();
+        Check.That(logiciels).HasSize(10);
     }
 
     [TestMethod]
@@ -34,7 +43,7 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var httpClient = Factory.CreateClient();
         var response = await httpClient.GetAsync("/Logiciels/Export/Csv");
 
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
+        await CheckExportFile(response, "Logiciels.csv");
     }
 
     [TestMethod]
@@ -43,7 +52,7 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var httpClient = Factory.CreateClient();
         var response = await httpClient.GetAsync("/Logiciels/Export/Pdf");
 
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
+        await CheckExportFile(response, "Logiciels.pdf");
     }
 
     [TestMethod]
@@ -52,21 +61,22 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var httpClient = Factory.CreateClient();
         var response = await httpClient.GetAsync("/Logiciels/Export/Zip");
 
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
+        await CheckExportFile(response, "Logiciels.zip");
     }
 
-    //[TestMethod]
-    //public async Task Logiciels_Empty()
-    //{
-    //    var beneficiaryEan13 = "1234567890123";
-    //    var url = $"/Logiciels?Code={beneficiaryEan13}";
+    private async Task CheckExportFile(HttpResponseMessage response, string fileNameExpected)
+    {
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
 
-    //    var httpClient = Factory.CreateClient();
-    //    var response = await httpClient.GetAsync(url);
+        var fileName = response.Content.Headers.ContentDisposition?.FileName;
 
-    //    Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
+        Check.That(fileName).IsEqualTo(fileNameExpected);
 
-    //    var beneficiaries = await response.Content.ReadAsJsonAsync<IEnumerable<LogicielDto>>(CancellationToken.None);
-    //    Check.That(beneficiaries).IsEmpty();
-    //}
+        var stream = await response.Content.ReadAsStreamAsync(CancellationToken.None);
+        Check.That(stream).IsNotNull();
+        Check.That(stream.CanRead).IsTrue();
+
+        await FileHelper.WriteAsync(fileName!, stream, CancellationToken.None);
+        Check.That(File.Exists(fileName)).IsTrue();
+    }
 }

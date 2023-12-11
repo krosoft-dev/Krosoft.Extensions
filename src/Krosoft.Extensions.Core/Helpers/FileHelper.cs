@@ -453,10 +453,10 @@ public static class FileHelper
             DirectoryHelper.CreateDirectoryIfNotExist(fi.DirectoryName);
         }
 
-        await using var destinationFichier = new FileStream(fi.FullName, FileMode.Create);
-        await stream.CopyToAsync(destinationFichier, cancellationToken).ConfigureAwait(false);
-        await destinationFichier.FlushAsync(cancellationToken);
-        destinationFichier.Close();
+        await using var fileStream = new FileStream(fi.FullName, FileMode.Create);
+        await stream.CopyToAsync(fileStream, cancellationToken).ConfigureAwait(false);
+        await fileStream.FlushAsync(cancellationToken);
+        fileStream.Close();
     }
 
     public static async Task WriteAsync(string filePath,

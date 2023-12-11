@@ -1,4 +1,5 @@
-﻿using System.IO.Compression;
+﻿using System.IO;
+using System.IO.Compression;
 using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Core.Tools;
@@ -79,8 +80,9 @@ public class ZipService : IZipService
                 await x.Value.CopyToAsync(entryStream, cancellationToken);
             }
 
-            await ms.FlushAsync(cancellationToken);
-            ms.Seek(0, SeekOrigin.Begin);
+            //await ms.FlushAsync(cancellationToken);
+            //ms.Seek(0, SeekOrigin.Begin);
+            ms.Position = 0;
         }
 
         return ms;
@@ -138,10 +140,8 @@ public class ZipService : IZipService
             foreach (var fileStream in streams)
             {
                 var entry = archive.CreateEntry(fileStream.Key);
-                using (var entryStream = entry.Open())
-                {
-                    fileStream.Value.CopyTo(entryStream);
-                }
+                using var entryStream = entry.Open();
+                fileStream.Value.CopyTo(entryStream);
             }
         }
 
