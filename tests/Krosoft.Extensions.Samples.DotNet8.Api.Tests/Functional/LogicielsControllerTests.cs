@@ -66,6 +66,9 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
 
     private static async Task CheckExportFile(HttpResponseMessage response, string fileNameExpected)
     {
+        var content = await response.Content.ReadAsStringAsync(CancellationToken.None);
+        Console.WriteLine(content);
+
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
 
         var fileName = response.Content.Headers.ContentDisposition?.FileName;
