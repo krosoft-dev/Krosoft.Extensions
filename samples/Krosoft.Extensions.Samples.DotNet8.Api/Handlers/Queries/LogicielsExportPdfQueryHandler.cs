@@ -1,4 +1,5 @@
-﻿using Krosoft.Extensions.Core.Models;
+﻿using Krosoft.Extensions.Core.Helpers;
+using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Pdf.Interfaces;
 using Krosoft.Extensions.Samples.DotNet8.Api.Models.Queries;
 using Krosoft.Extensions.Samples.Library.Factories;
@@ -25,14 +26,18 @@ public class LogicielsExportPdfQueryHandler : IRequestHandler<LogicielsExportPdf
 
         await Task.Delay(2000, cancellationToken);
 
-        var logiciels = LogicielFactory.GetRandom(10)
-                                       .AsQueryable()
-                                       .Where(x => !string.IsNullOrEmpty(x.Nom))
-                                       .Select(x => x.Nom!)
-                                       .ToList();
+        var assembly = typeof(AddresseFactory).Assembly;
 
-        var steam = _pdfService.Create(logiciels);
+        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
 
-        return new PdfFileStream(steam, "Logiciels.pdf");
+        var files = new List<Stream>
+        {
+            pdf1,
+            pdf2
+        };
+        var data = _pdfService.Merge(files);
+
+        return new PdfFileStream(data, "Logiciels.pdf");
     }
 }

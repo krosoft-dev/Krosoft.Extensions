@@ -1,7 +1,6 @@
 ﻿using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Pdf.Interfaces;
-using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
 using PdfSharpCore.Pdf.IO;
 
@@ -53,31 +52,5 @@ public class PdfService : IPdfService
         var streams = files.ToStreams();
         var stream = Merge(streams);
         return stream.ToByte();
-    }
-
-    public Stream Create(IEnumerable<string> contents)
-    {
-        var output = new MemoryStream();
-        using (var document = new PdfDocument())
-        {
-            foreach (var content in contents)
-            {
-                var page = document.AddPage();
-
-                var gfx = XGraphics.FromPdfPage(page);
-
-                var font = new XFont("Arial", 20);
-
-                var textColor = XBrushes.Black;
-                var layout = new XRect(20, 20, page.Width, page.Height);
-                var format = XStringFormats.Center;
-
-                gfx.DrawString(content, font, textColor, layout, format);
-            }
-
-            document.Save(output);
-        }
-
-        return output;
     }
 }
