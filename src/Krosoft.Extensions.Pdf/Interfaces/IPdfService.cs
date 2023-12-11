@@ -1,7 +1,7 @@
 ﻿namespace Krosoft.Extensions.Pdf.Interfaces;
 
 public interface IPdfService
-{ 
-    Stream Merge(IEnumerable<Stream> streamsPdf);
-    byte[] Merge(IEnumerable<byte[]> streamsPdf);
+{
+    Stream Merge(params Stream[] streams);
+    byte[] Merge(params byte[][] files);
 }

@@ -30,7 +30,7 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void MergeStreamNullTest()
     {
-        Check.ThatCode(() => { _pdfService.Merge((IEnumerable<Stream>)null!); })
+        Check.ThatCode(() => { _pdfService.Merge((Stream[])null!); })
              .Throws<KrosoftTechniqueException>()
              .WithMessage("La variable 'streams' n'est pas renseignée.");
     }
@@ -38,7 +38,7 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void MergeByteNullTest()
     {
-        Check.ThatCode(() => { _pdfService.Merge((IEnumerable<byte[]>)null!); })
+        Check.ThatCode(() => { _pdfService.Merge((byte[][])null!); })
              .Throws<KrosoftTechniqueException>()
              .WithMessage("La variable 'files' n'est pas renseignée.");
     }
@@ -46,7 +46,7 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void MergeStreamEmptyTest()
     {
-        var stream = _pdfService.Merge(new List<Stream>());
+        var stream = _pdfService.Merge(new List<Stream>().ToArray());
 
         Check.That(stream).IsNotNull();
     }
@@ -54,7 +54,7 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void MergeByteEmptyTest()
     {
-        var stream = _pdfService.Merge(new List<byte[]>());
+        var stream = _pdfService.Merge(new List<byte[]>().ToArray());
 
         Check.That(stream).IsNotNull();
     }
@@ -70,10 +70,8 @@ public class PdfServiceTests : BaseTest
         Check.That(pdf2).IsNotNull();
         Check.That(pdf2.Length).IsEqualTo(13264);
 
-        var files = new List<Stream>();
-        files.Add(pdf1);
-        files.Add(pdf2);
-        var data = _pdfService.Merge(files);
+        var data = _pdfService.Merge(pdf1,
+                                     pdf2);
         FileHelper.CreateFile("Files/sample-stream.pdf", data);
 
         Check.That(data).IsNotNull();
@@ -85,10 +83,8 @@ public class PdfServiceTests : BaseTest
         var pdf1 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample1.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
         var pdf2 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample1.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
 
-        var files = new List<byte[]>();
-        files.Add(pdf1);
-        files.Add(pdf2);
-        var data = _pdfService.Merge(files);
+        var data = _pdfService.Merge(pdf1,
+                                     pdf2);
         FileHelper.CreateFile("Files/sample-byte.pdf", data);
 
         Check.That(data).IsNotNull();

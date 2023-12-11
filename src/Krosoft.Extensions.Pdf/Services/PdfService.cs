@@ -8,7 +8,7 @@ namespace Krosoft.Extensions.Pdf.Services;
 
 public class PdfService : IPdfService
 {
-    public Stream Merge(IEnumerable<Stream> streams)
+    public Stream Merge(params Stream[] streams)
     {
         Guard.IsNotNull(nameof(streams), streams);
         var output = new MemoryStream();
@@ -45,12 +45,12 @@ public class PdfService : IPdfService
         return output;
     }
 
-    public byte[] Merge(IEnumerable<byte[]> files)
+    public byte[] Merge(params byte[][] files)
     {
         Guard.IsNotNull(nameof(files), files);
 
         var streams = files.ToStreams();
-        var stream = Merge(streams);
+        var stream = Merge(streams.ToArray());
         return stream.ToByte();
     }
 }
