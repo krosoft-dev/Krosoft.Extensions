@@ -64,7 +64,7 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         await CheckExportFile(response, "Logiciels.zip");
     }
 
-    private async Task CheckExportFile(HttpResponseMessage response, string fileNameExpected)
+    private static async Task CheckExportFile(HttpResponseMessage response, string fileNameExpected)
     {
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
 
