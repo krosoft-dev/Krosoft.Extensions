@@ -10,14 +10,15 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Files\sample1.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Files\sample2.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\samples\Krosoft.Extensions.Samples.Library\Krosoft.Extensions.Samples.Library.csproj" />
     <ProjectReference Include="..\..\src\Krosoft.Extensions.Pdf\Krosoft.Extensions.Pdf.csproj" />
     <ProjectReference Include="..\..\src\Krosoft.Extensions.Testing\Krosoft.Extensions.Testing.csproj" />
   </ItemGroup>

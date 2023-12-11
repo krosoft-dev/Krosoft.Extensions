@@ -1,9 +1,12 @@
 ﻿using System.Reflection;
+using System.Text;
 using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Helpers;
+using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Pdf.Extensions;
 using Krosoft.Extensions.Pdf.Interfaces;
+using Krosoft.Extensions.Samples.Library.Factories;
 using Krosoft.Extensions.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +31,7 @@ public class PdfServiceTests : BaseTest
     }
 
     [TestMethod]
-    public void MergeStreamNullTest()
+    public void MergeStreamNull_Ok()
     {
         Check.ThatCode(() => { _pdfService.Merge((Stream[])null!); })
              .Throws<KrosoftTechniqueException>()
@@ -36,7 +39,7 @@ public class PdfServiceTests : BaseTest
     }
 
     [TestMethod]
-    public void MergeByteNullTest()
+    public void MergeByteNull_Ok()
     {
         Check.ThatCode(() => { _pdfService.Merge((byte[][])null!); })
              .Throws<KrosoftTechniqueException>()
@@ -44,7 +47,7 @@ public class PdfServiceTests : BaseTest
     }
 
     [TestMethod]
-    public void MergeStreamEmptyTest()
+    public void MergeStreamEmpty_Ok()
     {
         var stream = _pdfService.Merge(new List<Stream>().ToArray());
 
@@ -52,7 +55,7 @@ public class PdfServiceTests : BaseTest
     }
 
     [TestMethod]
-    public void MergeByteEmptyTest()
+    public void MergeByteEmpty_Ok()
     {
         var stream = _pdfService.Merge(new List<byte[]>().ToArray());
 
@@ -60,15 +63,15 @@ public class PdfServiceTests : BaseTest
     }
 
     [TestMethod]
-    public void MergeStreamTest()
+    public void MergeStreams_Ok()
     {
         var pdf1 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
 
-        var pdf2 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf2 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(pdf2).IsNotNull();
-        Check.That(pdf2.Length).IsEqualTo(13264);
+        Check.That(pdf2.Length).IsEqualTo(3028);
 
         var data = _pdfService.Merge(pdf1,
                                      pdf2);
@@ -78,15 +81,38 @@ public class PdfServiceTests : BaseTest
     }
 
     [TestMethod]
-    public void MergeByteTest()
+    public void MergeBytes_Ok()
     {
         var pdf1 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample1.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
-        var pdf2 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample1.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
+        var pdf2 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample2.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
 
         var data = _pdfService.Merge(pdf1,
                                      pdf2);
         FileHelper.CreateFile("Files/sample-byte.pdf", data);
 
         Check.That(data).IsNotNull();
+    }
+
+    [TestMethod]
+    public void PdfFileStream_Ok()
+    {
+         var assembly = typeof(AddresseFactory).Assembly;
+        //var assembly = Assembly.GetExecutingAssembly();
+
+        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        Check.That(pdf1).IsNotNull();
+        Check.That(pdf1.Length).IsEqualTo(13264);
+        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
+        Check.That(pdf2).IsNotNull();
+        Check.That(pdf2.Length).IsEqualTo(3028);
+
+        var data = _pdfService.Merge(pdf1, pdf2);
+
+        var pdffile = new PdfFileStream(data, "Logiciels.pdf");
+        Check.That(pdffile).IsNotNull();
+        Check.That(pdffile.FileName).IsEqualTo("Logiciels.pdf");
+        Check.That(pdffile.ContentType).IsEqualTo("application/pdf");
+        Check.That(pdffile.Stream).IsNotNull();
+        Check.That(pdffile.Stream.CanRead).IsTrue();
     }
 }

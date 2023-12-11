@@ -52,10 +52,6 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var httpClient = Factory.CreateClient();
         var response = await httpClient.GetAsync("/Logiciels/Export/Pdf");
 
-
-        var content = await response.Content.ReadAsStringAsync(CancellationToken.None);
-        Check.That(content).IsEqualTo("");
-
         await CheckExportFile(response, "Logiciels.pdf");
     }
 
@@ -72,7 +68,6 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
     {
         var content = await response.Content.ReadAsStringAsync(CancellationToken.None);
         Console.WriteLine(content);
-
 
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
 

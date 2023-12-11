@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Krosoft.Extensions.Core.Helpers;
+﻿using Krosoft.Extensions.Core.Helpers;
 using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Pdf.Interfaces;
 using Krosoft.Extensions.Samples.DotNet8.Api.Models.Queries;
@@ -28,9 +27,11 @@ public class LogicielsExportPdfQueryHandler : IRequestHandler<LogicielsExportPdf
         await Task.Delay(2000, cancellationToken);
 
         var assembly = typeof(AddresseFactory).Assembly;
+        var encoding = EncodingHelper.GetEuropeOccidentale();
 
-        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", Encoding.UTF8);
-        var pdf2 = FileHelper.ReadAsStream(assembly, "sample1.pdf", Encoding.UTF8);
+        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", encoding);
+        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", encoding);
+
         var data = _pdfService.Merge(pdf1, pdf2);
 
         return new PdfFileStream(data, "Logiciels.pdf");
