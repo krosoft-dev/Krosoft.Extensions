@@ -99,10 +99,10 @@ public class PdfServiceTests : BaseTest
     {
         var assembly = typeof(AddresseFactory).Assembly;
 
-        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", Encoding.Default);
+        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", Encoding.Latin1);
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
-        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", Encoding.Default);
+        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", Encoding.Latin1);
         Check.That(pdf2).IsNotNull();
         Check.That(pdf2.Length).IsEqualTo(3028);
 
