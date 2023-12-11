@@ -17,6 +17,17 @@ public class ZipService : IZipService
     {
         Guard.IsNotNull(nameof(dictionary), dictionary);
         Guard.IsNotNullOrWhiteSpace(nameof(fileName), fileName);
+
+        var ms = await ZipAsync(dictionary, cancellationToken);
+
+        return new ZipFileStream(ms, fileName.Sanitize());
+    }
+
+    public async Task<Stream> ZipAsync(IReadOnlyDictionary<string, string> dictionary,
+                                       CancellationToken cancellationToken)
+    {
+        Guard.IsNotNull(nameof(dictionary), dictionary);
+
         var ms = new MemoryStream();
         if (dictionary.Count > 0)
         {
@@ -36,7 +47,43 @@ public class ZipService : IZipService
             ms.Seek(0, SeekOrigin.Begin);
         }
 
+        return ms;
+    }
+
+    public async Task<ZipFileStream> ZipAsync(IReadOnlyDictionary<string, Stream> dictionary,
+                                              string fileName,
+                                              CancellationToken cancellationToken)
+    {
+        Guard.IsNotNull(nameof(dictionary), dictionary);
+        Guard.IsNotNullOrWhiteSpace(nameof(fileName), fileName);
+
+        var ms = await ZipAsync(dictionary, cancellationToken);
+
         return new ZipFileStream(ms, fileName.Sanitize());
+    }
+
+    public async Task<Stream> ZipAsync(IReadOnlyDictionary<string, Stream> dictionary,
+                                       CancellationToken cancellationToken)
+    {
+        Guard.IsNotNull(nameof(dictionary), dictionary);
+
+        var ms = new MemoryStream();
+        if (dictionary.Count > 0)
+        {
+            using var archive = new ZipArchive(ms, ZipArchiveMode.Create, true);
+
+            foreach (var x in dictionary)
+            {
+                var entry = archive.CreateEntry(x.Key);
+                await using var entryStream = entry.Open();
+                await x.Value.CopyToAsync(entryStream, cancellationToken);
+            }
+
+            await ms.FlushAsync(cancellationToken);
+            ms.Seek(0, SeekOrigin.Begin);
+        }
+
+        return ms;
     }
 
     public Stream Zip(Stream stream, string fileName)
