@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Globalization;
+using System.Reflection;
 using System.Text;
 using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Helpers;
@@ -96,13 +97,12 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void PdfFileStream_Ok()
     {
-         var assembly = typeof(AddresseFactory).Assembly;
-        //var assembly = Assembly.GetExecutingAssembly();
+        var assembly = typeof(AddresseFactory).Assembly;
 
-        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", Encoding.Default);
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
-        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", Encoding.Default);
         Check.That(pdf2).IsNotNull();
         Check.That(pdf2.Length).IsEqualTo(3028);
 
