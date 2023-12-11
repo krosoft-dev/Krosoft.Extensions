@@ -50,7 +50,7 @@ public class DistributedCacheProvider : IDistributedCacheProvider
         var data = await db.HashGetAllAsync(collectionKey);
         return data.Select(x => ToObject<T>(x.Value))
                    .Where(x => !EqualityComparer<T>.Default.Equals(x, default))
-                   .ToList();
+                   .ToList()!;
     }
 
     public async Task<bool> IsExistAsync(string key, CancellationToken cancellationToken = default)
@@ -78,7 +78,7 @@ public class DistributedCacheProvider : IDistributedCacheProvider
         var keys = new List<string>();
         foreach (var redisKey in redisKeys)
         {
-            keys.Add(redisKey);
+            keys.Add(redisKey!);
         }
 
         return keys;
@@ -136,7 +136,7 @@ public class DistributedCacheProvider : IDistributedCacheProvider
         var data = await db.HashGetAsync(collectionKey, hashFields);
         return data.Select(ToObject<T>)
                    .Where(x => !EqualityComparer<T>.Default.Equals(x, default))
-                   .ToList();
+                   .ToList()!;
     }
 
     public async Task SetAsync<T>(string key,
@@ -161,8 +161,8 @@ public class DistributedCacheProvider : IDistributedCacheProvider
         return 1;
     }
 
-    public async Task<T> GetAsync<T>(string key,
-                                     CancellationToken cancellationToken = default)
+    public async Task<T?> GetAsync<T>(string key,
+                                      CancellationToken cancellationToken = default)
     {
         var db = _factory.Connection.GetDatabase();
         var data = await db.StringGetAsync(key);
@@ -241,13 +241,11 @@ public class DistributedCacheProvider : IDistributedCacheProvider
         return data;
     }
 
-    private static T ToObject<T>(RedisValue redisValue)
+    private static T? ToObject<T>(RedisValue redisValue)
     {
         if (redisValue.HasValue)
         {
-#pragma warning disable CS8604
-            var entryString = Encoding.UTF8.GetString(redisValue);
-#pragma warning restore CS8604
+            var entryString = Encoding.UTF8.GetString(redisValue!);
 
             var entry = JsonConvert.DeserializeObject<T>(entryString);
             return entry;

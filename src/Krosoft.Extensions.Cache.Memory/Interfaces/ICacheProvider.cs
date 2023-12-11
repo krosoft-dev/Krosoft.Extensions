@@ -28,7 +28,7 @@
         /// <typeparam name="T">Type de la valeur.</typeparam>
         /// <param name="key">Clé de l'entrée.</param>
         /// <returns>Valeur de l'entrée du cache correspondante.</returns>
-        T Get<T>(string key);
+        T? Get<T>(string key);
 
         /// <summary>
         /// Obtient une entrée du cache.
@@ -61,7 +61,7 @@
         /// <param name="key">Clé de l'entrée.</param>
         /// <param name="firstLoad">Action à faire lors de la première mise en cache.</param>
         /// <returns>Instance de T depuis le cache.</returns>
-        T Get<T>(string key, Func<T> firstLoad);
+        T? Get<T>(string key, Func<T> firstLoad);
 
         /// <summary>
         /// Récupère une collection de type T en cache.
@@ -70,7 +70,7 @@
         /// <typeparam name="T">Type de l'objet en cache.</typeparam>
         /// <param name="firstLoad">Action à faire lors de la première mise en cache.</param>
         /// <returns>Collection de T depuis le cache.</returns>
-        IEnumerable<T> Get<T>(Func<IEnumerable<T>> firstLoad);
+        IEnumerable<T>? Get<T>(Func<IEnumerable<T>> firstLoad);
 
         /// <summary>
         /// Recupère la clé de cache d'un objet de type T.

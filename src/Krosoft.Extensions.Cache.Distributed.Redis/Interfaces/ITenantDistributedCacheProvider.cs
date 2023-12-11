@@ -6,7 +6,7 @@
 public interface ITenantDistributedCacheProvider
 {
     IEnumerable<string> GetKeys(string tenantId, string pattern);
-    Task<T> GetAsync<T>(string tenantId, string key, CancellationToken cancellationToken = default);
+    Task<T?> GetAsync<T>(string tenantId, string key, CancellationToken cancellationToken = default);
     Task<long> GetLengthAsync(string tenantId, string collectionKey, CancellationToken cancellationToken = default);
     Task SetAsync<T>(string tenantId, string key, T entry, CancellationToken cancellationToken = default);
 

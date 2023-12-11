@@ -30,9 +30,9 @@ namespace Krosoft.Extensions.Cache.Memory.Services
         /// <typeparam name="T">Type de la valeur.</typeparam>
         /// <param name="key">Clé de l'entrée.</param>
         /// <returns>Valeur de l'entrée du cache correspondante.</returns>
-        public T Get<T>(string key)
+        public T? Get<T>(string key)
         {
-            _memoryCache.TryGetValue(key, out T cacheEntry);
+            _memoryCache.TryGetValue(key, out T? cacheEntry);
             return cacheEntry;
         }
 
@@ -46,7 +46,7 @@ namespace Krosoft.Extensions.Cache.Memory.Services
         /// <returns>Valeur trouvée ou valeur par défaut.</returns>
         public T? GetValueOrDefault<T>(string key, T? defaultValue = default)
         {
-            if (!_memoryCache.TryGetValue(key, out T cacheEntry))
+            if (!_memoryCache.TryGetValue(key, out T? cacheEntry))
             {
                 return defaultValue;
             }
@@ -114,7 +114,10 @@ namespace Krosoft.Extensions.Cache.Memory.Services
                             if (val != null)
                             {
                                 var key = val.ToString();
-                                items.Add(key);
+                                if (key != null)
+                                {
+                                    items.Add(key);
+                                }
                             }
                         }
                     }
@@ -142,7 +145,7 @@ namespace Krosoft.Extensions.Cache.Memory.Services
         /// <param name="key">Clé de l'entrée.</param>
         /// <param name="firstLoad">Action à faire lors de la première mise en cache.</param>
         /// <returns>Instance de T depuis le cache.</returns>
-        public T Get<T>(string key, Func<T> firstLoad)
+        public T? Get<T>(string key, Func<T> firstLoad)
         {
             return GetValueOrDefault(key, firstLoad());
         }
@@ -154,7 +157,7 @@ namespace Krosoft.Extensions.Cache.Memory.Services
         /// <typeparam name="T">Type de l'objet en cache.</typeparam>
         /// <param name="firstLoad">Action à faire lors de la première mise en cache.</param>
         /// <returns>Collection de T depuis le cache.</returns>
-        public IEnumerable<T> Get<T>(Func<IEnumerable<T>> firstLoad)
+        public IEnumerable<T>? Get<T>(Func<IEnumerable<T>> firstLoad)
         {
             var cacheKey = GetKey<T>();
 

@@ -1,9 +1,8 @@
 ﻿using StackExchange.Redis;
 
-namespace Krosoft.Extensions.Cache.Distributed.Redis.Interfaces
+namespace Krosoft.Extensions.Cache.Distributed.Redis.Interfaces;
+
+public interface IRedisConnectionFactory
 {
-    public interface IRedisConnectionFactory
-    {
-        IConnectionMultiplexer Connection { get; }
-    }
+    IConnectionMultiplexer Connection { get; }
 }

@@ -14,7 +14,7 @@ public class DictionaryCacheProvider : IDistributedCacheProvider
 
     public IEnumerable<string> GetKeys(string pattern) => _cache.Keys;
 
-    public Task<T> GetAsync<T>(string key, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+    public Task<T?> GetAsync<T>(string key, CancellationToken cancellationToken = default) => throw new NotImplementedException();
 
     public async Task<long> GetLengthAsync(string collectionKey, CancellationToken cancellationToken = default)
     {
@@ -147,11 +147,7 @@ public class DictionaryCacheProvider : IDistributedCacheProvider
         }
         else
         {
-            collection = _cache[collectionKey] as Dictionary<string, T>;
-            if (collection == null)
-            {
-                collection = new Dictionary<string, T>();
-            }
+            collection = _cache[collectionKey] as Dictionary<string, T> ?? new Dictionary<string, T>();
         }
 
         return collection;

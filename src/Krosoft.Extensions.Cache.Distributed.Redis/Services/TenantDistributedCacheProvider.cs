@@ -19,9 +19,9 @@ public class TenantDistributedCacheProvider : ITenantDistributedCacheProvider
         return _distributedCacheProvider.GetKeys(tenantKey);
     }
 
-    public Task<T> GetAsync<T>(string tenantId,
-                               string key,
-                               CancellationToken cancellationToken = default)
+    public Task<T?> GetAsync<T>(string tenantId,
+                                string key,
+                                CancellationToken cancellationToken = default)
     {
         var tenantKey = GetTenantKey(tenantId, key);
         return _distributedCacheProvider.GetAsync<T>(tenantKey, cancellationToken);
