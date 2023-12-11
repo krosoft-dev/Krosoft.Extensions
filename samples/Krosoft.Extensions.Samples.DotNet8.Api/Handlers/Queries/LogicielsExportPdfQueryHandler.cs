@@ -28,7 +28,7 @@ public class LogicielsExportPdfQueryHandler : IRequestHandler<LogicielsExportPdf
         await Task.Delay(2000, cancellationToken);
 
         var assembly = typeof(AddresseFactory).Assembly;
-        var encoding = Encoding.Latin1;
+        var encoding = Encoding.UTF8;
 
         var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", encoding);
         var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", encoding);
