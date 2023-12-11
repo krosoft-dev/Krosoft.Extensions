@@ -7,6 +7,7 @@ using Krosoft.Extensions.Reporting.Csv.Models;
 using Krosoft.Extensions.Samples.DotNet8.Api.Models.Dto;
 using Krosoft.Extensions.Samples.DotNet8.Api.Models.Queries;
 using Krosoft.Extensions.Samples.Library.Factories;
+using Krosoft.Extensions.Samples.Library.Models.Dto;
 using MediatR;
 
 namespace Krosoft.Extensions.Samples.DotNet8.Api.Handlers.Queries;
