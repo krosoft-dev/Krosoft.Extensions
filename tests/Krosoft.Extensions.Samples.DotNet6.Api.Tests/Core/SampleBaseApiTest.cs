@@ -1,5 +1,8 @@
-﻿using Krosoft.Extensions.Core.Models;
+﻿using Krosoft.Extensions.Cache.Distributed.Redis.Interfaces;
+using Krosoft.Extensions.Cache.Distributed.Redis.Services;
+using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Testing.WebApi;
+using Krosoft.Extensions.Testing.WebApi.Cache.Distributed.Redis.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Krosoft.Extensions.Samples.DotNet6.Api.Tests.Core;
@@ -15,7 +18,8 @@ public abstract class SampleBaseApiTest<TEntry> : BaseApiTest<TEntry, TEntry> wh
         //services.AddSeedService<PositiveExtensionTenantContext, SampleSeedService>();
 
         //// Remove Redis registration.
-        //services.AddTransient<IDistributedCacheProvider, DictionaryCacheProvider>();
+        services.MockRedis();
+        services.AddTransient<IDistributedCacheProvider, DictionaryCacheProvider>();
 
         //// Remove IHostedService registration.
         //services.RemoveService(d => d.ImplementationType == typeof(SampleBackgroundService));
