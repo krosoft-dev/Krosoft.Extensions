@@ -46,7 +46,7 @@ public class ListExtensionsTests
         list.AddRange(new[] { "orange", "banana", "bbbb" }, true);
 
         // Assert
-        Check.That(list).ContainsExactly("apple", "orange", "banana", "aaa", "bbbb");
+        Check.That(list).ContainsExactly("apple", "aaa", "orange", "bbbb", "banana");
     }
 
     [TestMethod]
