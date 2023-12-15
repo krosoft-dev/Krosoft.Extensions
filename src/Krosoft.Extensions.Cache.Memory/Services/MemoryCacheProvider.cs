@@ -95,24 +95,28 @@ public class MemoryCacheProvider : ICacheProvider
 
         var field = typeof(MemoryCache).GetProperty("EntriesCollection",
                                                     BindingFlags.NonPublic | BindingFlags.Instance);
-        if (field != null)
+        if (field == null)
         {
-            if (field.GetValue(_memoryCache) is ICollection collection)
+            return items;
+        }
+
+        if (field.GetValue(_memoryCache) is not ICollection collection)
+        {
+            return items;
+        }
+
+        foreach (var item in collection)
+        {
+            var methodInfo = item.GetType().GetProperty("Key");
+            if (methodInfo != null)
             {
-                foreach (var item in collection)
+                var val = methodInfo.GetValue(item);
+                if (val != null)
                 {
-                    var methodInfo = item.GetType().GetProperty("Key");
-                    if (methodInfo != null)
+                    var key = val.ToString();
+                    if (key != null)
                     {
-                        var val = methodInfo.GetValue(item);
-                        if (val != null)
-                        {
-                            var key = val.ToString();
-                            if (key != null)
-                            {
-                                items.Add(key);
-                            }
-                        }
+                        items.Add(key);
                     }
                 }
             }
