@@ -11,7 +11,7 @@ public class FileComparaisonHelperTests
     [TestMethod]
     public async Task ComputeFileHash_Ok()
     {
-        var filePath = "hello.txt";
+        const string filePath = "hello.txt";
         await FileHelper.WriteTextAsync(filePath, "Hello World", CancellationToken.None);
         Check.That(File.Exists(filePath)).IsTrue();
 

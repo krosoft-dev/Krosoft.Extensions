@@ -68,7 +68,7 @@ public class PdfServiceTests : BaseTest
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
 
-        var pdf2 = AssemblyHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf2 = AssemblyHelper.Read(assembly, "sample2.pdf");
         Check.That(pdf2).IsNotNull();
         Check.That(pdf2.Length).IsEqualTo(3028);
 
@@ -83,8 +83,8 @@ public class PdfServiceTests : BaseTest
     public void MergeBytes_Ok()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        var pdf1 = AssemblyHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
-        var pdf2 = AssemblyHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
+        var pdf1 = AssemblyHelper.Read(assembly, "sample1.pdf").ToByte();
+        var pdf2 = AssemblyHelper.Read(assembly, "sample2.pdf").ToByte();
 
         var data = _pdfService.Merge(pdf1,
                                      pdf2);
@@ -98,11 +98,11 @@ public class PdfServiceTests : BaseTest
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        var pdf1 = AssemblyHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf1 = AssemblyHelper.Read(assembly, "sample1.pdf");
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
 
-        var pdf2 = AssemblyHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf2 = AssemblyHelper.Read(assembly, "sample2.pdf");
         Check.That(pdf2).IsNotNull();
         Check.That(pdf2.Length).IsEqualTo(3028);
 
