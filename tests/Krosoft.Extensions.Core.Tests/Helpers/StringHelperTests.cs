@@ -10,32 +10,6 @@ namespace Krosoft.Extensions.Core.Tests.Helpers;
 public class StringHelperTests : BaseTest
 {
     [DataTestMethod]
-    [DataRow("", null)]
-    [DataRow(" ", null)]
-    [DataRow("20211215", "2021-12-15")] // Format YYYYMMDD
-    [DataRow("20210230", null)] // Invalid date (February 30)
-    [DataRow("20211301", null)] // Invalid month (13)
-    [DataRow("20210532", null)] // Invalid day (32)
-    [DataRow("99991231", null)] // Extreme value (9999-12-31)
-    [DataRow("00000101", null)] // Extreme value (0001-01-01)]
-    public void DateStringToDateTime_ShouldConvertStringToDateTime(string input, string? expectedDateString)
-    {
-        // Act
-        var result = StringHelper.DateStringToDateTime(input);
-
-        // Assert
-        if (expectedDateString == null)
-        {
-            Check.That(result).IsNull();
-        }
-        else
-        {
-            var expectedDate = DateTime.Parse(expectedDateString);
-            Check.That(result).IsEqualTo(expectedDate);
-        }
-    }
-
-    [DataTestMethod]
     [DataRow("test", "01/01/0001")]
     [DataRow(null!, "01/01/0001")]
     [DataRow("", "01/01/0001")]

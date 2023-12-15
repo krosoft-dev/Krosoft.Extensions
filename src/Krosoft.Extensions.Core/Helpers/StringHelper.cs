@@ -16,49 +16,7 @@ public static class StringHelper
             .Replace(" ", "-")
             .Replace("/", "-");
 
-    public static DateTime? DateStringToDateTime(string dateString)
-    {
-        if (string.IsNullOrEmpty(dateString))
-        {
-            return null;
-        }
-
-        if (string.IsNullOrWhiteSpace(dateString))
-        {
-            return null;
-        }
-
-        if (dateString.Length != 8)
-        {
-            return null;
-        }
-
-        if (!int.TryParse(dateString.Substring(0, 4), out var year))
-        {
-            return null;
-        }
-
-        if (!int.TryParse(dateString.Substring(4, 2), out var month))
-        {
-            return null;
-        }
-
-        if (!int.TryParse(dateString.Substring(6, 2), out var day))
-        {
-            return null;
-        }
-
-        var dateTime = new DateTime(year, month, day);
-
-        // Epuration des valeurs extrêmes d'Anael
-        if (!dateTime.Equals(new DateTime(1, 1, 1)) && !dateTime.Equals(new DateTime(9999, 12, 31)))
-        {
-            return dateTime;
-        }
-
-        return null;
-    }
-
+   
     public static string FormatCurrency(decimal montant, string currencyIsoCode) => $"{currencyIsoCode} {FormatNumber(montant)}";
 
     public static string FormatDate(string dateString)

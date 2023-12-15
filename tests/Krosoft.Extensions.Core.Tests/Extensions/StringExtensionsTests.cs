@@ -7,23 +7,6 @@ namespace Krosoft.Extensions.Core.Tests.Extensions;
 [TestClass]
 public class StringExtensionsTests
 {
-    [DataTestMethod]
-    [DataRow("HelloWorld", "Hello World")]
-    [DataRow("HelloWorldAgain", "Hello World Again")]
-    [DataRow("Hello World", "Hello World")]
-    [DataRow("helloworld", "helloworld")]
-    [DataRow("hello world", "hello world")]
-    [DataRow("HelloWorld", "Hello World")]
-    [DataRow("", "")]
-    public void AddSpaceBeforeUpperCase_ShouldHandleDifferentCases(string input, string expectedResult)
-    {
-        // Act
-        var result = input.AddSpaceBeforeUpperCase();
-
-        // Assert
-        Check.That(result).IsEqualTo(expectedResult);
-    }
-
     [TestMethod]
     public void MatchTest()
     {

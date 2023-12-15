@@ -14,21 +14,6 @@ public static class StringExtensions
                                                                  RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant
                                                                  , RegexHelper.MatchTimeout);
 
-    /// <summary>
-    /// Ajoute un espace devant chaque majuscule qui n'est pas déjà précédée d'un espace,
-    /// sauf si la majuscule commence la chaine
-    /// </summary>
-    /// <param name="s">Chaine à transformer</param>
-    /// <returns>Chaine transformée</returns>
-    public static string AddSpaceBeforeUpperCase(this string s)
-    {
-        var regex = new Regex("[^ ][A-Z]", RegexOptions.None, RegexHelper.MatchTimeout);
-        return regex.Replace(s, match =>
-        {
-            return match.ToString()[0] + ' ' + match.ToString().Substring(1);
-        });
-    }
-
     public static string ClearFilePath(this string text) => StringHelper.ClearFilePath(text);
 
     public static string FromUtf8ToAscii(this string text)
