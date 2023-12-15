@@ -15,8 +15,7 @@
     <EmbeddedResource Include="Files\sample2.pdf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
-  </ItemGroup>
-	<ItemGroup>
+  </ItemGroup> 
   <ItemGroup>
     <None Remove="Files\sample1.pdf" />
     <None Remove="Files\sample2.pdf" />
