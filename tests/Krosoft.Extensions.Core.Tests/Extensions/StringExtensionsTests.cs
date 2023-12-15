@@ -1,4 +1,4 @@
-using Krosoft.Extensions.Core.Extensions;
+ï»¿using Krosoft.Extensions.Core.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
 
@@ -39,15 +39,15 @@ public class StringExtensionsTests
     [TestMethod]
     public void RemoveDiacriticsTest()
     {
-        Check.That("v???š?šš?ıš?ı??á?á??á?á?ı??".RemoveDiacritics()).IsEqualTo("vcltslzszscyscytcacactacatyctz");
-        Check.That("Rez-de-chaussée".RemoveDiacritics()).IsEqualTo("Rez-de-chaussee");
+        Check.That("vÄÄ¾Å¥Å¡Ä¾Å¾Å¡Å¾Å¡ÄÃ½Å¡ÄÃ½Å¥ÄÃ¡ÄÃ¡ÄÅ¥Ã¡ÄÃ¡Å¥Ã½ÄÅ¥Å¾".RemoveDiacritics()).IsEqualTo("vcltslzszscyscytcacactacatyctz");
+        Check.That("Rez-de-chaussÃ©e".RemoveDiacritics()).IsEqualTo("Rez-de-chaussee");
     }
 
     [TestMethod]
     public void RemoveSpecialsTest()
     {
         Check.That("text".RemoveSpecials()).IsEqualTo("text");
-        Check.That("ét€".RemoveSpecials()).IsEqualTo("t");
+        Check.That("Ã©tâ‚¬".RemoveSpecials()).IsEqualTo("t");
     }
 
     [TestMethod]
