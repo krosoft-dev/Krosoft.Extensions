@@ -4,7 +4,6 @@ using Krosoft.Extensions.Pdf.Interfaces;
 using Krosoft.Extensions.Samples.DotNet8.Api.Models.Queries;
 using Krosoft.Extensions.Samples.Library.Factories;
 using MediatR;
-using System.Text;
 
 namespace Krosoft.Extensions.Samples.DotNet8.Api.Handlers.Queries;
 
@@ -28,10 +27,9 @@ public class LogicielsExportPdfQueryHandler : IRequestHandler<LogicielsExportPdf
         await Task.Delay(2000, cancellationToken);
 
         var assembly = typeof(AddresseFactory).Assembly;
-        var encoding = Encoding.UTF8;
 
-        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", encoding);
-        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", encoding);
+        var pdf1 = AssemblyHelper.Read(assembly, "sample1.pdf");
+        var pdf2 = AssemblyHelper.Read(assembly, "sample1.pdf");
 
         var data = _pdfService.Merge(pdf1, pdf2);
 
