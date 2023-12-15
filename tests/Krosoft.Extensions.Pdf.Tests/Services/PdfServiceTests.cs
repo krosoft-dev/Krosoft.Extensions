@@ -98,6 +98,11 @@ public class PdfServiceTests : BaseTest
     {
         var assembly = Assembly.GetExecutingAssembly();
 
+        var file = AssemblyHelper.ReadAsString(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        Check.That(file).IsNotNull();
+        Check.That(file.Length).IsEqualTo(13264);
+        Check.That(file).StartsWith("%PDF-1.4");
+
         var pdf1 = AssemblyHelper.Read(assembly, "sample1.pdf");
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
