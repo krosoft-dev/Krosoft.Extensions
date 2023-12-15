@@ -107,9 +107,9 @@ public class PdfServiceTests : BaseTest
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
 
-        var pdf2 = AssemblyHelper.Read(assembly, "sample2.pdf");
+        var pdf2 = AssemblyHelper.Read(assembly, "sample1.pdf");
         Check.That(pdf2).IsNotNull();
-        Check.That(pdf2.Length).IsEqualTo(3028);
+        Check.That(pdf2.Length).IsEqualTo(13264);
 
         var data = _pdfService.Merge(pdf1, pdf2);
 
