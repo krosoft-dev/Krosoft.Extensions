@@ -9,11 +9,11 @@ namespace Krosoft.Extensions.Core.Tests.Extensions;
 public class EnumExtensionsTests
 {
     [DataTestMethod]
-    [DataRow(SampleCode.Value1, "Description for Value1")]
-    [DataRow(SampleCode.Value2, "Description for Value2")]
-    [DataRow(SampleCode.Value3, "Description for Value3")]
-    [DataRow(SampleCode.Value4, "Description for Value4")]
-    [DataRow(SampleCode.Value5, "Value5")]
+    [DataRow(SampleCode.One, "Description for Value1")]
+    [DataRow(SampleCode.Two, "Description for Value2")]
+    [DataRow(SampleCode.Three, "Description for Value3")]
+    [DataRow(SampleCode.Four, "Description for Value4")]
+    [DataRow(SampleCode.Five, "Value5")]
     public void GetDescription_ShouldReturnCorrectDescription(SampleCode value, string expectedDescription)
     {
         // Act
@@ -24,11 +24,11 @@ public class EnumExtensionsTests
     }
 
     [DataTestMethod]
-    [DataRow(SampleCode.Value1, "Display Name for Value1")]
-    [DataRow(SampleCode.Value2, "Display Name for Value2")]
-    [DataRow(SampleCode.Value3, "Display Name for Value3")]
-    [DataRow(SampleCode.Value4, "Display Name for Value4")]
-    [DataRow(SampleCode.Value5, "Value5")]
+    [DataRow(SampleCode.One, "Display Name for Value1")]
+    [DataRow(SampleCode.Two, "Display Name for Value2")]
+    [DataRow(SampleCode.Three, "Display Name for Value3")]
+    [DataRow(SampleCode.Four, "Display Name for Value4")]
+    [DataRow(SampleCode.Five, "Value5")]
     public void GetDisplayName_ShouldReturnCorrectDisplayName(SampleCode value, string expectedDisplayName)
     {
         // Act
@@ -42,25 +42,25 @@ public class EnumExtensionsTests
     public void GetFlags_ShouldReturnCorrectFlags()
     {
         // Arrange
-        var value = SampleCode.Value1 | SampleCode.Value3;
+        var value = SampleCode.One | SampleCode.Three;
 
         // Act
         var result = value.GetFlags();
 
         // Assert
-        Check.That(result).ContainsExactly(SampleCode.Value1, SampleCode.Value3);
+        Check.That(result).ContainsExactly(SampleCode.One, SampleCode.Three);
     }
 
     [TestMethod]
     public void GetIndividualFlags_ShouldReturnCorrectIndividualFlags()
     {
         // Arrange
-        var value = SampleCode.Value1 | SampleCode.Value3;
+        var value = SampleCode.One | SampleCode.Three;
 
         // Act
         var result = value.GetIndividualFlags();
 
         // Assert
-        Check.That(result).ContainsExactly(SampleCode.Value1, SampleCode.Value3);
+        Check.That(result).ContainsExactly(SampleCode.One, SampleCode.Three);
     }
 }
