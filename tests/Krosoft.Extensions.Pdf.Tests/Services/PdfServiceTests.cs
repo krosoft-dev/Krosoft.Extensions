@@ -1,13 +1,10 @@
-﻿using System.Globalization;
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
 using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Helpers;
 using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Pdf.Extensions;
 using Krosoft.Extensions.Pdf.Interfaces;
-using Krosoft.Extensions.Samples.Library.Factories;
 using Krosoft.Extensions.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -66,11 +63,12 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void MergeStreams_Ok()
     {
-        var pdf1 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        var assembly = Assembly.GetExecutingAssembly();
+        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
 
-        var pdf2 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(pdf2).IsNotNull();
         Check.That(pdf2.Length).IsEqualTo(3028);
 
@@ -84,8 +82,9 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void MergeBytes_Ok()
     {
-        var pdf1 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample1.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
-        var pdf2 = FileHelper.ReadAsStream(Assembly.GetExecutingAssembly(), "sample2.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
+        var assembly = Assembly.GetExecutingAssembly();
+        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
+        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
 
         var data = _pdfService.Merge(pdf1,
                                      pdf2);
@@ -97,12 +96,12 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void PdfFileStream_Ok()
     {
-        var assembly = typeof(AddresseFactory).Assembly;
+        var assembly = Assembly.GetExecutingAssembly();
 
-        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", Encoding.ASCII);
+        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
-        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", Encoding.ASCII);
+        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(pdf2).IsNotNull();
         Check.That(pdf2.Length).IsEqualTo(3028);
 
