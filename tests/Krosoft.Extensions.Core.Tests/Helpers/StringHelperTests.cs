@@ -43,7 +43,7 @@ public class StringHelperTests : BaseTest
         Check.That(StringHelper.GetAbbreviation(string.Empty)).IsEqualTo(string.Empty);
     }
 
-    [TestMethod]
+    [DataTestMethod]
     [DataRow("T", "T")]
     [DataRow("T ", "T")]
     [DataRow(" T", "T")]
@@ -66,7 +66,7 @@ public class StringHelperTests : BaseTest
         Check.That(formatDate).IsEqualTo(expected);
     }
 
-    [TestMethod]
+    [DataTestMethod]
     [DataRow("test", "01/01/0001")]
     [DataRow(null!, "01/01/0001")]
     [DataRow("", "01/01/0001")]
@@ -78,7 +78,7 @@ public class StringHelperTests : BaseTest
         Check.That(formatDate).IsEqualTo(expected);
     }
 
-    [TestMethod]
+    [DataTestMethod]
     [DataRow(null, "")]
     [DataRow("", "")]
     [DataRow("   test   ", "test")]
@@ -90,7 +90,7 @@ public class StringHelperTests : BaseTest
         Check.That(formatDate).IsEqualTo(expected);
     }
 
-    [TestMethod]
+    [DataTestMethod]
     [DataRow(null, 0)]
     [DataRow("", 0)]
     [DataRow("160519", 160519)]

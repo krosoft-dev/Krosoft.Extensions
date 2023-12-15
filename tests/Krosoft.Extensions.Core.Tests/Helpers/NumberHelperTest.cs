@@ -1,11 +1,27 @@
 ﻿using Krosoft.Extensions.Core.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NFluent;
 
 namespace Krosoft.Extensions.Core.Tests.Helpers;
 
 [TestClass]
 public class NumberHelperTest
 {
+    [DataTestMethod]
+    [DataRow("123.45", 123.45)]
+    [DataRow("-789.12", -789.12)]
+    [DataRow("42", 42)]
+    [DataRow("abc", 0)]
+    [DataRow(null, 0)]
+    public void ToDecimal_ShouldConvertStringToDecimal(string input, double expectedResult)
+    {
+        // Act
+        var result = NumberHelper.ToDecimal(input);
+
+        // Assert
+        Check.That(result).IsEqualTo((decimal)expectedResult);
+    }
+
     [TestMethod]
     public void ToIntegerTest()
     {
