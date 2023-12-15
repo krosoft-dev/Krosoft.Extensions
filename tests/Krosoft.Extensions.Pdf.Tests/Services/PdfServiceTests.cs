@@ -64,11 +64,11 @@ public class PdfServiceTests : BaseTest
     public void MergeStreams_Ok()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        var pdf1 = FileHelper.Read(assembly, "sample1.pdf");
+        var pdf1 = AssemblyHelper.Read(assembly, "sample1.pdf");
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
 
-        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf2 = AssemblyHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(pdf2).IsNotNull();
         Check.That(pdf2.Length).IsEqualTo(3028);
 
@@ -83,8 +83,8 @@ public class PdfServiceTests : BaseTest
     public void MergeBytes_Ok()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
-        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
+        var pdf1 = AssemblyHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
+        var pdf2 = AssemblyHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale()).ToByte();
 
         var data = _pdfService.Merge(pdf1,
                                      pdf2);
@@ -98,10 +98,11 @@ public class PdfServiceTests : BaseTest
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf1 = AssemblyHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
-        var pdf2 = FileHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
+
+        var pdf2 = AssemblyHelper.ReadAsStream(assembly, "sample2.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(pdf2).IsNotNull();
         Check.That(pdf2.Length).IsEqualTo(3028);
 
