@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using System.Security;
-using System.Security.Cryptography;
 using System.Text;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Core.Tools;
@@ -10,8 +8,6 @@ namespace Krosoft.Extensions.Core.Helpers;
 
 public static class AssemblyHelper
 {
-    
-
     public static IEnumerable<T> ReadFromAssembly<T>(Assembly assembly, string resourceName)
     {
         var json = ReadAsString(assembly, resourceName, EncodingHelper.GetEuropeOccidentale());
@@ -76,15 +72,12 @@ public static class AssemblyHelper
         return stream;
     }
 
-     
-
     public static Stream Read(Assembly assembly,
                               string filename)
     {
         Guard.IsNotNull(nameof(assembly), assembly);
         Guard.IsNotNullOrWhiteSpace(nameof(filename), filename);
 
-        
         var resourceName = GetResourceName(assembly, filename);
         if (string.IsNullOrEmpty(resourceName))
         {
@@ -98,7 +91,7 @@ public static class AssemblyHelper
         }
 
         return stream;
-    } 
+    }
 
     public static string ReadAsString(Assembly assembly,
                                       string resourceName) =>
@@ -137,6 +130,4 @@ public static class AssemblyHelper
             }
         }
     }
-
-           
 }

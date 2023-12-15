@@ -31,4 +31,13 @@ public class AssemblyHelperTests
         Check.That(archive.Entries).IsNotNull();
         Check.That(archive.Entries).HasSize(12);
     }
+
+    [TestMethod]
+    public void ReadAsString_Ok()
+    {
+        var file = AssemblyHelper.ReadAsString(Assembly.GetExecutingAssembly(), "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        Check.That(file).IsNotNull();
+        Check.That(file.Length).IsEqualTo(13264);
+        Check.That(file).StartsWith("%PDF-1.4");
+    }
 }
