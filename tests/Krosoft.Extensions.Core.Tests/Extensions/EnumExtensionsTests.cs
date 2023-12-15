@@ -13,7 +13,7 @@ public class EnumExtensionsTests
     [DataRow(SampleCode.Two, "Description for Value2")]
     [DataRow(SampleCode.Three, "Description for Value3")]
     [DataRow(SampleCode.Four, "Description for Value4")]
-    [DataRow(SampleCode.Five, "Value5")]
+    [DataRow(SampleCode.Five, "Five")]
     public void GetDescription_ShouldReturnCorrectDescription(SampleCode value, string expectedDescription)
     {
         // Act
@@ -28,7 +28,7 @@ public class EnumExtensionsTests
     [DataRow(SampleCode.Two, "Display Name for Value2")]
     [DataRow(SampleCode.Three, "Display Name for Value3")]
     [DataRow(SampleCode.Four, "Display Name for Value4")]
-    [DataRow(SampleCode.Five, "Value5")]
+    [DataRow(SampleCode.Five, "Five")]
     public void GetDisplayName_ShouldReturnCorrectDisplayName(SampleCode value, string expectedDisplayName)
     {
         // Act
