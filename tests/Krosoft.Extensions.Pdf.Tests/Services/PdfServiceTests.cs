@@ -5,6 +5,7 @@ using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Pdf.Extensions;
 using Krosoft.Extensions.Pdf.Interfaces;
+using Krosoft.Extensions.Samples.Library.Factories;
 using Krosoft.Extensions.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -96,7 +97,8 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void PdfFileStream_Ok()
     {
-        var assembly = Assembly.GetExecutingAssembly();
+        //var assembly = Assembly.GetExecutingAssembly();
+        var assembly = typeof(AddresseFactory).Assembly;
 
         var file = AssemblyHelper.ReadAsString(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
         Check.That(file).IsNotNull();
