@@ -82,7 +82,13 @@ public static class EnumExtensions
         return new List<Enum>();
     }
 
-    //checks to see if an enumerated value contains a type
+    /// <summary>
+    /// Checks to see if an enumerated value contains a type.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="type"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static bool Has<T>(this Enum? type, T value)
     {
         try
