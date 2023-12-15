@@ -16,11 +16,11 @@ COPY ["Krosoft.Extensions.Samples.DotNet6.Api/Krosoft.Extensions.Samples.DotNet6
 RUN dotnet restore "Krosoft.Extensions.Samples.DotNet6.Api/Krosoft.Extensions.Samples.DotNet6.Api.csproj"
 COPY . .
 WORKDIR "/src/Krosoft.Extensions.Samples.DotNet6.Api"
-RUN dotnet build "Krosoft.Extensions.Samples.DotNet6.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build 
+RUN dotnet build "Krosoft.Extensions.Samples.DotNet6.Api.csproj" -c "$BUILD_CONFIGURATION" -o /app/build 
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Krosoft.Extensions.Samples.DotNet6.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish  --no-restore
+RUN dotnet publish "Krosoft.Extensions.Samples.DotNet6.Api.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish  --no-restore
 
 FROM base AS final
 WORKDIR /app

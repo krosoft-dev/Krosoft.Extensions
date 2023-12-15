@@ -11,11 +11,11 @@ COPY ["samples/Krosoft.Extensions.Samples.DotNet8.BlazorApp/Krosoft.Extensions.S
 RUN dotnet restore "./samples/Krosoft.Extensions.Samples.DotNet8.BlazorApp/./Krosoft.Extensions.Samples.DotNet8.BlazorApp.csproj"
 COPY . .
 WORKDIR "/src/samples/Krosoft.Extensions.Samples.DotNet8.BlazorApp"
-RUN dotnet build "./Krosoft.Extensions.Samples.DotNet8.BlazorApp.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./Krosoft.Extensions.Samples.DotNet8.BlazorApp.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Krosoft.Extensions.Samples.DotNet8.BlazorApp.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false --no-restore
+RUN dotnet publish "./Krosoft.Extensions.Samples.DotNet8.BlazorApp.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false --no-restore
 
 FROM base AS final
 WORKDIR /app
