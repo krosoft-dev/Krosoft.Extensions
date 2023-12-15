@@ -10,11 +10,9 @@ namespace Krosoft.Extensions.Core.Extensions;
 /// </summary>
 public static class StringExtensions
 {
-    
-
     private static readonly Regex RemoveInvalidChars = new Regex($"[{Regex.Escape(new string(GetInvalidFileNameChars()))}]",
                                                                  RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant
-                                                                 ,  RegexHelper.MatchTimeout);
+                                                                 , RegexHelper.MatchTimeout);
 
     /// <summary>
     /// Ajoute un espace devant chaque majuscule qui n'est pas déjà précédée d'un espace,
@@ -24,8 +22,11 @@ public static class StringExtensions
     /// <returns>Chaine transformée</returns>
     public static string AddSpaceBeforeUpperCase(this string s)
     {
-        var regex = new Regex("[^ ][A-Z]", RegexOptions.None,  RegexHelper.MatchTimeout);
-        return regex.Replace(s, match => match.ToString()[0] + ' ' + match.ToString().Substring(1));
+        var regex = new Regex("[^ ][A-Z]", RegexOptions.None, RegexHelper.MatchTimeout);
+        return regex.Replace(s, match =>
+        {
+            return match.ToString()[0] + ' ' + match.ToString().Substring(1);
+        });
     }
 
     public static string ClearFilePath(this string text) => StringHelper.ClearFilePath(text);
@@ -77,7 +78,7 @@ public static class StringExtensions
             return text;
         }
 
-        return Regex.Replace(text, @"\s+", string.Empty, RegexOptions.None,  RegexHelper.MatchTimeout);
+        return Regex.Replace(text, @"\s+", string.Empty, RegexOptions.None, RegexHelper.MatchTimeout);
     }
 
     /// <summary>
@@ -103,7 +104,7 @@ public static class StringExtensions
     }
 
     public static string RemoveSpecials(this string searchText)
-        => Regex.Replace(searchText, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled,  RegexHelper.MatchTimeout);
+        => Regex.Replace(searchText, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled, RegexHelper.MatchTimeout);
 
     public static string Replace(this string s, char[] separators, string input)
     {
@@ -232,7 +233,7 @@ public static class StringExtensions
     /// <returns>Valeur extraite.</returns>
     public static string ToAlphaNumeric(this string value)
     {
-        var rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.None,  RegexHelper.MatchTimeout);
+        var rgx = new Regex("[^a-zA-Z0-9]", RegexOptions.None, RegexHelper.MatchTimeout);
         return rgx.Replace(value, string.Empty);
     }
 

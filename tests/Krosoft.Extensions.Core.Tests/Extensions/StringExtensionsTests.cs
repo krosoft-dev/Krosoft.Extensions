@@ -1,4 +1,4 @@
-Ôªøusing Krosoft.Extensions.Core.Extensions;
+using Krosoft.Extensions.Core.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
 
@@ -7,6 +7,23 @@ namespace Krosoft.Extensions.Core.Tests.Extensions;
 [TestClass]
 public class StringExtensionsTests
 {
+    [DataTestMethod]
+    [DataRow("HelloWorld", "Hello World")]
+    [DataRow("HelloWorldAgain", "Hello World Again")]
+    [DataRow("Hello World", "Hello World")]
+    [DataRow("helloworld", "helloworld")]
+    [DataRow("hello world", "hello world")]
+    [DataRow("HelloWorld", "Hello World")]
+    [DataRow("", "")]
+    public void AddSpaceBeforeUpperCase_ShouldHandleDifferentCases(string input, string expectedResult)
+    {
+        // Act
+        var result = input.AddSpaceBeforeUpperCase();
+
+        // Assert
+        Check.That(result).IsEqualTo(expectedResult);
+    }
+
     [TestMethod]
     public void MatchTest()
     {
@@ -20,10 +37,25 @@ public class StringExtensionsTests
     }
 
     [TestMethod]
+    public void RemoveDiacriticsTest()
+    {
+        Check.That("v???ö?ûöûö?˝ö?˝??·?·??·?·?˝??û".RemoveDiacritics()).IsEqualTo("vcltslzszscyscytcacactacatyctz");
+        Check.That("Rez-de-chaussÈe".RemoveDiacritics()).IsEqualTo("Rez-de-chaussee");
+    }
+
+    [TestMethod]
     public void RemoveSpecialsTest()
     {
         Check.That("text".RemoveSpecials()).IsEqualTo("text");
-        Check.That("√©t‚Ç¨".RemoveSpecials()).IsEqualTo("t");
+        Check.That("ÈtÄ".RemoveSpecials()).IsEqualTo("t");
+    }
+
+    [TestMethod]
+    public void Replace_Ok()
+    {
+        char[] separators = { ';', '.', ',' };
+        var input = "this;is,a.test".Replace(separators, " ");
+        Check.That(input).IsEqualTo("this is a test");
     }
 
     [TestMethod]
@@ -48,20 +80,5 @@ public class StringExtensionsTests
     public void Sanitize4Test()
     {
         Check.That("*_*.txt".Sanitize("Yo")).IsEqualTo("Yo_Yo.txt");
-    }
-
-    [TestMethod]
-    public void RemoveDiacriticsTest()
-    {
-        Check.That("vƒçƒæ≈•≈°ƒæ≈æ≈°≈æ≈°ƒç√Ω≈°ƒç√Ω≈•ƒç√°ƒç√°ƒç≈•√°ƒç√°≈•√Ωƒç≈•≈æ".RemoveDiacritics()).IsEqualTo("vcltslzszscyscytcacactacatyctz");
-        Check.That("Rez-de-chauss√©e".RemoveDiacritics()).IsEqualTo("Rez-de-chaussee");
-    }
-
-    [TestMethod]
-    public void Replace_Ok()
-    {
-        char[] separators = { ';', '.', ',' };
-        var input = "this;is,a.test".Replace(separators, " ");
-        Check.That(input).IsEqualTo("this is a test");
     }
 }
