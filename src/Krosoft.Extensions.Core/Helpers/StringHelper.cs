@@ -18,34 +18,42 @@ public static class StringHelper
 
     public static DateTime? DateStringToDateTime(string dateString)
     {
-        if (!string.IsNullOrEmpty(dateString))
+        if (string.IsNullOrEmpty(dateString))
         {
-            if (!string.IsNullOrWhiteSpace(dateString))
-            {
-                if (dateString.Length == 8)
-                {
-                    int year;
+            return null;
+        }
 
-                    if (int.TryParse(dateString.Substring(0, 4), out year))
-                    {
-                        int month;
-                        if (int.TryParse(dateString.Substring(4, 2), out month))
-                        {
-                            int day;
-                            if (int.TryParse(dateString.Substring(6, 2), out day))
-                            {
-                                var dateTime = new DateTime(year, month, day);
+        if (string.IsNullOrWhiteSpace(dateString))
+        {
+            return null;
+        }
 
-                                // Epuration des valeurs extrêmes d'Anael
-                                if (!dateTime.Equals(new DateTime(1, 1, 1)) && !dateTime.Equals(new DateTime(9999, 12, 31)))
-                                {
-                                    return dateTime;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        if (dateString.Length != 8)
+        {
+            return null;
+        }
+
+        if (!int.TryParse(dateString.Substring(0, 4), out var year))
+        {
+            return null;
+        }
+
+        if (!int.TryParse(dateString.Substring(4, 2), out var month))
+        {
+            return null;
+        }
+
+        if (!int.TryParse(dateString.Substring(6, 2), out var day))
+        {
+            return null;
+        }
+
+        var dateTime = new DateTime(year, month, day);
+
+        // Epuration des valeurs extrêmes d'Anael
+        if (!dateTime.Equals(new DateTime(1, 1, 1)) && !dateTime.Equals(new DateTime(9999, 12, 31)))
+        {
+            return dateTime;
         }
 
         return null;
@@ -61,7 +69,7 @@ public static class StringHelper
 
     public static string FormatNumber(decimal montant) => $"{montant:# ##0.00}".Replace('.', ',');
 
-    public static Stream GenerateStreamFromString(string s)
+    public static Stream GenerateStreamFromString(string? s)
     {
         var stream = new MemoryStream();
         var writer = new StreamWriter(stream);
