@@ -16,7 +16,6 @@ public static class StringHelper
             .Replace(" ", "-")
             .Replace("/", "-");
 
-   
     public static string FormatCurrency(decimal montant, string currencyIsoCode) => $"{currencyIsoCode} {FormatNumber(montant)}";
 
     public static string FormatDate(string dateString)

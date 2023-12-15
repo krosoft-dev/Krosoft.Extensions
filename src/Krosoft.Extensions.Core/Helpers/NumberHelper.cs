@@ -9,7 +9,7 @@ public static class NumberHelper
     {
         if (text != null)
         {
-            var regex = new Regex(@"^-?\d+(?:\.\d+)?",RegexOptions.None, RegexHelper.MatchTimeout);
+            var regex = new Regex(@"^-?\d+(?:\.\d+)?", RegexOptions.None, RegexHelper.MatchTimeout);
             var match = regex.Match(text);
             if (match.Success)
             {
@@ -24,7 +24,7 @@ public static class NumberHelper
     {
         if (text != null)
         {
-            var regex = new Regex(@"\d+",RegexOptions.None, RegexHelper.MatchTimeout);
+            var regex = new Regex(@"\d+", RegexOptions.None, RegexHelper.MatchTimeout);
             var match = regex.Match(text);
             if (match.Success)
             {

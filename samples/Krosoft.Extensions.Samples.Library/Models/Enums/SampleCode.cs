@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Krosoft.Extensions.Samples.Library.Models.Enums;
 
-public enum SampleEnum
+[Flags]
+public enum SampleCode
 {
     [Description("Description for Value1")]
     [Display(Name = "Display Name for Value1")]

@@ -15,5 +15,5 @@ public static class IntegerExtensions
     /// </summary>
     /// <param name="i">Entier à transformer</param>
     /// <returns>Un Guid valable</returns>
-    public static Guid ToGuid(this int i) => new Guid($"00000000-0000-0000-0000-{i:D12}");
+    public static Guid ToGuid(this long i) => new Guid($"00000000-0000-0000-0000-{i:D12}");
 }
