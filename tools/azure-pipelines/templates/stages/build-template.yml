@@ -26,6 +26,12 @@ parameters:
 
   - name: sonarCloudProjectName
     type: string
+  - name: runUnitTests
+    type: boolean
+    default: true
+  - name: runSonarCloudAnalyze
+    type: boolean
+    default: true
 
 stages:
   - stage: Build
@@ -35,12 +41,13 @@ stages:
         pool:
           vmImage: ${{ parameters.vmImage }}
         steps:
-          - template: ../steps/sonarCloud-prepare-template.yml
-            parameters:
-              sonarCloudEndpoint: ${{ parameters.sonarCloudEndpoint }}
-              sonarCloudOrganization: ${{ parameters.sonarCloudOrganization }}
-              sonarCloudProjectKey: ${{ parameters.sonarCloudProjectKey }}
-              sonarCloudProjectName: ${{ parameters.sonarCloudProjectName }}
+          - ${{ if eq(parameters.runSonarCloudAnalyze, true) }}:
+              - template: ../steps/sonarCloud-prepare-template.yml
+                parameters:
+                  sonarCloudEndpoint: ${{ parameters.sonarCloudEndpoint }}
+                  sonarCloudOrganization: ${{ parameters.sonarCloudOrganization }}
+                  sonarCloudProjectKey: ${{ parameters.sonarCloudProjectKey }}
+                  sonarCloudProjectName: ${{ parameters.sonarCloudProjectName }}
 
           - template: ../steps/build-template.yml
             parameters:
@@ -49,15 +56,17 @@ stages:
               buildPlatform: ${{ parameters.buildPlatform }}
               buildProjects: ${{ parameters.buildProjects }}
 
-          - template: ../steps/test-template.yml
-            parameters:
-              buildConfiguration: ${{ parameters.buildConfiguration }}
-              buildPlatform: ${{ parameters.buildPlatform }}
-              testProjects: ${{ parameters.testProjects }}
+          - ${{ if eq(parameters.runUnitTests, true) }}:
+              - template: ../steps/test-template.yml
+                parameters:
+                  buildConfiguration: ${{ parameters.buildConfiguration }}
+                  buildPlatform: ${{ parameters.buildPlatform }}
+                  testProjects: ${{ parameters.testProjects }}
 
           - template: ../steps/quality-template.yml
             parameters:
               warningThreshold: ${{ parameters.warningThreshold }}
               coverageThreshold: ${{ parameters.coverageThreshold }}
 
-          - template: ../steps/sonarCloud-finalize-template.yml
+          - ${{ if eq(parameters.runSonarCloudAnalyze, true) }}:
+              - template: ../steps/sonarCloud-finalize-template.yml

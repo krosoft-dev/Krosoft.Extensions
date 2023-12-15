@@ -23,3 +23,5 @@ stages:
       sonarCloudOrganization: ${{ variables.sonarCloudOrganization }}
       sonarCloudProjectKey: ${{ variables.sonarCloudProjectKey }}
       sonarCloudProjectName: ${{ variables.sonarCloudProjectName }}
+      runUnitTests: false
+      runSonarCloudAnalyze: true
