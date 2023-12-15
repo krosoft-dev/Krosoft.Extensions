@@ -1,7 +1,7 @@
 ﻿using Krosoft.Extensions.Cqrs.Models.Queries;
 using Krosoft.Extensions.Samples.Library.Models.Dto;
 
-namespace Krosoft.Extensions.Samples.DotNet6.Api.Models.Queries;
+namespace Krosoft.Extensions.Samples.Library.Models.Queries;
 
 public class LogicielsQuery : BaseQuery<IEnumerable<LogicielDto>>
 {

@@ -1,6 +1,6 @@
 ﻿using Krosoft.Extensions.Cqrs.Models.Commands;
 
-namespace Krosoft.Extensions.Samples.DotNet6.Api.Models.Commands;
+namespace Krosoft.Extensions.Samples.Library.Models.Commands;
 
 public abstract class LogicielBaseCommand<TReturn> : AuthBaseCommand<TReturn>
 {

@@ -1,6 +1,6 @@
 ﻿using Krosoft.Extensions.Cqrs.Models.Commands;
 
-namespace Krosoft.Extensions.Samples.DotNet8.Api.Models.Commands;
+namespace Krosoft.Extensions.Samples.Library.Models.Commands;
 
 public class LogicielImportCommand : AuthBaseCommand<int>
 {
