@@ -75,7 +75,7 @@ public class PdfServiceTests : BaseTest
 
         var data = _pdfService.Merge(pdf1,
                                      pdf2);
-        FileHelper.CreateFile("Files/sample-stream.pdf", data);
+        FileHelper.CreateFile("sample-stream.pdf", data);
 
         Check.That(data).IsNotNull();
     }
@@ -89,7 +89,7 @@ public class PdfServiceTests : BaseTest
 
         var data = _pdfService.Merge(pdf1,
                                      pdf2);
-        FileHelper.CreateFile("Files/sample-byte.pdf", data);
+        FileHelper.CreateFile("sample-byte.pdf", data);
 
         Check.That(data).IsNotNull();
     }
@@ -97,7 +97,6 @@ public class PdfServiceTests : BaseTest
     [TestMethod]
     public void PdfFileStream_Ok()
     {
-        //var assembly = Assembly.GetExecutingAssembly();
         var assembly = typeof(AddresseFactory).Assembly;
 
         var file = AssemblyHelper.ReadAsString(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
