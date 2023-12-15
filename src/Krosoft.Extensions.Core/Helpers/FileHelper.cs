@@ -272,10 +272,8 @@ public static class FileHelper
         Guard.IsNotNullOrWhiteSpace(nameof(filePath), filePath);
         Guard.IsNotNullOrWhiteSpace(nameof(content), content);
 
-        using (var writer = File.CreateText(filePath))
-        {
-            writer.Write(content);
-        }
+        using var writer = File.CreateText(filePath);
+        writer.Write(content);
     }
 
     public static void WriteAsBase64(string filePath,
@@ -298,10 +296,8 @@ public static class FileHelper
         Guard.IsNotNullOrWhiteSpace(nameof(filePath), filePath);
         Guard.IsNotNullOrWhiteSpace(nameof(content), content);
 
-        using (var writer = File.CreateText(filePath))
-        {
-            await writer.WriteAsync(content).ConfigureAwait(false);
-        }
+        await using var writer = File.CreateText(filePath);
+        await writer.WriteAsync(content).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -355,10 +351,8 @@ public static class FileHelper
         Guard.IsNotNullOrWhiteSpace(nameof(filePath), filePath);
         Guard.IsNotNull(nameof(encoding), encoding);
 
-        using (var writer = new StreamWriter(filePath, false, encoding))
-        {
-            await writer.WriteAsync(content).ConfigureAwait(false);
-        }
+        await using var writer = new StreamWriter(filePath, false, encoding);
+        await writer.WriteAsync(content).ConfigureAwait(false);
     }
 
     private static IEnumerable<string> GetFilesFromDirectoryRecursively(string sDir)
@@ -382,28 +376,5 @@ public static class FileHelper
         }
 
         return files;
-    }
-
-    public static string ComputeFileHash(byte[] clearBytes)
-    {
-        using (var sha1 = SHA1.Create())
-        {
-            var hashedBytes = sha1.ComputeHash(clearBytes);
-            return ConvertBytesToHex(hashedBytes);
-        }
-    }
-
-    public static string ComputeFileHash(string path) => ComputeFileHash(File.ReadAllBytes(path));
-
-    public static string ConvertBytesToHex(byte[] bytes)
-    {
-        var sb = new StringBuilder();
-
-        for (var i = 0; i < bytes.Length; i++)
-        {
-            sb.Append(bytes[i].ToString("x"));
-        }
-
-        return sb.ToString();
     }
 }
