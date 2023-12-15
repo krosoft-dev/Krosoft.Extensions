@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Krosoft.Extensions.Core.Tools;
 
 namespace Krosoft.Extensions.Core.Extensions;
@@ -50,12 +51,16 @@ public static class EnumExtensions
             .GetField(value.ToString());
         if (fieldInfo != null)
         {
-            var attributes = (DisplayNameAttribute[])fieldInfo
-                .GetCustomAttributes(typeof(DisplayNameAttribute), false);
+            var attributes = (DisplayAttribute[])fieldInfo
+                .GetCustomAttributes(typeof(DisplayAttribute), false);
 
             if (attributes.Length > 0)
             {
-                return attributes[0].DisplayName;
+                var displayName = attributes[0].Name;
+                if (displayName != null)
+                {
+                    return displayName;
+                }
             }
         }
 
