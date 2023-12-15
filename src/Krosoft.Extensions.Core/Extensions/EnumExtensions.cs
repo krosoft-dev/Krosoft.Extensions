@@ -72,40 +72,11 @@ public static class EnumExtensions
         return new List<Enum>();
     }
 
-    public static IEnumerable<Enum> GetIndividualFlags(this Enum? value)
-    {
-        if (value != null)
-        {
-            return GetFlags(value, GetFlagValues(value.GetType()).ToArray());
-        }
-
-        return new List<Enum>();
-    }
-
-    /// <summary>
-    /// Checks to see if an enumerated value contains a type.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="type"></param>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    public static bool Has<T>(this Enum? type, T value)
-    {
-        try
-        {
-            return ((int?)(object?)type & (int?)(object?)value) == (int?)(object?)value;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
-    private static IEnumerable<Enum> GetFlags(Enum? value, Enum[] values)
+    private static IEnumerable<Enum> GetFlags(Enum? value, IReadOnlyList<Enum> values)
     {
         var bits = Convert.ToUInt64(value);
         var results = new List<Enum>();
-        for (var i = values.Length - 1; i >= 0; i--)
+        for (var i = values.Count - 1; i >= 0; i--)
         {
             var mask = Convert.ToUInt64(values[i]);
             if (i == 0 && mask == 0L)
@@ -130,7 +101,7 @@ public static class EnumExtensions
             return results.Reverse<Enum>();
         }
 
-        if (bits == Convert.ToUInt64(value) && values.Length > 0 && Convert.ToUInt64(values[0]) == 0L)
+        if (bits == Convert.ToUInt64(value) && values.Count > 0 && Convert.ToUInt64(values[0]) == 0L)
         {
             return values.Take(1);
         }
@@ -145,7 +116,6 @@ public static class EnumExtensions
         {
             var bits = Convert.ToUInt64(value);
             if (bits == 0L)
-                //yield return value;
             {
                 continue; // skip the zero value
             }
@@ -159,6 +129,31 @@ public static class EnumExtensions
             {
                 yield return value;
             }
+        }
+    }
+
+    public static IEnumerable<Enum> GetIndividualFlags(this Enum? value)
+    {
+        if (value != null)
+        {
+            return GetFlags(value, GetFlagValues(value.GetType()).ToArray());
+        }
+
+        return new List<Enum>();
+    }
+
+    /// <summary>
+    /// Checks to see if an enumerated value contains a type.
+    /// </summary>
+    public static bool Has<T>(this Enum? type, T value)
+    {
+        try
+        {
+            return ((int?)(object?)type & (int?)(object?)value) == (int?)(object?)value;
+        }
+        catch
+        {
+            return false;
         }
     }
 }

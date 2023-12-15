@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Krosoft.Extensions.Core.Helpers;
 
-public class NumberHelper
+public static class NumberHelper
 {
     public static decimal ToDecimal(string? text)
     {

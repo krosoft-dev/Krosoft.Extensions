@@ -59,11 +59,6 @@ public static class ObjectExtensions
             obj = new T();
         }
 
-        if (obj == null)
-        {
-            throw new ArgumentNullException();
-        }
-
         var memberExpression = (MemberExpression)entityExpression.Body;
         var property = (PropertyInfo)memberExpression.Member;
 
