@@ -91,15 +91,8 @@ public static class FileHelper
     {
         Guard.IsNotNull(nameof(assembly), assembly);
         Guard.IsNotNullOrWhiteSpace(nameof(filename), filename);
-        var resourcesName = assembly.GetManifestResourceNames()
-                                    .Where(s => s.EndsWith($".{filename}", StringComparison.CurrentCultureIgnoreCase))
-                                    .ToList();
-        if (resourcesName.Count > 1)
-        {
-            throw new KrosoftTechniqueException($"Plusieurs fichiers correspondent au fichier {filename} dans {assembly.GetName().Name}");
-        }
 
-        var resourceName = resourcesName.FirstOrDefault();
+        var resourceName = GetResourceName(assembly, filename);
         if (string.IsNullOrEmpty(resourceName))
         {
             throw new KrosoftTechniqueException($"{filename} introuvable dans {assembly.GetName().Name}");
@@ -117,6 +110,20 @@ public static class FileHelper
                 return streamReader.ReadToEnd();
             }
         }
+    }
+
+    private static string? GetResourceName(Assembly assembly, string filename)
+    {
+        var resourcesName = assembly.GetManifestResourceNames()
+                                    .Where(s => s.EndsWith($".{filename}", StringComparison.CurrentCultureIgnoreCase))
+                                    .ToList();
+        if (resourcesName.Count > 1)
+        {
+            throw new KrosoftTechniqueException($"Plusieurs fichiers correspondent au fichier {filename} dans {assembly.GetName().Name}");
+        }
+
+        var resourceName = resourcesName.FirstOrDefault();
+        return resourceName;
     }
 
     public static MemoryStream ReadAsStream(Assembly assembly,
@@ -195,10 +202,17 @@ public static class FileHelper
     }
 
     public static Stream Read(Assembly assembly,
-                              string resourceName)
+                              string filename)
     {
         Guard.IsNotNull(nameof(assembly), assembly);
-        Guard.IsNotNullOrWhiteSpace(nameof(resourceName), resourceName);
+        Guard.IsNotNullOrWhiteSpace(nameof(filename), filename);
+
+        
+        var resourceName = GetResourceName(assembly, filename);
+        if (string.IsNullOrEmpty(resourceName))
+        {
+            throw new KrosoftTechniqueException($"{filename} introuvable dans {assembly.GetName().Name}");
+        }
 
         var stream = assembly.GetManifestResourceStream(resourceName);
         if (stream == null)
@@ -504,7 +518,7 @@ public static class FileHelper
         }
     }
 
-    public static string ComputeFileHash(string filename) => ComputeFileHash(File.ReadAllBytes(filename));
+    public static string ComputeFileHash(string path) => ComputeFileHash(File.ReadAllBytes(path));
 
     public static string ConvertBytesToHex(byte[] bytes)
     {

@@ -64,7 +64,7 @@ public class PdfServiceTests : BaseTest
     public void MergeStreams_Ok()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        var pdf1 = FileHelper.ReadAsStream(assembly, "sample1.pdf", EncodingHelper.GetEuropeOccidentale());
+        var pdf1 = FileHelper.Read(assembly, "sample1.pdf");
         Check.That(pdf1).IsNotNull();
         Check.That(pdf1.Length).IsEqualTo(13264);
 
