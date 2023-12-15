@@ -28,10 +28,10 @@ public class LogicielsExportPdfQueryHandler : IRequestHandler<LogicielsExportPdf
         await Task.Delay(2000, cancellationToken);
 
         var assembly = typeof(AddresseFactory).Assembly;
-        var encoding = Encoding.ASCII;
 
-        var pdf1 = AssemblyHelper.ReadAsStream(assembly, "sample1.pdf", encoding);
-        var pdf2 = AssemblyHelper.ReadAsStream(assembly, "sample2.pdf", encoding);
+         
+        var pdf1 = AssemblyHelper.Read(assembly, "sample1.pdf"); 
+        var pdf2 = AssemblyHelper.Read(assembly, "sample1.pdf");  
 
         var data = _pdfService.Merge(pdf1, pdf2);
 
