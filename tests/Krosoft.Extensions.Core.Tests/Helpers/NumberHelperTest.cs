@@ -7,8 +7,6 @@ namespace Krosoft.Extensions.Core.Tests.Helpers;
 [TestClass]
 public class NumberHelperTest
 {
-   
-
     [DataTestMethod]
     [DataRow("123.45", 123.45)]
     [DataRow("-789.12", -789.12)]
@@ -23,7 +21,6 @@ public class NumberHelperTest
         // Assert
         Check.That(result).IsEqualTo((decimal)expectedResult);
     }
-    
 
     [DataTestMethod]
     [DataRow("123", 123)]
@@ -37,8 +34,8 @@ public class NumberHelperTest
     [DataRow("   -322   ", 322)]
     [DataRow("+4302", 4302)]
     [DataRow("(100);", 100)]
-    [ DataRow("01FA", 1)]
-    [ DataRow("100 100", 100)]
+    [DataRow("01FA", 1)]
+    [DataRow("100 100", 100)]
     [DataRow("", 0)]
     [DataRow(null, 0)]
     public void ToInteger_ShouldConvertStringToInteger(string input, int expectedResult)
