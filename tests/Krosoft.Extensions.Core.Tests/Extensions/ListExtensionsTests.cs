@@ -17,7 +17,7 @@ public class ListExtensionsTests
         var list = new List<int> { 1, 2, 3 };
 
         // Act
-        list.AddRange(new[] { 3, 4, 5 }, true);
+        list.AddRange(new List<int> { 3, 4, 5 }, true);
 
         // Assert
         Check.That(list).ContainsExactly(1, 2, 3, 4, 5);
