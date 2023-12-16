@@ -40,7 +40,7 @@ public class ListExtensionsTests
     public void AddRange_String_CheckContains()
     {
         // Arrange
-        var list = new List<string>( { "apple", "aaa", "orange", "bbbb" });
+        var list = new List<string> { "apple", "aaa", "orange", "bbbb" };
 
         // Act
         list.AddRange(new List<string> { "orange", "banana", "bbbb" }, true);
