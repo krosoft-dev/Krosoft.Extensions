@@ -15,7 +15,7 @@
 //        var command = new LogicielUpdateCommand();
 
 //        Check.ThatCode(async () => { await SendCommandAsync<MediatR.Unit>(serviceProvider, command); })
-//             .Throws<PositiveMetierException>()
+//             .Throws<KrosoftMetierException>()
 //             .WhichMember(c => c.Erreurs)
 //             .ContainsExactly("'Id' is mandatory.");
 //    }

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../../Nuget.target" />
+	<PropertyGroup>
+
+
+		
+
+		<PackageTags>Krosoft Extension Data ef entity framework orm PostgreSQL</PackageTags>
+	
+		<Description>Package pour faciliter l'accès aux données avec Entity Framework via PostgreSQL.</Description>
+
+	</PropertyGroup>
+ 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.11" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
+	</ItemGroup>
+
+</Project>
