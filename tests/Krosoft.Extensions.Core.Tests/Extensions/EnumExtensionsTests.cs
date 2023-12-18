@@ -16,10 +16,8 @@ public class EnumExtensionsTests
     [DataRow(SampleCode.Five, "Five")]
     public void GetDescription_ShouldReturnCorrectDescription(SampleCode value, string expectedDescription)
     {
-        
         var result = value.GetDescription();
 
-        
         Check.That(result).IsEqualTo(expectedDescription);
     }
 
@@ -31,23 +29,18 @@ public class EnumExtensionsTests
     [DataRow(SampleCode.Five, "Five")]
     public void GetDisplayName_ShouldReturnCorrectDisplayName(SampleCode value, string expectedDisplayName)
     {
-        
         var result = value.GetDisplayName();
 
-        
         Check.That(result).IsEqualTo(expectedDisplayName);
     }
 
     [TestMethod]
     public void GetIndividualFlags_ShouldReturnCorrectIndividualFlags()
     {
-        
         var value = SampleCode.One | SampleCode.Three;
 
-        
         var result = value.GetIndividualFlags();
 
-        
         Check.That(result).ContainsExactly(SampleCode.One, SampleCode.Three);
     }
 }

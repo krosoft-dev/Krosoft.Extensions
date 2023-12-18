@@ -187,7 +187,7 @@ public static class StringHelper
     /// </summary>
     /// <param name="chaine">La chaine à formater.</param>
     /// <returns>La chaine formatée.</returns>
-    public static string? TrimIfNotNull(object? chaine)
+    public static string TrimIfNotNull(object? chaine)
     {
         if (chaine == null)
         {

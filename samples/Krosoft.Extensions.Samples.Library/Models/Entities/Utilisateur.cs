@@ -4,7 +4,7 @@ using Krosoft.Extensions.Samples.Library.Models.Enums;
 
 namespace Krosoft.Extensions.Samples.Library.Models.Entities;
 
-public class Utilisateur : TenantAuditableEntity 
+public class Utilisateur : TenantAuditableEntity
 {
     public string? Email { get; set; }
     public string? Nom { get; set; }
@@ -15,8 +15,7 @@ public class Utilisateur : TenantAuditableEntity
     public string? VerificationToken { get; set; }
     public Guid RoleId { get; set; }
     public Guid LangueId { get; set; }
- 
- 
+
     public int AccessFailedCount { get; set; }
     public DateTime? LockoutEndDate { get; set; }
     public DateTime? ConnexionDate { get; set; }
