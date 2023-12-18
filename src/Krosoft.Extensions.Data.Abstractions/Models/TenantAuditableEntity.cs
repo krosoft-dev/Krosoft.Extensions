@@ -2,5 +2,5 @@
 
 public abstract class TenantAuditableEntity : AuditableEntity, ITenantId
 {
-    public string TenantId { get; set; }
+    public string? TenantId { get; set; }
 }
