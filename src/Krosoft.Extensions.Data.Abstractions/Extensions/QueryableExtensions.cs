@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
 using Krosoft.Extensions.Core.Models.Exceptions;
+using Krosoft.Extensions.Core.Tools;
 using LinqKit;
 
 namespace Krosoft.Extensions.Data.Abstractions.Extensions;
@@ -17,21 +18,19 @@ public static class QueryableExtensions
 
     public static IQueryable<T> Filter<T, TItem>(this IQueryable<T> query,
                                                  IEnumerable<TItem>? items,
-                                                 Func<TItem, Expression<Func<T, bool>>> func,
+                                                 Func<TItem, Expression<Func<T, bool>>>? func,
                                                  bool isMandatory)
     {
-        if (items == null)
-        {
-            return query;
-        }
+        Guard.IsNotNull(nameof(items), items);
+        Guard.IsNotNull(nameof(func), func);
 
-        var uniqueItems = items.ToHashSet();
+        var uniqueItems = items!.ToHashSet();
         if (isMandatory || uniqueItems.Any())
         {
             var predicate = PredicateBuilder.New<T>();
             foreach (var item in uniqueItems)
             {
-                predicate = predicate.Or(func(item));
+                predicate = predicate.Or(func!(item));
             }
 
             query = query.Where(predicate);
