@@ -12,29 +12,26 @@ public static class QueryableExtensions
     private static readonly MethodInfo? ToLowerMethod = typeof(string).GetMethod("ToLower", Type.EmptyTypes);
 
     public static IQueryable<T> Filter<T, TItem>(this IQueryable<T> query,
-                                                 IEnumerable<TItem> items,
-                                                 Func<TItem, Expression<Func<T, bool>>> func) =>
-        query.Filter(items, func, false);
-
-    public static IQueryable<T> Filter<T, TItem>(this IQueryable<T> query,
                                                  IEnumerable<TItem>? items,
                                                  Func<TItem, Expression<Func<T, bool>>>? func,
-                                                 bool isMandatory)
+                                                 bool isMandatory = false)
     {
         Guard.IsNotNull(nameof(items), items);
         Guard.IsNotNull(nameof(func), func);
 
         var uniqueItems = items!.ToHashSet();
-        if (isMandatory || uniqueItems.Any())
+        if (!isMandatory && uniqueItems.Count <= 0)
         {
-            var predicate = PredicateBuilder.New<T>();
-            foreach (var item in uniqueItems)
-            {
-                predicate = predicate.Or(func!(item));
-            }
-
-            query = query.Where(predicate);
+            return query;
         }
+
+        var predicate = PredicateBuilder.New<T>();
+        foreach (var item in uniqueItems)
+        {
+            predicate = predicate.Or(func!(item));
+        }
+
+        query = query.Where(predicate);
 
         return query;
     }
