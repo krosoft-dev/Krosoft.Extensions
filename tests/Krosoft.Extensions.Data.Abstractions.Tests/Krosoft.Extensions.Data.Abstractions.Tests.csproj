@@ -1,0 +1,11 @@
+ <Project Sdk="Microsoft.NET.Sdk">
+	 <Import Project="../../Test.target" />
+	 <ItemGroup>
+	   <ProjectReference Include="..\..\src\Krosoft.Extensions.Testing\Krosoft.Extensions.Testing.csproj" />
+	 </ItemGroup>
+	 <ItemGroup>
+	  <None Update="appsettings.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	 </ItemGroup>
+</Project>
