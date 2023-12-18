@@ -26,10 +26,10 @@ public class StringHelperTests : BaseTest
     [DataRow(null, null)]
     public void GenerateStreamFromString_Tests(string? input, string? expectedContent)
     {
-        // Act
+        
         var resultStream = StringHelper.GenerateStreamFromString(input);
 
-        // Assert
+        
         if (expectedContent == null)
         {
             Check.That(resultStream.Length).IsEqualTo(0);
@@ -77,7 +77,7 @@ public class StringHelperTests : BaseTest
     {
         var result = StringHelper.KeepDigitsOnly(input);
 
-        // Assert
+        
         Check.That(result).IsEqualTo(expectedOutput);
     }
 

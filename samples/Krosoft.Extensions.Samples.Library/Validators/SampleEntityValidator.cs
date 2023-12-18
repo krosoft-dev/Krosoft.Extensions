@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 
-namespace Krosoft.Extensions.Samples.Library.NewFolder;
+namespace Krosoft.Extensions.Samples.Library.Validators;
 
 public class SampleEntityValidator : AbstractValidator<SampleEntity>
 {

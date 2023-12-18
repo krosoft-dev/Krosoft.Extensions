@@ -204,13 +204,13 @@ public class StringExtensionsTests
     [DataRow("text", -1, "text")]
     public void Truncate_Tests(string input, int maxLength, string expectedOutput)
     {
-        // Arrange
+        
         // You might need to replace StringExtensions with the actual class name where the method is defined.
 
-        // Act
+        
         var result = input.Truncate(maxLength);
 
-        // Assert
+        
         Check.That(result).IsEqualTo(expectedOutput);
     }
 }

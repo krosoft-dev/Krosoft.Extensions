@@ -2,14 +2,7 @@
 
 public class CrudBusiness<T>
 {
-    public CrudBusiness()
-    {
-        ToAdd = new List<T>();
-        ToUpdate = new List<T>();
-        ToDelete = new List<T>();
-    }
-
-    public ICollection<T> ToUpdate { get; }
-    public ICollection<T> ToAdd { get; }
-    public ICollection<T> ToDelete { get; }
+    public ICollection<T> ToUpdate { get; } = new List<T>();
+    public ICollection<T> ToAdd { get; } = new List<T>();
+    public ICollection<T> ToDelete { get; } = new List<T>();
 }
