@@ -38,20 +38,20 @@ public class WriteRepository<TEntity> : IWriteRepository<TEntity>
     public void DeleteById(params object[] key)
     {
         var entity = Get(key);
-        Delete(entity);
+        Delete(entity!);
     }
 
     public async Task DeleteByIdAsync(params object[] key)
     {
         var entity = await GetAsync(key);
-        Delete(entity);
+        Delete(entity!);
     }
 
     public void Delete(TEntity entity)
     {
         Guard.IsNotNull(nameof(entity), entity);
 
-        if (_dbContext.Entry(entity).State == EntityState.Detached)
+        if (_dbContext.Entry(entity!).State == EntityState.Detached)
         {
             _dbSet.Attach(entity);
         }

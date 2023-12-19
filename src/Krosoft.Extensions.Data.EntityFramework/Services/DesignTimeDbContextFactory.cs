@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Krosoft.Extensions.Core.Models.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,10 @@ public abstract class DesignTimeDbContextFactory<TDbContext> : IDesignTimeDbCont
         var configuration = configurationBuilder.Build();
         var connectionString = configuration.GetConnectionString(dbContextName);
         Console.WriteLine($"ConnectionString :  {connectionString}");
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new KrosoftTechniqueException($"Impossible de définir la connectionString à partir du nom du DbContext '{dbContextName}'.");
+        }
 
         var services = new ServiceCollection();
         ConfigureServices(services);

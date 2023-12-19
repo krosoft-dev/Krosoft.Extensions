@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyModel;
 using Krosoft.Extensions.Data.Abstractions.Models;
+using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 
@@ -18,7 +19,7 @@ public abstract class KrosoftTenantContext : KrosoftAuditContext
     /// <summary>
     /// Find loaded entity types from assemblies that application uses.
     /// </summary>
-    private static IList<Type> _entityTypeCache;
+    private static IList<Type>? _entityTypeCache;
 
     /// <summary>
     /// Applying BaseEntity rules to all entities that inherit from it.

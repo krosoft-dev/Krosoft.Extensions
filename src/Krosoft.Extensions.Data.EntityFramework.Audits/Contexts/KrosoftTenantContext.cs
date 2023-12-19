@@ -1,11 +1,12 @@
 ﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyModel;
 using Krosoft.Extensions.Data.Abstractions.Models;
+using Krosoft.Extensions.Data.EntityFramework.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyModel;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Contexts;
+namespace Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
 
 public abstract class KrosoftAuditContext : KrosoftContext
 {
@@ -18,7 +19,7 @@ public abstract class KrosoftAuditContext : KrosoftContext
     /// <summary>
     /// Find loaded entity types from assemblies that application uses.
     /// </summary>
-    private static IList<Type> _entityTypeCache;
+    private static IList<Type>? _entityTypeCache;
 
     /// <summary>
     /// Applying BaseEntity rules to all entities that inherit from it.
@@ -34,7 +35,7 @@ public abstract class KrosoftAuditContext : KrosoftContext
 
     private readonly IDbContextSettingsProvider _dbContextSettingsProvider;
 
-    protected KrosoftTenantContext(DbContextOptions options,
+    protected KrosoftAuditContext(DbContextOptions options,
                                     IDbContextSettingsProvider dbContextSettingsProvider) : base(options)
     {
         _dbContextSettingsProvider = dbContextSettingsProvider;
