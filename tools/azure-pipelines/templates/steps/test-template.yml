@@ -27,9 +27,10 @@ steps:
   # First install the tool on the machine, then run it
   - script: |
       dotnet tool install -g dotnet-reportgenerator-globaltool
-      reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage "-reporttypes:HtmlInline_AzurePipelines;Cobertura" -filefilters: -$(Build.SourcesDirectory)/**/Migrations/*.cs;-$(Build.SourcesDirectory)/**/samples/**
-    displayName: Create Code coverage report
+      reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage "-reporttypes:HtmlInline_AzurePipelines;Cobertura" -filefilters: -$(Build.SourcesDirectory)/**/Migrations/*.cs
 
+    displayName: Create Code coverage report
+  # # reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage "-reporttypes:HtmlInline_AzurePipelines;Cobertura" -filefilters: -$(Build.SourcesDirectory)/**/Migrations/*.cs;-$(Build.SourcesDirectory)/**/samples/**
   # - task: reportgenerator@5
   #   displayName: Create Code coverage report
   #   inputs:
