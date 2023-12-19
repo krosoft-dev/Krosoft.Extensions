@@ -92,5 +92,5 @@ steps:
       summaryFileLocation: "$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml"
       reportDirectory: "$(Build.SourcesDirectory)/CodeCoverage"
       assemblyfilters: "-*Tests*"
-      filefilters: "-*/Migrations/*.cs"
+      filefilters: "-*/Migrations/*.cs;-*/samples/*.cs"
       failIfCoverageEmpty: true
