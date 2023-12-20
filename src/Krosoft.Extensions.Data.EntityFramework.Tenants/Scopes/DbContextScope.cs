@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Krosoft.Extensions.Data.Abstractions.Interfaces;
-using Krosoft.Extensions.Data.EntityFramework.Contexts;
+﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Repositories;
+using Krosoft.Extensions.Data.EntityFramework.Tenants.Contexts;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Scopes;
+namespace Krosoft.Extensions.Data.EntityFramework.Tenants.Scopes;
 
 public class DbContextScope<T> : ReadDbContextScope<T> where T : KrosoftTenantContext
 {

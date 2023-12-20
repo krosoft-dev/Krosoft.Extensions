@@ -2,7 +2,7 @@
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Services;
+namespace Krosoft.Extensions.Data.EntityFramework.Tenants.Services;
 
 public class HttpDbContextSettingsProvider : IDbContextSettingsProvider
 {
@@ -16,9 +16,9 @@ public class HttpDbContextSettingsProvider : IDbContextSettingsProvider
         _dateTimeService = dateTimeService;
     }
 
-    public string GetTenantId() => _identityService.GetTenantId();
+    public string GetTenantId() => _identityService.GetTenantId()!;
 
     public DateTime GetNow() => _dateTimeService.Now;
 
-    public string GetUtilisateurId() => _identityService.GetId();
+    public string GetUtilisateurId() => _identityService.GetId()!;
 }

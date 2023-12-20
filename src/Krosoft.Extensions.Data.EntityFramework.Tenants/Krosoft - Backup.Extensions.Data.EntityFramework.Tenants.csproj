@@ -22,7 +22,9 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Krosoft.Extensions.Data.EntityFramework.Audits\Krosoft.Extensions.Data.EntityFramework.Audits.csproj" />
-	  <ProjectReference Include="..\Krosoft.Extensions.Identity.Abstractions\Krosoft.Extensions.Identity.Abstractions.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="NewFolder\" />
 	</ItemGroup>
  
 	

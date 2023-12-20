@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyModel;
 using Krosoft.Extensions.Data.Abstractions.Models;
 using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyModel;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Contexts;
+namespace Krosoft.Extensions.Data.EntityFramework.Tenants.Contexts;
 
 public abstract class KrosoftTenantContext : KrosoftAuditContext
 {
@@ -36,7 +36,7 @@ public abstract class KrosoftTenantContext : KrosoftAuditContext
     private readonly IDbContextSettingsProvider _dbContextSettingsProvider;
 
     protected KrosoftTenantContext(DbContextOptions options,
-                                    IDbContextSettingsProvider dbContextSettingsProvider) : base(options)
+                                    IDbContextSettingsProvider dbContextSettingsProvider) : base(options,dbContextSettingsProvider)
     {
         _dbContextSettingsProvider = dbContextSettingsProvider;
     }
@@ -143,35 +143,35 @@ public abstract class KrosoftTenantContext : KrosoftAuditContext
         return assemblies;
     }
 
-    /// <summary>
-    /// This method is called for every loaded entity type in OnModelCreating method.
-    /// Here type is known through generic parameter and we can use EF Core methods.
-    /// </summary>
-    public void ConfigureTenant<T>(ModelBuilder builder) where T : class, ITenantId
-    {
-        builder.Entity<T>()
-               .HasIndex(p => p.TenantId);
+    ///// <summary>
+    ///// This method is called for every loaded entity type in OnModelCreating method.
+    ///// Here type is known through generic parameter and we can use EF Core methods.
+    ///// </summary>
+    //public void ConfigureTenant<T>(ModelBuilder builder) where T : class, ITenantId
+    //{
+    //    builder.Entity<T>()
+    //           .HasIndex(p => p.TenantId);
 
-        builder.Entity<T>()
-               .Property(t => t.TenantId)
-               .IsRequired();
+    //    builder.Entity<T>()
+    //           .Property(t => t.TenantId)
+    //           .IsRequired();
 
-        builder.Entity<T>().HasQueryFilter(e => e.TenantId == _dbContextSettingsProvider.GetTenantId());
-    }
+    //    builder.Entity<T>().HasQueryFilter(e => e.TenantId == _dbContextSettingsProvider.GetTenantId());
+    //}
 
-    public void ConfigureAuditable<T>(ModelBuilder builder) where T : class, IAuditable
-    {
-        builder.Entity<T>()
-               .Property(t => t.ModificateurId)
-               .IsRequired();
-        builder.Entity<T>()
-               .Property(t => t.ModificateurDate)
-               .IsRequired();
-        builder.Entity<T>()
-               .Property(t => t.CreateurId)
-               .IsRequired();
-        builder.Entity<T>()
-               .Property(t => t.CreateurDate)
-               .IsRequired();
-    }
+    //public void ConfigureAuditable<T>(ModelBuilder builder) where T : class, IAuditable
+    //{
+    //    builder.Entity<T>()
+    //           .Property(t => t.ModificateurId)
+    //           .IsRequired();
+    //    builder.Entity<T>()
+    //           .Property(t => t.ModificateurDate)
+    //           .IsRequired();
+    //    builder.Entity<T>()
+    //           .Property(t => t.CreateurId)
+    //           .IsRequired();
+    //    builder.Entity<T>()
+    //           .Property(t => t.CreateurDate)
+    //           .IsRequired();
+    //}
 }

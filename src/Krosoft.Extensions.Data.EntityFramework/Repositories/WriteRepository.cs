@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.Abstractions.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Repositories;
 
@@ -21,18 +21,22 @@ public class WriteRepository<TEntity> : IWriteRepository<TEntity>
         _dbSet = dbContext.Set<TEntity>();
     }
 
-    public void Insert(TEntity entity)
+    public void Dispose()
+    {
+        _dbContext.Dispose();
+        GC.SuppressFinalize(this);
+    }
+
+    public void Delete(TEntity entity)
     {
         Guard.IsNotNull(nameof(entity), entity);
 
-        _dbSet.Add(entity);
-    }
+        if (_dbContext.Entry(entity).State == EntityState.Detached)
+        {
+            _dbSet.Attach(entity);
+        }
 
-    public void InsertRange(IEnumerable<TEntity> entities)
-    {
-        Guard.IsNotNull(nameof(entities), entities);
-
-        _dbSet.AddRange(entities);
+        _dbSet.Remove(entity);
     }
 
     public void DeleteById(params object[] key)
@@ -47,28 +51,9 @@ public class WriteRepository<TEntity> : IWriteRepository<TEntity>
         Delete(entity!);
     }
 
-    public void Delete(TEntity entity)
-    {
-        Guard.IsNotNull(nameof(entity), entity);
-
-        if (_dbContext.Entry(entity!).State == EntityState.Detached)
-        {
-            _dbSet.Attach(entity);
-        }
-
-        _dbSet.Remove(entity);
-    }
-
     public void DeleteRange()
     {
         DeleteRange(_dbSet);
-    }
-
-    public void InsertUpdateDelete(CrudBusiness<TEntity> crudBusiness)
-    {
-        InsertRange(crudBusiness.ToAdd);
-        UpdateRange(crudBusiness.ToUpdate);
-        DeleteRange(crudBusiness.ToDelete);
     }
 
     public void DeleteRange(IEnumerable<TEntity> entities)
@@ -84,30 +69,39 @@ public class WriteRepository<TEntity> : IWriteRepository<TEntity>
         _dbSet.RemoveRange(query);
     }
 
+    public TEntity? Get(params object[] key) => _dbSet.Find(key);
+
+    public ValueTask<TEntity?> GetAsync(params object[] key) => _dbSet.FindAsync(key);
+
+    public void Insert(TEntity entity)
+    {
+        Guard.IsNotNull(nameof(entity), entity);
+
+        _dbSet.Add(entity);
+    }
+
+    public void InsertRange(IEnumerable<TEntity> entities)
+    {
+        Guard.IsNotNull(nameof(entities), entities);
+
+        _dbSet.AddRange(entities);
+    }
+
+    public void InsertUpdateDelete(CrudBusiness<TEntity> crudBusiness)
+    {
+        InsertRange(crudBusiness.ToAdd);
+        UpdateRange(crudBusiness.ToUpdate);
+        DeleteRange(crudBusiness.ToDelete);
+    }
+
+    public IQueryable<TEntity> Query() => _dbSet;
+
     public void Update(TEntity entityToUpdate)
     {
         Guard.IsNotNull(nameof(entityToUpdate), entityToUpdate);
 
         _dbSet.Update(entityToUpdate);
     }
-
-    public void Dispose()
-    {
-        _dbContext.Dispose();
-        GC.SuppressFinalize(this);
-    }
-
-    public TEntity? Get(params object[] key) => _dbSet.Find(key);
-
-    public ValueTask<TEntity?> GetAsync(params object[] key) => _dbSet.FindAsync(key);
-
-    public void UpdateRange(IEnumerable<TEntity> entities)
-    {
-        Guard.IsNotNull(nameof(entities), entities);
-        _dbSet.UpdateRange(entities);
-    }
-
-    public IQueryable<TEntity> Query() => _dbSet;
 
     public void Update(TEntity entityToUpdate, params Expression<Func<TEntity, object>>[] propertiesExpression)
     {
@@ -118,6 +112,12 @@ public class WriteRepository<TEntity> : IWriteRepository<TEntity>
         {
             _dbContext.Entry(entityToUpdate).Property(propertyExpression).IsModified = true;
         }
+    }
+
+    public void UpdateRange(IEnumerable<TEntity> entities)
+    {
+        Guard.IsNotNull(nameof(entities), entities);
+        _dbSet.UpdateRange(entities);
     }
 
     public void UpdateRange(IEnumerable<TEntity> entities, params Expression<Func<TEntity, object>>[] propertiesExpression)

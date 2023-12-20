@@ -1,15 +1,23 @@
 ﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Repositories;
+using Krosoft.Extensions.Data.EntityFramework.Tenants.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Extensions;
+namespace Krosoft.Extensions.Data.EntityFramework.Tenants.Extensions;
 
 public static class ServiceCollectionExtensions
 {
     private static readonly object DbLock = new object();
+
+    public static IServiceCollection AddDbContextSettings(this IServiceCollection services)
+    {
+        services.AddScoped<IDbContextSettingsProvider, HttpDbContextSettingsProvider>();
+
+        return services;
+    }
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {

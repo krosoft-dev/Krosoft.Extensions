@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Krosoft.Extensions.Data.EntityFramework.Contexts;
-using Krosoft.Extensions.Data.EntityFramework.Scopes;
+﻿using Krosoft.Extensions.Data.EntityFramework.Tenants.Contexts;
+using Krosoft.Extensions.Data.EntityFramework.Tenants.Scopes;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Extensions;
+namespace Krosoft.Extensions.Data.EntityFramework.Tenants.Extensions;
 
 public static class ServiceProviderExtensions
 {

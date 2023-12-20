@@ -1,18 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Krosoft.Extensions.Core.Interfaces;
+﻿using Krosoft.Extensions.Core.Interfaces;
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Data.Abstractions.Interfaces;
-using Krosoft.Extensions.Data.EntityFramework.Contexts;
+using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Repositories;
 using Krosoft.Extensions.Data.EntityFramework.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Scopes;
+namespace Krosoft.Extensions.Data.EntityFramework.Audits.Scopes;
 
-public class ReadDbContextScope<T> : IServiceScope where T : KrosoftTenantContext
+public class ReadDbContextScope<T> : IServiceScope where T : KrosoftAuditContext
 {
     private readonly IServiceScope _serviceScope;
-    protected readonly T DbContext;
+    protected readonly T DbContext = null!;
 
     public ReadDbContextScope(IServiceScope serviceScope,
                               string utilisateurId,
@@ -27,7 +27,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftTenantContex
         var dbContextSettingsProvider = new DbContextSettingsProvider(dateTimeService.Now, utilisateurId, tenantId);
 
         DbContext = (T)Activator.CreateInstance(typeof(T), serviceScope.ServiceProvider.GetRequiredService<DbContextOptions>(),
-                                                dbContextSettingsProvider);
+                                                dbContextSettingsProvider)!;
     }
 
     public void Dispose()

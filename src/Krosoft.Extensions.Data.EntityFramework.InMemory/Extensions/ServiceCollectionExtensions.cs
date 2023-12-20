@@ -24,7 +24,7 @@ namespace Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions
             services.AddDbContext<TDbContext>(options => options.UseLoggerFactory(LoggerFactoryHelper.MyLoggerFactory)
                                                                 .UseInMemoryDatabase(databaseName)
                                                                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
-            services.AddDbContextSettings();
+            //services.AddDbContextSettings();
             return services;
         }
     }

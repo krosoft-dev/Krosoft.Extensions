@@ -5,4 +5,9 @@ public interface IDbContextSettingsProvider
     string GetTenantId();
     DateTime GetNow();
     string GetUtilisateurId();
+}public interface IDbContextSettingsProvider2
+{
+  
+    DateTime GetNow();
+   
 }
