@@ -6,7 +6,7 @@ using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyModel;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Tenants.Contexts;
+namespace Krosoft.Extensions.Data.EntityFramework.Identity.Contexts;
 
 public abstract class KrosoftTenantContext : KrosoftAuditContext
 {

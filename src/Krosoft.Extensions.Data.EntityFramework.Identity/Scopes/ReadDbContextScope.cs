@@ -1,13 +1,13 @@
 ﻿using Krosoft.Extensions.Core.Interfaces;
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Data.Abstractions.Interfaces;
+using Krosoft.Extensions.Data.EntityFramework.Identity.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Repositories;
 using Krosoft.Extensions.Data.EntityFramework.Services;
-using Krosoft.Extensions.Data.EntityFramework.Tenants.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Tenants.Scopes;
+namespace Krosoft.Extensions.Data.EntityFramework.Identity.Scopes;
 
 public class ReadDbContextScope<T> : IServiceScope where T : KrosoftTenantContext
 {

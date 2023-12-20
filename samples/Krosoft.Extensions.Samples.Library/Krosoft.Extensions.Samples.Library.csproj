@@ -26,7 +26,6 @@
 	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Data.Abstractions\Krosoft.Extensions.Data.Abstractions.csproj" />
 	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Mapping\Krosoft.Extensions.Mapping.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="NewFolder\" />
-	</ItemGroup>
+
+
 </Project>

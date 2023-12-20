@@ -1,13 +1,13 @@
 ﻿namespace Krosoft.Extensions.Data.EntityFramework.Interfaces;
 
-public interface IDbContextSettingsProvider
+public interface IDbContextSettingsProvider : IDbContextSettingsProvider2
 {
+    
     string GetTenantId();
-    DateTime GetNow();
     string GetUtilisateurId();
-}public interface IDbContextSettingsProvider2
+}
+
+public interface IDbContextSettingsProvider2
 {
-  
     DateTime GetNow();
-   
 }

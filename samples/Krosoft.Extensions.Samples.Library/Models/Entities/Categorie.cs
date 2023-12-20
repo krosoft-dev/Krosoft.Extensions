@@ -4,7 +4,7 @@ using Krosoft.Extensions.Samples.Library.Models.Enums;
 
 namespace Krosoft.Extensions.Samples.Library.Models.Entities;
 
-public class Categorie : TenantAuditableEntity, IId
+public class Categorie : AuditableEntity, IId
 {
     public string? Libelle { get; set; }
     public StatutCode StatutCode { get; set; }

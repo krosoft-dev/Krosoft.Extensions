@@ -5,8 +5,7 @@ namespace Krosoft.Extensions.Samples.DotNet8.Api.Data;
 
 public class SampleKrosoftContext : KrosoftContext
 {
-    public SampleKrosoftContext(DbContextOptions options
-    )
+    public SampleKrosoftContext(DbContextOptions options)
         : base(options)
     {
     }
