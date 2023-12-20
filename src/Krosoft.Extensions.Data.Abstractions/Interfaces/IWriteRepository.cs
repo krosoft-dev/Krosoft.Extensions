@@ -5,9 +5,9 @@ namespace Krosoft.Extensions.Data.Abstractions.Interfaces;
 
 public interface IWriteRepository<TEntity> : IDisposable where TEntity : class
 {
-    TEntity? Get(params object[] key);
+    TEntity Get(params object[] key);
 
-    ValueTask<TEntity?> GetAsync(params object[] key);
+    ValueTask<TEntity> GetAsync(params object[] key);
     IQueryable<TEntity> Query();
 
     void Insert(TEntity entity);
