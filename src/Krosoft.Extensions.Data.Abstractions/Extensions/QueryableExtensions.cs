@@ -50,7 +50,7 @@ public static class QueryableExtensions
     }
 
     public static IQueryable<T> Search<T>(this IQueryable<T> query,
-                                          string searchTerm,
+                                          string? searchTerm,
                                           params Expression<Func<T, string?>>[] selectors)
     {
         if (ToLowerMethod == null)
@@ -86,7 +86,7 @@ public static class QueryableExtensions
     }
 
     public static IQueryable<T> SearchAll<T>(this IQueryable<T> query,
-                                             string searchTerm,
+                                             string? searchTerm,
                                              Expression<Func<T, string?>> selector)
     {
         if (string.IsNullOrEmpty(searchTerm))
