@@ -36,71 +36,9 @@ public abstract class KrosoftTenantContext : KrosoftAuditContext
     private readonly IDbContextSettingsProvider _dbContextSettingsProvider;
 
     protected KrosoftTenantContext(DbContextOptions options,
-                                    IDbContextSettingsProvider dbContextSettingsProvider) : base(options,dbContextSettingsProvider)
+                                   IDbContextSettingsProvider dbContextSettingsProvider) : base(options, dbContextSettingsProvider)
     {
         _dbContextSettingsProvider = dbContextSettingsProvider;
-    }
-
-    public override int SaveChanges()
-    {
-        OverrideEntities();
-
-        return base.SaveChanges();
-    }
-
-    private void OverrideEntities()
-    {
-        var useAudit = ChangeTracker.Entries<IAuditable>().Any();
-        var useTenant = ChangeTracker.Entries<ITenantId>().Any();
-        if (useAudit || useTenant)
-        {
-            ChangeTracker.DetectChanges();
-
-            if (useTenant)
-            {
-                var tenantId = _dbContextSettingsProvider.GetTenantId();
-                ChangeTracker.ProcessCreationTenant(tenantId);
-            }
-
-            if (useAudit)
-            {
-                var now = _dbContextSettingsProvider.GetNow();
-                var utilisateurId = _dbContextSettingsProvider.GetUtilisateurId();
-
-                ChangeTracker.ProcessModificationAuditable(now, utilisateurId);
-                ChangeTracker.ProcessCreationAuditable(now, utilisateurId);
-            }
-        }
-    }
-
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        OverrideEntities();
-
-        return await base.SaveChangesAsync(true, cancellationToken);
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-
-        // Set BaseEntity rules to all loaded entity types
-        foreach (var type in GetEntityTypes())
-        {
-            //Console.WriteLine(type.FullName); //Debug.
-
-            if (type.GetInterfaces().Contains(typeof(ITenantId)))
-            {
-                var method = ConfigureTenantMethod.MakeGenericMethod(type);
-                method.Invoke(this, new object[] { modelBuilder });
-            }
-
-            if (type.GetInterfaces().Contains(typeof(IAuditable)))
-            {
-                var method = ConfigureAuditableMethod.MakeGenericMethod(type);
-                method.Invoke(this, new object[] { modelBuilder });
-            }
-        }
     }
 
     private static IEnumerable<Type> GetEntityTypes()
@@ -141,6 +79,68 @@ public abstract class KrosoftTenantContext : KrosoftAuditContext
         }
 
         return assemblies;
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        // Set BaseEntity rules to all loaded entity types
+        foreach (var type in GetEntityTypes())
+        {
+            //Console.WriteLine(type.FullName); //Debug.
+
+            if (type.GetInterfaces().Contains(typeof(ITenantId)))
+            {
+                var method = ConfigureTenantMethod.MakeGenericMethod(type);
+                method.Invoke(this, new object[] { modelBuilder });
+            }
+
+            if (type.GetInterfaces().Contains(typeof(IAuditable)))
+            {
+                var method = ConfigureAuditableMethod.MakeGenericMethod(type);
+                method.Invoke(this, new object[] { modelBuilder });
+            }
+        }
+    }
+
+    private void OverrideEntities()
+    {
+        var useAudit = ChangeTracker.Entries<IAuditable>().Any();
+        var useTenant = ChangeTracker.Entries<ITenantId>().Any();
+        if (useAudit || useTenant)
+        {
+            ChangeTracker.DetectChanges();
+
+            if (useTenant)
+            {
+                var tenantId = _dbContextSettingsProvider.GetTenantId();
+                ChangeTracker.ProcessCreationTenant(tenantId);
+            }
+
+            if (useAudit)
+            {
+                var now = _dbContextSettingsProvider.GetNow();
+                var utilisateurId = _dbContextSettingsProvider.GetUtilisateurId();
+
+                ChangeTracker.ProcessModificationAuditable(now, utilisateurId);
+                ChangeTracker.ProcessCreationAuditable(now, utilisateurId);
+            }
+        }
+    }
+
+    public override int SaveChanges()
+    {
+        OverrideEntities();
+
+        return base.SaveChanges();
+    }
+
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        OverrideEntities();
+
+        return await base.SaveChangesAsync(true, cancellationToken);
     }
 
     ///// <summary>
