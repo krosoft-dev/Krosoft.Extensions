@@ -10,6 +10,18 @@ namespace Krosoft.Extensions.Data.Abstractions.Tests.Extensions;
 public class QueryableExtensionsTests
 {
     [TestMethod]
+    public void Filter_EmptyItems_ReturnsOriginalQuery()
+    {
+        var data = GetQueryable();
+
+        var func = GetFunc();
+
+        var query = data.Filter(new List<int>(), func);
+
+        Check.That(query).IsEqualTo(data);
+    }
+
+    [TestMethod]
     public void Filter_Item_NoItem()
     {
         var data = GetQueryable();
@@ -97,6 +109,58 @@ public class QueryableExtensionsTests
         Check.That(query).HasSize(2);
         Check.That(query.Select(x => x.Id)).ContainsExactly(2, 3);
         Check.That(query.Select(x => x.Name)).ContainsExactly("Item2", "Item3");
+    }
+
+    [TestMethod]
+    public void Filter_NoMandatory_ItemsEmpty()
+    {
+        var data = GetQueryable();
+        var func = GetFunc();
+        var query = data.Filter(new List<int>(), func);
+
+        Check.That(query).HasSize(4);
+        Check.That(query.Select(x => x.Id)).ContainsExactly(1, 2, 3, 4);
+        Check.That(query.Select(x => x.Name)).ContainsExactly("Item1", "Item2", "Item3", "Item4");
+    }
+
+    [TestMethod]
+    public void Filter_WithDuplicateItems_FiltersQueryOnce()
+    {
+        var data = GetQueryable();
+
+        var items = new List<int>
+        {
+            1,
+            2,
+            3,
+            1,
+            2
+        };
+        var func = GetFunc();
+
+        var query = data.Filter(items, func);
+
+        Check.That(query).HasSize(3);
+        Check.That(query.Select(x => x.Id)).ContainsExactly(1, 2, 3);
+        Check.That(query.Select(x => x.Name)).ContainsExactly("Item1", "Item2", "Item3");
+    }
+
+    [TestMethod]
+    public void Filter_WithItemsAndFunc_FiltersQuery()
+    {
+        var data = GetQueryable();
+        var items = new List<int>
+        {
+            1,
+            2
+        };
+        var func = GetFunc();
+
+        var query = data.Filter(items, func);
+
+        Check.That(query).HasSize(2);
+        Check.That(query.Select(x => x.Id)).ContainsExactly(1, 2);
+        Check.That(query.Select(x => x.Name)).ContainsExactly("Item1", "Item2");
     }
 
     private static Func<int, Expression<Func<SampleEntity, bool>>> GetFunc() => id => entity => entity.Id == id;
