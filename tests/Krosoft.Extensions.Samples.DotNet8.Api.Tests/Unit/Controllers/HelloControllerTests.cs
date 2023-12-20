@@ -11,14 +11,14 @@ namespace Krosoft.Extensions.Samples.DotNet8.Api.Tests.Unit.Controllers;
 public class HelloControllerTests : ControllerBaseTest<HelloController>
 {
     [TestMethod]
-    public async Task HelloWorldAsync_Ok()
+    public async Task HelloAsync_Ok()
     {
         var expectedOutput = "Hello-World";
 
         Mock.Setup(x => x.Send(It.IsAny<HelloDotNet8Query>(), CancellationToken.None))
             .ReturnsAsync(() => expectedOutput);
 
-        var result = await Controller.HelloWorldAsync(CancellationToken.None);
+        var result = await Controller.HelloAsync(CancellationToken.None);
 
         Mock.Verify(x => x.Send(It.IsAny<HelloDotNet8Query>(), CancellationToken.None), Times.Once());
 

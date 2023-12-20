@@ -4,9 +4,9 @@ namespace Krosoft.Extensions.Data.EntityFramework.Services;
 
 public class FakeDbContextSettingsProvider : IDbContextSettingsProvider
 {
-    public string GetTenantId() => throw new NotImplementedException();
+    public string GetTenantId() => "Fake_Tenant_Id";
 
-    public DateTime GetNow() => throw new NotImplementedException();
+    public DateTime GetNow() => new DateTime(2012,9,28);
 
-    public string GetUtilisateurId() => throw new NotImplementedException();
+    public string GetUtilisateurId() => "Fake_Utilisateur_Id";
 }

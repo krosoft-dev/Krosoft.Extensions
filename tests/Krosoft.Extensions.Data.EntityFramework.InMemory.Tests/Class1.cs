@@ -1,8 +1,12 @@
 ﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
+using Krosoft.Extensions.Data.EntityFramework.Identity.Extensions;
+using Krosoft.Extensions.Data.EntityFramework.Identity.Services;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
+using Krosoft.Extensions.Data.EntityFramework.Interfaces;
+using Krosoft.Extensions.Data.EntityFramework.Services;
 using Krosoft.Extensions.Samples.DotNet8.Api.Data;
-using Krosoft.Extensions.Samples.Library.Models;
+using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,12 +19,16 @@ namespace Krosoft.Extensions.Data.EntityFramework.InMemory.Tests;
 [TestClass]
 public class ZipServiceTests : BaseTest
 {
-    private IReadRepository<Item> _repository = null!;
+    private IReadRepository<Logiciel> _repository = null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddRepositories();
         services.AddDbContextInMemory<SampleKrosoftContext>(true);
+
+        
+        services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
+        services.AddDbContextInMemory<SampleKrosoftTenantContext>(true);
     }
 
     [TestMethod]
@@ -37,6 +45,6 @@ public class ZipServiceTests : BaseTest
     public void SetUp()
     {
         var serviceProvider = CreateServiceCollection();
-        _repository = serviceProvider.GetRequiredService<IReadRepository<Item>>();
+        _repository = serviceProvider.GetRequiredService<IReadRepository<Logiciel>>();
     }
 }

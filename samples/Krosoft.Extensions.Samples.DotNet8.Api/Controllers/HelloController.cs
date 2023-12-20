@@ -9,6 +9,10 @@ namespace Krosoft.Extensions.Samples.DotNet8.Api.Controllers;
 public class HelloController : ApiControllerBase
 {
     [HttpGet]
-    public Task<string> HelloWorldAsync(CancellationToken cancellationToken)
+    public Task<string> HelloAsync(CancellationToken cancellationToken)
         => Mediator.Send(new HelloDotNet8Query(), cancellationToken);
+
+    [HttpGet("Database")]
+    public Task<string> HelloDatabaseAsync(CancellationToken cancellationToken)
+        => Mediator.Send(new HelloDatabaseQuery(), cancellationToken);
 }

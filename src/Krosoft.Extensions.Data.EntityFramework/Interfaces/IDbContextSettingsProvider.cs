@@ -2,7 +2,6 @@
 
 public interface IDbContextSettingsProvider : IDbContextSettingsProvider2
 {
-    
     string GetTenantId();
     string GetUtilisateurId();
 }
