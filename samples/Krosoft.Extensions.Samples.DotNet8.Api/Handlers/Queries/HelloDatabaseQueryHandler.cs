@@ -9,9 +9,9 @@ namespace Krosoft.Extensions.Samples.DotNet8.Api.Handlers.Queries;
 public class HelloDatabaseQueryHandler : IRequestHandler<HelloDatabaseQuery, string>
 {
     private readonly ILogger<HelloDatabaseQueryHandler> _logger;
-    private readonly IReadRepository<Logiciel> _repository;
+    private readonly IReadRepository<Langue> _repository;
 
-    public HelloDatabaseQueryHandler(ILogger<HelloDatabaseQueryHandler> logger, IReadRepository<Logiciel> repository)
+    public HelloDatabaseQueryHandler(ILogger<HelloDatabaseQueryHandler> logger, IReadRepository<Langue> repository)
     {
         _logger = logger;
         _repository = repository;

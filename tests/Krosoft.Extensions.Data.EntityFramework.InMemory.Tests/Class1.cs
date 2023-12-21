@@ -19,16 +19,18 @@ namespace Krosoft.Extensions.Data.EntityFramework.InMemory.Tests;
 [TestClass]
 public class ZipServiceTests : BaseTest
 {
-    private IReadRepository<Logiciel> _repository = null!;
+    private IReadRepository<Langue> _repository = null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddRepositories();
-        services.AddDbContextInMemory<SampleKrosoftContext>(true);
+        services.AddDbContextInMemory<SampleKrosoftContext>(false);
+        
+        services.AddSeedService<SampleKrosoftContext, SampleKrosoftSeedService>();
 
         
-        services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
-        services.AddDbContextInMemory<SampleKrosoftTenantContext>(true);
+        //services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
+        //services.AddDbContextInMemory<SampleKrosoftTenantContext>(true);
     }
 
     [TestMethod]
@@ -39,12 +41,13 @@ public class ZipServiceTests : BaseTest
             ;
 
         Check.That(items).IsNotNull();
+        Check.That(items).HasSize(2);
     }
 
     [TestInitialize]
     public void SetUp()
     {
         var serviceProvider = CreateServiceCollection();
-        _repository = serviceProvider.GetRequiredService<IReadRepository<Logiciel>>();
+        _repository = serviceProvider.GetRequiredService<IReadRepository<Langue>>();
     }
 }

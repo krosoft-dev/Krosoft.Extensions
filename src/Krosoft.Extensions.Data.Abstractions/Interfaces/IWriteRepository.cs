@@ -16,11 +16,11 @@ public interface IWriteRepository<TEntity> : IDisposable where TEntity : class
 
     void Update(TEntity entityToUpdate);
 
-    void Update(TEntity entityToUpdate, params Expression<Func<TEntity, object>>[] propertyExpression);
+    void Update(TEntity entityToUpdate, params Expression<Func<TEntity, object>>[] propertiesExpression);
 
     void UpdateRange(IEnumerable<TEntity> entities);
 
-    void UpdateRange(IEnumerable<TEntity> entities, params Expression<Func<TEntity, object>>[] propertyExpression);
+    void UpdateRange(IEnumerable<TEntity> entities, params Expression<Func<TEntity, object>>[] propertiesExpression);
 
     void Delete(TEntity entity);
 
