@@ -1,6 +1,5 @@
 using System.Net;
 using Krosoft.Extensions.Core.Extensions;
-using Krosoft.Extensions.Core.Helpers;
 using Krosoft.Extensions.Samples.DotNet8.Api.Tests.Core;
 using Krosoft.Extensions.Samples.Library.Models.Dto;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,8 +9,7 @@ namespace Krosoft.Extensions.Samples.DotNet8.Api.Tests.Functional;
 
 [TestClass]
 public class LanguesControllerTests : SampleBaseApiTest<Startup>
-{  
-
+{
     [TestMethod]
     public async Task Get_Ok()
     {
@@ -22,8 +20,6 @@ public class LanguesControllerTests : SampleBaseApiTest<Startup>
         var langues = await response.Content.ReadAsJsonAsync<IEnumerable<LangueDto>>(CancellationToken.None).ToList();
         Check.That(langues).IsNotNull();
         Check.That(langues).HasSize(2);
-        Check.That(langues.Select(x=>x.Code)).ContainsExactly("fr","en");
+        Check.That(langues.Select(x => x.Code)).ContainsExactly("fr", "en");
     }
-
-     
 }

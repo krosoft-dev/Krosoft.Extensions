@@ -14,26 +14,25 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
 
-namespace Krosoft.Extensions.Data.EntityFramework.InMemory.Tests;
+namespace Krosoft.Extensions.Data.EntityFramework.InMemory.Tests.Functional;
 
 [TestClass]
-public class ZipServiceTests : BaseTest
+public class KrosoftTenantContextTests : BaseTest
 {
     private IReadRepository<Langue> _repository = null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddRepositories();
-        services.AddDbContextInMemory<SampleKrosoftContext>(true);
-        services.AddSeedService<SampleKrosoftContext, SampleSeedService>();
+        services.AddRepositories();  
+        services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
+        services.AddDbContextInMemory<SampleKrosoftTenantContext>(true);
+        services.AddSeedService<SampleKrosoftTenantContext, SampleSeedService<SampleKrosoftTenantContext>>();
 
-        
-        //services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
-        //services.AddDbContextInMemory<SampleKrosoftTenantContext>(true);
+    
     }
 
     [TestMethod]
-    public async Task ExtractZip_Ok()
+    public async Task Query_Ok()
     {
         var items = await _repository.Query()
                                      .ToListAsync(CancellationToken.None)

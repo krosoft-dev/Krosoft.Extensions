@@ -20,6 +20,6 @@ public class PaysControllerTests : SampleBaseApiTest<Startup>
         var pays = await response.Content.ReadAsJsonAsync<IEnumerable<PaysDto>>(CancellationToken.None).ToList();
         Check.That(pays).IsNotNull();
         Check.That(pays).HasSize(5);
-        Check.That(pays.Select(x=>x.Code)).ContainsExactly("fr","de","it","es","gb");
+        Check.That(pays.Select(x => x.Code)).ContainsExactly("fr", "de", "it", "es", "gb");
     }
 }

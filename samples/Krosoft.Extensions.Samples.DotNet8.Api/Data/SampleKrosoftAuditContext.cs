@@ -1,14 +1,14 @@
-﻿//using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
-//using Krosoft.Extensions.Data.EntityFramework.Interfaces;
-//using Microsoft.EntityFrameworkCore;
+﻿using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
+using Krosoft.Extensions.Data.EntityFramework.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-//namespace Krosoft.Extensions.Samples.DotNet8.Api.Data;
+namespace Krosoft.Extensions.Samples.DotNet8.Api.Data;
 
-//public class SampleKrosoftAuditContext : KrosoftAuditContext
-//{
-//    public SampleKrosoftAuditContext(DbContextOptions options,
-//                                     IDbContextSettingsProvider dbContextSettingsProvider)
-//        : base(options, dbContextSettingsProvider)
-//    {
-//    }
-//}
+public class SampleKrosoftAuditContext : KrosoftAuditContext
+{
+    public SampleKrosoftAuditContext(DbContextOptions options,
+                                     IDbContextSettingsProvider dbContextSettingsProvider)
+        : base(options, dbContextSettingsProvider)
+    {
+    }
+}

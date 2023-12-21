@@ -14,8 +14,7 @@ public class LangueProfile : Profile
     {
         CreateMap<Langue, LangueDto>()
             .ForMember(dest => dest.Id, o => o.MapFrom(src => src.Id))
-            .ForMember(dest => dest.Code, o => o.MapFrom(src => src.Code)) 
+            .ForMember(dest => dest.Code, o => o.MapFrom(src => src.Code))
             .ForAllOtherMembers(m => m.Ignore());
- 
     }
 }
