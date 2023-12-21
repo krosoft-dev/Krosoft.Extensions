@@ -4,7 +4,7 @@ using Krosoft.Extensions.Samples.Library.Models.Entities;
 
 namespace Krosoft.Extensions.Samples.DotNet8.Api.Data;
 
-public class SampleKrosoftSeedService : SeedService<SampleKrosoftContext>
+public class SampleSeedService : SeedService<SampleKrosoftContext>
 {
     protected override void BeforeSave(SampleKrosoftContext db)
     {

@@ -13,9 +13,9 @@ public class PaysQueryHandler : IRequestHandler<PaysQuery, IEnumerable<PaysDto>>
 {
     private readonly ILogger<PaysQueryHandler> _logger;
     private readonly IMapper _mapper;
-    private readonly IReadRepository<Langue> _repository;
+    private readonly IReadRepository<Pays> _repository;
 
-    public PaysQueryHandler(ILogger<PaysQueryHandler> logger, IReadRepository<Langue> repository, IMapper mapper)
+    public PaysQueryHandler(ILogger<PaysQueryHandler> logger, IReadRepository<Pays> repository, IMapper mapper)
     {
         _logger = logger;
         _repository = repository;

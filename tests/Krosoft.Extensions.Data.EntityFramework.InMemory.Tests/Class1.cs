@@ -25,7 +25,7 @@ public class ZipServiceTests : BaseTest
     {
         services.AddRepositories();
         services.AddDbContextInMemory<SampleKrosoftContext>(true);
-        services.AddSeedService<SampleKrosoftContext, SampleKrosoftSeedService>();
+        services.AddSeedService<SampleKrosoftContext, SampleSeedService>();
 
         
         //services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
