@@ -24,8 +24,7 @@ public class ZipServiceTests : BaseTest
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddRepositories();
-        services.AddDbContextInMemory<SampleKrosoftContext>(false);
-        
+        services.AddDbContextInMemory<SampleKrosoftContext>(true);
         services.AddSeedService<SampleKrosoftContext, SampleKrosoftSeedService>();
 
         

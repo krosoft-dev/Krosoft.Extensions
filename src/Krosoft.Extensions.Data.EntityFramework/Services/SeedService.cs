@@ -1,28 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Krosoft.Extensions.Core.Helpers;
-using Krosoft.Extensions.Data.EntityFramework.Interfaces;
+﻿using Krosoft.Extensions.Data.EntityFramework.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Services
+namespace Krosoft.Extensions.Data.EntityFramework.Services;
+
+public abstract class SeedService<TDbContext> : ISeedService<TDbContext> where TDbContext : DbContext
 {
-    public abstract class SeedService<TDbContext> : ISeedService<TDbContext> where TDbContext : DbContext
+    public bool Initialized { get; set; }
+
+    public void InitializeDbForTests(TDbContext db)
     {
-        public bool Initialized { get; set; }
+        Initialized = true;
 
-        public void InitializeDbForTests(TDbContext db)
-        {
-            Initialized = true;
+        BeforeSave(db);
 
-            BeforeSave(db);
+        db.SaveChanges();
+    }
 
-            db.SaveChanges();
-        }
-
-        protected abstract void BeforeSave(TDbContext db);
-
-        protected void Import<T>(DbContext db) where T : class
-        {
-            var entities = JsonHelper.Get<T>(typeof(T).Assembly);
-            db.Set<T>().AddRange(entities);
-        }
+    protected virtual void BeforeSave(TDbContext db)
+    {
     }
 }

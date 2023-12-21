@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Interfaces
+namespace Krosoft.Extensions.Data.EntityFramework.Interfaces;
+
+public interface ISeedService<TDbContext> where TDbContext : DbContext
 {
-    public interface ISeedService<TDbContext> where TDbContext : DbContext
-    {
-        void InitializeDbForTests(TDbContext db);
-        bool Initialized { get; set; }
-    }
+    bool Initialized { get; set; }
+    void InitializeDbForTests(TDbContext db);
 }

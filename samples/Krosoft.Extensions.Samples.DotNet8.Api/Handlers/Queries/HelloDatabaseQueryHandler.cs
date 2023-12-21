@@ -1,4 +1,7 @@
-﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Krosoft.Extensions.Data.Abstractions.Interfaces;
+using Krosoft.Extensions.Samples.Library.Models.Dto;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Samples.Library.Models.Queries;
 using MediatR;
@@ -6,23 +9,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Krosoft.Extensions.Samples.DotNet8.Api.Handlers.Queries;
 
-public class HelloDatabaseQueryHandler : IRequestHandler<HelloDatabaseQuery, string>
+public class PaysQueryHandler : IRequestHandler<PaysQuery, IEnumerable<PaysDto>>
 {
-    private readonly ILogger<HelloDatabaseQueryHandler> _logger;
+    private readonly ILogger<PaysQueryHandler> _logger;
+    private readonly IMapper _mapper;
     private readonly IReadRepository<Langue> _repository;
 
-    public HelloDatabaseQueryHandler(ILogger<HelloDatabaseQueryHandler> logger, IReadRepository<Langue> repository)
+    public PaysQueryHandler(ILogger<PaysQueryHandler> logger, IReadRepository<Langue> repository, IMapper mapper)
     {
         _logger = logger;
         _repository = repository;
+        _mapper = mapper;
     }
 
-    public async Task<string> Handle(HelloDatabaseQuery request,
-                                     CancellationToken cancellationToken)
+    public async Task<IEnumerable<PaysDto>> Handle(PaysQuery request,
+                                                   CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Hello DotNet8...");
+        _logger.LogInformation("Récupération des pays...");
 
-        var logiciels = await _repository.Query().ToListAsync(cancellationToken);
-        return "Hello " + logiciels.Count;
+        var pays = await _repository.Query().ProjectTo<PaysDto>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
+        return pays;
     }
 }

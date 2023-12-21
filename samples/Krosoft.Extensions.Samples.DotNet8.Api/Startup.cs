@@ -80,6 +80,7 @@ public class Startup
         //Data.
         services.AddRepositories(); 
         services.AddDbContextInMemory<SampleKrosoftContext>(false);
+        services.AddSeedService<SampleKrosoftContext, SampleKrosoftSeedService>();
         //services.AddDbContextPostgreSql<KrosoftExtensionTenantContext>(_configuration);
 
         //Cache. 

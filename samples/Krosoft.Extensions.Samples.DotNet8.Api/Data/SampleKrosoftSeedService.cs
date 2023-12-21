@@ -1,12 +1,14 @@
-﻿using Krosoft.Extensions.Data.EntityFramework.Interfaces;
+﻿using Krosoft.Extensions.Data.EntityFramework.Extensions;
+using Krosoft.Extensions.Data.EntityFramework.Services;
+using Krosoft.Extensions.Samples.Library.Models.Entities;
 
 namespace Krosoft.Extensions.Samples.DotNet8.Api.Data;
 
-public class SampleKrosoftSeedService : ISeedService<SampleKrosoftContext>
+public class SampleKrosoftSeedService : SeedService<SampleKrosoftContext>
 {
-    public void InitializeDbForTests(SampleKrosoftContext db)
-    { 
+    protected override void BeforeSave(SampleKrosoftContext db)
+    {
+        db.Import<Langue>();
+        db.Import<Pays>();
     }
-
-    public bool Initialized { get; set; }
 }

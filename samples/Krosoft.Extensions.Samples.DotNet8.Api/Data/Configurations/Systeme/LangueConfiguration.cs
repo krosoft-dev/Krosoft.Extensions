@@ -2,7 +2,7 @@
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Krosoft.Extensions.Samples.DotNet8.Api.Data.Configurations.Activite;
+namespace Krosoft.Extensions.Samples.DotNet8.Api.Data.Configurations.Systeme;
 
 public class LangueConfiguration : SystemeEntityTypeConfiguration<Langue>
 {
