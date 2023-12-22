@@ -9,7 +9,7 @@ public static class ChangeTrackerExtensions
     public static void ProcessCreationTenant(this ChangeTracker changeTracker,
                                              string tenantId)
     {
-        foreach (var item in changeTracker.Entries<ITenantId>().Where(e => e.State == EntityState.Added))
+        foreach (var item in changeTracker.Entries<ITenant>().Where(e => e.State == EntityState.Added))
         {
             item.Entity.TenantId = tenantId;
         }

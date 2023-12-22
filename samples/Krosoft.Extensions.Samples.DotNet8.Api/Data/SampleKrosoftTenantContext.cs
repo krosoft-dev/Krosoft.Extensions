@@ -7,8 +7,9 @@ namespace Krosoft.Extensions.Samples.DotNet8.Api.Data;
 public class SampleKrosoftTenantContext : KrosoftTenantContext
 {
     public SampleKrosoftTenantContext(DbContextOptions options,
-                                      IDbContextSettingsProvider dbContextSettingsProvider)
-        : base(options, dbContextSettingsProvider)
+                                      ITenantDbContextProvider tenantDbContextProvider)
+        : base(options,
+               tenantDbContextProvider)
     {
     }
 }

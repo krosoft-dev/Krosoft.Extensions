@@ -12,7 +12,7 @@ public abstract class KrosoftAuditContext : KrosoftContext
 {
     private static readonly IList<Type> Types = new List<Type>
     {
-        typeof(ITenantId),
+ 
         typeof(IAuditable)
     };
 
@@ -21,24 +21,18 @@ public abstract class KrosoftAuditContext : KrosoftContext
     /// </summary>
     private static IList<Type>? _entityTypeCache;
 
-    /// <summary>
-    /// Applying BaseEntity rules to all entities that inherit from it.
-    /// Define MethodInfo member that is used when model is built.
-    /// </summary>
-    private static readonly MethodInfo ConfigureTenantMethod = typeof(KrosoftAuditContext)
-                                                               .GetMethods(BindingFlags.Public | BindingFlags.Instance)
-                                                               .Single(t => t.IsGenericMethod && t.Name == nameof(ConfigureTenant));
+ 
 
     private static readonly MethodInfo ConfigureAuditableMethod = typeof(KrosoftAuditContext)
                                                                   .GetMethods(BindingFlags.Public | BindingFlags.Instance)
                                                                   .Single(t => t.IsGenericMethod && t.Name == nameof(ConfigureAuditable));
 
-    private readonly IDbContextSettingsProvider _dbContextSettingsProvider;
+    private readonly IAuditableDbContextProvider _auditableDbContextProvider;
 
     protected KrosoftAuditContext(DbContextOptions options,
-                                  IDbContextSettingsProvider dbContextSettingsProvider) : base(options)
+                                  IAuditableDbContextProvider auditableDbContextProvider) : base(options)
     {
-        _dbContextSettingsProvider = dbContextSettingsProvider;
+        _auditableDbContextProvider = auditableDbContextProvider;
     }
 
     public void ConfigureAuditable<T>(ModelBuilder builder) where T : class, IAuditable
@@ -57,21 +51,7 @@ public abstract class KrosoftAuditContext : KrosoftContext
                .IsRequired();
     }
 
-    /// <summary>
-    /// This method is called for every loaded entity type in OnModelCreating method.
-    /// Here type is known through generic parameter and we can use EF Core methods.
-    /// </summary>
-    public void ConfigureTenant<T>(ModelBuilder builder) where T : class, ITenantId
-    {
-        builder.Entity<T>()
-               .HasIndex(p => p.TenantId);
-
-        builder.Entity<T>()
-               .Property(t => t.TenantId)
-               .IsRequired();
-
-        builder.Entity<T>().HasQueryFilter(e => e.TenantId == _dbContextSettingsProvider.GetTenantId());
-    }
+ 
 
     private static IEnumerable<Type> GetEntityTypes()
     {
@@ -122,11 +102,7 @@ public abstract class KrosoftAuditContext : KrosoftContext
         {
             //Console.WriteLine(type.FullName); //Debug.
 
-            if (type.GetInterfaces().Contains(typeof(ITenantId)))
-            {
-                var method = ConfigureTenantMethod.MakeGenericMethod(type);
-                method.Invoke(this, new object[] { modelBuilder });
-            }
+           
 
             if (type.GetInterfaces().Contains(typeof(IAuditable)))
             {
@@ -138,22 +114,17 @@ public abstract class KrosoftAuditContext : KrosoftContext
 
     private void OverrideEntities()
     {
-        var useAudit = ChangeTracker.Entries<IAuditable>().Any();
-        var useTenant = ChangeTracker.Entries<ITenantId>().Any();
-        if (useAudit || useTenant)
+        var useAudit = ChangeTracker.Entries<IAuditable>().Any(); 
+        if (useAudit  )
         {
             ChangeTracker.DetectChanges();
 
-            if (useTenant)
-            {
-                var tenantId = _dbContextSettingsProvider.GetTenantId();
-                ChangeTracker.ProcessCreationTenant(tenantId);
-            }
+          
 
             if (useAudit)
             {
-                var now = _dbContextSettingsProvider.GetNow();
-                var utilisateurId = _dbContextSettingsProvider.GetUtilisateurId();
+                var now = _auditableDbContextProvider.GetNow();
+                var utilisateurId = _auditableDbContextProvider.GetUtilisateurId();
 
                 ChangeTracker.ProcessModificationAuditable(now, utilisateurId);
                 ChangeTracker.ProcessCreationAuditable(now, utilisateurId);
@@ -174,4 +145,7 @@ public abstract class KrosoftAuditContext : KrosoftContext
 
         return await base.SaveChangesAsync(true, cancellationToken);
     }
+
+
+ 
 }

@@ -17,6 +17,5 @@
 		<ProjectReference Include="..\Krosoft.Extensions.Data.Abstractions\Krosoft.Extensions.Data.Abstractions.csproj" />
 		<ProjectReference Include="..\Krosoft.Extensions.Data.EntityFramework.Audits\Krosoft.Extensions.Data.EntityFramework.Audits.csproj" />
 		<ProjectReference Include="..\Krosoft.Extensions.Data.EntityFramework\Krosoft.Extensions.Data.EntityFramework.csproj" />
-		<ProjectReference Include="..\Krosoft.Extensions.Identity.Abstractions\Krosoft.Extensions.Identity.Abstractions.csproj" />
-	</ItemGroup>
+		</ItemGroup>
 </Project>

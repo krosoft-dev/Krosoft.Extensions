@@ -7,8 +7,8 @@ namespace Krosoft.Extensions.Samples.DotNet8.Api.Data;
 public class SampleKrosoftAuditContext : KrosoftAuditContext
 {
     public SampleKrosoftAuditContext(DbContextOptions options,
-                                     IDbContextSettingsProvider dbContextSettingsProvider)
-        : base(options, dbContextSettingsProvider)
+                                     IAuditableDbContextProvider auditableDbContextProvider)
+        : base(options, auditableDbContextProvider)
     {
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Krosoft.Extensions.Data.Abstractions.Models;
 using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
+using Krosoft.Extensions.Data.EntityFramework.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -8,12 +9,13 @@ using Microsoft.Extensions.DependencyModel;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Identity.Contexts;
 
-public abstract class KrosoftTenantContext : KrosoftAuditContext
+public abstract class KrosoftTenantContext : KrosoftContext
 {
+    private readonly ITenantDbContextProvider _tenantDbContextProvider;
+
     private static readonly IList<Type> Types = new List<Type>
     {
-        typeof(ITenantId),
-        typeof(IAuditable)
+        typeof(ITenant),
     };
 
     /// <summary>
@@ -29,16 +31,14 @@ public abstract class KrosoftTenantContext : KrosoftAuditContext
                                                                .GetMethods(BindingFlags.Public | BindingFlags.Instance)
                                                                .Single(t => t.IsGenericMethod && t.Name == nameof(ConfigureTenant));
 
-    private static readonly MethodInfo ConfigureAuditableMethod = typeof(KrosoftTenantContext)
-                                                                  .GetMethods(BindingFlags.Public | BindingFlags.Instance)
-                                                                  .Single(t => t.IsGenericMethod && t.Name == nameof(ConfigureAuditable));
+ 
 
-    private readonly IDbContextSettingsProvider _dbContextSettingsProvider;
+ 
 
     protected KrosoftTenantContext(DbContextOptions options,
-                                   IDbContextSettingsProvider dbContextSettingsProvider) : base(options, dbContextSettingsProvider)
+                                   ITenantDbContextProvider tenantDbContextProvider) : base(options)
     {
-        _dbContextSettingsProvider = dbContextSettingsProvider;
+        _tenantDbContextProvider = tenantDbContextProvider; 
     }
 
     private static IEnumerable<Type> GetEntityTypes()
@@ -90,42 +90,30 @@ public abstract class KrosoftTenantContext : KrosoftAuditContext
         {
             //Console.WriteLine(type.FullName); //Debug.
 
-            if (type.GetInterfaces().Contains(typeof(ITenantId)))
+            if (type.GetInterfaces().Contains(typeof(ITenant)))
             {
                 var method = ConfigureTenantMethod.MakeGenericMethod(type);
                 method.Invoke(this, new object[] { modelBuilder });
             }
 
-            if (type.GetInterfaces().Contains(typeof(IAuditable)))
-            {
-                var method = ConfigureAuditableMethod.MakeGenericMethod(type);
-                method.Invoke(this, new object[] { modelBuilder });
-            }
+           
         }
     }
 
     private void OverrideEntities()
     {
-        var useAudit = ChangeTracker.Entries<IAuditable>().Any();
-        var useTenant = ChangeTracker.Entries<ITenantId>().Any();
-        if (useAudit || useTenant)
+        var useTenant = ChangeTracker.Entries<ITenant>().Any();
+        if ( useTenant)
         {
             ChangeTracker.DetectChanges();
 
             if (useTenant)
             {
-                var tenantId = _dbContextSettingsProvider.GetTenantId();
+                var tenantId = _tenantDbContextProvider.GetTenantId();
                 ChangeTracker.ProcessCreationTenant(tenantId);
             }
 
-            if (useAudit)
-            {
-                var now = _dbContextSettingsProvider.GetNow();
-                var utilisateurId = _dbContextSettingsProvider.GetUtilisateurId();
-
-                ChangeTracker.ProcessModificationAuditable(now, utilisateurId);
-                ChangeTracker.ProcessCreationAuditable(now, utilisateurId);
-            }
+           
         }
     }
 
@@ -143,21 +131,21 @@ public abstract class KrosoftTenantContext : KrosoftAuditContext
         return await base.SaveChangesAsync(true, cancellationToken);
     }
 
-    ///// <summary>
-    ///// This method is called for every loaded entity type in OnModelCreating method.
-    ///// Here type is known through generic parameter and we can use EF Core methods.
-    ///// </summary>
-    //public void ConfigureTenant<T>(ModelBuilder builder) where T : class, ITenantId
-    //{
-    //    builder.Entity<T>()
-    //           .HasIndex(p => p.TenantId);
-
-    //    builder.Entity<T>()
-    //           .Property(t => t.TenantId)
-    //           .IsRequired();
-
-    //    builder.Entity<T>().HasQueryFilter(e => e.TenantId == _dbContextSettingsProvider.GetTenantId());
-    //}
+    /// <summary>
+    /// This method is called for every loaded entity type in OnModelCreating method.
+    /// Here type is known through generic parameter and we can use EF Core methods.
+    /// </summary>
+    public void ConfigureTenant<T>(ModelBuilder builder) where T : class, ITenant
+    {
+        builder.Entity<T>()
+               .HasIndex(p => p.TenantId);
+    
+        builder.Entity<T>()
+               .Property(t => t.TenantId)
+               .IsRequired();
+    
+        builder.Entity<T>().HasQueryFilter(e => e.TenantId == _tenantDbContextProvider.GetTenantId());
+    }
 
     //public void ConfigureAuditable<T>(ModelBuilder builder) where T : class, IAuditable
     //{

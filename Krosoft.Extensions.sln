@@ -127,7 +127,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Data.Ent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Data.EntityFramework.Audits", "src\Krosoft.Extensions.Data.EntityFramework.Audits\Krosoft.Extensions.Data.EntityFramework.Audits.csproj", "{88F667B6-CC50-4252-B9D2-23DFE8A1896C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krosoft.Extensions.Data.EntityFramework.Identity", "src\Krosoft.Extensions.Data.EntityFramework.Identity\Krosoft.Extensions.Data.EntityFramework.Identity.csproj", "{1C05EC98-E655-4BE6-86C6-D061036861D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Data.EntityFramework.Identity", "src\Krosoft.Extensions.Data.EntityFramework.Identity\Krosoft.Extensions.Data.EntityFramework.Identity.csproj", "{1C05EC98-E655-4BE6-86C6-D061036861D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krosoft.Extensions.Data.EntityFramework.Tests", "tests\Krosoft.Extensions.Data.EntityFramework.Tests\Krosoft.Extensions.Data.EntityFramework.Tests.csproj", "{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -893,6 +895,22 @@ Global
 		{1C05EC98-E655-4BE6-86C6-D061036861D9}.Release|x64.Build.0 = Release|Any CPU
 		{1C05EC98-E655-4BE6-86C6-D061036861D9}.Release|x86.ActiveCfg = Release|Any CPU
 		{1C05EC98-E655-4BE6-86C6-D061036861D9}.Release|x86.Build.0 = Release|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Debug|x64.Build.0 = Debug|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Debug|x86.Build.0 = Debug|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|ARM.Build.0 = Release|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|x64.ActiveCfg = Release|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|x64.Build.0 = Release|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|x86.ActiveCfg = Release|Any CPU
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -945,6 +963,7 @@ Global
 		{453608D6-3EF8-40A4-9624-B1ABF7859CA5} = {1DCE243A-7652-45C9-8779-621489B87469}
 		{88F667B6-CC50-4252-B9D2-23DFE8A1896C} = {1DCE243A-7652-45C9-8779-621489B87469}
 		{1C05EC98-E655-4BE6-86C6-D061036861D9} = {1DCE243A-7652-45C9-8779-621489B87469}
+		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F} = {1DCE243A-7652-45C9-8779-621489B87469}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FD07ECB-B4B5-4D65-8E03-10F0C97C77A9}
