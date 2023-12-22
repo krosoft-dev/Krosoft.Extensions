@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Krosoft.Extensions.Samples.DotNet8.Api.Data;
 
-public class SampleKrosoftAuditContext : KrosoftAuditContext
+public class SampleKrosoftAuditableContext : KrosoftAuditableContext
 {
-    public SampleKrosoftAuditContext(DbContextOptions options,
+    public SampleKrosoftAuditableContext(DbContextOptions options,
                                      IAuditableDbContextProvider auditableDbContextProvider)
         : base(options, auditableDbContextProvider)
     {

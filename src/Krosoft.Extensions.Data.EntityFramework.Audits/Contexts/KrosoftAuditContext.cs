@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyModel;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
 
-public abstract class KrosoftAuditContext : KrosoftContext
+public abstract class KrosoftAuditableContext : KrosoftContext
 {
     private static readonly IList<Type> Types = new List<Type>
     {
@@ -23,14 +23,14 @@ public abstract class KrosoftAuditContext : KrosoftContext
 
  
 
-    private static readonly MethodInfo ConfigureAuditableMethod = typeof(KrosoftAuditContext)
+    private static readonly MethodInfo ConfigureAuditableMethod = typeof(KrosoftAuditableContext)
                                                                   .GetMethods(BindingFlags.Public | BindingFlags.Instance)
                                                                   .Single(t => t.IsGenericMethod && t.Name == nameof(ConfigureAuditable));
 
     private readonly IAuditableDbContextProvider _auditableDbContextProvider;
 
-    protected KrosoftAuditContext(DbContextOptions options,
-                                  IAuditableDbContextProvider auditableDbContextProvider) : base(options)
+    protected KrosoftAuditableContext(DbContextOptions options,
+                                      IAuditableDbContextProvider auditableDbContextProvider) : base(options)
     {
         _auditableDbContextProvider = auditableDbContextProvider;
     }

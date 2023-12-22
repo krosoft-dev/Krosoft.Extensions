@@ -1,10 +1,14 @@
-﻿using Krosoft.Extensions.Core.Tools;
+﻿using Krosoft.Extensions.Core.Interfaces;
+using Krosoft.Extensions.Core.Models.Exceptions;
+using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Identity.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Identity.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Repositories;
+using Krosoft.Extensions.Data.EntityFramework.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Identity.Scopes;
@@ -15,7 +19,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
     protected readonly T DbContext;
 
     public ReadDbContextScope(IServiceScope serviceScope,
-                              IDbContextSettings? dbContextSettings = null)
+                              IDbContextSettings<T>? dbContextSettings = null)
     {
         Guard.IsNotNull(nameof(serviceScope), serviceScope);
 
@@ -33,26 +37,36 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
 
     public IServiceProvider ServiceProvider => _serviceScope.ServiceProvider;
 
-    private static T GetContext(IServiceScope serviceScope, IDbContextSettings? dbContextSettings)
+    private static T GetContext(IServiceScope serviceScope, IDbContextSettings<T>? dbContextSettings)
     {
 
-        if (dbContextSettings is T auditContext)
-        {
-            // Code à exécuter lorsque dbContextSettings est de type T, c'est-à-dire KrosoftAuditContext
-        }
+       
 
-        if (dbContextSettings is IAuditableDbContextSettings auditableDbContextSettings)
+        if (dbContextSettings is IAuditableDbContextSettings<T> auditableDbContextSettings)
         {
-            // Code à exécuter lorsque dbContextSettings est de type IAuditableDbContextSettings
-            // Vous pouvez maintenant utiliser auditableDbContextSettings comme une instance de IAuditableDbContextSettings
-        }
+       
+            var auditableDbContextProvider = new AuditableDbContextProvider(auditableDbContextSettings.Now, auditableDbContextSettings.UtilisateurId );
+
+            T? krosoftContext = (T?)Activator.CreateInstance(typeof(T),
+                                                            serviceScope.ServiceProvider.GetRequiredService<DbContextOptions>(),
+                                                            auditableDbContextProvider);
+
+            if (krosoftContext == null)
+            {
+                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
+            }
+            return krosoftContext;
+
+         }
         
        
-       if (dbContextSettings is ITenantDbContextSettings tenantDbContextSettings)
+       if (dbContextSettings is ITenantDbContextSettings<T> tenantDbContextSettings)
         {
-            // Code à exécuter lorsque dbContextSettings est de type IAuditableDbContextSettings
-            // Vous pouvez maintenant utiliser auditableDbContextSettings comme une instance de IAuditableDbContextSettings
-        }
+              }
+        
+         if (dbContextSettings is ITenantAuditableDbContextSettings<T> tenantAuditableDbContextSettings)
+        {
+              }
         
        
 
@@ -60,7 +74,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
 
         switch (typeof(T).BaseType?.Name)
         {
-            case nameof(KrosoftAuditContext):
+            case nameof(KrosoftAuditableContext):
                 // Code à exécuter pour KrosoftAuditContext
                 break;
 
@@ -81,7 +95,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
                 break;
         }
 
-        if (typeof(T).BaseType == typeof(KrosoftAuditContext))
+        if (typeof(T).BaseType == typeof(KrosoftAuditableContext))
         {
         }
 

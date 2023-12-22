@@ -23,8 +23,8 @@ public class KrosoftAuditContextTests : BaseTest
     {
         services.AddRepositories();
         //services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
-        services.AddDbContextInMemory<SampleKrosoftAuditContext>(true);
-        services.AddSeedService<SampleKrosoftAuditContext, SampleSeedService<SampleKrosoftAuditContext>>();
+        services.AddDbContextInMemory<SampleKrosoftAuditableContext>(true);
+        services.AddSeedService<SampleKrosoftAuditableContext, SampleSeedService<SampleKrosoftAuditableContext>>();
     }
 
     [TestMethod]

@@ -31,9 +31,9 @@ public class ReadDbContextScopeTests : BaseTest
     {
         using (var scope = CreateServiceCollection())
         {
-            var dbContextSettings = new AuditableDbContextSettings(DateTime.Now,
-                                                                   "UtilisateurId");
-            using (var contextScope = new ReadDbContextScope<SampleKrosoftTenantContext>(scope.CreateScope(), dbContextSettings))
+            var dbContextSettings = new AuditableDbContextSettings<SampleKrosoftAuditableContext>(DateTime.Now,
+                                                                                               "UtilisateurId");
+            using (var contextScope = new ReadDbContextScope<SampleKrosoftAuditableContext>(scope.CreateScope(), dbContextSettings))
             {
                 await Check(contextScope);
             }
@@ -57,10 +57,10 @@ public class ReadDbContextScopeTests : BaseTest
     {
         using (var scope = CreateServiceCollection())
         {
-            var dbContextSettings = new TenantAuditableDbContextSettings("TenantId",
-                                                                         DateTime.Now,
-                                                                         "UtilisateurId");
-            using (var contextScope = new ReadDbContextScope<SampleKrosoftTenantContext>(scope.CreateScope(), dbContextSettings))
+            var dbContextSettings = new TenantAuditableDbContextSettings<SampleKrosoftTenantAuditableContext>("TenantId",
+                                                                                                              DateTime.Now,
+                                                                                                              "UtilisateurId");
+            using (var contextScope = new ReadDbContextScope<SampleKrosoftTenantAuditableContext>(scope.CreateScope(), dbContextSettings))
             {
                 await Check(contextScope);
             }
@@ -72,7 +72,7 @@ public class ReadDbContextScopeTests : BaseTest
     {
         using (var scope = CreateServiceCollection())
         {
-            var dbContextSettings = new TenantDbContextSettings("TenantId");
+            var dbContextSettings = new TenantDbContextSettings<SampleKrosoftTenantContext>("TenantId");
             using (var contextScope = new ReadDbContextScope<SampleKrosoftTenantContext>(scope.CreateScope(), dbContextSettings))
             {
                 await Check(contextScope);
