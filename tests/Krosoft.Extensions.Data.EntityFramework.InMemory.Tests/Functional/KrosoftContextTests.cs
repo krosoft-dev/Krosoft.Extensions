@@ -1,10 +1,6 @@
 ﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Services;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Interfaces;
-using Krosoft.Extensions.Data.EntityFramework.Services;
 using Krosoft.Extensions.Samples.DotNet8.Api.Data;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Testing;
@@ -26,20 +22,17 @@ public class KrosoftContextTests : BaseTest
         services.AddRepositories();
         services.AddDbContextInMemory<SampleKrosoftContext>(true);
         services.AddSeedService<SampleKrosoftContext, SampleSeedService<SampleKrosoftContext>>();
-
-
-   
     }
 
     [TestMethod]
     public async Task Query_Ok()
     {
-        var items = await _repository.Query()
-                                     .ToListAsync(CancellationToken.None)
-            ;
+        var langues = await _repository.Query()
+                                       .ToListAsync(CancellationToken.None);
 
-        Check.That(items).IsNotNull();
-        Check.That(items).HasSize(2);
+        Check.That(langues).IsNotNull();
+        Check.That(langues).HasSize(2);
+        Check.That(langues.Select(x => x.Code)).ContainsExactly("fr", "en");
     }
 
     [TestInitialize]

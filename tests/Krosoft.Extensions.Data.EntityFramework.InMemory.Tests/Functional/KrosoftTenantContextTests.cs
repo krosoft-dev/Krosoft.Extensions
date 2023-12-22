@@ -1,7 +1,5 @@
 ﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Services;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Services;
@@ -19,33 +17,31 @@ namespace Krosoft.Extensions.Data.EntityFramework.InMemory.Tests.Functional;
 [TestClass]
 public class KrosoftTenantContextTests : BaseTest
 {
-    private IReadRepository<Langue> _repository = null!;
+    private IReadRepository<Logiciel> _repository = null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddRepositories();  
+        services.AddRepositories();
         services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
         services.AddDbContextInMemory<SampleKrosoftTenantContext>(true);
         services.AddSeedService<SampleKrosoftTenantContext, SampleSeedService<SampleKrosoftTenantContext>>();
-
-    
     }
 
     [TestMethod]
     public async Task Query_Ok()
     {
-        var items = await _repository.Query()
-                                     .ToListAsync(CancellationToken.None)
-            ;
+        var logiciels = await _repository.Query()
+                                         .ToListAsync(CancellationToken.None);
 
-        Check.That(items).IsNotNull();
-        Check.That(items).HasSize(2);
+        Check.That(logiciels).IsNotNull();
+        Check.That(logiciels).HasSize(5);
+        Check.That(logiciels.Select(x => x.Nom)).ContainsExactly("Logiciel1","Logiciel2","Logiciel3","Logiciel4","Logiciel5");
     }
 
     [TestInitialize]
     public void SetUp()
     {
         var serviceProvider = CreateServiceCollection();
-        _repository = serviceProvider.GetRequiredService<IReadRepository<Langue>>();
+        _repository = serviceProvider.GetRequiredService<IReadRepository<Logiciel>>();
     }
 }

@@ -1,8 +1,5 @@
 ﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
-using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Services;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Services;
@@ -20,34 +17,31 @@ namespace Krosoft.Extensions.Data.EntityFramework.InMemory.Tests.Functional;
 [TestClass]
 public class KrosoftAuditContextTests : BaseTest
 {
-    private IReadRepository<Langue> _repository = null!;
+    private IReadRepository<Pays> _repository = null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddRepositories();        services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
+        services.AddRepositories();
+        services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
         services.AddDbContextInMemory<SampleKrosoftAuditContext>(true);
         services.AddSeedService<SampleKrosoftAuditContext, SampleSeedService<SampleKrosoftAuditContext>>();
-
-
-        
- 
     }
 
     [TestMethod]
     public async Task Query_Ok()
     {
-        var items = await _repository.Query()
-                                     .ToListAsync(CancellationToken.None)
-            ;
+        var pays = await _repository.Query()
+                                    .ToListAsync(CancellationToken.None);
 
-        Check.That(items).IsNotNull();
-        Check.That(items).HasSize(2);
+        Check.That(pays).IsNotNull();
+        Check.That(pays).HasSize(5);
+        Check.That(pays.Select(x => x.Code)).ContainsExactly("fr", "de", "it", "es", "gb");
     }
 
     [TestInitialize]
     public void SetUp()
     {
         var serviceProvider = CreateServiceCollection();
-        _repository = serviceProvider.GetRequiredService<IReadRepository<Langue>>();
+        _repository = serviceProvider.GetRequiredService<IReadRepository<Pays>>();
     }
 }

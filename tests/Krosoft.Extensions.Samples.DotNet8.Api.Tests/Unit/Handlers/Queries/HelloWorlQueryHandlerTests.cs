@@ -10,7 +10,7 @@ namespace Krosoft.Extensions.Samples.DotNet8.Api.Tests.Unit.Handlers.Queries;
 public class HelloWorlQueryHandlerTests : SampleBaseTest<Startup>
 {
     [TestMethod]
-    public async Task HandleEmptyTest()
+    public async Task Handle_Ok()
     {
         var serviceProvider = CreateServiceCollection();
 
