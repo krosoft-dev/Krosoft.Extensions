@@ -1,5 +1,6 @@
 ﻿using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
+using Krosoft.Extensions.Data.EntityFramework.Models;
 using Krosoft.Extensions.Samples.DotNet8.Api.Data;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Testing;
@@ -14,7 +15,7 @@ namespace Krosoft.Extensions.Data.EntityFramework.Tests.Extensions;
 public class ServiceProviderExtensionsTests : BaseTest
 {
     [TestMethod]
-    public async Task CreateDbContextScopeTest()
+    public async Task CreateDbContextScope_Ok()
     {
         void GetServices(IServiceCollection services)
         {
@@ -26,7 +27,8 @@ public class ServiceProviderExtensionsTests : BaseTest
         await using var serviceProvider = CreateServiceCollection(GetServices);
         using var contextScope = serviceProvider.CreateDbContextScope(new DbContextSettings<SampleKrosoftContext>());
 
-        var repository = contextScope.GetReadRepository<Logiciel>();
+        
+        var repository = contextScope.GetWriteRepository<Logiciel>();
 
         var logiciels = await repository.Query()
                                         .ToListAsync(CancellationToken.None);
@@ -36,8 +38,10 @@ public class ServiceProviderExtensionsTests : BaseTest
         Check.That(logiciels.Select(x => x.Nom)).ContainsExactly("Logiciel1", "Logiciel2", "Logiciel3", "Logiciel4", "Logiciel5");
     }
 
+   
+
     [TestMethod]
-    public async Task CreateReadDbContextScopeTest()
+    public async Task CreateReadDbContextScope_Ok()
     {
         void GetServices(IServiceCollection services)
         {

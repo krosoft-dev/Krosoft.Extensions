@@ -2,7 +2,7 @@
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Contexts;
-using Krosoft.Extensions.Data.EntityFramework.Extensions;
+using Krosoft.Extensions.Data.EntityFramework.Models;
 using Krosoft.Extensions.Data.EntityFramework.Repositories;
 using Krosoft.Extensions.Data.EntityFramework.Services;
 using Microsoft.EntityFrameworkCore;

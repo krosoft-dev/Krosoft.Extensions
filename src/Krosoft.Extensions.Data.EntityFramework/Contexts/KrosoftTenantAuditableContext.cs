@@ -123,9 +123,9 @@ public abstract class KrosoftTenantAuditableContext : KrosoftContext
         return assemblies;
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(builder);
 
         // Set BaseEntity rules to all loaded entity types
         foreach (var type in GetEntityTypes())
@@ -135,13 +135,13 @@ public abstract class KrosoftTenantAuditableContext : KrosoftContext
             if (type.GetInterfaces().Contains(typeof(IAuditable)))
             {
                 var method = ConfigureAuditableMethod.MakeGenericMethod(type);
-                method.Invoke(this, new object[] { modelBuilder });
+                method.Invoke(this, new object[] { builder });
             }
 
             if (type.GetInterfaces().Contains(typeof(ITenant)))
             {
                 var method = ConfigureTenantMethod.MakeGenericMethod(type);
-                method.Invoke(this, new object[] { modelBuilder });
+                method.Invoke(this, new object[] { builder });
             }
         }
     }
@@ -153,14 +153,11 @@ public abstract class KrosoftTenantAuditableContext : KrosoftContext
         {
             ChangeTracker.DetectChanges();
 
-            if (useAudit)
-            {
-                var now = _auditableDbContextProvider.GetNow();
-                var utilisateurId = _auditableDbContextProvider.GetUtilisateurId();
+            var now = _auditableDbContextProvider.GetNow();
+            var utilisateurId = _auditableDbContextProvider.GetUtilisateurId();
 
-                ChangeTracker.ProcessModificationAuditable(now, utilisateurId);
-                ChangeTracker.ProcessCreationAuditable(now, utilisateurId);
-            }
+            ChangeTracker.ProcessModificationAuditable(now, utilisateurId);
+            ChangeTracker.ProcessCreationAuditable(now, utilisateurId);
         }
 
         var useTenant = ChangeTracker.Entries<ITenant>().Any();
@@ -168,11 +165,8 @@ public abstract class KrosoftTenantAuditableContext : KrosoftContext
         {
             ChangeTracker.DetectChanges();
 
-            if (useTenant)
-            {
-                var tenantId = _tenantDbContextProvider.GetTenantId();
-                ChangeTracker.ProcessCreationTenant(tenantId);
-            }
+            var tenantId = _tenantDbContextProvider.GetTenantId();
+            ChangeTracker.ProcessCreationTenant(tenantId);
         }
     }
 

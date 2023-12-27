@@ -2,6 +2,7 @@
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
+using Krosoft.Extensions.Data.EntityFramework.Models;
 using Krosoft.Extensions.Data.EntityFramework.Scopes;
 using Krosoft.Extensions.Data.EntityFramework.Services;
 using Krosoft.Extensions.Samples.DotNet8.Api.Data;

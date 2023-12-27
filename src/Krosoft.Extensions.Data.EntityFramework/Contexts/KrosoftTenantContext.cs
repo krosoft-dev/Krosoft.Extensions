@@ -91,9 +91,9 @@ public abstract class KrosoftTenantContext : KrosoftContext
         return assemblies;
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(builder);
 
         // Set BaseEntity rules to all loaded entity types
         foreach (var type in GetEntityTypes())
@@ -103,7 +103,7 @@ public abstract class KrosoftTenantContext : KrosoftContext
             if (type.GetInterfaces().Contains(typeof(ITenant)))
             {
                 var method = ConfigureTenantMethod.MakeGenericMethod(type);
-                method.Invoke(this, new object[] { modelBuilder });
+                method.Invoke(this, new object[] { builder });
             }
         }
     }
@@ -115,11 +115,8 @@ public abstract class KrosoftTenantContext : KrosoftContext
         {
             ChangeTracker.DetectChanges();
 
-            if (useTenant)
-            {
-                var tenantId = _tenantDbContextProvider.GetTenantId();
-                ChangeTracker.ProcessCreationTenant(tenantId);
-            }
+            var tenantId = _tenantDbContextProvider.GetTenantId();
+            ChangeTracker.ProcessCreationTenant(tenantId);
         }
     }
 
