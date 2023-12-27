@@ -1,18 +1,16 @@
 ﻿using System.Reflection;
 using Krosoft.Extensions.Data.Abstractions.Models;
-using Krosoft.Extensions.Data.EntityFramework.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyModel;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
+namespace Krosoft.Extensions.Data.EntityFramework.Contexts;
 
 public abstract class KrosoftAuditableContext : KrosoftContext
 {
     private static readonly IList<Type> Types = new List<Type>
     {
- 
         typeof(IAuditable)
     };
 
@@ -20,8 +18,6 @@ public abstract class KrosoftAuditableContext : KrosoftContext
     /// Find loaded entity types from assemblies that application uses.
     /// </summary>
     private static IList<Type>? _entityTypeCache;
-
- 
 
     private static readonly MethodInfo ConfigureAuditableMethod = typeof(KrosoftAuditableContext)
                                                                   .GetMethods(BindingFlags.Public | BindingFlags.Instance)
@@ -50,8 +46,6 @@ public abstract class KrosoftAuditableContext : KrosoftContext
                .Property(t => t.CreateurDate)
                .IsRequired();
     }
-
- 
 
     private static IEnumerable<Type> GetEntityTypes()
     {
@@ -102,8 +96,6 @@ public abstract class KrosoftAuditableContext : KrosoftContext
         {
             //Console.WriteLine(type.FullName); //Debug.
 
-           
-
             if (type.GetInterfaces().Contains(typeof(IAuditable)))
             {
                 var method = ConfigureAuditableMethod.MakeGenericMethod(type);
@@ -114,12 +106,10 @@ public abstract class KrosoftAuditableContext : KrosoftContext
 
     private void OverrideEntities()
     {
-        var useAudit = ChangeTracker.Entries<IAuditable>().Any(); 
-        if (useAudit  )
+        var useAudit = ChangeTracker.Entries<IAuditable>().Any();
+        if (useAudit)
         {
             ChangeTracker.DetectChanges();
-
-          
 
             if (useAudit)
             {
@@ -145,7 +135,4 @@ public abstract class KrosoftAuditableContext : KrosoftContext
 
         return await base.SaveChangesAsync(true, cancellationToken);
     }
-
-
- 
 }

@@ -36,7 +36,7 @@ public class KrosoftTenantAuditableContextTests : BaseTest
 
         Check.That(logiciels).IsNotNull();
         Check.That(logiciels).HasSize(5);
-        Check.That(logiciels.Select(x => x.Nom)).ContainsExactly("Logiciel1","Logiciel2","Logiciel3","Logiciel4","Logiciel5");
+        Check.That(logiciels.Select(x => x.Nom)).ContainsExactly("Logiciel1", "Logiciel2", "Logiciel3", "Logiciel4", "Logiciel5");
     }
 
     [TestInitialize]

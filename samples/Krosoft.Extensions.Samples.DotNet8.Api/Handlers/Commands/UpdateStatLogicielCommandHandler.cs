@@ -1,7 +1,6 @@
 ﻿using Krosoft.Extensions.Core.Tools;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Contexts;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Extensions;
-using Krosoft.Extensions.Samples.DotNet8.Api.Data;
+using Krosoft.Extensions.Data.EntityFramework.Contexts;
+using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Samples.Library.Models.Commands;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Samples.Library.Models.Messages;
@@ -31,9 +30,9 @@ internal class UpdateStatLogicielCommandHandler : IRequestHandler<UpdateStatLogi
         {
             _logger.LogInformation($"Mise à jour des statistiques pour le tenant {message.TenantId}");
 
-            using (var scope = _serviceProvider.CreateDbContextScope<KrosoftTenantAuditableContext>(new TenantAuditableDbContextSettings<KrosoftTenantAuditableContext>(message.TenantId!,
-                                                                                                                                                                        DateTime.Now,
-                                                                                                                                                                        message.UtilisateurId!)))
+            using (var scope = _serviceProvider.CreateDbContextScope(new TenantAuditableDbContextSettings<KrosoftTenantAuditableContext>(message.TenantId!,
+                                                                                                                                         DateTime.Now,
+                                                                                                                                         message.UtilisateurId!)))
             {
                 var repositoryLogiciel = scope.GetReadRepository<Logiciel>();
                 var nombre = await repositoryLogiciel.Query().CountAsync(cancellationToken);

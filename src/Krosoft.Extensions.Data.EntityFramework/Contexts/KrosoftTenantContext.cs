@@ -1,13 +1,11 @@
 ﻿using System.Reflection;
 using Krosoft.Extensions.Data.Abstractions.Models;
-using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
-using Krosoft.Extensions.Data.EntityFramework.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyModel;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Identity.Contexts;
+namespace Krosoft.Extensions.Data.EntityFramework.Contexts;
 
 public abstract class KrosoftTenantContext : KrosoftContext
 {

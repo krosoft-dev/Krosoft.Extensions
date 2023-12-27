@@ -15,6 +15,7 @@ public class UpdateStatLogicielCommandHandlerTests : SampleBaseTest<Startup>
 
         var command = new UpdateStatLogicielCommand(string.Empty);
         await this.SendCommandAsync(serviceProvider, command);
+
         //Check.That(result).IsNotNull();
         //Check.That(result).IsEqualTo("Hello DotNet8");
     }

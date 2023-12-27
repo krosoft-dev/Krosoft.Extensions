@@ -2,6 +2,7 @@
 	<Import Project="../../Test.target" />
 	<ItemGroup>
 	  <ProjectReference Include="..\..\samples\Krosoft.Extensions.Samples.DotNet8.Api\Krosoft.Extensions.Samples.DotNet8.Api.csproj" />
+	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Data.EntityFramework\Krosoft.Extensions.Data.EntityFramework.csproj" />
 	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Testing\Krosoft.Extensions.Testing.csproj" />
 	</ItemGroup>
 </Project>

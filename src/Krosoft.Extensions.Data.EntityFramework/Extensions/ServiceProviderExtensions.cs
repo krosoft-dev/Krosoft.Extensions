@@ -1,57 +1,49 @@
-﻿using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
-using Krosoft.Extensions.Data.EntityFramework.Contexts;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Contexts;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Scopes;
+﻿using Krosoft.Extensions.Data.EntityFramework.Contexts;
+using Krosoft.Extensions.Data.EntityFramework.Scopes;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Krosoft.Extensions.Data.EntityFramework.Identity.Extensions;
+namespace Krosoft.Extensions.Data.EntityFramework.Extensions;
 
 public static class ServiceProviderExtensions
 {
     public static DbContextScope<T> CreateDbContextScope<T>(this IServiceProvider provider,
-                                                            IDbContextSettings<T>? dbContextSettings = null)
+                                                            IDbContextSettings<T> dbContextSettings )
         where T : KrosoftContext
         => new DbContextScope<T>(provider.CreateScope(),
                                  dbContextSettings);
 
     public static ReadDbContextScope<T> CreateReadDbContextScope<T>(this IServiceProvider provider,
-                                                                    IDbContextSettings<T>? dbContextSettings = null)
+                                                                    IDbContextSettings<T> dbContextSettings )
         where T : KrosoftContext
         => new ReadDbContextScope<T>(provider.CreateScope(),
                                      dbContextSettings);
 }
 
-public interface IDbContextSettings<T>  where T : KrosoftContext
+public interface IDbContextSettings<T> where T : KrosoftContext
 {
 }
 
-public interface ITenantDbContextSettings<T> : IDbContextSettings<T>  where T : KrosoftContext
+public interface ITenantDbContextSettings<T> : IDbContextSettings<T> where T : KrosoftContext
 {
     string TenantId { get; }
 }
 
-public interface IAuditableDbContextSettings<T> : IDbContextSettings<T>  where T : KrosoftContext
+public interface IAuditableDbContextSettings<T> : IDbContextSettings<T> where T : KrosoftContext
 {
     string UtilisateurId { get; }
     DateTime Now { get; }
 }
 
-
-public interface ITenantAuditableDbContextSettings<T> : IDbContextSettings<T>  where T : KrosoftContext
-{  string TenantId { get; }
+public interface ITenantAuditableDbContextSettings<T> : IDbContextSettings<T> where T : KrosoftContext
+{
+    string TenantId { get; }
     string UtilisateurId { get; }
     DateTime Now { get; }
 }
-
-
-
 
 public class DbContextSettings<T> : IDbContextSettings<T> where T : KrosoftContext
 {
-  
 }
-
-
 
 public class TenantDbContextSettings<T> : ITenantDbContextSettings<T> where T : KrosoftTenantContext
 {
@@ -76,8 +68,8 @@ public class AuditableDbContextSettings<T> : IAuditableDbContextSettings<T> wher
     public string UtilisateurId { get; }
 }
 
-public class TenantAuditableDbContextSettings <T> :   ITenantAuditableDbContextSettings <T>
-    where T : KrosoftTenantAuditableContext 
+public class TenantAuditableDbContextSettings<T> : ITenantAuditableDbContextSettings<T>
+    where T : KrosoftTenantAuditableContext
 {
     public TenantAuditableDbContextSettings(string tenantId, DateTime now, string utilisateurId)
     {
@@ -88,7 +80,7 @@ public class TenantAuditableDbContextSettings <T> :   ITenantAuditableDbContextS
 
     public DateTime Now { get; }
 
-    public string UtilisateurId { get; }
-
     public string TenantId { get; }
+
+    public string UtilisateurId { get; }
 }

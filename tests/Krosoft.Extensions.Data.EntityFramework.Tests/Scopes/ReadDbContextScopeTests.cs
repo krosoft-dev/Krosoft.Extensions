@@ -1,9 +1,8 @@
 ﻿using Krosoft.Extensions.Data.EntityFramework.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Identity.Scopes;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
+using Krosoft.Extensions.Data.EntityFramework.Scopes;
 using Krosoft.Extensions.Data.EntityFramework.Services;
 using Krosoft.Extensions.Samples.DotNet8.Api.Data;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
@@ -64,7 +63,7 @@ public class ReadDbContextScopeTests : BaseTest
 
         using (var scope = CreateServiceCollection(GetServices))
         {
-            using (var contextScope = new ReadDbContextScope<SampleKrosoftContext>(scope.CreateScope()))
+            using (var contextScope = new ReadDbContextScope<SampleKrosoftContext>(scope.CreateScope(), new DbContextSettings<SampleKrosoftContext>()))
             {
                 await CheckResults(contextScope);
             }
@@ -108,7 +107,8 @@ public class ReadDbContextScopeTests : BaseTest
         }
 
         using (var scope = CreateServiceCollection(GetServices))
-        { var tenantId = new FakeTenantDbContextProvider().GetTenantId();
+        {
+            var tenantId = new FakeTenantDbContextProvider().GetTenantId();
             var dbContextSettings = new TenantDbContextSettings<SampleKrosoftTenantContext>(tenantId);
             using (var contextScope = new ReadDbContextScope<SampleKrosoftTenantContext>(scope.CreateScope(), dbContextSettings))
             {
