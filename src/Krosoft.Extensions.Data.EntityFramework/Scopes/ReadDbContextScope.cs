@@ -16,7 +16,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
     protected readonly T DbContext;
 
     public ReadDbContextScope(IServiceScope serviceScope,
-                              IDbContextSettings<T> dbContextSettings  )
+                              IDbContextSettings<T> dbContextSettings)
     {
         Guard.IsNotNull(nameof(serviceScope), serviceScope);
 
@@ -36,8 +36,6 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
 
     private static T GetContext(IServiceScope serviceScope, IDbContextSettings<T> dbContextSettings)
     {
-       
-
         if (dbContextSettings is IAuditableDbContextSettings<T> auditableDbContextSettings)
         {
             var auditableDbContextProvider = new AuditableDbContextProvider(auditableDbContextSettings.Now,

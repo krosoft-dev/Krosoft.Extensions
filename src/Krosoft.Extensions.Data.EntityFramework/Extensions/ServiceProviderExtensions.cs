@@ -7,13 +7,13 @@ namespace Krosoft.Extensions.Data.EntityFramework.Extensions;
 public static class ServiceProviderExtensions
 {
     public static DbContextScope<T> CreateDbContextScope<T>(this IServiceProvider provider,
-                                                            IDbContextSettings<T> dbContextSettings )
+                                                            IDbContextSettings<T> dbContextSettings)
         where T : KrosoftContext
         => new DbContextScope<T>(provider.CreateScope(),
                                  dbContextSettings);
 
     public static ReadDbContextScope<T> CreateReadDbContextScope<T>(this IServiceProvider provider,
-                                                                    IDbContextSettings<T> dbContextSettings )
+                                                                    IDbContextSettings<T> dbContextSettings)
         where T : KrosoftContext
         => new ReadDbContextScope<T>(provider.CreateScope(),
                                      dbContextSettings);

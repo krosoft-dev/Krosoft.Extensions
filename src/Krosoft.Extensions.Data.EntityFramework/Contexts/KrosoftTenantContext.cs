@@ -9,11 +9,9 @@ namespace Krosoft.Extensions.Data.EntityFramework.Contexts;
 
 public abstract class KrosoftTenantContext : KrosoftContext
 {
-    private readonly ITenantDbContextProvider _tenantDbContextProvider;
-
     private static readonly IList<Type> Types = new List<Type>
     {
-        typeof(ITenant),
+        typeof(ITenant)
     };
 
     /// <summary>
@@ -29,14 +27,28 @@ public abstract class KrosoftTenantContext : KrosoftContext
                                                                .GetMethods(BindingFlags.Public | BindingFlags.Instance)
                                                                .Single(t => t.IsGenericMethod && t.Name == nameof(ConfigureTenant));
 
- 
-
- 
+    private readonly ITenantDbContextProvider _tenantDbContextProvider;
 
     protected KrosoftTenantContext(DbContextOptions options,
                                    ITenantDbContextProvider tenantDbContextProvider) : base(options)
     {
-        _tenantDbContextProvider = tenantDbContextProvider; 
+        _tenantDbContextProvider = tenantDbContextProvider;
+    }
+
+    /// <summary>
+    /// This method is called for every loaded entity type in OnModelCreating method.
+    /// Here type is known through generic parameter and we can use EF Core methods.
+    /// </summary>
+    public void ConfigureTenant<T>(ModelBuilder builder) where T : class, ITenant
+    {
+        builder.Entity<T>()
+               .HasIndex(p => p.TenantId);
+
+        builder.Entity<T>()
+               .Property(t => t.TenantId)
+               .IsRequired();
+
+        builder.Entity<T>().HasQueryFilter(e => e.TenantId == _tenantDbContextProvider.GetTenantId());
     }
 
     private static IEnumerable<Type> GetEntityTypes()
@@ -93,15 +105,13 @@ public abstract class KrosoftTenantContext : KrosoftContext
                 var method = ConfigureTenantMethod.MakeGenericMethod(type);
                 method.Invoke(this, new object[] { modelBuilder });
             }
-
-           
         }
     }
 
     private void OverrideEntities()
     {
         var useTenant = ChangeTracker.Entries<ITenant>().Any();
-        if ( useTenant)
+        if (useTenant)
         {
             ChangeTracker.DetectChanges();
 
@@ -110,8 +120,6 @@ public abstract class KrosoftTenantContext : KrosoftContext
                 var tenantId = _tenantDbContextProvider.GetTenantId();
                 ChangeTracker.ProcessCreationTenant(tenantId);
             }
-
-           
         }
     }
 
@@ -127,22 +135,6 @@ public abstract class KrosoftTenantContext : KrosoftContext
         OverrideEntities();
 
         return await base.SaveChangesAsync(true, cancellationToken);
-    }
-
-    /// <summary>
-    /// This method is called for every loaded entity type in OnModelCreating method.
-    /// Here type is known through generic parameter and we can use EF Core methods.
-    /// </summary>
-    public void ConfigureTenant<T>(ModelBuilder builder) where T : class, ITenant
-    {
-        builder.Entity<T>()
-               .HasIndex(p => p.TenantId);
-    
-        builder.Entity<T>()
-               .Property(t => t.TenantId)
-               .IsRequired();
-    
-        builder.Entity<T>().HasQueryFilter(e => e.TenantId == _tenantDbContextProvider.GetTenantId());
     }
 
     //public void ConfigureAuditable<T>(ModelBuilder builder) where T : class, IAuditable

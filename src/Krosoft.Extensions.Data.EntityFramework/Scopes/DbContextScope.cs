@@ -9,7 +9,7 @@ namespace Krosoft.Extensions.Data.EntityFramework.Scopes;
 public class DbContextScope<T> : ReadDbContextScope<T> where T : KrosoftContext
 {
     public DbContextScope(IServiceScope serviceScope,
-                          IDbContextSettings<T> dbContextSettings ) : base(serviceScope, dbContextSettings)
+                          IDbContextSettings<T> dbContextSettings) : base(serviceScope, dbContextSettings)
     {
     }
 
