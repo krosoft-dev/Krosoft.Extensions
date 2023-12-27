@@ -1,12 +1,13 @@
 ﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Contexts;
+using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Models;
 using Krosoft.Extensions.Data.EntityFramework.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Scopes;
 
-public class DbContextScope<T> : ReadDbContextScope<T> where T : KrosoftContext
+internal class DbContextScope<T> : ReadDbContextScope<T>, IDbContextScope<T> where T : KrosoftContext
 {
     public DbContextScope(IServiceScope serviceScope,
                           IDbContextSettings<T> dbContextSettings) : base(serviceScope, dbContextSettings)

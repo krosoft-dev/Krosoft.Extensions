@@ -2,6 +2,7 @@
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Contexts;
+using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Models;
 using Krosoft.Extensions.Data.EntityFramework.Repositories;
 using Krosoft.Extensions.Data.EntityFramework.Services;
@@ -10,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Scopes;
 
-public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
+internal class ReadDbContextScope<T> : IServiceScope, IReadDbContextScope<T> where T : KrosoftContext
 {
     private readonly IServiceScope _serviceScope;
     protected readonly T DbContext;
@@ -47,7 +48,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
 
             if (krosoftContext == null)
             {
-                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
+                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name} avec un settings de type {typeof(IAuditableDbContextSettings<T>).Name}");
             }
 
             return krosoftContext;
@@ -63,7 +64,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
 
             if (krosoftContext == null)
             {
-                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
+                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name} avec un settings de type {typeof(ITenantDbContextSettings<T>).Name}");
             }
 
             return krosoftContext;
@@ -83,7 +84,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
 
             if (krosoftContext == null)
             {
-                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
+                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name} avec un settings de type {typeof(ITenantAuditableDbContextSettings<T>).Name}");
             }
 
             return krosoftContext;
@@ -97,7 +98,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
 
             if (krosoftContext == null)
             {
-                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
+                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name} avec un settings de type {typeof(IDbContextSettings<T>).Name}");
             }
 
             return krosoftContext;

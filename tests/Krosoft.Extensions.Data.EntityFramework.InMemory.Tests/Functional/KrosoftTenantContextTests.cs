@@ -22,7 +22,7 @@ public class KrosoftTenantContextTests : BaseTest
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddRepositories();
- 
+
         services.AddScoped<ITenantDbContextProvider, FakeTenantDbContextProvider>();
         services.AddDbContextInMemory<SampleKrosoftTenantContext>(true);
         services.AddSeedService<SampleKrosoftTenantContext, SampleSeedService<SampleKrosoftTenantContext>>();
@@ -36,7 +36,7 @@ public class KrosoftTenantContextTests : BaseTest
 
         Check.That(logiciels).IsNotNull();
         Check.That(logiciels).HasSize(5);
-        Check.That(logiciels.Select(x => x.Nom)).ContainsExactly("Logiciel1","Logiciel2","Logiciel3","Logiciel4","Logiciel5");
+        Check.That(logiciels.Select(x => x.Nom)).ContainsExactly("Logiciel1", "Logiciel2", "Logiciel3", "Logiciel4", "Logiciel5");
     }
 
     [TestInitialize]

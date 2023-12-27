@@ -27,7 +27,6 @@ public class ServiceProviderExtensionsTests : BaseTest
         await using var serviceProvider = CreateServiceCollection(GetServices);
         using var contextScope = serviceProvider.CreateDbContextScope(new DbContextSettings<SampleKrosoftContext>());
 
-        
         var repository = contextScope.GetWriteRepository<Logiciel>();
 
         var logiciels = await repository.Query()
@@ -37,8 +36,6 @@ public class ServiceProviderExtensionsTests : BaseTest
         Check.That(logiciels).HasSize(5);
         Check.That(logiciels.Select(x => x.Nom)).ContainsExactly("Logiciel1", "Logiciel2", "Logiciel3", "Logiciel4", "Logiciel5");
     }
-
-   
 
     [TestMethod]
     public async Task CreateReadDbContextScope_Ok()

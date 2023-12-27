@@ -1,7 +1,6 @@
 ﻿using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Data.EntityFramework.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
-using Krosoft.Extensions.Data.EntityFramework.Models;
 using Krosoft.Extensions.Samples.Library.Models.Commands;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Samples.Library.Models.Messages;
