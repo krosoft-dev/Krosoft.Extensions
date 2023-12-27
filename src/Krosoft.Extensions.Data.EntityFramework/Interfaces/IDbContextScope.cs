@@ -2,7 +2,7 @@
 
 namespace Krosoft.Extensions.Data.EntityFramework.Interfaces;
 
-public interface IDbContextScope<T> : IReadDbContextScope<T>
+public interface IDbContextScope : IReadDbContextScope
 {
     public IUnitOfWork GetUnitOfWork();
 

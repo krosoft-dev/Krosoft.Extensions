@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Scopes;
 
-internal class ReadDbContextScope<T> : IServiceScope, IReadDbContextScope<T> where T : KrosoftContext
+internal class ReadDbContextScope<T> : IReadDbContextScope where T : KrosoftContext
 {
     private readonly IServiceScope _serviceScope;
     protected readonly T DbContext;

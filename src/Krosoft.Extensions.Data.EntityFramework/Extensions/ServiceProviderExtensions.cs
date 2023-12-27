@@ -8,24 +8,24 @@ namespace Krosoft.Extensions.Data.EntityFramework.Extensions;
 
 public static class ServiceProviderExtensions
 {
-    public static IDbContextScope<T> CreateDbContextScope<T>(this IServiceProvider provider,
-                                                             string tenantId,
-                                                             DateTime now,
-                                                             string utilisateurId)
+    public static IDbContextScope CreateDbContextScope<T>(this IServiceProvider provider,
+                                                          string tenantId,
+                                                          DateTime now,
+                                                          string utilisateurId)
         where T : KrosoftTenantAuditableContext
         => CreateDbContextScope(provider,
                                 new TenantAuditableDbContextSettings<T>(tenantId,
                                                                         now,
                                                                         utilisateurId));
 
-    public static IDbContextScope<T> CreateDbContextScope<T>(this IServiceProvider provider,
-                                                             IDbContextSettings<T> dbContextSettings)
+    public static IDbContextScope CreateDbContextScope<T>(this IServiceProvider provider,
+                                                          IDbContextSettings<T> dbContextSettings)
         where T : KrosoftContext
         => new DbContextScope<T>(provider.CreateScope(),
                                  dbContextSettings);
 
-    public static IReadDbContextScope<T> CreateReadDbContextScope<T>(this IServiceProvider provider,
-                                                                     IDbContextSettings<T> dbContextSettings)
+    public static IReadDbContextScope CreateReadDbContextScope<T>(this IServiceProvider provider,
+                                                                  IDbContextSettings<T> dbContextSettings)
         where T : KrosoftContext
         => new ReadDbContextScope<T>(provider.CreateScope(),
                                      dbContextSettings);
