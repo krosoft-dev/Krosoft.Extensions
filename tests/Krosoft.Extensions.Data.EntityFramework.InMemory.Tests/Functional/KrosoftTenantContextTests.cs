@@ -22,7 +22,8 @@ public class KrosoftTenantContextTests : BaseTest
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddRepositories();
-        //services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
+ 
+        services.AddScoped<ITenantDbContextProvider, FakeTenantDbContextProvider>();
         services.AddDbContextInMemory<SampleKrosoftTenantContext>(true);
         services.AddSeedService<SampleKrosoftTenantContext, SampleSeedService<SampleKrosoftTenantContext>>();
     }

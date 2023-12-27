@@ -1,5 +1,4 @@
-﻿using Krosoft.Extensions.Core.Interfaces;
-using Krosoft.Extensions.Core.Models.Exceptions;
+﻿using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Audits.Contexts;
@@ -39,77 +38,116 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
 
     private static T GetContext(IServiceScope serviceScope, IDbContextSettings<T>? dbContextSettings)
     {
-
-       
-
-        if (dbContextSettings is IAuditableDbContextSettings<T> auditableDbContextSettings)
+        if (dbContextSettings == null)
         {
-       
-            var auditableDbContextProvider = new AuditableDbContextProvider(auditableDbContextSettings.Now, auditableDbContextSettings.UtilisateurId );
-
-            T? krosoftContext = (T?)Activator.CreateInstance(typeof(T),
-                                                            serviceScope.ServiceProvider.GetRequiredService<DbContextOptions>(),
-                                                            auditableDbContextProvider);
+            var krosoftContext = (T?)Activator.CreateInstance(typeof(T),
+                                                              serviceScope.ServiceProvider.GetRequiredService<DbContextOptions>()
+                                                             );
 
             if (krosoftContext == null)
             {
                 throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
             }
+
+            return krosoftContext;
+        }
+
+        if (dbContextSettings is IAuditableDbContextSettings<T> auditableDbContextSettings)
+        {
+            var auditableDbContextProvider = new AuditableDbContextProvider(auditableDbContextSettings.Now,
+                                                                            auditableDbContextSettings.UtilisateurId);
+
+            var krosoftContext = (T?)Activator.CreateInstance(typeof(T),
+                                                              serviceScope.ServiceProvider.GetRequiredService<DbContextOptions>(),
+                                                              auditableDbContextProvider);
+
+            if (krosoftContext == null)
+            {
+                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
+            }
+
+            return krosoftContext;
+        }
+
+        if (dbContextSettings is ITenantDbContextSettings<T> tenantDbContextSettings)
+        {
+
+            var tenantDbContextProvider = new TenantDbContextProvider(tenantDbContextSettings.TenantId );
+
+            var krosoftContext = (T?)Activator.CreateInstance(typeof(T),
+                                                              serviceScope.ServiceProvider.GetRequiredService<DbContextOptions>(),
+                                                              tenantDbContextProvider);
+
+            if (krosoftContext == null)
+            {
+                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
+            }
+
             return krosoftContext;
 
-         }
+
+
+        }
+
+        if (dbContextSettings is ITenantAuditableDbContextSettings<T> tenantAuditableDbContextSettings)
+        {
+            var tenantDbContextProvider = new TenantDbContextProvider(tenantAuditableDbContextSettings.TenantId );
+
+            var auditableDbContextProvider = new  AuditableDbContextProvider(tenantAuditableDbContextSettings.Now,
+                                                                            tenantAuditableDbContextSettings.UtilisateurId);
+
+            var krosoftContext = (T?)Activator.CreateInstance(typeof(T),
+                                                              serviceScope.ServiceProvider.GetRequiredService<DbContextOptions>(),
+                                                            tenantDbContextProvider,
+                                                              auditableDbContextProvider);
+
+            if (krosoftContext == null)
+            {
+                throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
+            }
+
+            return krosoftContext;
+        }
+
         
        
-       if (dbContextSettings is ITenantDbContextSettings<T> tenantDbContextSettings)
-        {
-              }
-        
-         if (dbContextSettings is ITenantAuditableDbContextSettings<T> tenantAuditableDbContextSettings)
-        {
-              }
-        
-       
-
+            throw new KrosoftTechniqueException($"Impossible d'instancer le dbcontext de type {typeof(T).Name}");
         
 
-        switch (typeof(T).BaseType?.Name)
-        {
-            case nameof(KrosoftAuditableContext):
-                // Code à exécuter pour KrosoftAuditContext
-                break;
+        //switch (typeof(T).BaseType?.Name)
+        //{
+        //    case nameof(KrosoftAuditableContext):
+        //        // Code à exécuter pour KrosoftAuditContext
+        //        break;
 
-            case nameof(KrosoftTenantContext):
-                // Code à exécuter pour KrosoftTenantContext
-                break;
+        //    case nameof(KrosoftTenantContext):
+        //        // Code à exécuter pour KrosoftTenantContext
+        //        break;
 
-            case nameof(KrosoftTenantAuditableContext):
-                // Code à exécuter pour KrosoftTenantAuditableContext
-                break;
+        //    case nameof(KrosoftTenantAuditableContext):
+        //        // Code à exécuter pour KrosoftTenantAuditableContext
+        //        break;
 
-            case nameof(KrosoftContext):
-                // Code à exécuter pour KrosoftContext
-                break;
+        //    case nameof(KrosoftContext):
+        //        // Code à exécuter pour KrosoftContext
+        //        break;
+        //}
 
-            default:
-                // Code à exécuter si le type T ne correspond à aucun cas
-                break;
-        }
+        //if (typeof(T).BaseType == typeof(KrosoftAuditableContext))
+        //{
+        //}
 
-        if (typeof(T).BaseType == typeof(KrosoftAuditableContext))
-        {
-        }
+        //if (typeof(T).BaseType == typeof(KrosoftTenantContext))
+        //{
+        //}
 
-        if (typeof(T).BaseType == typeof(KrosoftTenantContext))
-        {
-        }
+        //if (typeof(T).BaseType == typeof(KrosoftTenantAuditableContext))
+        //{
+        //}
 
-        if (typeof(T).BaseType == typeof(KrosoftTenantAuditableContext))
-        {
-        }
-
-        if (typeof(T).BaseType == typeof(KrosoftContext))
-        {
-        }
+        //if (typeof(T).BaseType == typeof(KrosoftContext))
+        //{
+        //}
 
         //if (T is KrosoftAuditContext)
         //{
@@ -124,7 +162,7 @@ public class ReadDbContextScope<T> : IServiceScope where T : KrosoftContext
         //                                                 dbContextSettingsProvider)!;
         //return krosoftContext;
 
-        return null!;
+        
     }
 
     public IReadRepository<TEntity> GetReadRepository<TEntity>()

@@ -22,7 +22,8 @@ public class KrosoftTenantAuditableContextTests : BaseTest
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddRepositories();
-        //services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
+        services.AddScoped<ITenantDbContextProvider, FakeTenantDbContextProvider>();
+        services.AddScoped<IAuditableDbContextProvider, FakeAuditableDbContextProvider>();
         services.AddDbContextInMemory<SampleKrosoftTenantAuditableContext>(true);
         services.AddSeedService<SampleKrosoftTenantAuditableContext, SampleSeedService<SampleKrosoftTenantAuditableContext>>();
     }

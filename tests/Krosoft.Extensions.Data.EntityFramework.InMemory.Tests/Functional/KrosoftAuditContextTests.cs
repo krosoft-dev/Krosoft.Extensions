@@ -22,7 +22,7 @@ public class KrosoftAuditContextTests : BaseTest
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddRepositories();
-        //services.AddScoped<IDbContextSettingsProvider, FakeDbContextSettingsProvider>();
+        services.AddScoped<IAuditableDbContextProvider, FakeAuditableDbContextProvider>();
         services.AddDbContextInMemory<SampleKrosoftAuditableContext>(true);
         services.AddSeedService<SampleKrosoftAuditableContext, SampleSeedService<SampleKrosoftAuditableContext>>();
     }
