@@ -3,22 +3,11 @@ using Krosoft.Extensions.Data.Abstractions.Models;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyModel;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Contexts;
 
 public abstract class KrosoftTenantContext : KrosoftContext
 {
-    private static readonly IList<Type> Types = new List<Type>
-    {
-        typeof(ITenant)
-    };
-
-    /// <summary>
-    /// Find loaded entity types from assemblies that application uses.
-    /// </summary>
-    private static IList<Type>? _entityTypeCache;
-
     /// <summary>
     /// Applying BaseEntity rules to all entities that inherit from it.
     /// Define MethodInfo member that is used when model is built.
@@ -51,45 +40,7 @@ public abstract class KrosoftTenantContext : KrosoftContext
         builder.Entity<T>().HasQueryFilter(e => e.TenantId == _tenantDbContextProvider.GetTenantId());
     }
 
-    private static IEnumerable<Type> GetEntityTypes()
-    {
-        if (_entityTypeCache != null)
-        {
-            return _entityTypeCache.ToList();
-        }
-
-        _entityTypeCache = (from a in GetReferencingAssemblies()
-                            from t in a.DefinedTypes
-                            where !t.IsAbstract && t.GetInterfaces().Any(Types.Contains)
-                            select t.AsType())
-                           .DistinctBy(x => x.FullName)
-                           .ToList();
-
-        return _entityTypeCache;
-    }
-
-    private static IEnumerable<Assembly> GetReferencingAssemblies()
-    {
-        var assemblies = new List<Assembly>();
-        if (DependencyContext.Default != null)
-        {
-            var dependencies = DependencyContext.Default.RuntimeLibraries;
-
-            foreach (var library in dependencies)
-            {
-                try
-                {
-                    var assembly = Assembly.Load(new AssemblyName(library.Name));
-                    assemblies.Add(assembly);
-                }
-                catch (FileNotFoundException)
-                {
-                }
-            }
-        }
-
-        return assemblies;
-    }
+    protected override IEnumerable<Type> GetTypes() => [typeof(ITenant)];
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -108,7 +59,7 @@ public abstract class KrosoftTenantContext : KrosoftContext
         }
     }
 
-    private void OverrideEntities()
+    protected override void OverrideEntities()
     {
         var useTenant = ChangeTracker.Entries<ITenant>().Any();
         if (useTenant)
@@ -118,19 +69,5 @@ public abstract class KrosoftTenantContext : KrosoftContext
             var tenantId = _tenantDbContextProvider.GetTenantId();
             ChangeTracker.ProcessCreationTenant(tenantId);
         }
-    }
-
-    public override int SaveChanges()
-    {
-        OverrideEntities();
-
-        return base.SaveChanges();
-    }
-
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        OverrideEntities();
-
-        return await base.SaveChangesAsync(true, cancellationToken);
     }
 }

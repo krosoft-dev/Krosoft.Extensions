@@ -35,7 +35,7 @@ internal class ReadDbContextScope<T> : IReadDbContextScope where T : KrosoftCont
 
     public IServiceProvider ServiceProvider => _serviceScope.ServiceProvider;
 
-    private static T GetContext(IServiceScope serviceScope, IDbContextSettings<T> dbContextSettings)
+    private static T GetContext(IServiceScope serviceScope, IDbContextSettings<T>? dbContextSettings)
     {
         if (dbContextSettings is IAuditableDbContextSettings<T> auditableDbContextSettings)
         {
@@ -90,7 +90,7 @@ internal class ReadDbContextScope<T> : IReadDbContextScope where T : KrosoftCont
             return krosoftContext;
         }
 
-        if (dbContextSettings is IDbContextSettings<T> a)
+        if (dbContextSettings != null)
         {
             var krosoftContext = (T?)Activator.CreateInstance(typeof(T),
                                                               serviceScope.ServiceProvider.GetRequiredService<DbContextOptions>()
