@@ -27,7 +27,7 @@ public class IdentityServiceTests : BaseTest
     [TestMethod]
     public void GetProprietaireIdTest()
     {
-        var proprietaireId = _identityService!.GetProprietaireId();
+        var proprietaireId = _identityService.GetProprietaireId();
 
         Check.That(proprietaireId).IsEqualTo(ProprietaireId);
     }
@@ -35,7 +35,7 @@ public class IdentityServiceTests : BaseTest
     [TestMethod]
     public void GetRoleIsInterneTest()
     {
-        var roleIsInterne = _identityService!.GetRoleIsInterne();
+        var roleIsInterne = _identityService.GetRoleIsInterne();
 
         Check.That(roleIsInterne).IsTrue();
     }

@@ -10,8 +10,6 @@ using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NFluent;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Tests.Scopes;
 

@@ -133,20 +133,4 @@ public abstract class KrosoftTenantContext : KrosoftContext
 
         return await base.SaveChangesAsync(true, cancellationToken);
     }
-
-    //public void ConfigureAuditable<T>(ModelBuilder builder) where T : class, IAuditable
-    //{
-    //    builder.Entity<T>()
-    //           .Property(t => t.ModificateurId)
-    //           .IsRequired();
-    //    builder.Entity<T>()
-    //           .Property(t => t.ModificateurDate)
-    //           .IsRequired();
-    //    builder.Entity<T>()
-    //           .Property(t => t.CreateurId)
-    //           .IsRequired();
-    //    builder.Entity<T>()
-    //           .Property(t => t.CreateurDate)
-    //           .IsRequired();
-    //}
 }

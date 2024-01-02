@@ -1,46 +1,28 @@
-﻿using System.Windows.Input;
-using Krosoft.Extensions.Core.Tools;
-using Krosoft.Extensions.Data.Abstractions.Interfaces;
+﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.Abstractions.Models;
 using Krosoft.Extensions.Data.EntityFramework.Contexts;
- 
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Krosoft.Extensions.Testing.Data.EntityFramework.Extensions;
 
 public static class BaseTestExtensions
 {
-    //public static async Task SendCommandAsync(this BaseTest baseTest,
-    //                                          IServiceProvider serviceProvider,
-    //                                          ICommand command)
-    //{
-    //    var mediator = serviceProvider.GetRequiredService<IMediator>();
-    //    await mediator.Send(command, CancellationToken.None);
-    //}
-
-    //public static async Task<TResponse> SendQueryAsync<TResponse>(this BaseTest baseTest,
-    //                                                              IServiceProvider serviceProvider,
-    //                                                              IQuery<TResponse> query)
-    //{
-       
-    //}
-
-
-    public static IQueryable<T> GetDb<T>(this BaseTest baseTest,IServiceProvider container) where T : Entity
+    public static IQueryable<T> GetDb<T>(this BaseTest baseTest, IServiceProvider container) where T : Entity
     {
-         
         var context = container.GetRequiredService<IReadRepository<T>>();
 
         return context.Query();
     }
 
-    public static void InitDb<TDbContext, T>(this BaseTest baseTest,IServiceProvider container,
+    public static void InitDb<TDbContext, T>(this BaseTest baseTest,
+                                             IServiceProvider container,
                                              T entity) where TDbContext : KrosoftContext where T : Entity
     {
-        baseTest.  InitDb<TDbContext, T>( container, new List<T> { entity });
+        baseTest.InitDb<TDbContext, T>(container, new List<T> { entity });
     }
 
-    public static void InitDb<TDbContext, T>(this BaseTest baseTest,IServiceProvider container,
+    public static void InitDb<TDbContext, T>(this BaseTest baseTest,
+                                             IServiceProvider container,
                                              IEnumerable<T> entities) where TDbContext : KrosoftContext where T : Entity
     {
         var context = container.GetRequiredService<TDbContext>();
@@ -48,9 +30,4 @@ public static class BaseTestExtensions
         context.AddRange(entities);
         context.SaveChanges();
     }
-
-
-
-
-
 }

@@ -12,7 +12,7 @@ namespace Krosoft.Extensions.Identity.Tests.Services;
 public class ClaimsBuilderServiceTests : BaseTest
 {
     //TestInitialize
-    private IClaimsBuilderService _claimsBuilderService=null!;
+    private IClaimsBuilderService _claimsBuilderService = null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
@@ -34,7 +34,7 @@ public class ClaimsBuilderServiceTests : BaseTest
             LangueId = "Claim_LangueId",
             LangueCode = "Claim_LangueCode"
         };
-        var claims = _claimsBuilderService!.Build(krosoftToken).ToList();
+        var claims = _claimsBuilderService.Build(krosoftToken).ToList();
 
         Check.That(claims).IsNotNull();
         Check.That(claims).HasSize(10);
@@ -55,7 +55,7 @@ public class ClaimsBuilderServiceTests : BaseTest
             LangueCode = "Claim_LangueCode"
         };
 
-        Check.ThatCode(() => { _claimsBuilderService!.Build(krosoftToken); })
+        Check.ThatCode(() => { _claimsBuilderService.Build(krosoftToken); })
              .Throws<KrosoftTechniqueException>()
              .WithMessage("La variable 'LangueId' est vide ou non renseignée.");
     }
@@ -73,7 +73,7 @@ public class ClaimsBuilderServiceTests : BaseTest
             LangueCode = "Claim_LangueCode"
         };
 
-        Check.ThatCode(() => { _claimsBuilderService!.Build(krosoftToken); })
+        Check.ThatCode(() => { _claimsBuilderService.Build(krosoftToken); })
              .Throws<KrosoftTechniqueException>()
              .WithMessage("La variable 'RoleId' est vide ou non renseignée.");
     }
@@ -92,7 +92,7 @@ public class ClaimsBuilderServiceTests : BaseTest
             LangueCode = "Claim_LangueCode"
         };
 
-        var claims = _claimsBuilderService!.Build(krosoftToken).ToList();
+        var claims = _claimsBuilderService.Build(krosoftToken).ToList();
 
         Check.That(claims).IsNotNull();
         Check.That(claims).HasSize(9);
@@ -103,7 +103,7 @@ public class ClaimsBuilderServiceTests : BaseTest
     [TestMethod]
     public void BuildNullTest()
     {
-        Check.ThatCode(() => { _claimsBuilderService!.Build(null); })
+        Check.ThatCode(() => { _claimsBuilderService.Build(null); })
              .Throws<KrosoftTechniqueException>()
              .WithMessage("La variable 'krosoftToken' n'est pas renseignée.");
     }
@@ -122,7 +122,7 @@ public class ClaimsBuilderServiceTests : BaseTest
             LangueId = "Claim_LangueId",
             LangueCode = "Claim_LangueCode"
         };
-        var claims = _claimsBuilderService!.Build(krosoftToken).ToList();
+        var claims = _claimsBuilderService.Build(krosoftToken).ToList();
 
         Check.That(claims).IsNotNull();
         Check.That(claims).HasSize(10);

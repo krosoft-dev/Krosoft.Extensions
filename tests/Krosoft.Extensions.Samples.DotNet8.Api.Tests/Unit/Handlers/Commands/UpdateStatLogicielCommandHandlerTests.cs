@@ -40,22 +40,22 @@ public class UpdateStatLogicielCommandHandlerTests : SampleBaseTest<Startup>
     [TestMethod]
     public async Task Handle_Empty()
     {
-        var serviceProvider = CreateServiceCollection();
+        await using var serviceProvider = CreateServiceCollection();
         Check.That(this.GetDb<Statistique>(serviceProvider).Count()).IsEqualTo(0);
 
         var command = new UpdateStatLogicielCommand(string.Empty);
         await this.SendCommandAsync(serviceProvider, command);
 
-        _mockLogger!.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques...", Times.Once());
-        _mockLogger!.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques pour le tenant", Times.Never());
-        _mockLogger!.VerifyWasCalled(LogLevel.Error, "Impossible de mettre à jour les statitisques à partir du payload : ", Times.Once());
+        _mockLogger.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques...", Times.Once());
+        _mockLogger.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques pour le tenant", Times.Never());
+        _mockLogger.VerifyWasCalled(LogLevel.Error, "Impossible de mettre à jour les statitisques à partir du payload : ", Times.Once());
         Check.That(this.GetDb<Statistique>(serviceProvider).Count()).IsEqualTo(0);
     }
 
     [TestMethod]
     public async Task Handle_NoLogicielWithTenant_Ok()
     {
-        var serviceProvider = CreateServiceCollection();
+        await using var serviceProvider = CreateServiceCollection();
         Check.That(this.GetDb<Statistique>(serviceProvider).Count()).IsEqualTo(0);
 
         var message = new UpdateStatLogicielMessage
@@ -68,9 +68,9 @@ public class UpdateStatLogicielCommandHandlerTests : SampleBaseTest<Startup>
         var command = new UpdateStatLogicielCommand(payload);
         await this.SendCommandAsync(serviceProvider, command);
 
-        _mockLogger!.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques...", Times.Once());
-        _mockLogger!.VerifyWasCalled(LogLevel.Information, $"Mise à jour des statistiques pour le tenant {message.TenantId}", Times.Once());
-        _mockLogger!.VerifyWasCalled(LogLevel.Error, "Impossible de mettre à jour les statitisques à partir du payload : ", Times.Never());
+        _mockLogger.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques...", Times.Once());
+        _mockLogger.VerifyWasCalled(LogLevel.Information, $"Mise à jour des statistiques pour le tenant {message.TenantId}", Times.Once());
+        _mockLogger.VerifyWasCalled(LogLevel.Error, "Impossible de mettre à jour les statitisques à partir du payload : ", Times.Never());
 
         var statistiques = this.GetDb<Statistique>(serviceProvider).IgnoreQueryFilters().ToList();
         Check.That(statistiques).HasSize(1);
@@ -84,22 +84,22 @@ public class UpdateStatLogicielCommandHandlerTests : SampleBaseTest<Startup>
     [TestMethod]
     public async Task Handle_Null()
     {
-        var serviceProvider = CreateServiceCollection();
+        await using var serviceProvider = CreateServiceCollection();
         Check.That(this.GetDb<Statistique>(serviceProvider).Count()).IsEqualTo(0);
 
         var command = new UpdateStatLogicielCommand(null!);
         await this.SendCommandAsync(serviceProvider, command);
 
-        _mockLogger!.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques...", Times.Once());
-        _mockLogger!.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques pour le tenant", Times.Never());
-        _mockLogger!.VerifyWasCalled(LogLevel.Error, "Impossible de mettre à jour les statitisques à partir du payload : ", Times.Once());
+        _mockLogger.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques...", Times.Once());
+        _mockLogger.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques pour le tenant", Times.Never());
+        _mockLogger.VerifyWasCalled(LogLevel.Error, "Impossible de mettre à jour les statitisques à partir du payload : ", Times.Once());
         Check.That(this.GetDb<Statistique>(serviceProvider).Count()).IsEqualTo(0);
     }
 
     [TestMethod]
     public async Task Handle_Ok()
     {
-        var serviceProvider = CreateServiceCollection();
+        await using var serviceProvider = CreateServiceCollection();
         Check.That(this.GetDb<Statistique>(serviceProvider).Count()).IsEqualTo(0);
 
         Check.That(this.GetDb<Logiciel>(serviceProvider).Count()).IsEqualTo(5);
@@ -115,9 +115,9 @@ public class UpdateStatLogicielCommandHandlerTests : SampleBaseTest<Startup>
         var command = new UpdateStatLogicielCommand(payload);
         await this.SendCommandAsync(serviceProvider, command);
 
-        _mockLogger!.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques...", Times.Once());
-        _mockLogger!.VerifyWasCalled(LogLevel.Information, $"Mise à jour des statistiques pour le tenant {message.TenantId}", Times.Once());
-        _mockLogger!.VerifyWasCalled(LogLevel.Error, "Impossible de mettre à jour les statitisques à partir du payload : ", Times.Never());
+        _mockLogger.VerifyWasCalled(LogLevel.Information, "Mise à jour des statistiques...", Times.Once());
+        _mockLogger.VerifyWasCalled(LogLevel.Information, $"Mise à jour des statistiques pour le tenant {message.TenantId}", Times.Once());
+        _mockLogger.VerifyWasCalled(LogLevel.Error, "Impossible de mettre à jour les statitisques à partir du payload : ", Times.Never());
 
         var statistiques = this.GetDb<Statistique>(serviceProvider).IgnoreQueryFilters().ToList();
         Check.That(statistiques).HasSize(1);

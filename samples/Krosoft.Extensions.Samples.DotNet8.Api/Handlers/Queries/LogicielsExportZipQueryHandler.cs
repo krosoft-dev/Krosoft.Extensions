@@ -26,7 +26,7 @@ public class LogicielsExportZipQueryHandler : IRequestHandler<LogicielsExportZip
 
         await Task.Delay(2000, cancellationToken);
 
-        var logiciels = LogicielFactory.GetRandom(10,null)
+        var logiciels = LogicielFactory.GetRandom(10, null)
                                        .AsQueryable()
                                        .ToList();
 

@@ -9,8 +9,6 @@ using Krosoft.Extensions.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NFluent;
 
 namespace Krosoft.Extensions.Data.EntityFramework.InMemory.Tests.Functional;
 
