@@ -1,4 +1,6 @@
-﻿using Krosoft.Extensions.Data.Abstractions.Interfaces;
+﻿using JetBrains.Annotations;
+using Krosoft.Extensions.Data.Abstractions.Interfaces;
+using Krosoft.Extensions.Data.EntityFramework.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Krosoft.Extensions.Data.EntityFramework.InMemory.Tests.Functional;
 
 [TestClass]
+[TestSubject(typeof(KrosoftTenantContext))]
 public class KrosoftTenantContextTests : BaseTest
 {
     private IReadRepository<Logiciel> _repository = null!;
@@ -25,6 +28,9 @@ public class KrosoftTenantContextTests : BaseTest
         services.AddDbContextInMemory<SampleKrosoftTenantContext>(true);
         services.AddSeedService<SampleKrosoftTenantContext, SampleSeedService<SampleKrosoftTenantContext>>();
     }
+
+    [TestCleanup]
+    public void Cleanup() => _repository.Dispose();
 
     [TestMethod]
     public async Task Query_Ok()

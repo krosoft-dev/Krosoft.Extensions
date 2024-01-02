@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Repositories;
 
-public class WriteRepository<TEntity> : IWriteRepository<TEntity>
+public sealed class WriteRepository<TEntity> : IWriteRepository<TEntity>
     where TEntity : class
 
 {
@@ -23,8 +23,7 @@ public class WriteRepository<TEntity> : IWriteRepository<TEntity>
 
     public void Dispose()
     {
-        _dbContext.Dispose();
-        GC.SuppressFinalize(this);
+        _dbContext.Dispose(); 
     }
 
     public void Delete(TEntity entity)

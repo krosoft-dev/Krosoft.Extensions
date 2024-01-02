@@ -20,7 +20,7 @@ public class WriteRepositoryTests : BaseTest
     public void Delete_Ok()
     {
         using var serviceProvider = CreateServiceCollection(GetServices);
-        var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
+        using var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
         using var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
         Check.That(this.GetDb<Langue>(serviceProvider).Count()).IsEqualTo(2);
@@ -51,7 +51,7 @@ public class WriteRepositoryTests : BaseTest
     public void Insert_Ok()
     {
         using var serviceProvider = CreateServiceCollection(GetServices);
-        var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
+        using var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
         using var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
         Check.That(this.GetDb<Langue>(serviceProvider).Count()).IsEqualTo(2);
@@ -71,7 +71,7 @@ public class WriteRepositoryTests : BaseTest
     public void Query_Ok()
     {
         using var serviceProvider = CreateServiceCollection(GetServices);
-        var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
+        using var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
 
         var fromSeed = this.GetDb<Langue>(serviceProvider);
         Check.That(fromSeed.Count()).IsEqualTo(2);
@@ -86,7 +86,7 @@ public class WriteRepositoryTests : BaseTest
     public void Update_Ok()
     {
         using var serviceProvider = CreateServiceCollection(GetServices);
-        var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
+        using var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
         using var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
         Check.That(this.GetDb<Langue>(serviceProvider).Count()).IsEqualTo(2);

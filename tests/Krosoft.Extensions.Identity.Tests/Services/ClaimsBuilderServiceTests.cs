@@ -1,7 +1,9 @@
-﻿using Krosoft.Extensions.Core.Models;
+﻿using JetBrains.Annotations;
+using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Krosoft.Extensions.Identity.Extensions;
+using Krosoft.Extensions.Identity.Services;
 using Krosoft.Extensions.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Krosoft.Extensions.Identity.Tests.Services;
 
 [TestClass]
+[TestSubject(typeof(ClaimsBuilderService))]
 public class ClaimsBuilderServiceTests : BaseTest
 {
     //TestInitialize

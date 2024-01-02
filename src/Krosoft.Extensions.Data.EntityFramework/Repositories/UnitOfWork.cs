@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Krosoft.Extensions.Data.EntityFramework.Repositories;
 
-public class UnitOfWork : IUnitOfWork
+public sealed class UnitOfWork : IUnitOfWork
 {
     private readonly DbContext _context;
 
@@ -15,7 +15,6 @@ public class UnitOfWork : IUnitOfWork
     public void Dispose()
     {
         _context.Dispose();
-        GC.SuppressFinalize(this);
     }
 
     public int SaveChanges()

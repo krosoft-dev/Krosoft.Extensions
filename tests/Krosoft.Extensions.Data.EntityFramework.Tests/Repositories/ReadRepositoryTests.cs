@@ -26,6 +26,9 @@ public class ReadRepositoryTests : BaseTest
         services.AddSeedService<SampleKrosoftContext, SampleSeedService<SampleKrosoftContext>>();
     }
 
+    [TestCleanup]
+    public void Cleanup() => _repository.Dispose();
+
     [TestMethod]
     public async Task Query_Ok()
     {

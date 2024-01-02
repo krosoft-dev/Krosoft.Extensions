@@ -1,10 +1,12 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using JetBrains.Annotations;
 using Krosoft.Extensions.Core.Interfaces;
 using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Krosoft.Extensions.Identity.Abstractions.Models;
 using Krosoft.Extensions.Identity.Extensions;
+using Krosoft.Extensions.Identity.Services;
 using Krosoft.Extensions.Testing;
 using Krosoft.Extensions.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +16,7 @@ using Microsoft.Extensions.Options;
 namespace Krosoft.Extensions.Identity.Tests.Services;
 
 [TestClass]
+[TestSubject(typeof(JwtTokenGenerator))]
 public class JwtTokenGeneratorTests : BaseTest
 {
     private readonly string _identifier = "user123";

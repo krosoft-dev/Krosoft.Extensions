@@ -1,7 +1,9 @@
 ﻿using System.Security.Claims;
+using JetBrains.Annotations;
 using Krosoft.Extensions.Identity.Abstractions.Constantes;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Krosoft.Extensions.Identity.Extensions;
+using Krosoft.Extensions.Identity.Services;
 using Krosoft.Extensions.Testing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Krosoft.Extensions.Identity.Tests.Services;
 
 [TestClass]
+[TestSubject(typeof(IdentityService))]
 public class IdentityServiceTests : BaseTest
 {
     private const string ProprietaireId = "test";
