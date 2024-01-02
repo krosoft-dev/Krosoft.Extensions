@@ -1,8 +1,4 @@
-﻿//using JetBrains.Annotations;
-//using Krosoft.Extensions.Data.EntityFramework.Repositories;
-//using Krosoft.Extensions.Testing;
-
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
@@ -17,14 +13,14 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Krosoft.Extensions.Data.EntityFramework.Tests.Repositories;
 
 [TestClass]
-[TestSubject(typeof(GenericWriteRepository))]
-public class GenericWriteRepositoryTests : BaseTest
+[TestSubject(typeof(WriteRepository<>))]
+public class WriteRepositoryTests : BaseTest
 {
     [TestMethod]
     public void Delete_Ok()
     {
         using var serviceProvider = CreateServiceCollection(GetServices);
-        var repository = serviceProvider.GetRequiredService<IGenericWriteRepository>();
+        var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
         using var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
         Check.That(this.GetDb<Langue>(serviceProvider).Count()).IsEqualTo(2);
@@ -55,7 +51,7 @@ public class GenericWriteRepositoryTests : BaseTest
     public void Insert_Ok()
     {
         using var serviceProvider = CreateServiceCollection(GetServices);
-        var repository = serviceProvider.GetRequiredService<IGenericWriteRepository>();
+        var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
         using var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
         Check.That(this.GetDb<Langue>(serviceProvider).Count()).IsEqualTo(2);
@@ -75,12 +71,12 @@ public class GenericWriteRepositoryTests : BaseTest
     public void Query_Ok()
     {
         using var serviceProvider = CreateServiceCollection(GetServices);
-        var repository = serviceProvider.GetRequiredService<IGenericWriteRepository>();
+        var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
 
         var fromSeed = this.GetDb<Langue>(serviceProvider);
         Check.That(fromSeed.Count()).IsEqualTo(2);
 
-        var fromBdd = repository.Query<Langue>().ToList();
+        var fromBdd = repository.Query().ToList();
 
         Check.That(fromBdd.Count()).IsEqualTo(2);
         Check.That(fromBdd.Select(x => x.Code)).IsOnlyMadeOf("fr", "en");
@@ -90,7 +86,7 @@ public class GenericWriteRepositoryTests : BaseTest
     public void Update_Ok()
     {
         using var serviceProvider = CreateServiceCollection(GetServices);
-        var repository = serviceProvider.GetRequiredService<IGenericWriteRepository>();
+        var repository = serviceProvider.GetRequiredService<IWriteRepository<Langue>>();
         using var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
         Check.That(this.GetDb<Langue>(serviceProvider).Count()).IsEqualTo(2);

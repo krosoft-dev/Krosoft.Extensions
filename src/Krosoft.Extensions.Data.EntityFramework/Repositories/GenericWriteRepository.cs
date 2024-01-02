@@ -41,6 +41,8 @@ public class GenericWriteRepository : IGenericWriteRepository
         dbSet.Add(entity);
     }
 
+    public IQueryable<TEntity> Query<TEntity>() where TEntity : class => _dbContext.Set<TEntity>();
+
     public void Update<TEntity>(TEntity entity) where TEntity : class
     {
         Guard.IsNotNull(nameof(entity), entity);
