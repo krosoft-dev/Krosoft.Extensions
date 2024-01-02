@@ -11,7 +11,8 @@ namespace Krosoft.Extensions.Identity.Tests.Services;
 [TestClass]
 public class ClaimsBuilderServiceTests : BaseTest
 {
-    private IClaimsBuilderService? _claimsBuilderService;
+    //TestInitialize
+    private IClaimsBuilderService _claimsBuilderService=null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {

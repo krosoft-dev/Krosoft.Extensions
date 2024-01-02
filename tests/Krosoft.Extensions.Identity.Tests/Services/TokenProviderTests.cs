@@ -5,7 +5,6 @@ using Krosoft.Extensions.Identity.Abstractions.Models;
 using Krosoft.Extensions.Identity.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Moq;
 
 namespace Krosoft.Extensions.Identity.Tests.Services;
 

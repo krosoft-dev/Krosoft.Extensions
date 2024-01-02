@@ -6,7 +6,6 @@ using Krosoft.Extensions.Testing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
 
 namespace Krosoft.Extensions.Identity.Tests.Services;
 

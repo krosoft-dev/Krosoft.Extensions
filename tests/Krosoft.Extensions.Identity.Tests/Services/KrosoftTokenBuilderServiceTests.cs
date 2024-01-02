@@ -5,7 +5,6 @@ using Krosoft.Extensions.Testing;
 using Krosoft.Extensions.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
 
 namespace Krosoft.Extensions.Identity.Tests.Services;
 
