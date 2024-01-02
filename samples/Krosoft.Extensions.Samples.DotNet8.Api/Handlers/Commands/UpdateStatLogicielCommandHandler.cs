@@ -1,6 +1,6 @@
 ﻿using Krosoft.Extensions.Core.Tools;
-using Krosoft.Extensions.Data.EntityFramework.Contexts;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
+using Krosoft.Extensions.Samples.DotNet8.Api.Data;
 using Krosoft.Extensions.Samples.Library.Models.Commands;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Samples.Library.Models.Messages;
@@ -25,44 +25,47 @@ internal class UpdateStatLogicielCommandHandler : IRequestHandler<UpdateStatLogi
     public async Task Handle(UpdateStatLogicielCommand request, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Mise à jour des statistiques...");
-        var message = JsonConvert.DeserializeObject<UpdateStatLogicielMessage>(request.Payload);
-        if (message != null)
+
+        if (!string.IsNullOrEmpty(request.Payload))
         {
-            _logger.LogInformation($"Mise à jour des statistiques pour le tenant {message.TenantId}");
-
-            using (var scope = _serviceProvider.CreateDbContextScope<KrosoftTenantAuditableContext>(message.TenantId!,
-                                                                                                    DateTime.Now,
-                                                                                                    message.UtilisateurId!))
+            var message = JsonConvert.DeserializeObject<UpdateStatLogicielMessage>(request.Payload);
+            if (message != null)
             {
-                var repositoryLogiciel = scope.GetReadRepository<Logiciel>();
-                var nombre = await repositoryLogiciel.Query().CountAsync(cancellationToken);
+                _logger.LogInformation($"Mise à jour des statistiques pour le tenant {message.TenantId}");
 
-                var repositoryStatistique = scope.GetWriteRepository<Statistique>();
-                var statistique = await repositoryStatistique.Query()
-                                                             .FirstOrDefaultAsync(cancellationToken);
-                if (statistique == null)
+                using (var scope = _serviceProvider.CreateDbContextScope<SampleKrosoftTenantAuditableContext>(message.TenantId!,
+                                                                                                              DateTime.Now,
+                                                                                                              message.UtilisateurId!))
                 {
-                    statistique = new Statistique
+                    var repositoryLogiciel = scope.GetReadRepository<Logiciel>();
+                    var nombre = await repositoryLogiciel.Query().CountAsync(cancellationToken);
+
+                    var repositoryStatistique = scope.GetWriteRepository<Statistique>();
+                    var statistique = await repositoryStatistique.Query()
+                                                                 .FirstOrDefaultAsync(cancellationToken);
+                    if (statistique == null)
                     {
-                        Id = SequentialGuid.NewGuid(),
-                        Nom = message.TenantId,
-                        Nombre = nombre
-                    };
-                    repositoryStatistique.Insert(statistique);
-                }
-                else
-                {
-                    statistique.Nombre = nombre;
-                    repositoryStatistique.Update(statistique);
-                }
+                        statistique = new Statistique
+                        {
+                            Id = SequentialGuid.NewGuid(),
+                            Nom = message.TenantId,
+                            Nombre = nombre
+                        };
+                        repositoryStatistique.Insert(statistique);
+                    }
+                    else
+                    {
+                        statistique.Nombre = nombre;
+                        repositoryStatistique.Update(statistique);
+                    }
 
-                var unitOfWork = scope.GetUnitOfWork();
-                await unitOfWork.SaveChangesAsync(cancellationToken);
+                    var unitOfWork = scope.GetUnitOfWork();
+                    await unitOfWork.SaveChangesAsync(cancellationToken);
+                    return;
+                }
             }
         }
-        else
-        {
-            _logger.LogError($"Impossible de mettre à jour les statitisques à partir du payload : {request.Payload}");
-        }
+
+        _logger.LogError($"Impossible de mettre à jour les statitisques à partir du payload : {request.Payload}");
     }
 }

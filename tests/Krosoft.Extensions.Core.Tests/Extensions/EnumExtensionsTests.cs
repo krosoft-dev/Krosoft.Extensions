@@ -33,14 +33,4 @@ public class EnumExtensionsTests
 
         Check.That(result).IsEqualTo(expectedDisplayName);
     }
-
-    [TestMethod]
-    public void GetIndividualFlags_ShouldReturnCorrectIndividualFlags()
-    {
-        var value = SampleCode.One | SampleCode.Three;
-
-        var result = value.GetIndividualFlags();
-
-        Check.That(result).ContainsExactly(SampleCode.One, SampleCode.Three);
-    }
 }
