@@ -3,8 +3,6 @@ using Krosoft.Extensions.Identity.Extensions;
 using Krosoft.Extensions.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NFluent;
 
 namespace Krosoft.Extensions.Identity.Tests.Services;
 

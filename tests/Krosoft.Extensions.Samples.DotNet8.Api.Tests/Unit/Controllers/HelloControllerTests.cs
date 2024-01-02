@@ -1,9 +1,6 @@
 using Krosoft.Extensions.Samples.DotNet8.Api.Controllers;
 using Krosoft.Extensions.Samples.Library.Models.Queries;
 using Krosoft.Extensions.Testing.WebApi;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using NFluent;
 
 namespace Krosoft.Extensions.Samples.DotNet8.Api.Tests.Unit.Controllers;
 

@@ -5,9 +5,7 @@ using Krosoft.Extensions.Identity.Abstractions.Models;
 using Krosoft.Extensions.Identity.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using NFluent;
 
 namespace Krosoft.Extensions.Identity.Tests.Services;
 

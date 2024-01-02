@@ -127,6 +127,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Data.Ent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Krosoft.Extensions.Data.EntityFramework.Tests", "tests\Krosoft.Extensions.Data.EntityFramework.Tests\Krosoft.Extensions.Data.EntityFramework.Tests.csproj", "{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krosoft.Extensions.Testing.Data.EntityFramework", "src\Krosoft.Extensions.Testing.Data.EntityFramework\Krosoft.Extensions.Testing.Data.EntityFramework.csproj", "{722D9823-4EBE-4F01-938C-1845B2390D11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -875,6 +877,22 @@ Global
 		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|x64.Build.0 = Release|Any CPU
 		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|x86.ActiveCfg = Release|Any CPU
 		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F}.Release|x86.Build.0 = Release|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Debug|ARM.Build.0 = Debug|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Debug|x64.Build.0 = Debug|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Debug|x86.Build.0 = Debug|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Release|ARM.ActiveCfg = Release|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Release|ARM.Build.0 = Release|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Release|x64.ActiveCfg = Release|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Release|x64.Build.0 = Release|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Release|x86.ActiveCfg = Release|Any CPU
+		{722D9823-4EBE-4F01-938C-1845B2390D11}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -926,6 +944,7 @@ Global
 		{D4DC410E-2C31-4826-A26A-C448D2D1FD0F} = {1DCE243A-7652-45C9-8779-621489B87469}
 		{453608D6-3EF8-40A4-9624-B1ABF7859CA5} = {1DCE243A-7652-45C9-8779-621489B87469}
 		{EB45A204-0A5B-435C-8FAD-1D1E1AAD340F} = {1DCE243A-7652-45C9-8779-621489B87469}
+		{722D9823-4EBE-4F01-938C-1845B2390D11} = {BFBCA122-F9F1-4A26-BD18-DFBA1A0E69D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FD07ECB-B4B5-4D65-8E03-10F0C97C77A9}

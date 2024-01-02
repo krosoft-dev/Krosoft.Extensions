@@ -6,9 +6,7 @@ using Krosoft.Extensions.Testing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using NFluent;
 
 namespace Krosoft.Extensions.Identity.Tests.Services;
 
