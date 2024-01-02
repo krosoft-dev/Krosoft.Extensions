@@ -100,7 +100,7 @@ public class JwtTokenGeneratorTests : BaseTest
         var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
 
         Check.That(jsonToken).IsNotNull();
-        Check.That(jsonToken!.ValidTo).IsBefore(_now);
+        Check.That(jsonToken!.ValidTo.ToUniversalTime()).IsAfter(_now.ToUniversalTime());
         Check.That(jsonToken.Claims.Select(x => x.Value)).Contains(claims.Select(x => x.Value));
 
         var claim = jsonToken.Claims.First(x => x.Type == ClaimTypes.Name);
