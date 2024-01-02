@@ -14,7 +14,9 @@ namespace Krosoft.Extensions.Identity.Tests.Services;
 public class IdentityServiceTests : BaseTest
 {
     private const string ProprietaireId = "test";
-    private IIdentityService? _identityService;
+
+    //TestInitialize
+    private IIdentityService _identityService = null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {

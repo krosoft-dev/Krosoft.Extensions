@@ -21,6 +21,7 @@ namespace Krosoft.Extensions.Samples.DotNet8.Api.Tests.Unit.Handlers.Commands;
 [TestClass]
 public class UpdateStatLogicielCommandHandlerTests : SampleBaseTest<Startup>
 {
+    //TestInitialize
     private Mock<ILogger<UpdateStatLogicielCommandHandler>> _mockLogger = null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
