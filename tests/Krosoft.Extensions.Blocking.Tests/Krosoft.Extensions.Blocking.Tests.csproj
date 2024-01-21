@@ -4,8 +4,7 @@
 	  <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Identity.Abstractions\Krosoft.Extensions.Identity.Abstractions.csproj" />
-	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Identity\Krosoft.Extensions.Identity.csproj" />
+	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Blocking\Krosoft.Extensions.Blocking.csproj" />
 	  <ProjectReference Include="..\..\src\Krosoft.Extensions.Testing\Krosoft.Extensions.Testing.csproj" />
 	</ItemGroup>
 </Project>

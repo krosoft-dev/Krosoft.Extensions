@@ -1,4 +1,4 @@
-﻿namespace Krosoft.Extensions.Identity.Abstractions.Interfaces;
+﻿namespace Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 
 public interface IIdentifierBlockingService
 {

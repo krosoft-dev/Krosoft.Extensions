@@ -1,4 +1,4 @@
-﻿namespace Krosoft.Extensions.Identity.Abstractions.Interfaces;
+﻿namespace Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 
 public interface IAccessTokenBlockingService
 {
@@ -9,3 +9,4 @@ public interface IAccessTokenBlockingService
     Task<bool> UnblockAsync(string accessToken, CancellationToken cancellationToken);
     Task<long> UnblockAsync(ISet<string> accessTokens, CancellationToken cancellationToken);
 }
+
