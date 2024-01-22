@@ -1,7 +1,6 @@
 ﻿using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 using Krosoft.Extensions.Blocking.Abstractions.Models.Enums;
 using Krosoft.Extensions.Core.Models.Exceptions;
-using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -21,46 +20,14 @@ public class IdentifierBlockingService : BlockingService, IIdentifierBlockingSer
 
     public async Task BlockAsync(CancellationToken cancellationToken)
     {
-        var collectionKey = GetCollectionKey();
         var identifier = await GetIdentifierAsync(cancellationToken);
-        await BlockAsync(collectionKey, identifier, cancellationToken);
-    }
-
-    public async Task BlockAsync(string identifier, CancellationToken cancellationToken)
-    {
-        var collectionKey = GetCollectionKey();
-        await BlockAsync(collectionKey, identifier, cancellationToken);
-    }
-
-    public async Task BlockAsync(ISet<string> identifiers, CancellationToken cancellationToken)
-    {
-        Guard.IsNotNull(nameof(identifiers), identifiers);
-
-        var collectionKey = GetCollectionKey();
-
-        await BlockAsync(collectionKey, identifiers, cancellationToken);
-    }
-
-    public async Task<bool> UnblockAsync(string identifier, CancellationToken cancellationToken)
-    {
-        var collectionKey = GetCollectionKey();
-        return await UnblockAsync(collectionKey, identifier, cancellationToken);
-    }
-
-    public async Task<long> UnblockAsync(ISet<string> identifiers, CancellationToken cancellationToken)
-    {
-        Guard.IsNotNull(nameof(identifiers), identifiers);
-
-        var collectionKey = GetCollectionKey();
-
-        return await UnblockAsync(collectionKey, identifiers, cancellationToken);
+        await BlockAsync(identifier, cancellationToken);
     }
 
     public async Task<bool> IsBlockedAsync(CancellationToken cancellationToken)
     {
-        var collectionKey = GetCollectionKey();
         var identifier = await GetIdentifierAsync(cancellationToken);
-        var isBlocked = await IsBlockedAsync(collectionKey, identifier, cancellationToken);
+        var isBlocked = await IsBlockedAsync(identifier, cancellationToken);
         return isBlocked;
     }
 

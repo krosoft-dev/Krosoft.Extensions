@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using Krosoft.Extensions.Identity.Abstractions.Constantes;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
-using Krosoft.Extensions.Identity.Extensions;
 using Krosoft.Extensions.Identity.Services;
 using Krosoft.Extensions.Testing;
 using Krosoft.Extensions.WebApi.Identity.Extensions;

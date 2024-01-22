@@ -20,9 +20,8 @@ public abstract class BlockingService
         _logger = logger;
     }
 
-    protected async Task BlockAsync(string collectionKey,
-                                    ISet<string> keys,
-                                    CancellationToken cancellationToken)
+    public async Task BlockAsync(ISet<string> keys,
+                                 CancellationToken cancellationToken)
     {
         _logger.LogDebug($"Blocking {_blockType} : {string.Join(",", keys)}");
 
@@ -32,23 +31,24 @@ public abstract class BlockingService
             entries.Add(key, Blocked);
         }
 
+        var collectionKey = GetCollectionKey();
         await _blockingStorageProvider.SetAsync(collectionKey, entries, cancellationToken);
     }
 
-    protected async Task BlockAsync(string collectionKey,
-                                    string key,
-                                    CancellationToken cancellationToken)
+    public async Task BlockAsync(string key,
+                                 CancellationToken cancellationToken)
     {
         _logger.LogDebug($"Blocking {_blockType} : {key}");
+        var collectionKey = GetCollectionKey();
         await _blockingStorageProvider.SetAsync(collectionKey, key, Blocked, cancellationToken);
     }
 
-    protected string GetCollectionKey() => $"Blocking_{_blockType.ToString()}";
+    private string GetCollectionKey() => $"Blocking_{_blockType.ToString()}";
 
-    protected async Task<bool> IsBlockedAsync(string collectionKey,
-                                              string key,
-                                              CancellationToken cancellationToken)
+    public async Task<bool> IsBlockedAsync(string key,
+                                           CancellationToken cancellationToken)
     {
+        var collectionKey = GetCollectionKey();
         var isExist = await _blockingStorageProvider.IsSetAsync(collectionKey, key, cancellationToken);
         if (isExist)
         {
@@ -58,22 +58,21 @@ public abstract class BlockingService
         return isExist;
     }
 
-    protected async Task<long> UnblockAsync(string collectionKey,
-                                            ISet<string> keys,
-                                            CancellationToken cancellationToken)
+    public async Task<long> UnblockAsync(ISet<string> keys,
+                                         CancellationToken cancellationToken)
     {
         _logger.LogDebug($"Unblocking {_blockType} : {string.Join(",", keys)}");
-
+        var collectionKey = GetCollectionKey();
         var number = await _blockingStorageProvider.RemoveAsync(collectionKey, keys, cancellationToken);
         return number;
     }
 
-    protected async Task<bool> UnblockAsync(string collectionKey,
-                                            string key,
-                                            CancellationToken cancellationToken)
+    public async Task<bool> UnblockAsync(string key,
+                                         CancellationToken cancellationToken)
     {
         _logger.LogDebug($"Unblocking {_blockType} : {key}");
 
+        var collectionKey = GetCollectionKey();
         var isDelete = await _blockingStorageProvider.RemoveAsync(collectionKey, key, cancellationToken);
         return isDelete;
     }

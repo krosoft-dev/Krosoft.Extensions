@@ -29,13 +29,6 @@ public class RedisBlockingStorageProvider : IBlockingStorageProvider
         return number;
     }
 
-    public virtual async Task SetAsync(string collectionKey,
-                                       IDictionary<string, string> entryByKey,
-                                       CancellationToken cancellationToken)
-    {
-        await _distributedCacheProvider.SetRowAsync(collectionKey, entryByKey, cancellationToken);
-    }
-
     public virtual async Task<bool> RemoveAsync(string collectionKey,
                                                 string key,
                                                 CancellationToken cancellationToken)
@@ -50,5 +43,12 @@ public class RedisBlockingStorageProvider : IBlockingStorageProvider
                                        CancellationToken cancellationToken)
     {
         await _distributedCacheProvider.SetRowAsync(collectionKey, key, entry, cancellationToken);
+    }
+
+    public virtual async Task SetAsync(string collectionKey,
+                                       IDictionary<string, string> entryByKey,
+                                       CancellationToken cancellationToken)
+    {
+        await _distributedCacheProvider.SetRowAsync(collectionKey, entryByKey, cancellationToken);
     }
 }
