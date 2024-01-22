@@ -12,48 +12,51 @@ public class MemoryBlockingStorageProvider : IBlockingStorageProvider
         _cacheProvider = cacheProvider;
     }
 
-    public Task<bool> IsExistRowAsync(string collectionKey,
-                                      string key,
-                                      CancellationToken cancellationToken)
+    public Task<bool> IsSetAsync(string collectionKey,
+                                 string key,
+                                 CancellationToken cancellationToken)
     {
         var isExist = _cacheProvider.IsSet(GetFullKey(collectionKey, key));
         return Task.FromResult(isExist);
     }
 
-    public async Task<long> DeleteRowsAsync(string collectionKey,
-                                            ISet<string> keys,
-                                            CancellationToken cancellationToken)
+    public async Task<long> RemoveAsync(string collectionKey,
+                                        ISet<string> keys,
+                                        CancellationToken cancellationToken)
     {
         long number = 0;
         foreach (var key in keys)
         {
-            await DeleteRowAsync(collectionKey, key, cancellationToken);
+            await RemoveAsync(collectionKey, key, cancellationToken);
             number++;
         }
 
         return number;
     }
 
-    public async Task SetRowAsync(string collectionKey,
-                                  IDictionary<string, string> entries,
-                                  CancellationToken cancellationToken)
+    public async Task SetAsync(string collectionKey,
+                               IDictionary<string, string> entryByKey,
+                               CancellationToken cancellationToken)
     {
-        foreach (var key in entries)
+        foreach (var keyValuePair in entryByKey)
         {
-            await SetRowAsync(collectionKey, key.Key, key.Value, cancellationToken);
+            await SetAsync(collectionKey, keyValuePair.Key, keyValuePair.Value, cancellationToken);
         }
     }
 
-    public Task<bool> DeleteRowAsync(string collectionKey,
-                                     string key,
-                                     CancellationToken cancellationToken)
+    public Task<bool> RemoveAsync(string collectionKey,
+                                  string key,
+                                  CancellationToken cancellationToken)
     {
         _cacheProvider.Remove(GetFullKey(collectionKey, key));
 
         return Task.FromResult(true);
     }
 
-    public Task SetRowAsync(string collectionKey, string key, string entry, CancellationToken cancellationToken)
+    public Task SetAsync(string collectionKey,
+                         string key,
+                         string entry,
+                         CancellationToken cancellationToken)
     {
         _cacheProvider.Set(GetFullKey(collectionKey, key), entry);
 

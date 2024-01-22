@@ -32,7 +32,7 @@ public abstract class BlockingService
             entries.Add(key, Blocked);
         }
 
-        await _blockingStorageProvider.SetRowAsync(collectionKey, entries, cancellationToken);
+        await _blockingStorageProvider.SetAsync(collectionKey, entries, cancellationToken);
     }
 
     protected async Task BlockAsync(string collectionKey,
@@ -40,7 +40,7 @@ public abstract class BlockingService
                                     CancellationToken cancellationToken)
     {
         _logger.LogDebug($"Blocking {_blockType} : {key}");
-        await _blockingStorageProvider.SetRowAsync(collectionKey, key, Blocked, cancellationToken);
+        await _blockingStorageProvider.SetAsync(collectionKey, key, Blocked, cancellationToken);
     }
 
     protected string GetCollectionKey() => $"Blocking_{_blockType.ToString()}";
@@ -49,7 +49,7 @@ public abstract class BlockingService
                                               string key,
                                               CancellationToken cancellationToken)
     {
-        var isExist = await _blockingStorageProvider.IsExistRowAsync(collectionKey, key, cancellationToken);
+        var isExist = await _blockingStorageProvider.IsSetAsync(collectionKey, key, cancellationToken);
         if (isExist)
         {
             _logger.LogDebug($"{_blockType} is blocked : {key}");
@@ -64,7 +64,7 @@ public abstract class BlockingService
     {
         _logger.LogDebug($"Unblocking {_blockType} : {string.Join(",", keys)}");
 
-        var number = await _blockingStorageProvider.DeleteRowsAsync(collectionKey, keys, cancellationToken);
+        var number = await _blockingStorageProvider.RemoveAsync(collectionKey, keys, cancellationToken);
         return number;
     }
 
@@ -74,7 +74,7 @@ public abstract class BlockingService
     {
         _logger.LogDebug($"Unblocking {_blockType} : {key}");
 
-        var isDelete = await _blockingStorageProvider.DeleteRowAsync(collectionKey, key, cancellationToken);
+        var isDelete = await _blockingStorageProvider.RemoveAsync(collectionKey, key, cancellationToken);
         return isDelete;
     }
 }

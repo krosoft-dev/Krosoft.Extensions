@@ -12,7 +12,7 @@ public class RedisBlockingStorageProvider : IBlockingStorageProvider
         _distributedCacheProvider = distributedCacheProvider;
     }
 
-    public virtual async Task<bool> IsExistRowAsync(string collectionKey,
+    public virtual async Task<bool> IsSetAsync(string collectionKey,
                                                     string key,
                                                     CancellationToken cancellationToken)
     {
@@ -21,7 +21,7 @@ public class RedisBlockingStorageProvider : IBlockingStorageProvider
         return isExist;
     }
 
-    public virtual async Task<long> DeleteRowsAsync(string collectionKey,
+    public virtual async Task<long> RemoveAsync(string collectionKey,
                                                     ISet<string> keys,
                                                     CancellationToken cancellationToken)
     {
@@ -29,14 +29,14 @@ public class RedisBlockingStorageProvider : IBlockingStorageProvider
         return number;
     }
 
-    public virtual async Task SetRowAsync(string collectionKey,
-                                          IDictionary<string, string> entries,
+    public virtual async Task SetAsync(string collectionKey,
+                                          IDictionary<string, string> entryByKey,
                                           CancellationToken cancellationToken)
     {
-        await _distributedCacheProvider.SetRowAsync(collectionKey, entries, cancellationToken);
+        await _distributedCacheProvider.SetRowAsync(collectionKey, entryByKey, cancellationToken);
     }
 
-    public virtual async Task<bool> DeleteRowAsync(string collectionKey,
+    public virtual async Task<bool> RemoveAsync(string collectionKey,
                                                    string key,
                                                    CancellationToken cancellationToken)
     {
@@ -44,11 +44,11 @@ public class RedisBlockingStorageProvider : IBlockingStorageProvider
         return isDelete;
     }
 
-    public virtual async Task SetRowAsync(string collectionKey,
-                                          string entryKey,
+    public virtual async Task SetAsync(string collectionKey,
+                                          string key,
                                           string entry,
                                           CancellationToken cancellationToken)
     {
-        await _distributedCacheProvider.SetRowAsync(collectionKey, entryKey, entry, cancellationToken);
+        await _distributedCacheProvider.SetRowAsync(collectionKey, key, entry, cancellationToken);
     }
 }

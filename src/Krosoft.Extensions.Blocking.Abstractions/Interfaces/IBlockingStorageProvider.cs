@@ -2,9 +2,9 @@
 
 public interface IBlockingStorageProvider
 {
-    Task<bool> IsExistRowAsync(string collectionKey, string key, CancellationToken cancellationToken);
-    Task<long> DeleteRowsAsync(string collectionKey, ISet<string> keys, CancellationToken cancellationToken);
-    Task SetRowAsync(string collectionKey, IDictionary<string, string> entries, CancellationToken cancellationToken);
-    Task<bool> DeleteRowAsync(string collectionKey, string key, CancellationToken cancellationToken);
-    Task SetRowAsync(string collectionKey, string entries, string cancellationToken, CancellationToken cancellationToken1);
+    Task<bool> IsSetAsync(string collectionKey, string key, CancellationToken cancellationToken);
+    Task<bool> RemoveAsync(string collectionKey, string key, CancellationToken cancellationToken);
+    Task<long> RemoveAsync(string collectionKey, ISet<string> keys, CancellationToken cancellationToken);
+    Task SetAsync(string collectionKey, string key, string entry, CancellationToken cancellationToken);
+    Task SetAsync(string collectionKey, IDictionary<string, string> entryByKey, CancellationToken cancellationToken);
 }
