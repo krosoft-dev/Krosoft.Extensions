@@ -1,18 +1,12 @@
-﻿using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
-using Krosoft.Extensions.Blocking.Abstractions.Models.Enums;
-using Krosoft.Extensions.Core.Models.Exceptions;
-using Krosoft.Extensions.Core.Tools;
+﻿using Krosoft.Extensions.Core.Models.Exceptions;
+using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
-namespace Krosoft.Extensions.Blocking.Services;
+namespace Krosoft.Extensions.WebApi.Identity.Services;
 
-public class HttpAccessTokenProvider :  IAccessTokenProvider
+public class HttpAccessTokenProvider : IAccessTokenProvider
 {
-     
-
-       
     private readonly IHttpContextAccessor _httpContextAccessor;
 
     public HttpAccessTokenProvider(IHttpContextAccessor httpContextAccessor)
@@ -20,7 +14,7 @@ public class HttpAccessTokenProvider :  IAccessTokenProvider
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<string> GetAccessTokenAsync(CancellationToken cancellationToken)
+    public async Task<string?> GetAccessTokenAsync(CancellationToken cancellationToken)
     {
         //On affecte le token que s'il n'y en pas déjà un.
         if (_httpContextAccessor.HttpContext != null)

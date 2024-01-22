@@ -1,6 +1,8 @@
 ﻿using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 using Krosoft.Extensions.Blocking.Abstractions.Models.Enums;
+using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Core.Tools;
+using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace Krosoft.Extensions.Blocking.Services;
@@ -17,12 +19,11 @@ public class IdentifierBlockingService : BlockingService, IIdentifierBlockingSer
         _identifierProvider = identifierProvider;
     }
 
-    public async Task<bool> IsBlockedAsync(CancellationToken cancellationToken)
+    public async Task BlockAsync(CancellationToken cancellationToken)
     {
         var collectionKey = GetCollectionKey();
-        var identifier = await _identifierProvider.GetIdentifierAsync(cancellationToken);
-        var isBlocked = await IsBlockedAsync(collectionKey, identifier, cancellationToken);
-        return isBlocked;
+        var identifier = await GetIdentifierAsync(cancellationToken);
+        await BlockAsync(collectionKey, identifier, cancellationToken);
     }
 
     public async Task BlockAsync(string identifier, CancellationToken cancellationToken)
@@ -53,5 +54,24 @@ public class IdentifierBlockingService : BlockingService, IIdentifierBlockingSer
         var collectionKey = GetCollectionKey();
 
         return await UnblockAsync(collectionKey, identifiers, cancellationToken);
+    }
+
+    public async Task<bool> IsBlockedAsync(CancellationToken cancellationToken)
+    {
+        var collectionKey = GetCollectionKey();
+        var identifier = await GetIdentifierAsync(cancellationToken);
+        var isBlocked = await IsBlockedAsync(collectionKey, identifier, cancellationToken);
+        return isBlocked;
+    }
+
+    private async Task<string> GetIdentifierAsync(CancellationToken cancellationToken)
+    {
+        var identifier = await _identifierProvider.GetIdentifierAsync(cancellationToken);
+        if (string.IsNullOrEmpty(identifier))
+        {
+            throw new KrosoftTechniqueException("Impossible d'obtenir l'identifiant !");
+        }
+
+        return identifier;
     }
 }

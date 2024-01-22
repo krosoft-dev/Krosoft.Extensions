@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 
-namespace Positive.Extensions.Identity.Cache.Distributed.Middlewares;
+namespace Krosoft.Extensions.WebApi.Blocking.Middlewares;
 
 public class BlockingMiddleware : IMiddleware
 {

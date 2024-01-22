@@ -2,7 +2,7 @@
 using Krosoft.Extensions.Identity.Abstractions.Models;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Krosoft.Extensions.Identity.Helpers;
+namespace Krosoft.Extensions.WebApi.Identity.Helpers;
 
 public static class IdentitTokenHelper
 {

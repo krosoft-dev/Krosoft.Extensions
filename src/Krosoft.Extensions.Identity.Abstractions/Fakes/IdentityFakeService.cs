@@ -1,6 +1,6 @@
 ﻿using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 
-namespace Krosoft.Extensions.Identity.Services;
+namespace Krosoft.Extensions.Identity.Abstractions.Fakes;
 
 public class IdentityFakeService : IIdentityService
 {

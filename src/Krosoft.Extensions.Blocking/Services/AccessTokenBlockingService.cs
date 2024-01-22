@@ -1,6 +1,8 @@
 ﻿using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 using Krosoft.Extensions.Blocking.Abstractions.Models.Enums;
+using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Core.Tools;
+using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace Krosoft.Extensions.Blocking.Services;
@@ -20,7 +22,8 @@ public class AccessTokenBlockingService : BlockingService, IAccessTokenBlockingS
     public async Task<bool> IsBlockedAsync(CancellationToken cancellationToken)
     {
         var collectionKey = GetCollectionKey();
-        var accessToken = await _accessTokenProvider.GetAccessTokenAsync(cancellationToken);
+
+        var accessToken = await GetAccessTokenAsync(cancellationToken);
         var isBlocked = await IsBlockedAsync(collectionKey, accessToken, cancellationToken);
 
         return isBlocked;
@@ -45,7 +48,7 @@ public class AccessTokenBlockingService : BlockingService, IAccessTokenBlockingS
     public async Task BlockAsync(CancellationToken cancellationToken)
     {
         var collectionKey = GetCollectionKey();
-        var accessToken = await _accessTokenProvider.GetAccessTokenAsync(cancellationToken);
+        var accessToken = await GetAccessTokenAsync(cancellationToken);
         await BlockAsync(collectionKey, accessToken, cancellationToken);
     }
 
@@ -62,5 +65,16 @@ public class AccessTokenBlockingService : BlockingService, IAccessTokenBlockingS
 
         var collectionKey = GetCollectionKey();
         return await UnblockAsync(collectionKey, accessTokens, cancellationToken);
+    }
+
+    private async Task<string> GetAccessTokenAsync(CancellationToken cancellationToken)
+    {
+        var accessToken = await _accessTokenProvider.GetAccessTokenAsync(cancellationToken);
+        if (string.IsNullOrEmpty(accessToken))
+        {
+            throw new KrosoftTechniqueException("Impossible d'obtenir le token d'accès !");
+        }
+
+        return accessToken;
     }
 }

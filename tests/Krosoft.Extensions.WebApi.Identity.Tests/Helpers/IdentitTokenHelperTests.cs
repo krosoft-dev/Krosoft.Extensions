@@ -1,8 +1,8 @@
 ﻿using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Identity.Abstractions.Models;
-using Krosoft.Extensions.Identity.Helpers;
+using Krosoft.Extensions.WebApi.Identity.Helpers;
 
-namespace Krosoft.Extensions.Identity.Tests.Helpers;
+namespace Krosoft.Extensions.WebApi.Identity.Tests.Helpers;
 
 [TestClass]
 public class IdentitTokenHelperTests

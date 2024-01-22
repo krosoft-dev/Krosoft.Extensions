@@ -2,13 +2,13 @@
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Microsoft.AspNetCore.Http;
 
-namespace Krosoft.Extensions.Identity.Services;
+namespace Krosoft.Extensions.WebApi.Identity.Services;
 
-public class ClaimsService : IClaimsService
+public class HttpClaimsService : IClaimsService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public ClaimsService(IHttpContextAccessor httpContextAccessor)
+    public HttpClaimsService(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
     }

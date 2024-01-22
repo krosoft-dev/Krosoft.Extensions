@@ -15,24 +15,24 @@ using NFluent;
 namespace Krosoft.Extensions.Blocking.Tests.Services;
 
 [TestClass]
-[TestSubject(typeof(AccessTokenBlockingService))]
-public class AccessTokenBlockingServiceTests : BaseTest
+[TestSubject(typeof(IdentifierBlockingService))]
+public class IdentifierBlockingServiceTests : BaseTest
 {
-    private IAccessTokenBlockingService _accessTokenBlockingService = null!;
+    private IIdentifierBlockingService _identifierBlockingService = null!;
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddLoggingExt();
         services.AddBlocking();
         services.AddMemoryBlockingStorage();
-        services.AddTransient<IAccessTokenProvider, FakeAccessTokenProvider>();
+        services.AddTransient<IIdentifierProvider, FakeIdentifierProvider>();
     }
 
     [TestMethod]
     public async Task BlockAsync_Ok()
     {
-        await _accessTokenBlockingService.BlockAsync(CancellationToken.None);
-        var isBlocked = await _accessTokenBlockingService.IsBlockedAsync(CancellationToken.None);
+        await _identifierBlockingService.BlockAsync(CancellationToken.None);
+        var isBlocked = await _identifierBlockingService.IsBlockedAsync(CancellationToken.None);
 
         Check.That(isBlocked).IsTrue();
     }
@@ -41,6 +41,6 @@ public class AccessTokenBlockingServiceTests : BaseTest
     public void SetUp()
     {
         var serviceProvider = CreateServiceCollection();
-        _accessTokenBlockingService = serviceProvider.GetRequiredService<IAccessTokenBlockingService>();
+        _identifierBlockingService = serviceProvider.GetRequiredService<IIdentifierBlockingService>();
     }
 }

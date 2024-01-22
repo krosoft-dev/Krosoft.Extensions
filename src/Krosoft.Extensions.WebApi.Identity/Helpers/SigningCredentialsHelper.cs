@@ -4,7 +4,7 @@ using System.Text;
 using Krosoft.Extensions.Core.Tools;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Krosoft.Extensions.Identity.Helpers;
+namespace Krosoft.Extensions.WebApi.Identity.Helpers;
 
 public static class SigningCredentialsHelper
 {

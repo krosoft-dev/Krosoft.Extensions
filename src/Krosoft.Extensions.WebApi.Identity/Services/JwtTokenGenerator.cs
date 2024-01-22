@@ -5,11 +5,11 @@ using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Krosoft.Extensions.Identity.Abstractions.Models;
-using Krosoft.Extensions.Identity.Helpers;
+using Krosoft.Extensions.WebApi.Identity.Helpers;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Krosoft.Extensions.Identity.Services;
+namespace Krosoft.Extensions.WebApi.Identity.Services;
 
 public class JwtTokenGenerator : IJwtTokenGenerator
 {
