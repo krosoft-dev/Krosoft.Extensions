@@ -29,12 +29,74 @@ public class AccessTokenBlockingServiceTests : BaseTest
     }
 
     [TestMethod]
+    public async Task BlockAsync_Key_Ok()
+    {
+        var id = $"TU_{DateTime.Now.Ticks}";
+        await _accessTokenBlockingService.BlockAsync(id, CancellationToken.None);
+        var isBlocked = await _accessTokenBlockingService.IsBlockedAsync(id, CancellationToken.None);
+
+        Check.That(isBlocked).IsTrue();
+    }
+
+    [TestMethod]
+    public async Task BlockAsync_Keys_Ok()
+    {
+        var id1 = $"TU_{DateTime.Now.Ticks}";
+        var id2 = $"TU_{DateTime.Now.Ticks}";
+        var id3 = $"TU_{DateTime.Now.Ticks}";
+        var id4 = $"TU_{DateTime.Now.Ticks}";
+        var keys = new HashSet<string>
+        {
+            id1,
+            id2,
+            id3
+        };
+        await _accessTokenBlockingService.BlockAsync(keys, CancellationToken.None);
+        var isBlocked1 = await _accessTokenBlockingService.IsBlockedAsync(id1, CancellationToken.None);
+        Check.That(isBlocked1).IsTrue();
+        var isBlocked4 = await _accessTokenBlockingService.IsBlockedAsync(id4, CancellationToken.None);
+        Check.That(isBlocked4).IsFalse();
+    }
+
+    [TestMethod]
     public async Task BlockAsync_Ok()
     {
         await _accessTokenBlockingService.BlockAsync(CancellationToken.None);
         var isBlocked = await _accessTokenBlockingService.IsBlockedAsync(CancellationToken.None);
 
         Check.That(isBlocked).IsTrue();
+    }
+
+    [TestMethod]
+    public async Task GetBlockedAsync_Ok()
+    {
+        var id1 = $"TU_{DateTime.Now.Ticks}";
+        var id2 = $"TU_{DateTime.Now.Ticks}";
+        var id3 = $"TU_{DateTime.Now.Ticks}";
+        var keys = new HashSet<string>
+        {
+            id1,
+            id2,
+            id3
+        };
+
+        foreach (var key in keys)
+        {
+            var isBlocked = await _accessTokenBlockingService.IsBlockedAsync(key, CancellationToken.None);
+            Check.That(isBlocked).IsFalse();
+        }
+
+        await _accessTokenBlockingService.BlockAsync(keys, CancellationToken.None);
+
+        foreach (var key in keys)
+        {
+            var isBlocked = await _accessTokenBlockingService.IsBlockedAsync(key, CancellationToken.None);
+            Check.That(isBlocked).IsTrue();
+        }
+
+        var blockedKeys = await _accessTokenBlockingService.GetBlockedAsync(CancellationToken.None);
+        Check.That(blockedKeys).HasSize(3);
+        Check.That(blockedKeys).ContainsExactly(keys);
     }
 
     [TestMethod]
@@ -55,6 +117,41 @@ public class AccessTokenBlockingServiceTests : BaseTest
     {
         var serviceProvider = CreateServiceCollection();
         _accessTokenBlockingService = serviceProvider.GetRequiredService<IAccessTokenBlockingService>();
+    }
+
+    [TestMethod]
+    public async Task UnblockAsync_Keys_Ok()
+    {
+        var id1 = $"TU_{DateTime.Now.Ticks}";
+        var id2 = $"TU_{DateTime.Now.Ticks}";
+        var id3 = $"TU_{DateTime.Now.Ticks}";
+        var keys = new HashSet<string>
+        {
+            id1,
+            id2,
+            id3
+        };
+
+        foreach (var key in keys)
+        {
+            var isBlocked = await _accessTokenBlockingService.IsBlockedAsync(key, CancellationToken.None);
+            Check.That(isBlocked).IsFalse();
+        }
+
+        await _accessTokenBlockingService.BlockAsync(keys, CancellationToken.None);
+
+        foreach (var key in keys)
+        {
+            var isBlocked = await _accessTokenBlockingService.IsBlockedAsync(key, CancellationToken.None);
+            Check.That(isBlocked).IsTrue();
+        }
+
+        await _accessTokenBlockingService.UnblockAsync(keys, CancellationToken.None);
+        foreach (var key in keys)
+        {
+            var isBlocked = await _accessTokenBlockingService.IsBlockedAsync(key, CancellationToken.None);
+            Check.That(isBlocked).IsFalse();
+        }
     }
 
     [TestMethod]

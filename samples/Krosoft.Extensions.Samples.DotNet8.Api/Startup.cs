@@ -33,7 +33,6 @@ using Krosoft.Extensions.Samples.Library.Mappings;
 using Krosoft.Extensions.WebApi.Blocking.Extensions;
 using Krosoft.Extensions.WebApi.Extensions;
 using Krosoft.Extensions.WebApi.HealthChecks.Extensions;
-using Krosoft.Extensions.WebApi.Identity.Extensions;
 using Krosoft.Extensions.WebApi.Swagger.Extensions;
 using Krosoft.Extensions.WebApi.Swagger.HealthChecks.Extensions;
 using Krosoft.Extensions.Zip.Extensions;
@@ -80,11 +79,11 @@ public class Startup
             ;
 
         services.AddZip();
-        services.AddPdf(); 
+        services.AddPdf();
         services.AddBlocking().AddWepApiBlocking().AddMemoryBlockingStorage();
 
         //Data.
-        services.AddRepositories(); 
+        services.AddRepositories();
         services.AddDbContextInMemory<SampleKrosoftContext>(true);
         services.AddSeedService<SampleKrosoftContext, SampleSeedService<SampleKrosoftContext>>();
         //services.AddDbContextPostgreSql<KrosoftExtensionTenantContext>(_configuration);

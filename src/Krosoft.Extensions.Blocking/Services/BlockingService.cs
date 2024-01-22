@@ -43,6 +43,13 @@ public abstract class BlockingService
         await _blockingStorageProvider.SetAsync(collectionKey, key, Blocked, cancellationToken);
     }
 
+    public async Task<IEnumerable<string>> GetBlockedAsync(CancellationToken cancellationToken)
+    {
+        var collectionKey = GetCollectionKey();
+        var keys = await _blockingStorageProvider.GetKeysAsync(collectionKey, cancellationToken);
+        return keys;
+    }
+
     private string GetCollectionKey() => $"Blocking_{_blockType.ToString()}";
 
     public async Task<bool> IsBlockedAsync(string key,

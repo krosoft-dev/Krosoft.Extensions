@@ -12,6 +12,13 @@ public class MemoryBlockingStorageProvider : IBlockingStorageProvider
         _cacheProvider = cacheProvider;
     }
 
+    public Task<IEnumerable<string>> GetKeysAsync(string collectionKey,
+                                                  CancellationToken cancellationToken)
+    {
+        var keys = _cacheProvider.GetKeys().Where(x => x.StartsWith(collectionKey)).Select(x => x.Replace($"{collectionKey}_", ""));
+        return Task.FromResult(keys);
+    }
+
     public Task<bool> IsSetAsync(string collectionKey,
                                  string key,
                                  CancellationToken cancellationToken)
