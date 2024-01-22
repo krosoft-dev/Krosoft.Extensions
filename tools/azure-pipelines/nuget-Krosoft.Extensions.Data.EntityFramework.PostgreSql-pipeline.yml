@@ -17,10 +17,5 @@ extends:
      - "Krosoft.Extensions.Core"
      - "Krosoft.Extensions.Data.Abstractions"
      - "Krosoft.Extensions.Data.EntityFramework"
-<<<<<<< HEAD
      - "Krosoft.Extensions.Data.EntityFramework.PostgreSql"
-=======
-     - "Krosoft.Extensions.Data.Abstractions"
-     - "Krosoft.Extensions.Core"
->>>>>>> main
 

@@ -16,9 +16,5 @@ extends:
     packages:
      - "Krosoft.Extensions.Core"
      - "Krosoft.Extensions.Data.Abstractions"
-<<<<<<< HEAD
      - "Krosoft.Extensions.Data.EntityFramework"
-=======
-     - "Krosoft.Extensions.Core"
->>>>>>> main
 
