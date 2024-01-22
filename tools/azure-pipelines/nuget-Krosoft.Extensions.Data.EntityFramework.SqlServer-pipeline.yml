@@ -14,8 +14,15 @@ extends:
   template: ./templates/pipelines/nuget-template.yml
   parameters:
     packages:
+<<<<<<< HEAD
      - "Krosoft.Extensions.Core"
      - "Krosoft.Extensions.Data.Abstractions"
      - "Krosoft.Extensions.Data.EntityFramework"
      - "Krosoft.Extensions.Data.EntityFramework.SqlServer"
 
+=======
+      - "Krosoft.Extensions.Data.EntityFramework.SqlServer"
+      - "Krosoft.Extensions.Data.EntityFramework"
+      - "Krosoft.Extensions.Data.Abstractions"
+      - "Krosoft.Extensions.Core"
+>>>>>>> main
