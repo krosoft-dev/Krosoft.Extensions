@@ -8,11 +8,3 @@ public interface IBlockingStorageProvider
     Task<bool> DeleteRowAsync(string collectionKey, string key, CancellationToken cancellationToken);
     Task SetRowAsync(string collectionKey, string entries, string cancellationToken, CancellationToken cancellationToken1);
 }
-public interface IAccessTokenProvider
-{
-    Task<string> GetAccessTokenAsync(CancellationToken cancellationToken);
-}
-public interface IIdentifierProvider
-{
-    Task<string> GetIdentifierAsync(CancellationToken cancellationToken);
-}

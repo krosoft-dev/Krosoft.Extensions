@@ -10,7 +10,7 @@
 
 //namespace Positive.Extensions.Identity.Cache.Distributed.Services;
 
-//public class IdentifierBlockingService : BlockingService, IIdentifierBlockingService
+//public class IdentifierProvider : BlockingService, IIdentifierProvider
 //{
 //    private readonly IHttpContextService _httpContextService;
 //    private readonly IJwtTokenGenerator _jwtTokenGenerator;

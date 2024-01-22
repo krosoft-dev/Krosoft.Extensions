@@ -1,5 +1,6 @@
 ﻿using IzRoadbook.Extensions.Services;
 using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
+using Krosoft.Extensions.Cache.Memory.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Krosoft.Extensions.Blocking.Memory.Extensions;
@@ -11,6 +12,7 @@ public static class ServiceCollectionExtensions
                                                         )
     {
         
+        services.AddMemoryCacheExt();
         services.AddTransient<IBlockingStorageProvider, MemoryBlockingStorageProvider>();
  
 

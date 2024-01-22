@@ -7,10 +7,9 @@ namespace Krosoft.Extensions.Blocking.Services;
 
 public class IdentifierBlockingService : BlockingService, IIdentifierBlockingService
 {
-    private readonly IIdentifierProvider _identifierProvider; 
+    private readonly IIdentifierProvider _identifierProvider;
 
     public IdentifierBlockingService(IBlockingStorageProvider blockingStorageProvider,
-                              
                                      ILogger<IdentifierBlockingService> logger,
                                      IIdentifierProvider identifierProvider)
         : base(BlockType.Identifier, blockingStorageProvider, logger)
@@ -20,7 +19,7 @@ public class IdentifierBlockingService : BlockingService, IIdentifierBlockingSer
 
     public async Task<bool> IsBlockedAsync(CancellationToken cancellationToken)
     {
-        var collectionKey = GetCollectionKey(); 
+        var collectionKey = GetCollectionKey();
         var identifier = await _identifierProvider.GetIdentifierAsync(cancellationToken);
         var isBlocked = await IsBlockedAsync(collectionKey, identifier, cancellationToken);
         return isBlocked;
