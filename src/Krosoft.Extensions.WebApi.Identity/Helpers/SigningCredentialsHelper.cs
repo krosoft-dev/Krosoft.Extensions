@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
 using System.Text;
+using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Core.Tools;
 using Microsoft.IdentityModel.Tokens;
 
@@ -21,8 +22,13 @@ public static class SigningCredentialsHelper
         return true;
     }
 
-    public static SigningCredentials GetSigningCredentials(string securityKey)
+    public static SigningCredentials GetSigningCredentials(string? securityKey)
     {
+        if (string.IsNullOrEmpty(securityKey))
+        {
+            throw new KrosoftTechniqueException($"'{nameof(securityKey)}' non définie.");
+        }
+
         Guard.IsNotNullOrWhiteSpace(nameof(securityKey), securityKey);
         var key = Encoding.ASCII.GetBytes(securityKey);
         var symmetricSecurityKey = new SymmetricSecurityKey(key);

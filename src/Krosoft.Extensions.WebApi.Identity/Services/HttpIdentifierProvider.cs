@@ -6,12 +6,12 @@ namespace Krosoft.Extensions.WebApi.Identity.Services;
 public class HttpIdentifierProvider : IIdentifierProvider
 {
     private readonly IAccessTokenProvider _accessTokenProvider;
-    private readonly IJwtTokenGenerator _jwtTokenGenerator;
+    private readonly IJwtTokenValidator _jwtTokenValidator;
 
-    public HttpIdentifierProvider(IAccessTokenProvider accessTokenProvider, IJwtTokenGenerator jwtTokenGenerator)
+    public HttpIdentifierProvider(IAccessTokenProvider accessTokenProvider, IJwtTokenValidator jwtTokenValidator)
     {
         _accessTokenProvider = accessTokenProvider;
-        _jwtTokenGenerator = jwtTokenGenerator;
+        _jwtTokenValidator = jwtTokenValidator;
     }
 
     public async Task<string?> GetIdentifierAsync(CancellationToken cancellationToken)
@@ -22,7 +22,7 @@ public class HttpIdentifierProvider : IIdentifierProvider
             throw new KrosoftTechniqueException("Impossible d'obtenir le token d'accès !");
         }
 
-        var identifier = _jwtTokenGenerator.GetIdentifierFromToken(accessToken);
+        var identifier = _jwtTokenValidator.GetIdentifierFromToken(accessToken);
         return identifier;
     }
 }

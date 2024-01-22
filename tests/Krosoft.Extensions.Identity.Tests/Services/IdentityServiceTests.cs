@@ -22,7 +22,7 @@ public class IdentityServiceTests : BaseTest
 
     protected override void AddServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddHttpIdentityEx();
+        services.AddWebApiIdentityEx();
 
         MockClaims(services);
     }

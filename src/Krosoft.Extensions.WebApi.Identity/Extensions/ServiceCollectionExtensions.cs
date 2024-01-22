@@ -26,16 +26,9 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddHttpIdentityEx(this IServiceCollection services)
-    {
-        services.AddTransient<IClaimsService, HttpClaimsService>();
-        services.AddIdentityEx();
-
-        return services;
-    }
-
     public static IServiceCollection AddIdentifierProvider(this IServiceCollection services)
     {
+        services.AddTransient<IJwtTokenValidator, JwtTokenValidator>();
         services.AddTransient<IIdentifierProvider, HttpIdentifierProvider>();
 
         return services;
@@ -50,11 +43,6 @@ public static class ServiceCollectionExtensions
         if (jwtSettings == null)
         {
             throw new KrosoftTechniqueException($"Impossible d'instancier l'objet de type '{nameof(JwtSettings)}'.");
-        }
-
-        if (string.IsNullOrEmpty(jwtSettings.SecurityKey))
-        {
-            throw new KrosoftTechniqueException($"'{nameof(jwtSettings.SecurityKey)}' non définie.");
         }
 
         var signingCredentials = SigningCredentialsHelper.GetSigningCredentials(jwtSettings.SecurityKey);
@@ -118,7 +106,16 @@ public static class ServiceCollectionExtensions
         services.AddOptions();
         services.Configure<JwtSettings>(configuration.GetSection(nameof(JwtSettings)));
         services.AddTransient<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddTransient<IJwtTokenValidator, JwtTokenValidator>();
         services.AddRefreshTokenGenerator();
+
+        return services;
+    }
+
+    public static IServiceCollection AddWebApiIdentityEx(this IServiceCollection services)
+    {
+        services.AddTransient<IClaimsService, HttpClaimsService>();
+        services.AddIdentityEx();
 
         return services;
     }

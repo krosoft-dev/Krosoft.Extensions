@@ -1,13 +1,11 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Krosoft.Extensions.Core.Interfaces;
-using Krosoft.Extensions.Core.Models.Exceptions;
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Identity.Abstractions.Interfaces;
 using Krosoft.Extensions.Identity.Abstractions.Models;
 using Krosoft.Extensions.WebApi.Identity.Helpers;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Krosoft.Extensions.WebApi.Identity.Services;
 
@@ -50,7 +48,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
 
         tokenClaims.AddRange(claims);
 
-        var signingCredentials = GetSigningCredentials();
+        var signingCredentials = SigningCredentialsHelper.GetSigningCredentials(_jwtSettings.SecurityKey);
 
         var jwt = new JwtSecurityToken(_jwtSettings.Issuer,
                                        _jwtSettings.Audience,
@@ -60,31 +58,5 @@ public class JwtTokenGenerator : IJwtTokenGenerator
                                        signingCredentials);
 
         return new JwtSecurityTokenHandler().WriteToken(jwt);
-    }
-
-    public string? GetIdentifierFromToken(string accessToken)
-    {
-        var signingCredentials = GetSigningCredentials();
-        var tokenValidationParameters = IdentitTokenHelper.GetTokenValidationParameters(signingCredentials, _jwtSettings, false);
-
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var principal = tokenHandler.ValidateToken(accessToken,
-                                                   tokenValidationParameters,
-                                                   out var securityToken);
-
-        SigningCredentialsHelper.CheckValidity(securityToken);
-
-        return principal?.Identity?.Name;
-    }
-
-    private SigningCredentials GetSigningCredentials()
-    {
-        if (string.IsNullOrEmpty(_jwtSettings.SecurityKey))
-        {
-            throw new KrosoftTechniqueException($"'{nameof(_jwtSettings.SecurityKey)}' non définie.");
-        }
-
-        var signingCredentials = SigningCredentialsHelper.GetSigningCredentials(_jwtSettings.SecurityKey);
-        return signingCredentials;
     }
 }

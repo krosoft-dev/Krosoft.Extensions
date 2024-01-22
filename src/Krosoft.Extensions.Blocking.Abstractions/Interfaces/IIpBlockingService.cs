@@ -1,5 +1,3 @@
 ﻿namespace Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 
-public interface IIpBlockingService : IBlockingService
-{
-}
+public interface IIpBlockingService : IBlockingService;
