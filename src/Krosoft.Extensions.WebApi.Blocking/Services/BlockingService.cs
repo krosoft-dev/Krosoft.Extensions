@@ -1,25 +1,30 @@
-﻿//using Krosoft.Extensions.Cache.Distributed.Redis.Interfaces;
+﻿//using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
+//using Krosoft.Extensions.Blocking.Abstractions.Models.Enums;
 //using Microsoft.Extensions.Logging;
-//using Positive.Extensions.Cache.Distributed.Redis.Interfaces;
-//using Positive.Extensions.Identity.Abstractions.Models;
 
-//namespace Positive.Extensions.Identity.Cache.Distributed.Services;
+//namespace Krosoft.Extensions.Blocking.Services;
 
-//public abstract class DistributedBlockingService
+//public abstract class BlockingService
 //{
 //    private const string Blocked = "blocked";
 //    private readonly BlockType _blockType;
-//    private readonly IDistributedCacheProvider _distributedCacheProvider;
-//    private readonly ILogger<DistributedBlockingService> _logger;
+//    private readonly IBlockingStorageProvider _blockingStorageProvider; 
+//    private readonly ILogger<BlockingService> _logger;
 
-//    protected DistributedBlockingService(BlockType blockType,
-//                                         IDistributedCacheProvider distributedCacheProvider,
-//                                         ILogger<DistributedBlockingService> logger)
+//    protected BlockingService(BlockType blockType,
+//                              IBlockingStorageProvider blockingStorageProvider,
+//                              ILogger<BlockingService> logger)
 //    {
 //        _blockType = blockType;
-//        _distributedCacheProvider = distributedCacheProvider;
+//        _blockingStorageProvider = blockingStorageProvider;
 //        _logger = logger;
 //    }
+
+  
+
+     
+
+ 
 
 //    protected string GetCollectionKey() => $"Blocking_{_blockType.ToString()}";
 
@@ -27,7 +32,7 @@
 //                                              string key,
 //                                              CancellationToken cancellationToken)
 //    {
-//        var isExist = await _distributedCacheProvider.IsExistRowAsync(collectionKey, key, cancellationToken);
+//        var isExist = await _blockingStorageProvider.IsExistRowAsync(collectionKey, key, cancellationToken);
 //        if (isExist)
 //        {
 //            _logger.LogDebug($"{_blockType} is blocked : {key}");
@@ -48,7 +53,7 @@
 //            entries.Add(key, Blocked);
 //        }
 
-//        await _distributedCacheProvider.SetRowAsync(collectionKey, entries, cancellationToken);
+//        await _blockingStorageProvider.SetRowAsync(collectionKey, entries, cancellationToken);
 //    }
 
 //    protected async Task<long> UnblockAsync(string collectionKey,
@@ -57,7 +62,7 @@
 //    {
 //        _logger.LogDebug($"Unblocking {_blockType} : {string.Join(",", keys)}");
 
-//        var number = await _distributedCacheProvider.DeleteRowsAsync(collectionKey, keys, cancellationToken);
+//        var number = await _blockingStorageProvider.DeleteRowsAsync(collectionKey, keys, cancellationToken);
 //        return number;
 //    }
 
@@ -66,7 +71,7 @@
 //                                    CancellationToken cancellationToken)
 //    {
 //        _logger.LogDebug($"Blocking {_blockType} : {key}");
-//        await _distributedCacheProvider.SetRowAsync(collectionKey, key, Blocked, cancellationToken);
+//        await _blockingStorageProvider.SetRowAsync(collectionKey, key, Blocked, cancellationToken);
 //    }
 
 //    protected async Task<bool> UnblockAsync(string collectionKey,
@@ -75,7 +80,7 @@
 //    {
 //        _logger.LogDebug($"Unblocking {_blockType} : {key}");
 
-//        var isDelete = await _distributedCacheProvider.DeleteRowAsync(collectionKey, key, cancellationToken);
+//        var isDelete = await _blockingStorageProvider.DeleteRowAsync(collectionKey, key, cancellationToken);
 //        return isDelete;
 //    }
 //}

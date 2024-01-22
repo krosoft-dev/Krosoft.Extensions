@@ -3,12 +3,12 @@ using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 using Krosoft.Extensions.Blocking.Extensions;
 using Krosoft.Extensions.Blocking.Services;
 using Krosoft.Extensions.Testing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NFluent;
-using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
-namespace Krosoft.Extensions.Cache.Distributed.Redis.Tests.Services;
+namespace Krosoft.Extensions.Blocking.Tests.Services;
 
 [TestClass]
 [TestSubject(typeof(AccessTokenBlockingService))]

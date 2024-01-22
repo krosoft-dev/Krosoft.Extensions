@@ -46,7 +46,7 @@
 
 //    protected string GetCollectionKey() => $"Blocking_{_blockType.ToString()}";
 
-//    private static string GetFullKey(string collectionKey, string key) => $"{collectionKey}_{key}";
+
 
 //    protected Task<bool> IsBlockedAsync(string collectionKey,
 //                                        string key,

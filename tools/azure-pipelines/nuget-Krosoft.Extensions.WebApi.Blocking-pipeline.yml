@@ -1,0 +1,20 @@
+name: Nuget 'Krosoft.Extensions.WebApi.Blocking' - $(Date:yyyy.MM.dd).$(BuildID)
+
+pr: none
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - "**/Krosoft.Extensions.WebApi.Blocking/*"
+
+extends:
+  template: ./templates/pipelines/nuget-template.yml
+  parameters:
+    packages:
+     - "Krosoft.Extensions.WebApi.Blocking"
+     - "Krosoft.Extensions.Blocking.Abstractions"
+     - "Krosoft.Extensions.Core"
+

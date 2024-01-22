@@ -1,34 +1,46 @@
-$sourcesDirectory = "C:\Dev\Krosoft.Extensions\"
-$path = "C:\Dev\Krosoft.Extensions\tests\Krosoft.Extensions.Validations.Tests\Krosoft.Extensions.Validations.Tests.csproj"
-$resultPath = "temp"
-$configuration = "Release"
+$template = Get-Content -Path ./tools/scripts/nuget-template-pipeline.yml
 
 
-# dotnet new console -n testt -f net8.0
-# cd ./testt
-# dotnet add package ReportGenerator --version 5.2.0
+
+function Testss( $context ) { 
+
+  
+  
+
+  Write-Host =========== $context.BaseName
  
+  
 
 
-# dotnet build $path --configuration $configuration
+  Get-Content $context.FullName `
+| Find "<ProjectReference Include=" `
+| ForEach-Object { $context -replace '<ProjectReference Include=', '' -replace '/>', '' }  `
+| Sort-Object -Unique  `
+| ForEach-Object { 
+  
+    Write-Host $PSItem
 
-# dotnet test $path  `
-#     --logger trx `
-#     --results-directory $resultPath  `
-#     --no-build  `
-#     --configuration $configuration  `
-#     -p:CollectCoverage=true  `
-#     -p:Platform=AnyCPU  `
-#     -p:CoverletOutputFormat="cobertura"
+  }
 
-# dotnet $(UserProfile)\.nuget\packages\reportgenerator\5.2.0\tools\net6.0\ReportGenerator.dll `
-#     -reports:$sourcesDirectory/**/coverage.cobertura.xml  `
-#     -targetdir:$sourcesDirectory/CodeCoverage `
-#     "-reporttypes:HtmlInline_AzurePipelines;Cobertura" `
-#     -filefilters: "-$sourcesDirectory/**/Migrations/*.cs;-$sourcesDirectory/samples/*.*" `
-#     -title:"Hello" 
+
+
+  # dotnet list  $context .FullName reference
+
+  Write-Host ===========
+  Write-Host  
+}
+
+
+(Get-ChildItem ./src -Filter *.csproj -Recurse) | ForEach-Object {
+
+
+  if (  $_.BaseName -eq "Krosoft.Extensions.Data.EntityFramework.SqlServer"
+  ) {
+      
  
+    Testss $_ 
 
+   
  
- 
- 
+  } 
+}

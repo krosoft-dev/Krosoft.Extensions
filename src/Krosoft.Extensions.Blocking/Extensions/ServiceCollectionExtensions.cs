@@ -1,7 +1,6 @@
 ﻿using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 using Krosoft.Extensions.Blocking.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Positive.Extensions.Identity.Cache.Distributed.Services;
 
 namespace Krosoft.Extensions.Blocking.Extensions;
 

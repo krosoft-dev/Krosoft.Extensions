@@ -1,19 +1,18 @@
 ﻿//using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 //using Krosoft.Extensions.Blocking.Abstractions.Models.Enums;
-//using Krosoft.Extensions.Cache.Distributed.Redis.Interfaces;
 //using Krosoft.Extensions.Core.Tools;
 //using Microsoft.Extensions.Logging;
 
-//namespace Positive.Extensions.Identity.Cache.Distributed.Services;
+//namespace Krosoft.Extensions.Blocking.Services;
 
-//public class DistributedAccessTokenBlockingService : DistributedBlockingService, IAccessTokenBlockingService
+//public class AccessTokenBlockingService : BlockingService, IAccessTokenBlockingService
 //{
 //    private readonly IHttpContextService _httpContextService;
 
-//    public DistributedAccessTokenBlockingService(IDistributedCacheProvider distributedCacheProvider,
-//                                                 IHttpContextService httpContextService,
-//                                                 ILogger<DistributedAccessTokenBlockingService> logger)
-//        : base(BlockType.AccessToken, distributedCacheProvider, logger)
+//    public AccessTokenBlockingService(IBlockingStorageProvider blockingStorageProvider,
+//                                      IHttpContextService httpContextService,
+//                                      ILogger<AccessTokenBlockingService> logger)
+//        : base(BlockType.AccessToken, blockingStorageProvider, logger)
 //    {
 //        _httpContextService = httpContextService;
 //    }

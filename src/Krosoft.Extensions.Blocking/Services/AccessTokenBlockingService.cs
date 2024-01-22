@@ -7,20 +7,20 @@ namespace Krosoft.Extensions.Blocking.Services;
 
 public class AccessTokenBlockingService : BlockingService, IAccessTokenBlockingService
 {
-    private readonly IHttpContextService _httpContextService;
+    private readonly IAccessTokenProvider _accessTokenProvider;
 
     public AccessTokenBlockingService(IBlockingStorageProvider blockingStorageProvider,
-                                      IHttpContextService httpContextService,
-                                      ILogger<AccessTokenBlockingService> logger)
+                                      ILogger<AccessTokenBlockingService> logger,
+                                      IAccessTokenProvider accessTokenProvider)
         : base(BlockType.AccessToken, blockingStorageProvider, logger)
     {
-        _httpContextService = httpContextService;
+        _accessTokenProvider = accessTokenProvider;
     }
 
     public async Task<bool> IsBlockedAsync(CancellationToken cancellationToken)
     {
         var collectionKey = GetCollectionKey();
-        var accessToken = await _httpContextService.GetAccessTokenAsync();
+        var accessToken = await _accessTokenProvider.GetAccessTokenAsync(cancellationToken);
         var isBlocked = await IsBlockedAsync(collectionKey, accessToken, cancellationToken);
 
         return isBlocked;
@@ -45,7 +45,7 @@ public class AccessTokenBlockingService : BlockingService, IAccessTokenBlockingS
     public async Task BlockAsync(CancellationToken cancellationToken)
     {
         var collectionKey = GetCollectionKey();
-        var accessToken = await _httpContextService.GetAccessTokenAsync();
+        var accessToken = await _accessTokenProvider.GetAccessTokenAsync(cancellationToken);
         await BlockAsync(collectionKey, accessToken, cancellationToken);
     }
 

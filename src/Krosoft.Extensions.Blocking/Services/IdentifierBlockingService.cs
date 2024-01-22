@@ -1,35 +1,27 @@
 ﻿using Krosoft.Extensions.Blocking.Abstractions.Interfaces;
 using Krosoft.Extensions.Blocking.Abstractions.Models.Enums;
-using Krosoft.Extensions.Blocking.Services;
 using Krosoft.Extensions.Core.Tools;
 using Microsoft.Extensions.Logging;
-using Positive.Extensions.Cache.Distributed.Redis.Interfaces;
-using Positive.Extensions.Core.Tools;
-using Positive.Extensions.Identity.Abstractions.Interfaces;
-using Positive.Extensions.Identity.Abstractions.Models;
 
-namespace Positive.Extensions.Identity.Cache.Distributed.Services;
+namespace Krosoft.Extensions.Blocking.Services;
 
 public class IdentifierBlockingService : BlockingService, IIdentifierBlockingService
 {
-    private readonly IHttpContextService _httpContextService;
-    private readonly IJwtTokenGenerator _jwtTokenGenerator;
+    private readonly IIdentifierProvider _identifierProvider; 
 
     public IdentifierBlockingService(IBlockingStorageProvider blockingStorageProvider,
-                                     IHttpContextService httpContextService,
-                                     IJwtTokenGenerator jwtTokenGenerator,
-                                     ILogger<IdentifierBlockingService> logger)
+                              
+                                     ILogger<IdentifierBlockingService> logger,
+                                     IIdentifierProvider identifierProvider)
         : base(BlockType.Identifier, blockingStorageProvider, logger)
     {
-        _httpContextService = httpContextService;
-        _jwtTokenGenerator = jwtTokenGenerator;
+        _identifierProvider = identifierProvider;
     }
 
     public async Task<bool> IsBlockedAsync(CancellationToken cancellationToken)
     {
-        var collectionKey = GetCollectionKey();
-        var accessToken = await _httpContextService.GetAccessTokenAsync();
-        var identifier = _jwtTokenGenerator.GetIdentifierFromToken(accessToken);
+        var collectionKey = GetCollectionKey(); 
+        var identifier = await _identifierProvider.GetIdentifierAsync(cancellationToken);
         var isBlocked = await IsBlockedAsync(collectionKey, identifier, cancellationToken);
         return isBlocked;
     }
