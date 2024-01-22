@@ -20,20 +20,6 @@ public class MemoryBlockingStorageProvider : IBlockingStorageProvider
         return Task.FromResult(isExist);
     }
 
-    public async Task<long> RemoveAsync(string collectionKey,
-                                        ISet<string> keys,
-                                        CancellationToken cancellationToken)
-    {
-        long number = 0;
-        foreach (var key in keys)
-        {
-            await RemoveAsync(collectionKey, key, cancellationToken);
-            number++;
-        }
-
-        return number;
-    }
-
     public async Task SetAsync(string collectionKey,
                                IDictionary<string, string> entryByKey,
                                CancellationToken cancellationToken)
@@ -61,6 +47,20 @@ public class MemoryBlockingStorageProvider : IBlockingStorageProvider
         _cacheProvider.Set(GetFullKey(collectionKey, key), entry);
 
         return Task.CompletedTask;
+    }
+
+    public async Task<long> RemoveAsync(string collectionKey,
+                                        ISet<string> keys,
+                                        CancellationToken cancellationToken)
+    {
+        long number = 0;
+        foreach (var key in keys)
+        {
+            await RemoveAsync(collectionKey, key, cancellationToken);
+            number++;
+        }
+
+        return number;
     }
 
     private static string GetFullKey(string collectionKey, string key) => $"{collectionKey}_{key}";

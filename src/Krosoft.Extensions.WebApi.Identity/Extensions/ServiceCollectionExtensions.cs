@@ -58,42 +58,8 @@ public static class ServiceCollectionExtensions
                     jwtBearerOptions.TokenValidationParameters = IdentitTokenHelper.GetTokenValidationParameters(signingCredentials, jwtSettings, true);
                     jwtBearerOptions.Events = new JwtBearerEvents
                     {
-                        OnAuthenticationFailed = context =>
-                        {
-                            if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-                            {
-#if NET8_0_OR_GREATER
-                                context.Response.Headers.Append("Token-Expired", "true");
-#else
-                                if (!context.Response.Headers.ContainsKey("Token-Expired"))
-                                {
-                                    context.Response.Headers.Add("Token-Expired", "true");
-                                }
-#endif
-                            }
-
-                            return Task.CompletedTask;
-                        },
-
-                        OnTokenValidated = context =>
-                        {
-                            var claims = new List<Claim>();
-                            if (context.Principal != null)
-                            {
-                                foreach (var claim in context.Principal.Claims)
-                                {
-                                    if (claim.Type == KrosoftClaimNames.Droits)
-                                    {
-                                        claims.Add(new Claim(ClaimTypes.Role, claim.Value));
-                                    }
-                                }
-
-                                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                                context.Principal.AddIdentity(claimsIdentity);
-                            }
-
-                            return Task.CompletedTask;
-                        }
+                        OnAuthenticationFailed = OnAuthenticationFailed,
+                        OnTokenValidated = OnTokenValidated
                     };
                 });
 
@@ -118,5 +84,39 @@ public static class ServiceCollectionExtensions
         services.AddIdentityEx();
 
         return services;
+    }
+
+    private static Task OnAuthenticationFailed(AuthenticationFailedContext context)
+    {
+        if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+        {
+#if NET8_0_OR_GREATER
+            context.Response.Headers.Append("Token-Expired", "true");
+#else
+            if (!context.Response.Headers.ContainsKey("Token-Expired"))
+            {
+                context.Response.Headers.Add("Token-Expired", "true");
+            }
+#endif
+        }
+
+        return Task.CompletedTask;
+    }
+
+    private static Task OnTokenValidated(TokenValidatedContext context)
+    {
+        var claims = new List<Claim>();
+        if (context.Principal != null)
+        {
+            var claimsDroits = context.Principal.Claims
+                                      .Where(claim => claim.Type == KrosoftClaimNames.Droits)
+                                      .Select(claim => new Claim(ClaimTypes.Role, claim.Value));
+            claims.AddRange(claimsDroits);
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            context.Principal.AddIdentity(claimsIdentity);
+        }
+
+        return Task.CompletedTask;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Krosoft.Extensions.Identity.Abstractions.Fakes;
 
-public class IdentityFakeService : IIdentityService
+public class FakeIdentityService : IIdentityService
 {
     public string GetId() => throw new NotImplementedException();
 

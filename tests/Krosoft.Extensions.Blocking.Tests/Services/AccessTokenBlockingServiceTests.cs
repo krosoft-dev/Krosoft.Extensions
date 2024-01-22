@@ -37,10 +37,41 @@ public class AccessTokenBlockingServiceTests : BaseTest
         Check.That(isBlocked).IsTrue();
     }
 
+    [TestMethod]
+    public async Task IsBlockedAsync_Ok()
+    {
+        var id = $"TU_{DateTime.Now.Ticks}";
+        var isBlocked1 = await _accessTokenBlockingService.IsBlockedAsync(id, CancellationToken.None);
+        Check.That(isBlocked1).IsFalse();
+
+        await _accessTokenBlockingService.BlockAsync(id, CancellationToken.None);
+
+        var isBlocked2 = await _accessTokenBlockingService.IsBlockedAsync(id, CancellationToken.None);
+        Check.That(isBlocked2).IsTrue();
+    }
+
     [TestInitialize]
     public void SetUp()
     {
         var serviceProvider = CreateServiceCollection();
         _accessTokenBlockingService = serviceProvider.GetRequiredService<IAccessTokenBlockingService>();
+    }
+
+    [TestMethod]
+    public async Task UnblockAsync_Ok()
+    {
+        var id = $"TU_{DateTime.Now.Ticks}";
+        var isBlocked1 = await _accessTokenBlockingService.IsBlockedAsync(id, CancellationToken.None);
+        Check.That(isBlocked1).IsFalse();
+
+        await _accessTokenBlockingService.BlockAsync(id, CancellationToken.None);
+
+        var isBlocked2 = await _accessTokenBlockingService.IsBlockedAsync(id, CancellationToken.None);
+        Check.That(isBlocked2).IsTrue();
+
+        await _accessTokenBlockingService.UnblockAsync(id, CancellationToken.None);
+
+        var isBlocked3 = await _accessTokenBlockingService.IsBlockedAsync(id, CancellationToken.None);
+        Check.That(isBlocked3).IsFalse();
     }
 }

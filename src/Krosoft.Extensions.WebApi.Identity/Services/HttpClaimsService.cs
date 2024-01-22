@@ -37,7 +37,7 @@ public class HttpClaimsService : IClaimsService
         if (_httpContextAccessor.HttpContext != null)
         {
             var claims = _httpContextAccessor.HttpContext.User.FindAll(claimName).ToList();
-            if (claims.Any())
+            if (claims.Count > 0)
             {
                 return funcSucess(claims.Select(c => c.Value));
             }
