@@ -1,10 +1,10 @@
-﻿//using Microsoft.AspNetCore.Builder;
-//using Positive.Extensions.Identity.Cache.Distributed.Middlewares;
+﻿using Krosoft.Extensions.WebApi.Identity.Middlewares;
+using Microsoft.AspNetCore.Builder;
 
-//namespace Krosoft.Extensions.WebApi.Blocking.Extensions;
+namespace Krosoft.Extensions.WebApi.Identity.Extensions;
 
-//public static class ApplicationBuilderExtensions
-//{
-//    public static IApplicationBuilder UseMissingTenantMiddleware(this IApplicationBuilder app)
-//        => app.UseMiddleware<MissingTenantMiddleware>();
-//}
+public static class ApplicationBuilderExtensions
+{
+    public static IApplicationBuilder UseTenant(this IApplicationBuilder app)
+        => app.UseMiddleware<MissingTenantMiddleware>();
+}
