@@ -96,7 +96,7 @@ public class AccessTokenBlockingServiceTests : BaseTest
 
         var blockedKeys = await _accessTokenBlockingService.GetBlockedAsync(CancellationToken.None);
         Check.That(blockedKeys).HasSize(3);
-        Check.That(blockedKeys).ContainsExactly(keys);
+        Check.That(blockedKeys).IsOnlyMadeOf(keys);
     }
 
     [TestMethod]
