@@ -17,5 +17,6 @@ public class SampleKrosoftContext : KrosoftContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.HasDataJson<Langue>();
+        modelBuilder.HasDataJson<Pays>();
     }
 }

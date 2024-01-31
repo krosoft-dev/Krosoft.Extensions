@@ -23,7 +23,7 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var httpClient = Factory.CreateClient();
         var response = await httpClient.GetAsync("/Logiciels");
 
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
     }
 
     [TestMethod]
@@ -34,7 +34,7 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var httpClient = Factory.CreateClient();
         var response = await httpClient.GetAsync($"/Logiciels?Nom={nom}");
 
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
     }
 
     [TestMethod]

@@ -44,19 +44,19 @@ public abstract class KrosoftContext : DbContext
         var assemblies = new List<Assembly>();
         if (DependencyContext.Default != null)
         {
-            var dependencies = DependencyContext.Default.RuntimeLibraries;
+            //var dependencies = DependencyContext.Default.RuntimeLibraries;
 
-            foreach (var library in dependencies)
-            {
-                try
-                {
-                    var assembly = Assembly.Load(new AssemblyName(library.Name));
-                    assemblies.Add(assembly);
-                }
-                catch (FileNotFoundException)
-                {
-                }
-            }
+            //foreach (var library in dependencies)
+            //{
+            //    try
+            //    {
+            //        //var assembly = Assembly.Load(new AssemblyName(library.Name));
+            //        //assemblies.Add(assembly);
+            //    }
+            //    catch (FileNotFoundException)
+            //    {
+            //    }
+            //}
         }
 
         return assemblies;
