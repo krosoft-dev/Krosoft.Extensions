@@ -14,7 +14,7 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var httpClient = Factory.CreateClient();
         var response = await httpClient.GetAsync("/Logiciels/Export/Csv");
 
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
     }
 
     [TestMethod]
@@ -43,7 +43,7 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var httpClient = Factory.CreateClient();
         var response = await httpClient.GetAsync("/Logiciels/Export/Pdf");
 
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
     }
 
     [TestMethod]
@@ -52,7 +52,7 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         var httpClient = Factory.CreateClient();
         var response = await httpClient.GetAsync("/Logiciels/Export/Zip");
 
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
     }
 
     //[TestMethod]

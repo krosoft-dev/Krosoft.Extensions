@@ -21,11 +21,9 @@ public class SampleKrosoftTenantAuditableContext : KrosoftTenantAuditableContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.HasDataJson<Statistique>(); 
-        modelBuilder.HasDataJson<Logiciel>(); 
-        modelBuilder.HasDataJson<Langue>(); 
-        modelBuilder.HasDataJson<Pays>(); 
-
- 
+        modelBuilder.HasDataJson<Statistique>();
+        modelBuilder.HasDataJson<Logiciel>();
+        modelBuilder.HasDataJson<Langue>();
+        modelBuilder.HasDataJson<Pays>();
     }
 }
