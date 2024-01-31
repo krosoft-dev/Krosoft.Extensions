@@ -44,6 +44,8 @@ public abstract class KrosoftContext : DbContext
         var assemblies = new List<Assembly>();
         if (DependencyContext.Default != null)
         {
+
+            //TODO : gestion tenant 
             //var dependencies = DependencyContext.Default.RuntimeLibraries;
 
             //foreach (var library in dependencies)

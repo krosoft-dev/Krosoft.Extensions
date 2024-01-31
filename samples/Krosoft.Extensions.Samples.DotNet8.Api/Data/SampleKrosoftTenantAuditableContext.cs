@@ -17,13 +17,13 @@ public class SampleKrosoftTenantAuditableContext : KrosoftTenantAuditableContext
     {
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(builder);
 
-        modelBuilder.HasDataJson<Statistique>();
-        modelBuilder.HasDataJson<Logiciel>();
-        modelBuilder.HasDataJson<Langue>();
-        modelBuilder.HasDataJson<Pays>();
+        builder.HasDataJson<Statistique>();
+        builder.HasDataJson<Logiciel>();
+        builder.HasDataJson<Langue>();
+        builder.HasDataJson<Pays>();
     }
 }
