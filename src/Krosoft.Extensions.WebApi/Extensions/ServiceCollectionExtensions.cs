@@ -44,7 +44,7 @@ public static class ServiceCollectionExtensions
                 {
                     policy.AllowAnyMethod();
 
-                    if (webApiSettings.AllowedOrigins.Any())
+                    if (webApiSettings.AllowedOrigins.Length > 0)
                     {
                         policy.WithOrigins(webApiSettings.AllowedOrigins);
                     }
@@ -55,7 +55,7 @@ public static class ServiceCollectionExtensions
 
                     policy.AllowAnyHeader();
 
-                    if (webApiSettings.ExposedHeaders.Any())
+                    if (webApiSettings.ExposedHeaders.Length > 0)
                     {
                         policy.WithExposedHeaders(webApiSettings.ExposedHeaders);
                     }
