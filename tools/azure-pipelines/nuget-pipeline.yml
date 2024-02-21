@@ -3,14 +3,25 @@ name: Nuget - $(Date:yyyy.MM.dd).$(BuildID)
 pr: none
 trigger: none
 
-resources:
-  pipelines:
-    - pipeline: Krosoft.Extensions.Zip
-      source: "nuget - Krosoft.Extensions.Zip"
-      trigger: true #
-
 pool:
-  vmImage: ubuntu-latest
+  vmImage: "ubuntu-latest"
+
+variables:
+  pipelineName: "nuget - Krosoft.Extensions.Zip"
 
 steps:
-  - script: echo This pipeline was set to be triggered after first pipeline completes.
+  - task: AzureCLI@2
+    inputs:
+      scriptType: "bash"
+      scriptLocation: "inlineScript"
+      inlineScript: |
+        # Rechercher l'ID de la pipeline par son nom
+        pipelineId=$(az pipelines list --org $(System.CollectionUri) --project $(System.TeamProject) --query "[?name=='$(pipelineName)'].id" -o tsv)
+
+        if [ -z "$pipelineId" ]; then
+          echo "Erreur : Impossible de trouver l'ID de la pipeline '$(pipelineName)'."
+          exit 1
+        fi
+
+        # Déclencher la pipeline
+        az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --pipeline-id $pipelineId --token $(System.AccessToken)
