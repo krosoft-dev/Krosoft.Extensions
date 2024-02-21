@@ -15,9 +15,11 @@ steps:
 
   - bash: |
       az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
-      # az login --allow-no-subscriptions
+      echo $(AccessToken) | az login --allow-no-subscriptions
 
     displayName: "Set default Azure DevOps organization and project"
+    env:
+      AccessToken: $(System.AccessToken)
 
   - bash: |
       # Rechercher l'ID de la pipeline par son nom
@@ -31,5 +33,3 @@ steps:
       # Déclencher la pipeline
       az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId
     displayName: "Show build list and PRs"
-    env:
-      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
