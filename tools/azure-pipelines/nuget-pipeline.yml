@@ -26,7 +26,5 @@ steps:
       fi
 
       # Déclencher la pipeline
-      az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --pipeline-id $pipelineId --token $(System.AccessToken)
+      az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId
     displayName: "Show build list and PRs"
-    env:
-      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
