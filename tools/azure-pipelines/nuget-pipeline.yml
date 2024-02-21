@@ -34,6 +34,11 @@ stages:
           - bash: |
               pipelines=$(az pipelines list --query "[?starts_with(name,'$(pipelineFilter)')].{Name:name, Id:id}" -o json)
 
+
+              # Initialisation du compteur d'index
+              index=0
+
+              # Boucle sur les pipelines
               for pipeline in $(echo "$pipelines" | jq -r '.[] | @base64'); do
                 _jq() {
                     echo ${pipeline} | base64 --decode | jq -r ${1}
@@ -42,7 +47,10 @@ stages:
                 pipelineName=$(_jq '.Name')
                 pipelineId=$(_jq '.Id')
 
-                echo "Run '$pipelineName'."
+                 # Incrémenter l'index à chaque itération
+                ((index++))
+
+                echo "Run '$pipelineName'. (Pipeline $index of $(echo "$pipelines" | jq -r 'length'))"
                 
                 # Déclencher la pipeline
                 result=$(az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId -o json)
