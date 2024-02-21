@@ -6,7 +6,42 @@ trigger: none
 pool:
   vmImage: "ubuntu-latest"
 
+variables:
+  pipelineFilter: "nuget - Krosoft"
+
 stages:
-  - template: ./templates/stages/run-template.yml
-    parameters:
-      pipelines: ["nuget - Krosoft.Extensions.Zip"]
+  - stage: Run
+    displayName: Run
+    jobs:
+      - job: Run
+        steps:
+          # - bash: az --version
+          #   displayName: "Show Azure CLI version"
+
+          - bash: echo ${AZURE_DEVOPS_CLI_PAT} | az devops login
+            env:
+              AZURE_DEVOPS_CLI_PAT: $(System.AccessToken)
+            displayName: "Login Azure DevOps Extension"
+
+          - bash: |
+              az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
+            displayName: "Set default Azure DevOps organization and project"
+
+          # - bash: |
+          #     az pipelines list --org $(System.CollectionUri) --project $(System.TeamProject)
+          #   displayName: "Show pipeline list"
+
+          - bash: |
+              # Rechercher l'ID de la pipeline par son nom
+              pipelines=$(az pipelines list  --query "[?starts_with(name,'$(pipelineFilter)')].{Name:name, Id:id}" -o json)
+
+              for pipeline in $(pipelines)
+              do
+                echo "Run '$(pipeline.name)'."
+
+
+                # Déclencher la pipeline
+                az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipeline.id
+              done
+
+            displayName: Run

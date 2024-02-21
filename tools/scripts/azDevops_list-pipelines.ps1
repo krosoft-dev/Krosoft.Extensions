@@ -34,3 +34,5 @@ $global:queue = "Azure Pipelines"
 AzDevOpsLogin
 AzDevOpsInitCli $global:url $global:projet
 AzDevOpsPipelinesList 
+
+nuget -
