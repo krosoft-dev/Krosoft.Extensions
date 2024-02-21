@@ -1,0 +1,41 @@
+parameters:
+  - name: vmImage
+    type: string
+  - name: pipelines
+    type: object
+
+stages:
+  - stage: Build
+    displayName: Build
+    jobs:
+      - ${{each pipeline in parameters.pipelines}}:
+          - job: Run  ${{ pipeline }}
+            steps:
+              # - bash: az --version
+              #   displayName: "Show Azure CLI version"
+
+              - bash: echo ${AZURE_DEVOPS_CLI_PAT} | az devops login
+                env:
+                  AZURE_DEVOPS_CLI_PAT: $(System.AccessToken)
+                displayName: "Login Azure DevOps Extension"
+
+              - bash: |
+                  az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
+                displayName: "Set default Azure DevOps organization and project"
+
+              # - bash: |
+              #     az pipelines list --org $(System.CollectionUri) --project $(System.TeamProject)
+              #   displayName: "Show pipeline list"
+
+              - bash: |
+                  # Rechercher l'ID de la pipeline par son nom
+                  pipelineId=$(az pipelines list --org $(System.CollectionUri) --project $(System.TeamProject) --query "[?name=='$(pipeline)'].id" -o tsv)
+
+                  if [ -z "$pipelineId" ]; then
+                    echo "Erreur : Impossible de trouver l'ID de la pipeline '$(pipeline)'."
+                    exit 1
+                  fi
+
+                  # Déclencher la pipeline
+                  az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId
+                displayName: Run build ${{ pipeline }}

@@ -6,38 +6,7 @@ trigger: none
 pool:
   vmImage: "ubuntu-latest"
 
-variables:
-  pipelineName: "nuget - Krosoft.Extensions.Zip"
-
-steps:
-  - bash: az --version
-    displayName: "Show Azure CLI version"
-
-  - bash: echo ${AZURE_DEVOPS_CLI_PAT} | az devops login
-    env:
-      AZURE_DEVOPS_CLI_PAT: $(System.AccessToken)
-    displayName: "Login Azure DevOps Extension"
-
-  - bash: |
-      az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
-
-    displayName: "Set default Azure DevOps organization and project"
-
-  - bash: |
-      # Rechercher l'ID de la pipeline par son nom
-      az pipelines list --org $(System.CollectionUri) --project $(System.TeamProject)
-
-    displayName: "Show build list and PRs"
-
-  - bash: |
-      # Rechercher l'ID de la pipeline par son nom
-      pipelineId=$(az pipelines list --org $(System.CollectionUri) --project $(System.TeamProject) --query "[?name=='$(pipelineName)'].id" -o tsv)
-
-      if [ -z "$pipelineId" ]; then
-        echo "Erreur : Impossible de trouver l'ID de la pipeline '$(pipelineName)'."
-        exit 1
-      fi
-
-      # Déclencher la pipeline
-      az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId
-    displayName: "Show build list and PRs"
+stages:
+  - template: ../stages/run-template.yml
+    parameters:
+      pipelines: ["nuget - Krosoft.Extensions.Zip"]
