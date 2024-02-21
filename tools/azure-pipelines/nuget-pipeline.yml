@@ -50,6 +50,7 @@ stages:
                 # Extraire l'ID de la réponse
                 resultId=$(echo "$result" | jq -r '.id')
 
-                echo "With Id $resultId"
+                echo "With id '$resultId'"
+                echo ""
               done
             displayName: Run
