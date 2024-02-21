@@ -13,7 +13,10 @@ steps:
   - bash: az --version
     displayName: "Show Azure CLI version"
 
-  - bash: az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
+  - bash: |
+      az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
+      az login --allow-no-subscriptions
+
     displayName: "Set default Azure DevOps organization and project"
 
   - bash: |
@@ -26,5 +29,7 @@ steps:
       fi
 
       # Déclencher la pipeline
-      az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId
+      az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId --token $(System.AccessToken)
     displayName: "Show build list and PRs"
+    env:
+      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
