@@ -35,17 +35,21 @@ stages:
               pipelines=$(az pipelines list --query "[?starts_with(name,'$(pipelineFilter)')].{Name:name, Id:id}" -o json)
 
               for pipeline in $(echo "$pipelines" | jq -r '.[] | @base64'); do
-                  _jq() {
-                      echo ${pipeline} | base64 --decode | jq -r ${1}
-                  }
+                _jq() {
+                    echo ${pipeline} | base64 --decode | jq -r ${1}
+                }
 
-                  pipelineName=$(_jq '.Name')
-                  pipelineId=$(_jq '.Id')
+                pipelineName=$(_jq '.Name')
+                pipelineId=$(_jq '.Id')
 
-                  echo "Run '$pipelineName'."
-                  
-                  # Déclencher la pipeline
-                  az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId
+                echo "Run '$pipelineName'."
+                
+                # Déclencher la pipeline
+                result=$(az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId -o json)
+
+                # Extraire l'ID de la réponse
+                resultId=$(echo "$result" | jq -r '.id')
+
+                echo "With Id $resultId"
               done
-
             displayName: Run
