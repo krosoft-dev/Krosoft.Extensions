@@ -13,13 +13,21 @@ steps:
   - bash: az --version
     displayName: "Show Azure CLI version"
 
+  - bash: echo ${AZURE_DEVOPS_CLI_PAT} | az devops login
+    env:
+      AZURE_DEVOPS_CLI_PAT: $(System.AccessToken)
+    displayName: "Login Azure DevOps Extension"
+
   - bash: |
       az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
-      echo $(AccessToken) | az login --allow-no-subscriptions
 
     displayName: "Set default Azure DevOps organization and project"
-    env:
-      AccessToken: $(System.AccessToken)
+
+  - bash: |
+      # Rechercher l'ID de la pipeline par son nom
+      az pipelines list --org $(System.CollectionUri) --project $(System.TeamProject)
+
+    displayName: "Show build list and PRs"
 
   - bash: |
       # Rechercher l'ID de la pipeline par son nom
