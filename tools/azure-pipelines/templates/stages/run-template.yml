@@ -1,6 +1,4 @@
 parameters:
-  - name: vmImage
-    type: string
   - name: pipelines
     type: object
 
