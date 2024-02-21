@@ -7,7 +7,7 @@ stages:
     displayName: Run
     jobs:
       - ${{each pipeline in parameters.pipelines}}:
-          - job: Run_${{ replace(pipeline ,'-','_') }}_Job
+          - job: Run_${{ replace(replace(pipeline ,'-','_'),' ','_') }}_Job
             steps:
               # - bash: az --version
               #   displayName: "Show Azure CLI version"
