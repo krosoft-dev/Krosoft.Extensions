@@ -7,6 +7,6 @@ pool:
   vmImage: "ubuntu-latest"
 
 stages:
-  - template: ../stages/run-template.yml
+  - template: ./templates/stages/run-template.yml
     parameters:
       pipelines: ["nuget - Krosoft.Extensions.Zip"]
