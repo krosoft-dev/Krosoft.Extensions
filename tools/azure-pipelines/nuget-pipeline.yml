@@ -32,16 +32,20 @@ stages:
           #   displayName: "Show pipeline list"
 
           - bash: |
-              # Rechercher l'ID de la pipeline par son nom
-              pipelines=$(az pipelines list  --query "[?starts_with(name,'$(pipelineFilter)')].{Name:name, Id:id}" -o json)
+              pipelines=$(az pipelines list --query "[?starts_with(name,'$(pipelineFilter)')].{Name:name, Id:id}" -o json)
 
-              for pipeline in $(pipelines)
-              do
-                echo "Run '$(pipeline.name)'."
+              for pipeline in $(echo "$pipelines" | jq -r '.[] | @base64'); do
+                  _jq() {
+                      echo ${pipeline} | base64 --decode | jq -r ${1}
+                  }
 
+                  pipelineName=$(_jq '.Name')
+                  pipelineId=$(_jq '.Id')
 
-                # Déclencher la pipeline
-                az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipeline.id
+                  echo "Run '$pipelineName'."
+                  
+                  # Déclencher la pipeline
+                  az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId
               done
 
             displayName: Run
