@@ -1,0 +1,16 @@
+name: Nuget - $(Date:yyyy.MM.dd).$(BuildID)
+
+pr: none
+trigger: none
+
+resources:
+  pipelines:
+    - pipeline: Krosoft.Extensions.Zip
+      source: "nuget - Krosoft.Extensions.Zip"
+      trigger: true #
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - script: echo This pipeline was set to be triggered after first pipeline completes.
