@@ -10,18 +10,23 @@ variables:
   pipelineName: "nuget - Krosoft.Extensions.Zip"
 
 steps:
-  - task: AzureCLI@2
-    inputs:
-      scriptType: "bash"
-      scriptLocation: "inlineScript"
-      inlineScript: |
-        # Rechercher l'ID de la pipeline par son nom
-        pipelineId=$(az pipelines list --org $(System.CollectionUri) --project $(System.TeamProject) --query "[?name=='$(pipelineName)'].id" -o tsv)
+  - bash: az --version
+    displayName: "Show Azure CLI version"
 
-        if [ -z "$pipelineId" ]; then
-          echo "Erreur : Impossible de trouver l'ID de la pipeline '$(pipelineName)'."
-          exit 1
-        fi
+  - bash: az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
+    displayName: "Set default Azure DevOps organization and project"
 
-        # Déclencher la pipeline
-        az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --pipeline-id $pipelineId --token $(System.AccessToken)
+  - bash: |
+      # Rechercher l'ID de la pipeline par son nom
+      pipelineId=$(az pipelines list --org $(System.CollectionUri) --project $(System.TeamProject) --query "[?name=='$(pipelineName)'].id" -o tsv)
+
+      if [ -z "$pipelineId" ]; then
+        echo "Erreur : Impossible de trouver l'ID de la pipeline '$(pipelineName)'."
+        exit 1
+      fi
+
+      # Déclencher la pipeline
+      az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --pipeline-id $pipelineId --token $(System.AccessToken)
+    displayName: "Show build list and PRs"
+    env:
+      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
