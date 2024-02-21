@@ -3,11 +3,11 @@ parameters:
     type: object
 
 stages:
-  - stage: Build
-    displayName: Build
+  - stage: Run
+    displayName: Run
     jobs:
       - ${{each pipeline in parameters.pipelines}}:
-          - job: Run  ${{ pipeline }}
+          - job: Run_${{ replace(pipeline ,'-','_') }}_Job
             steps:
               # - bash: az --version
               #   displayName: "Show Azure CLI version"
@@ -36,4 +36,4 @@ stages:
 
                   # Déclencher la pipeline
                   az pipelines run --org $(System.CollectionUri) --project $(System.TeamProject) --id $pipelineId
-                displayName: Run build ${{ pipeline }}
+                displayName: Run build '${{ pipeline }}'
