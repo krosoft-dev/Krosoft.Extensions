@@ -8,6 +8,22 @@ namespace Krosoft.Extensions.Testing.Tests.Extensions;
 [TestClass]
 public class MockExtensionTests
 {
+    private static IReadOnlyDictionary<string, object?> GetDataRow(IDbCommand cmd)
+    {
+        var reader = cmd.ExecuteReader();
+
+        reader.Read();
+
+        var dataRow = new Dictionary<string, object?>(reader.FieldCount);
+
+        for (var i = 0; i < reader.FieldCount; i++)
+        {
+            dataRow[reader.GetName(i)] = reader.GetValue(i);
+        }
+
+        return dataRow;
+    }
+
     /// <summary>
     /// Représente un service métier faisant appel à la BDD.
     /// </summary>
@@ -33,6 +49,60 @@ public class MockExtensionTests
     }
 
     [TestMethod]
+    public void SetupWithData_One_Line_With_MultiValues()
+    {
+        var data = new List<List<KeyValuePair<string, object?>>>
+        {
+            new List<KeyValuePair<string, object?>>
+            {
+                new KeyValuePair<string, object?>("col1", 1),
+                new KeyValuePair<string, object?>("col2", 1.0F),
+                new KeyValuePair<string, object?>("col3", 1.1D),
+                new KeyValuePair<string, object?>("col4", 1.2M),
+                new KeyValuePair<string, object?>("col5", 1L),
+                new KeyValuePair<string, object?>("col6", "1.3"),
+                new KeyValuePair<string, object?>("col7", new DateTime(2024, 5, 15)),
+                new KeyValuePair<string, object?>("col8", new DateTime(2024, 5, 15, 9, 11, 3)),
+                new KeyValuePair<string, object?>("col9", true),
+                new KeyValuePair<string, object?>("col10", 'a')
+            }
+        };
+
+        var mock = new Mock<IDbCommand>();
+        mock.SetupWithData(data);
+
+        var dataRow = GetDataRow(mock.Object);
+        Check.That(dataRow).HasSize(10);
+        CollectionAssert.AreEqual(data[0].ToDictionary(ct => ct.Key, ct => ct.Value), dataRow.ToDictionary());
+    }
+
+    [DataTestMethod]
+    public void SetupWithData_One_Line_With_No_Value()
+    {
+        var data = new List<List<KeyValuePair<string, object?>>>
+        {
+            new List<KeyValuePair<string, object?>>
+            {
+                new KeyValuePair<string, object?>("col1", null),
+                new KeyValuePair<string, object?>("col2", null),
+                new KeyValuePair<string, object?>("col3", null),
+                new KeyValuePair<string, object?>("col4", null),
+                new KeyValuePair<string, object?>("col5", null),
+                new KeyValuePair<string, object?>("col6", null),
+                new KeyValuePair<string, object?>("col7", null),
+                new KeyValuePair<string, object?>("col8", null),
+                new KeyValuePair<string, object?>("col9", null)
+            }
+        };
+        var mock = new Mock<IDbCommand>();
+        mock.SetupWithData(data);
+
+        var dataRow = GetDataRow(mock.Object);
+        Check.That(dataRow).HasSize(9);
+        CollectionAssert.AreEqual(data[0].ToDictionary(ct => ct.Key, ct => ct.Value), dataRow.ToDictionary());
+    }
+
+    [TestMethod]
     public void SetupWithData_KeyValuePair()
     {
         var data = new List<List<KeyValuePair<string, object?>>>
@@ -54,7 +124,7 @@ public class MockExtensionTests
         var mock = new Mock<IDbCommand>(MockBehavior.Strict);
         mock.SetupWithData(data);
 
-        var resultats = GetResultats(mock.Object);
+        var resultats = GetResultats(mock.Object).ToList();
 
         Check.That(resultats).HasSize(2);
         Check.That(resultats.Select(x => x.Id)).ContainsExactly(1, 2);
@@ -84,7 +154,7 @@ public class MockExtensionTests
         var mock = new Mock<IDbCommand>(MockBehavior.Strict);
         mock.SetupWithData(data);
 
-        var resultats = GetResultats(mock.Object);
+        var resultats = GetResultats(mock.Object).ToList();
 
         Check.That(resultats).HasSize(2);
         Check.That(resultats.Select(x => x.Id)).ContainsExactly(1, 2);
