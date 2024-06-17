@@ -8,24 +8,58 @@ namespace Krosoft.Extensions.Testing.Tests.Extensions;
 [TestClass]
 public class MockExtensionTests
 {
-    [TestMethod]
-    public void VerifyNeverCallTest()
+    /// <summary>
+    /// Représente un service métier faisant appel à la BDD.
+    /// </summary>
+    private static IEnumerable<User> GetResultats(IDbCommand cmd)
     {
-        var foo = new Mock<IFoo>(MockBehavior.Loose);
+        var movies = new List<User>();
 
-        Check.That(foo).Verify(m => m.Call1(), Times.Never);
-        Check.That(foo).Verify(m => m.Call2(), Times.Never);
+        var reader = cmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            var movie = new User
+            {
+                Id = Convert.ToInt32(reader["Id"]),
+                FirstName = (string)reader["FirstName"],
+                LastName = (string)reader["LastName"]
+            };
+
+            movies.Add(movie);
+        }
+
+        return movies;
     }
 
     [TestMethod]
-    public void VerifyTest()
+    public void SetupWithData_KeyValuePair()
     {
-        var foo = new Mock<IFoo>(MockBehavior.Loose);
+        var data = new List<List<KeyValuePair<string, object?>>>
+        {
+            new List<KeyValuePair<string, object?>>
+            {
+                new KeyValuePair<string, object?>("Id", 1),
+                new KeyValuePair<string, object?>("FirstName", "Joe"),
+                new KeyValuePair<string, object?>("LastName", "Doe")
+            },
+            new List<KeyValuePair<string, object?>>
+            {
+                new KeyValuePair<string, object?>("Id", 2),
+                new KeyValuePair<string, object?>("FirstName", "Steve"),
+                new KeyValuePair<string, object?>("LastName", "Smith")
+            }
+        };
 
-        foo.Object.Call1();
+        var mock = new Mock<IDbCommand>(MockBehavior.Strict);
+        mock.SetupWithData(data);
 
-        Check.That(foo).Verify(m => m.Call1(), Times.Once);
-        Check.That(foo).Verify(m => m.Call2(), Times.Never);
+        var resultats = GetResultats(mock.Object);
+
+        Check.That(resultats).HasSize(2);
+        Check.That(resultats.Select(x => x.Id)).ContainsExactly(1, 2);
+        Check.That(resultats.Select(x => x.FirstName)).ContainsExactly("Joe", "Steve");
+        Check.That(resultats.Select(x => x.LastName)).ContainsExactly("Doe", "Smith");
     }
 
     [TestMethod]
@@ -59,56 +93,22 @@ public class MockExtensionTests
     }
 
     [TestMethod]
-    public void SetupWithData_KeyValuePair()
+    public void VerifyNeverCallTest()
     {
-        var data = new List<List<KeyValuePair<string, object?>>>
-        {
-            new List<KeyValuePair<string, object?>>
-            {
-                new KeyValuePair<string, object?>("Id", 1),
-                new KeyValuePair<string, object?>("FirstName", "Joe"),
-                new KeyValuePair<string, object?>("LastName", "Doe")
-            },
-            new List<KeyValuePair<string, object?>>
-            {
-                new KeyValuePair<string, object?>("Id", 2),
-                new KeyValuePair<string, object?>("FirstName", "Steve"),
-                new KeyValuePair<string, object?>("LastName", "Smith")
-            }
-        };
+        var foo = new Mock<IFoo>(MockBehavior.Loose);
 
-        var mock = new Mock<IDbCommand>(MockBehavior.Strict);
-        mock.SetupWithData(data);
-
-        var resultats = GetResultats(mock.Object);
-
-        Check.That(resultats).HasSize(2);
-        Check.That(resultats.Select(x => x.Id)).ContainsExactly(1, 2);
-        Check.That(resultats.Select(x => x.FirstName)).ContainsExactly("Joe", "Steve");
-        Check.That(resultats.Select(x => x.LastName)).ContainsExactly("Doe", "Smith");
+        Check.That(foo).Verify(m => m.Call1(), Times.Never);
+        Check.That(foo).Verify(m => m.Call2(), Times.Never);
     }
 
-    /// <summary>
-    /// Représente un service métier faisant appel à la BDD.
-    /// </summary>
-    private static IEnumerable<User> GetResultats(IDbCommand cmd)
+    [TestMethod]
+    public void VerifyTest()
     {
-        var movies = new List<User>();
+        var foo = new Mock<IFoo>(MockBehavior.Loose);
 
-        var reader = cmd.ExecuteReader();
+        foo.Object.Call1();
 
-        while (reader.Read())
-        {
-            var movie = new User
-            {
-                Id = Convert.ToInt32(reader["Id"]),
-                FirstName = (string)reader["FirstName"],
-                LastName = (string)reader["LastName"]
-            };
-
-            movies.Add(movie);
-        }
-
-        return movies;
+        Check.That(foo).Verify(m => m.Call1(), Times.Once);
+        Check.That(foo).Verify(m => m.Call2(), Times.Never);
     }
 }
