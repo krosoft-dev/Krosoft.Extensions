@@ -10,37 +10,43 @@ public static class MapperExtensions
                                                                IDictionary<TKey, TSource> sourcesParKey,
                                                                TKey key,
                                                                TDestination destination)
+        where TSource : class
+        where TDestination : class
     {
         Guard.IsNotNull(nameof(sourcesParKey), sourcesParKey);
         Guard.IsNotNull(nameof(destination), destination);
 
         var source = sourcesParKey.GetValueOrDefault(key);
-        if (source != null)
+        if (source != default(TSource))
         {
             mapper.Map(source, destination);
         }
     }
 
     public static void MapIfExist<TSource, TDestination>(this IMapper mapper,
-                                                         TSource source,
-                                                         TDestination destination)
+                                                         TSource? source,
+                                                         TDestination? destination)
+        where TSource : class
+        where TDestination : class
     {
         Guard.IsNotNull(nameof(destination), destination);
 
-        if (source != null)
+        if (source != default(TSource))
         {
             mapper.Map(source, destination);
         }
     }
 
     public static void MapIfExist<TSource, TDestination>(this IMapper mapper,
-                                                         TSource source,
-                                                         TDestination destination,
+                                                         TSource? source,
+                                                         TDestination? destination,
                                                          Action action)
+        where TSource : class
+        where TDestination : class
     {
         Guard.IsNotNull(nameof(destination), destination);
 
-        if (source == null)
+        if (source == default(TSource))
         {
             action();
         }
@@ -50,6 +56,7 @@ public static class MapperExtensions
 
     public static TDestination? MapIfExist<TDestination>(this IMapper mapper,
                                                          object? source)
+
     {
         if (source != null)
         {

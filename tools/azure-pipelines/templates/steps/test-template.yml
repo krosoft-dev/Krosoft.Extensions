@@ -31,7 +31,7 @@ steps:
       assemblyfilters: "-*Tests*;-*Samples*"
       filefilters: "-**/samples/**;-**/Migrations/**"
 
-  - task: PublishCodeCoverageResults@1
+  - task: PublishCodeCoverageResults@2
     displayName: "Publish code coverage"
     inputs:
       codeCoverageTool: Cobertura
