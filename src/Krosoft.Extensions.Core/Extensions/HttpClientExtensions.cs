@@ -72,8 +72,8 @@ public static class HttpClientExtensions
     }
 
     public static async Task<IFileStream?> EnsureStreamAsync(this Task<HttpResponseMessage> task,
-                                                              Func<HttpStatusCode, string, Exception> onError,
-                                                              CancellationToken cancellationToken = default)
+                                                             Func<HttpStatusCode, string, Exception> onError,
+                                                             CancellationToken cancellationToken = default)
     {
         var httpResponseMessage = await task;
 

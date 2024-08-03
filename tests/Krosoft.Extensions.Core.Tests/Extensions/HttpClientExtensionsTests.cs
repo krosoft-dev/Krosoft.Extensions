@@ -33,7 +33,7 @@ public class HttpClientExtensionsTests : BaseTest
 
         Check.ThatCode(() => new HttpClient()
                              .PutAsync("https://jsonplaceholder.typicode.com/posts", null, cancellationToken)
-                             .EnsureAsync<IEnumerable<TodoHttp>>((code, json) => throw new HttpException(HttpStatusCode.InternalServerError, json), cancellationToken))
+                             .EnsureAsync<IEnumerable<TodoHttp>>((_, json) => throw new HttpException(HttpStatusCode.InternalServerError, json), cancellationToken))
              .Throws<HttpException>()
              .WithMessage("{}")
              .And.WhichMember(x => x.Code)
@@ -57,60 +57,64 @@ public class HttpClientExtensionsTests : BaseTest
     [TestMethod]
     public void EnsureStreamAsync_Exception()
     {
-
-
         var cancellationToken = CancellationToken.None;
-        var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.NotFound);
 
-        var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
-        httpMessageHandlerMock.Protected()
-                              .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),  ItExpr.IsAny<CancellationToken>())
-                              .ReturnsAsync(httpResponseMessage);
+        var mockHttp = GetMock(HttpStatusCode.NotFound, null, null, null);
 
-        var httpClient = new HttpClient(httpMessageHandlerMock.Object);
-        var eee = httpClient.GetAsync("https://example.com", cancellationToken);
-
-        Check.ThatCode(() => eee.EnsureStreamAsync((code, json) => throw new HttpException(code, json),
-                                                   cancellationToken))
-             .Throws<Exception>();
+        Check.ThatCode(() => mockHttp
+                             .GetAsync("https://example.com", cancellationToken)
+                             .EnsureStreamAsync((code, json) => throw new HttpException(code, json), cancellationToken))
+             .Throws<HttpException>()
+             .WithMessage("Not Found")
+             .And.WhichMember(x => x.Code)
+             .IsEqualTo(HttpStatusCode.NotFound);
     }
 
     [TestMethod]
     public async Task EnsureStreamAsync_Ok()
     {
+        var content = "Test content";
+        var contentType = "application/json";
+        var fileName = "test.json";
+
         var cancellationToken = CancellationToken.None;
-        var expectedContent = "Test content";
-        var expectedContentType = "application/json";
-        var expectedFileName = "test.json";
 
-        var content = new StringContent(expectedContent);
-        content.Headers.ContentType = new MediaTypeHeaderValue(expectedContentType);
-        content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-        {
-            FileName = expectedFileName
-        };
+        var mockHttp = GetMock(HttpStatusCode.OK, content, fileName, contentType);
 
-        var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK)
-        {
-            Content = content
-        };
-
-        var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
-        httpMessageHandlerMock.Protected()
-                              .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),  ItExpr.IsAny<CancellationToken>())
-                              .ReturnsAsync(httpResponseMessage);
-
-        var httpClient = new HttpClient(httpMessageHandlerMock.Object);
-
-        var result = await httpClient.GetAsync("https://example.com", cancellationToken)
-                                     .EnsureStreamAsync((code, json) => throw new HttpException(code, json), cancellationToken);
+        var result = await mockHttp
+                           .GetAsync("https://example.com", cancellationToken)
+                           .EnsureStreamAsync((code, json) => throw new HttpException(code, json), cancellationToken);
 
         Check.That(result).IsNotNull();
-        Check.That(result!.ContentType).IsEqualTo(expectedContentType);
-        Check.That(result.FileName).IsEqualTo(expectedFileName);
+        Check.That(result!.ContentType).IsEqualTo(contentType);
+        Check.That(result.FileName).IsEqualTo(fileName);
 
         using var reader = new StreamReader(result.Stream);
         var actualContent = await reader.ReadToEndAsync(cancellationToken);
-        Check.That(actualContent).IsEqualTo(expectedContent);
+        Check.That(actualContent).IsEqualTo(content);
+    }
+
+    private static HttpClient GetMock(HttpStatusCode statusCode,
+                                      string? content,
+                                      string? fileName,
+                                      string? contentType)
+    {
+        var httpResponseMessage = new HttpResponseMessage(statusCode);
+        if (content != null && fileName != null && contentType != null)
+        {
+            httpResponseMessage.Content = new StringContent(content);
+            httpResponseMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+            httpResponseMessage.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = fileName
+            };
+        }
+
+        var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
+        httpMessageHandlerMock.Protected()
+                              .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+                              .ReturnsAsync(httpResponseMessage);
+
+        return new HttpClient(httpMessageHandlerMock.Object);
     }
 }
