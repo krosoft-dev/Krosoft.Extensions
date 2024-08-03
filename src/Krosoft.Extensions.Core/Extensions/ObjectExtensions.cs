@@ -13,7 +13,6 @@ namespace Krosoft.Extensions.Core.Extensions;
 /// </summary>
 public static class ObjectExtensions
 {
-
     public static T? DeepCopy<T>(this T self)
     {
         var serialized = JsonConvert.SerializeObject(self);

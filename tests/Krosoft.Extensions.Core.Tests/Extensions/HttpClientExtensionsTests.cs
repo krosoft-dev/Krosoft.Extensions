@@ -57,12 +57,14 @@ public class HttpClientExtensionsTests : BaseTest
     [TestMethod]
     public void EnsureStreamAsync_Exception()
     {
+
+
         var cancellationToken = CancellationToken.None;
         var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.NotFound);
 
         var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
         httpMessageHandlerMock.Protected()
-                              .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), cancellationToken)
+                              .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),  ItExpr.IsAny<CancellationToken>())
                               .ReturnsAsync(httpResponseMessage);
 
         var httpClient = new HttpClient(httpMessageHandlerMock.Object);
@@ -95,7 +97,7 @@ public class HttpClientExtensionsTests : BaseTest
 
         var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
         httpMessageHandlerMock.Protected()
-                              .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), cancellationToken)
+                              .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(),  ItExpr.IsAny<CancellationToken>())
                               .ReturnsAsync(httpResponseMessage);
 
         var httpClient = new HttpClient(httpMessageHandlerMock.Object);
