@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
+using Krosoft.Extensions.Core.Models;
 using Newtonsoft.Json;
 
 namespace Krosoft.Extensions.Core.Extensions;
@@ -42,22 +43,6 @@ public static class HttpClientExtensions
         return await httpResponseMessage.EnsureAsync<T?>(cancellationToken);
     }
 
-    public static async Task<Stream?> EnsureStreamAsync(this Task<HttpResponseMessage> task,
-                                                        CancellationToken cancellationToken = default)
-    {
-        var httpResponseMessage = await task;
-
-        if (httpResponseMessage.IsSuccessStatusCode)
-        {
-            var stream = await httpResponseMessage.Content.ReadAsStreamAsync(cancellationToken);
-
-            return stream;
-        }
-
-        await httpResponseMessage.ManageErrorAsync(cancellationToken);
-        return null;
-    }
-
     public static async Task<T?> EnsureAsync<T>(this Task<HttpResponseMessage> task,
                                                 Func<HttpStatusCode, string, Exception> onError,
                                                 CancellationToken cancellationToken = default)
@@ -65,6 +50,45 @@ public static class HttpClientExtensions
         var httpResponseMessage = await task;
 
         return await httpResponseMessage.EnsureAsync<T?>(onError, cancellationToken);
+    }
+
+    public static async Task<IFileStream?> EnsureStreamAsync(this Task<HttpResponseMessage> task,
+                                                             CancellationToken cancellationToken = default)
+    {
+        var httpResponseMessage = await task;
+
+        if (httpResponseMessage.IsSuccessStatusCode)
+        {
+            var contentType = httpResponseMessage.Content.Headers.ContentType?.ToString() ?? string.Empty;
+            var contentDisposition = httpResponseMessage.Content.Headers.ContentDisposition?.FileName?.Trim('"') ?? string.Empty;
+
+            var stream = await httpResponseMessage.Content.ReadAsStreamAsync(cancellationToken);
+
+            return new GenericFileStream(stream, contentDisposition, contentType);
+        }
+
+        await httpResponseMessage.EnsureAsync(cancellationToken);
+        return null;
+    }
+
+    public static async Task<IFileStream?> EnsureStreamAsync(this Task<HttpResponseMessage> task,
+                                                              Func<HttpStatusCode, string, Exception> onError,
+                                                              CancellationToken cancellationToken = default)
+    {
+        var httpResponseMessage = await task;
+
+        if (httpResponseMessage.IsSuccessStatusCode)
+        {
+            var contentType = httpResponseMessage.Content.Headers.ContentType?.ToString() ?? string.Empty;
+            var contentDisposition = httpResponseMessage.Content.Headers.ContentDisposition?.FileName?.Trim('"') ?? string.Empty;
+
+            var stream = await httpResponseMessage.Content.ReadAsStreamAsync(cancellationToken);
+
+            return new GenericFileStream(stream, contentDisposition, contentType);
+        }
+
+        await httpResponseMessage.EnsureAsync(onError, cancellationToken);
+        return null;
     }
 
     public static async Task<string?> EnsureStringAsync(this Task<HttpResponseMessage> task,
