@@ -74,7 +74,7 @@ public static class HttpResponseMessageExtensions
     }
 
     public static async Task<T?> EnsureAsync<T>(this HttpResponseMessage httpResponseMessage,
-                                                Func<HttpStatusCode, string, Exception> onError,
+                                                Func<HttpStatusCode, string, Exception>? onError,
                                                 CancellationToken cancellationToken = default)
     {
         if (httpResponseMessage.IsSuccessStatusCode)
@@ -89,7 +89,7 @@ public static class HttpResponseMessageExtensions
     }
 
     public static async Task EnsureAsync(this HttpResponseMessage httpResponseMessage,
-                                         Func<HttpStatusCode, string, Exception> onError,
+                                         Func<HttpStatusCode, string, Exception>? onError,
                                          CancellationToken cancellationToken = default)
     {
         if (httpResponseMessage.IsSuccessStatusCode)
@@ -101,7 +101,7 @@ public static class HttpResponseMessageExtensions
             var isValid = JsonHelper.IsValid(json);
             if (isValid)
             {
-                var ex = onError(httpResponseMessage.StatusCode, json);
+                var ex = onError?.Invoke(httpResponseMessage.StatusCode, json);
                 if (ex != null)
                 {
                     throw ex;
