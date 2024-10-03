@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="../../Nuget.target" />
+
 	<PropertyGroup> 
 		<PackageTags>Krosoft Extension Event Publish </PackageTags>
 		<Description>Package pour faciliter l'utilisation d'events.</Description>

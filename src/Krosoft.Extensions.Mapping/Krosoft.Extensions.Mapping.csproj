@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="../../Nuget.target" />
+
 	<PropertyGroup>
 		<PackageTags>Krosoft Extension Mapping AutoMapper Profile</PackageTags>
 		<Description>Package pour faciliter les mapping d'objets.</Description>
