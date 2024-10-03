@@ -1,6 +1,8 @@
 ﻿using System.IO.Compression;
 using System.Reflection;
 using FluentValidation;
+using Krosoft.Extensions.Http.Interfaces;
+using Krosoft.Extensions.Http.Services;
 using Krosoft.Extensions.WebApi.Interfaces;
 using Krosoft.Extensions.WebApi.Models;
 using Krosoft.Extensions.WebApi.Services;
@@ -120,4 +122,14 @@ public static class ServiceCollectionExtensions
         services.AddValidatorsFromAssemblies(all, includeInternalTypes: true);
         return services;
     }
+
+
+    public static IServiceCollection AddHttpContextService(this IServiceCollection services)
+    {
+        services.AddTransient<IHttpContextService, HttpContextService>();
+
+        return services;
+    }
+
+
 }

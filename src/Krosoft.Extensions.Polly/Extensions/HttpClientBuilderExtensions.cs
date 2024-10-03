@@ -1,5 +1,4 @@
-﻿using Krosoft.Extensions.Http.Extensions;
-using Krosoft.Extensions.Polly.Helpers;
+﻿using Krosoft.Extensions.Polly.Helpers;
 using Krosoft.Extensions.Polly.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,18 +17,14 @@ public static class HttpClientBuilderExtensions
         return logger;
     };
 
-    public static IHttpClientBuilder AddCircuitBreakerHandler(this IHttpClientBuilder httpClientBuilder, IServiceCollection serviceCollection, ICircuitBreakerPolicyConfig circuitBreakerPolicyConfig) =>
+    public static IHttpClientBuilder AddCircuitBreakerHandler(this IHttpClientBuilder httpClientBuilder,
+                                                              IServiceCollection serviceCollection,
+                                                              ICircuitBreakerPolicyConfig circuitBreakerPolicyConfig) =>
         httpClientBuilder.AddPolicyHandler(HttpPoliciesHelper.GetHttpCircuitBreakerPolicy(LoggerFunc(serviceCollection), circuitBreakerPolicyConfig));
 
     public static IHttpClientBuilder AddPolicyHandlers(this IHttpClientBuilder httpClientBuilder,
                                                        IConfiguration configuration,
-                                                       IServiceCollection serviceCollection) =>
-        httpClientBuilder.AddPolicyHandlers(configuration, serviceCollection, true);
-
-    public static IHttpClientBuilder AddPolicyHandlers(this IHttpClientBuilder httpClientBuilder,
-                                                       IConfiguration configuration,
-                                                       IServiceCollection serviceCollection,
-                                                       bool useAuthorization)
+                                                       IServiceCollection serviceCollection)
     {
         var policyConfig = new PolicyConfig();
         configuration.Bind(nameof(PolicyConfig), policyConfig);
@@ -37,10 +32,10 @@ public static class HttpClientBuilderExtensions
         var circuitBreakerPolicyConfig = (ICircuitBreakerPolicyConfig)policyConfig;
         var retryPolicyConfig = (IRetryPolicyConfig)policyConfig;
 
-        httpClientBuilder.SetHandlerLifetime(TimeSpan.FromMinutes(5)) //Sample. Default lifetime is 2 minutes
+        httpClientBuilder.SetHandlerLifetime(TimeSpan.FromMinutes(5)) 
                          .AddRetryPolicyHandler(serviceCollection, retryPolicyConfig)
                          .AddCircuitBreakerHandler(serviceCollection, circuitBreakerPolicyConfig)
-                         .AddHttpMessageHandlers(serviceCollection, useAuthorization);
+            ;
 
         return httpClientBuilder;
     }
