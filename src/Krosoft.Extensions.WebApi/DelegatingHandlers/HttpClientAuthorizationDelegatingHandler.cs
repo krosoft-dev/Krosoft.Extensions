@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 
-namespace Krosoft.Extensions.Http.DelegatingHandlers;
+namespace Krosoft.Extensions.WebApi.DelegatingHandlers;
 
 public class HttpClientAuthorizationDelegatingHandler : DelegatingHandler
 {

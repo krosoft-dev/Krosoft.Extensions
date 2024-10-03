@@ -1,7 +1,7 @@
-﻿using Krosoft.Extensions.Http.Interfaces;
+﻿using Krosoft.Extensions.WebApi.Interfaces;
 using Microsoft.AspNetCore.Http;
 
-namespace Krosoft.Extensions.Http.Services;
+namespace Krosoft.Extensions.WebApi.Services;
 
 public class HttpContextService : IHttpContextService
 {

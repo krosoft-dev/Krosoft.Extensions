@@ -1,4 +1,4 @@
-﻿namespace Krosoft.Extensions.Http.Interfaces;
+﻿namespace Krosoft.Extensions.WebApi.Interfaces;
 
 public interface IHttpContextService
 {

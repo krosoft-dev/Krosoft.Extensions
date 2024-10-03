@@ -1,8 +1,6 @@
 ﻿using System.IO.Compression;
 using System.Reflection;
 using FluentValidation;
-using Krosoft.Extensions.Http.Interfaces;
-using Krosoft.Extensions.Http.Services;
 using Krosoft.Extensions.WebApi.Interfaces;
 using Krosoft.Extensions.WebApi.Models;
 using Krosoft.Extensions.WebApi.Services;

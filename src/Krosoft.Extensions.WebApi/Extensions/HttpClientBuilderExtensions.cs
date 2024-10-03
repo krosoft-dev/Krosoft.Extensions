@@ -1,4 +1,4 @@
-﻿using Krosoft.Extensions.Http.DelegatingHandlers;
+﻿using Krosoft.Extensions.WebApi.DelegatingHandlers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Krosoft.Extensions.WebApi.Extensions;
