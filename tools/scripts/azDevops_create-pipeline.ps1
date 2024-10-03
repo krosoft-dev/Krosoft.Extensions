@@ -60,17 +60,37 @@ function AzDevOpsPipelinesCreate(
         -o table  
 
     Write-Host 
+}
+
+
+function AzDevOpsPipelinesUpdate(
+    [Parameter(Mandatory = $True)][ValidateNotNullOrEmpty()][string ] $name ,
+    [Parameter(Mandatory = $True)][ValidateNotNullOrEmpty()][string ] $id 
+    
+) {
+    Write-Host "=========================================="
+    Write-Host "AzDevOpsPipelinesUpdate : $name $id"  
+    Write-Host "==========================================" 
+    az pipelines update  `
+        --id $id  `
+        --yaml-path "tools/devops/nuget-$name-pipeline.yml" `
+        -o table  
+
+    Write-Host 
 } 
 function AzDevOpsPipelinesCreateOrUpdate(
     [Parameter(Mandatory = $True)][ValidateNotNullOrEmpty()][string ] $name ) {
     Write-Host "=========================================="
     Write-Host "AzDevOpsPipelinesCreateOrUpdate : $name"  
     Write-Host "==========================================" 
-
-
    
     $response = az pipelines show --name "nuget - $name" -o json | ConvertFrom-Json
-    $response.id
+    if ($response.id) {
+        AzDevOpsPipelinesUpdate $name $response.id
+    }
+    else {
+        AzDevOpsPipelinesCreate $name
+    }
 
 
     Write-Host 
@@ -85,50 +105,49 @@ $global:serviceConnection = "krosoft-dev"
 $global:repository = "https://github.com/krosoft-dev/Krosoft.Extensions"
 $global:queue = "Azure Pipelines"
 
-# AzDevOpsLogin
-# AzDevOpsInitCli $global:url $global:projet
+AzDevOpsLogin
+AzDevOpsInitCli $global:url $global:projet
 AzDevOpsPipelinesList
 AzDevOpsPipelinesInitQueueId
 AzDevOpsPipelinesInitServiceConnectionId 
  
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Blocking"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Blocking.Abstractions"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Blocking.Memory"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Blocking.Redis"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Cache.Distributed.Redis"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Cache.Memory"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Core"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Cqrs"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Cqrs.Behaviors"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Cqrs.Behaviors.Identity"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Cqrs.Behaviors.Validations"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Data.Abstractions"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Data.EntityFramework"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Data.EntityFramework.InMemory"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Data.EntityFramework.PostgreSql"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Data.EntityFramework.Sqlite"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Data.EntityFramework.SqlServer"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Data.Json"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Events"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Events.Identity"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Identity"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Identity.Abstractions"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Jobs"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Mapping"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Pdf"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Polly"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Reporting.Csv"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Testing"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Testing.Cqrs"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Testing.Data.EntityFramework"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Testing.WebApi"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Validations"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.WebApi"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.WebApi.Blocking"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.WebApi.HealthChecks"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.WebApi.Identity"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.WebApi.Swagger"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.WebApi.Swagger.HealthChecks"
-# AzDevOpsPipelinesCreate "Krosoft.Extensions.Zip"
-AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Zip"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Blocking"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Blocking.Abstractions"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Blocking.Memory"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Blocking.Redis"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Cache.Distributed.Redis"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Cache.Memory"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Core"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Cqrs"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Cqrs.Behaviors"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Cqrs.Behaviors.Identity"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Cqrs.Behaviors.Validations"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Data.Abstractions"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Data.EntityFramework"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Data.EntityFramework.InMemory"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Data.EntityFramework.PostgreSql"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Data.EntityFramework.Sqlite"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Data.EntityFramework.SqlServer"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Data.Json"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Events"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Events.Identity"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Identity"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Identity.Abstractions"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Jobs"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Mapping"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Pdf"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Polly"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Reporting.Csv"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Testing"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Testing.Cqrs"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Testing.Data.EntityFramework"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Testing.WebApi"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Validations"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.WebApi"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.WebApi.Blocking"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.WebApi.HealthChecks"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.WebApi.Identity"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.WebApi.Swagger"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.WebApi.Swagger.HealthChecks"
+AzDevOpsPipelinesCreateOrUpdate "Krosoft.Extensions.Zip" 
