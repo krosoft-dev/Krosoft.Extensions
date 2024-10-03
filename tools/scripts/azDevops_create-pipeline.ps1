@@ -57,6 +57,7 @@ function AzDevOpsPipelinesCreate(
         --repository $global:repository  `
         --repository-type "GitHub" `
         --yaml-path "tools/devops/nuget-$name-pipeline.yml" `
+        --yaml-path "tools/devops/nuget-$name-pipeline.yml" `
         -o table  
 
     Write-Host 
