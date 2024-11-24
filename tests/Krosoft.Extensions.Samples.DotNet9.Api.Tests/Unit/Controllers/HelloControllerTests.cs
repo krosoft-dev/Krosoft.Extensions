@@ -1,8 +1,8 @@
-using Krosoft.Extensions.Samples.DotNet8.Api.Controllers;
+using Krosoft.Extensions.Samples.DotNet9.Api.Controllers;
 using Krosoft.Extensions.Samples.Library.Models.Queries;
 using Krosoft.Extensions.Testing.WebApi;
 
-namespace Krosoft.Extensions.Samples.DotNet8.Api.Tests.Unit.Controllers;
+namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Unit.Controllers;
 
 [TestClass]
 public class HelloControllerTests : ControllerBaseTest<HelloController>

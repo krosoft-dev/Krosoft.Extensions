@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 //using Krosoft.Extensions.Testing;
 //using Krosoft.Extensions.Testing.Extensions;
 
-namespace Krosoft.Extensions.Samples.DotNet8.Api.Tests.Core;
+namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Core;
 
 public abstract class SampleBaseTest<TEntry> : BaseTest
 {

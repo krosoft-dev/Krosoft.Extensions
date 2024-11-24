@@ -1,10 +1,8 @@
 using System.Net;
-using HealthChecks.UI.Core;
-using Krosoft.Extensions.Core.Extensions;
-using Krosoft.Extensions.Samples.DotNet8.Api.Tests.Core;
+using Krosoft.Extensions.Samples.DotNet9.Api.Tests.Core;
 using Krosoft.Extensions.WebApi.HealthChecks.Models;
 
-namespace Krosoft.Extensions.Samples.DotNet8.Api.Tests.Functional;
+namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Functional;
 
 [TestClass]
 public class HealthCheckTests : SampleBaseApiTest<Startup>
