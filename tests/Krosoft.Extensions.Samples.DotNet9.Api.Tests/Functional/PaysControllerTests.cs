@@ -1,4 +1,5 @@
 using System.Net;
+using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Samples.DotNet9.Api.Tests.Core;
 using Krosoft.Extensions.Samples.Library.Models.Dto;
 

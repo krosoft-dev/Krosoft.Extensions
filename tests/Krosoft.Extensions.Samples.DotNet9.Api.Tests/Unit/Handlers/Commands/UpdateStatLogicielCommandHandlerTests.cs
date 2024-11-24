@@ -2,6 +2,8 @@
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Services;
+using Krosoft.Extensions.Samples.DotNet9.Api.Data;
+using Krosoft.Extensions.Samples.DotNet9.Api.Handlers.Commands;
 using Krosoft.Extensions.Samples.DotNet9.Api.Tests.Core;
 using Krosoft.Extensions.Samples.Library.Models.Commands;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
