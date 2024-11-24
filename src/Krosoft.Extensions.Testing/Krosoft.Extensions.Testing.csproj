@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<PackageTags>Krosoft Extension Testing Tests Unit NFluent nfluent moq</PackageTags>
 		<Description>Package pour faciliter la mise en place de tests.</Description>
@@ -25,11 +24,12 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
 	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0'"></ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="Moq" Version="4.20.72" />
-	  <PackageReference Include="NFluent" Version="3.0.4" /> 
+		<PackageReference Include="Moq" Version="4.20.72" />
+		<PackageReference Include="NFluent" Version="3.0.4" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Krosoft.Extensions.Core\Krosoft.Extensions.Core.csproj" />
+		<ProjectReference Include="..\Krosoft.Extensions.Core\Krosoft.Extensions.Core.csproj" />
 	</ItemGroup>
 </Project>
