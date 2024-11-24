@@ -4,7 +4,7 @@ using Krosoft.Extensions.WebApi.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Krosoft.Extensions.Samples.DotNet8.Api.Controllers;
+namespace Krosoft.Extensions.Samples.DotNet9.Api.Controllers;
 
 [AllowAnonymous]
 public class PaysController : ApiControllerBase

@@ -1,4 +1,4 @@
-namespace Krosoft.Extensions.Samples.DotNet8.Api;
+namespace Krosoft.Extensions.Samples.DotNet9.Api;
 
 public static class Program
 {

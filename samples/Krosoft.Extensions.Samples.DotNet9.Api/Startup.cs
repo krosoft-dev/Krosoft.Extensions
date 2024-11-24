@@ -10,7 +10,7 @@ using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
 using Krosoft.Extensions.Identity.Extensions;
 using Krosoft.Extensions.Pdf.Extensions;
-using Krosoft.Extensions.Samples.DotNet8.Api.Data;
+using Krosoft.Extensions.Samples.DotNet9.Api.Data;
 using Krosoft.Extensions.Samples.Library.Mappings;
 using Krosoft.Extensions.WebApi.Blocking.Extensions;
 using Krosoft.Extensions.WebApi.Extensions;
@@ -21,7 +21,7 @@ using Krosoft.Extensions.WebApi.Swagger.HealthChecks.Extensions;
 using Krosoft.Extensions.Zip.Extensions;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Krosoft.Extensions.Samples.DotNet8.Api;
+namespace Krosoft.Extensions.Samples.DotNet9.Api;
 
 public class Startup
 {
