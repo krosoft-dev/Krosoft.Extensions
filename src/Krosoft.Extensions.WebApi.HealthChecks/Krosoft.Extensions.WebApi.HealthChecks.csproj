@@ -16,7 +16,8 @@
 		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
-		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" /></ItemGroup>
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
+	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Krosoft.Extensions.Core\Krosoft.Extensions.Core.csproj" />
 	</ItemGroup>
