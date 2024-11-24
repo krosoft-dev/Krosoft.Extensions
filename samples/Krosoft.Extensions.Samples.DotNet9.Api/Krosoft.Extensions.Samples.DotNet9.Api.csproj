@@ -5,7 +5,7 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<NoWarn>$(NoWarn);1591</NoWarn>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-		<DockerfileTag>krosoft-extensions.samples.dotnet8.api</DockerfileTag>
+		<DockerfileTag>krosoft-extensions.samples.dotnet9.api</DockerfileTag>
 		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
 	</PropertyGroup>
 	<ItemGroup>
