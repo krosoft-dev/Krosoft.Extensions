@@ -5,7 +5,7 @@ using Krosoft.Extensions.Testing.Cqrs.Extensions;
 namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Unit.Handlers.Queries;
 
 [TestClass]
-public class HelloWorlQueryHandlerTests : SampleBaseTest<Startup>
+public class HelloWorlQueryHandlerTests : SampleBaseTest<Program>
 {
     [TestMethod]
     public async Task Handle_Ok()

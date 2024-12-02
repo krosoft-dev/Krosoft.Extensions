@@ -8,7 +8,7 @@ using Krosoft.Extensions.Samples.Library.Models.Dto;
 namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Functional;
 
 [TestClass]
-public class LogicielsControllerTests : SampleBaseApiTest<Startup>
+public class LogicielsControllerTests : SampleBaseApiTest<Program>
 {
     private static async Task CheckExportFile(HttpResponseMessage response, string fileNameExpected)
     {

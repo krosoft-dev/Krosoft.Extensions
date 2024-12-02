@@ -4,7 +4,7 @@ using Krosoft.Extensions.Samples.DotNet9.Api.Tests.Core;
 namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Functional;
 
 [TestClass]
-public class ControllerTests : SampleBaseApiTest<Startup>
+public class ControllerTests : SampleBaseApiTest<Program>
 {
     [TestMethod]
     public async Task IndexTest()

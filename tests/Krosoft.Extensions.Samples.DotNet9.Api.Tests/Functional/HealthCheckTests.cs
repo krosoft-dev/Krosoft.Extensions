@@ -7,7 +7,7 @@ using Krosoft.Extensions.WebApi.HealthChecks.Models;
 namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Functional;
 
 [TestClass]
-public class HealthCheckTests : SampleBaseApiTest<Startup>
+public class HealthCheckTests : SampleBaseApiTest<Program>
 {
     [TestMethod]
     public async Task HealthCheck_Ok()

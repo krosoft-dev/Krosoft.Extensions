@@ -6,7 +6,7 @@ using Krosoft.Extensions.Samples.Library.Models.Dto;
 namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Functional;
 
 [TestClass]
-public class PaysControllerTests : SampleBaseApiTest<Startup>
+public class PaysControllerTests : SampleBaseApiTest<Program>
 {
     [TestMethod]
     public async Task Get_Ok()

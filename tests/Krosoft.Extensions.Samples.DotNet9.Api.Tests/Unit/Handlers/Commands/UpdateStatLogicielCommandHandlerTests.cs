@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Unit.Handlers.Commands;
 
 [TestClass]
-public class UpdateStatLogicielCommandHandlerTests : SampleBaseTest<Startup>
+public class UpdateStatLogicielCommandHandlerTests : SampleBaseTest<Program>
 {
     //TestInitialize
     private Mock<ILogger<UpdateStatLogicielCommandHandler>> _mockLogger = null!;
