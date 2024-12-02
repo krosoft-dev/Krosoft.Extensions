@@ -12,12 +12,12 @@ public class HelloControllerTests : ControllerBaseTest<HelloController>
     {
         var expectedOutput = "Hello-World";
 
-        Mock.Setup(x => x.Send(It.IsAny<HelloDotNet8Query>(), CancellationToken.None))
+        Mock.Setup(x => x.Send(It.IsAny<HelloDotNet9Query>(), CancellationToken.None))
             .ReturnsAsync(() => expectedOutput);
 
         var result = await Controller.HelloAsync(CancellationToken.None);
 
-        Mock.Verify(x => x.Send(It.IsAny<HelloDotNet8Query>(), CancellationToken.None), Times.Once());
+        Mock.Verify(x => x.Send(It.IsAny<HelloDotNet9Query>(), CancellationToken.None), Times.Once());
 
         Check.That(result).IsNotNull();
         Check.That(result).IsEqualTo(expectedOutput);

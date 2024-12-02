@@ -12,7 +12,7 @@ public class HelloWorlQueryHandlerTests : SampleBaseTest<Program>
     {
         var serviceProvider = CreateServiceCollection();
 
-        var result = await this.SendQueryAsync(serviceProvider, new HelloDotNet8Query());
+        var result = await this.SendQueryAsync(serviceProvider, new HelloDotNet9Query());
         Check.That(result).IsNotNull();
         Check.That(result).IsEqualTo("Hello DotNet8");
     }

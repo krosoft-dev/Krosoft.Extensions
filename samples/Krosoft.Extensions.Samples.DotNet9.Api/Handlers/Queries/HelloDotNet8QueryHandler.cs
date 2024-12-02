@@ -3,16 +3,16 @@ using MediatR;
 
 namespace Krosoft.Extensions.Samples.DotNet9.Api.Handlers.Queries;
 
-public class HelloDotNet8QueryHandler : IRequestHandler<HelloDotNet8Query, string>
+public class HelloDotNet9QueryHandler : IRequestHandler<HelloDotNet9Query, string>
 {
-    private readonly ILogger<HelloDotNet8QueryHandler> _logger;
+    private readonly ILogger<HelloDotNet9QueryHandler> _logger;
 
-    public HelloDotNet8QueryHandler(ILogger<HelloDotNet8QueryHandler> logger)
+    public HelloDotNet9QueryHandler(ILogger<HelloDotNet9QueryHandler> logger)
     {
         _logger = logger;
     }
 
-    public Task<string> Handle(HelloDotNet8Query request,
+    public Task<string> Handle(HelloDotNet9Query request,
                                CancellationToken cancellationToken)
     {
         _logger.LogInformation("Hello DotNet8...");
