@@ -36,7 +36,7 @@ public static class Base64Helper
         }
 
         // Vérifier les caractères valides.
-        var base64Regex = new Regex(@"^[a-zA-Z0-9\+/]*={0,2}$", RegexOptions.None);
+        var base64Regex = new Regex(@"^[a-zA-Z0-9\+/]*={0,2}$", RegexOptions.None, RegexHelper.MatchTimeout);
         if (!base64Regex.IsMatch(base64))
         {
             return false;
