@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Krosoft.Extensions.WebApi.Identity.Services;
 
-public class HttpApiKeyProvider : IApiKeyProvider
+internal class HttpApiKeyProvider : IApiKeyProvider
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
 
