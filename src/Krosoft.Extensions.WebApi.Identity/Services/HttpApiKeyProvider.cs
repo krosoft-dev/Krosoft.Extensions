@@ -23,7 +23,7 @@ internal class HttpApiKeyProvider : IApiKeyProvider
             if (headers.ContainsKey(ApiKeyMiddleware.ApiKeyHeaderName))
             {
                 string? apiKey = headers[ApiKeyMiddleware.ApiKeyHeaderName];
-                return Task.FromResult(apiKey);
+                return Task.FromResult<string?>(apiKey);
             }
         }
 
