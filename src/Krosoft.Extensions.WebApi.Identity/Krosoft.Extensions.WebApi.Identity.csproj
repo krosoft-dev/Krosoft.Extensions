@@ -28,4 +28,7 @@
 		<ProjectReference Include="..\Krosoft.Extensions.Identity\Krosoft.Extensions.Identity.csproj" />
 		<ProjectReference Include="..\Krosoft.Extensions.WebApi\Krosoft.Extensions.WebApi.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="PipelineBehaviors\" />
+	</ItemGroup>
 </Project>
