@@ -17,6 +17,7 @@ using Krosoft.Extensions.WebApi.Blocking.Extensions;
 using Krosoft.Extensions.WebApi.Extensions;
 using Krosoft.Extensions.WebApi.HealthChecks.Extensions;
 using Krosoft.Extensions.WebApi.Identity.Extensions;
+using Krosoft.Extensions.WebApi.Identity.Middlewares;
 using Krosoft.Extensions.WebApi.Swagger.Extensions;
 using Krosoft.Extensions.WebApi.Swagger.HealthChecks.Extensions;
 using Krosoft.Extensions.Zip.Extensions;
@@ -29,15 +30,17 @@ var builder = WebApplication.CreateBuilder(args);
 //Web API.
 builder.Services
        .AddWebApi(builder.Configuration, currentAssembly, typeof(CompteProfile).Assembly)
+       .AddApiKey(builder.Configuration)
        //CQRS.
        .AddBehaviors(options => options.AddLogging()
                                        .AddValidations()
-                                       .AddIdentity())
+                                       .AddIdentity()
+                                       .AddApiKey())
        //Swagger.
        .AddSwagger(currentAssembly, options => options.AddHealthChecks()
                                                       .AddGlobalResponses()
                                                       .AddSecurityBearer()
-                                                      .AddSecurityApiKey())
+                                                      .AddSecurityApiKey(ApiKeyMiddleware.ApiKeyHeaderName))
        //Blocking.
        .AddBlocking()
        .AddWepApiBlocking()

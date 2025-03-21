@@ -11,5 +11,5 @@ internal static class HelloModule
 
     internal static Task<string> HelloApiKey(IMediator mediator,
                                              CancellationToken cancellationToken) =>
-        mediator.Send(new HelloDotNet9Query(), cancellationToken);
+        mediator.Send(new HelloApiKeyDotNet9Query(), cancellationToken);
 }

@@ -5,6 +5,7 @@ public record AuthBaseQuery<TResponse> : BaseQuery<TResponse>, IAuthQuery<TRespo
     public virtual bool IsTenantRequired => true;
 
     public virtual bool IsUtilisateurRequired => true;
+    public string? ApiKey { get; set; }
     public string? TenantId { get; set; }
     public string? UtilisateurCourantId { get; set; }
 }
