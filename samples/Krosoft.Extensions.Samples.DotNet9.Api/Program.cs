@@ -76,7 +76,8 @@ app.UseWebApi(builder.Environment, builder.Configuration,
    .UseSwaggerExt()
    .UseBlocking();
 
-await app.AddEndpoints()
+await app.AddModules()
+         .AddEndpoints()
          .RunAsync();
 
 namespace Krosoft.Extensions.Samples.DotNet9.Api
