@@ -173,6 +173,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krosoft.Extensions.Jobs.Han
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krosoft.Extensions.Options", "src\Krosoft.Extensions.Options\Krosoft.Extensions.Options.csproj", "{EA84BD88-E365-495A-A65C-FF9BA6048790}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krosoft.Extensions.WebApi.Tests", "tests\Krosoft.Extensions.WebApi.Tests\Krosoft.Extensions.WebApi.Tests.csproj", "{E0EF3203-11F3-419A-A729-A48AE778E313}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1321,6 +1323,22 @@ Global
 		{EA84BD88-E365-495A-A65C-FF9BA6048790}.Release|x64.Build.0 = Release|Any CPU
 		{EA84BD88-E365-495A-A65C-FF9BA6048790}.Release|x86.ActiveCfg = Release|Any CPU
 		{EA84BD88-E365-495A-A65C-FF9BA6048790}.Release|x86.Build.0 = Release|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Debug|x64.Build.0 = Debug|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Debug|x86.Build.0 = Debug|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Release|ARM.Build.0 = Release|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Release|x64.ActiveCfg = Release|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Release|x64.Build.0 = Release|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Release|x86.ActiveCfg = Release|Any CPU
+		{E0EF3203-11F3-419A-A729-A48AE778E313}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1390,6 +1408,7 @@ Global
 		{CEE142F4-AE9E-495A-BF61-E0114C64016C} = {1BA9DB0A-8961-4AA1-BB81-F8C2820FCB52}
 		{5E824E23-E226-4A0B-CC88-1B431D7E41AA} = {FB255A45-0B9C-40AA-81FA-242244DCF7E9}
 		{EA84BD88-E365-495A-A65C-FF9BA6048790} = {8C3E2A08-6FB2-4265-B537-A5508A4EC026}
+		{E0EF3203-11F3-419A-A729-A48AE778E313} = {49F53C0E-6503-4CBD-B5ED-B83D053C6DA2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FD07ECB-B4B5-4D65-8E03-10F0C97C77A9}
