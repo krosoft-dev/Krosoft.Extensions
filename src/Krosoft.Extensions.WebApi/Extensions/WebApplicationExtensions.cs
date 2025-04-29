@@ -1,6 +1,8 @@
-﻿using System.Reflection;
+﻿#if NET9_0_OR_GREATER
+using System.Reflection;
 using Krosoft.Extensions.WebApi.Interfaces;
 using Microsoft.AspNetCore.Builder;
+#endif
 
 namespace Krosoft.Extensions.WebApi.Extensions;
 

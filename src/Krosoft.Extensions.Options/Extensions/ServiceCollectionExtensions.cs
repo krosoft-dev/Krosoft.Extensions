@@ -12,12 +12,17 @@ public static class ServiceCollectionExtensions
         where TValidateOptions : class, IValidateOptions<TSettings>
     {
         var sectionName = typeof(TSettings).Name;
-        var options = services.AddOptions<TSettings>()
-                              .Bind(configuration.GetSection(sectionName))
-                              .ValidateDataAnnotations();
 
 #if NET9_0_OR_GREATER
-        options.ValidateOnStart();
+        services.AddOptions<TSettings>()
+                .Bind(configuration.GetSection(sectionName))
+                .ValidateDataAnnotations()
+                .ValidateOnStart();
+
+#else
+        services.AddOptions<TSettings>()
+                .Bind(configuration.GetSection(sectionName))
+                .ValidateDataAnnotations();
 #endif
 
         return services
