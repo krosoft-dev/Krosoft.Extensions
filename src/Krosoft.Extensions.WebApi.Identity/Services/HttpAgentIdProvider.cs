@@ -16,15 +16,16 @@ internal class HttpAgentIdProvider : IAgentIdProvider
 
     public Task<string?> GetAgentIdAsync(CancellationToken cancellationToken)
     {
-        //On affecte le token que s'il n'y en pas déjà un.
         if (_httpContextAccessor.HttpContext != null)
         {
             var headers = _httpContextAccessor.HttpContext.Request.Headers;
-            if (headers.ContainsKey(AgentIdMiddleware.AgentIdHeaderName))
+            if (headers.TryGetValue(AgentIdMiddleware.AgentIdHeaderName, out var apiKeyValues))
             {
-                string? agentId = headers[AgentIdMiddleware.AgentIdHeaderName];
-                return Task.FromResult<string?>(agentId);
+                var apiKey = apiKeyValues.FirstOrDefault();
+                return Task.FromResult(apiKey);
             }
+
+            return Task.FromResult<string?>(null);
         }
 
         throw new KrosoftTechnicalException("HttpContext non défini.");
