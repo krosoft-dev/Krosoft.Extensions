@@ -41,8 +41,8 @@ public class DocumentsTest : SampleBaseApiTest<Program>
     {
         using var content = new MultipartFormDataContent();
         content.Add(new StringContent("42"), "FichierId");
-        await using var fileStream = File.OpenRead("./Files/hello.txt");
-        content.Add(new StreamContent(fileStream), "File", "hello.txt");
+        await using var fileStream = File.OpenRead("./Files/Hello.txt");
+        content.Add(new StreamContent(fileStream), "File", "Hello.txt");
         var response = await Factory.CreateClient().PostAsync("/Documents/Deposer/Fichier", content);
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
         var error = await response.Content.ReadAsJsonAsync<DepotDto>();
