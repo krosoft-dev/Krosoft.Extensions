@@ -23,7 +23,7 @@ internal class HttpAgentIdProvider : IAgentIdProvider
             if (headers.ContainsKey(AgentIdMiddleware.AgentIdHeaderName))
             {
                 string? agentId = headers[AgentIdMiddleware.AgentIdHeaderName];
-                return Task.FromResult(agentId);
+                return Task.FromResult<string?>(agentId);
             }
         }
 

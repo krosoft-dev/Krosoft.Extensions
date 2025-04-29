@@ -3,15 +3,19 @@ using Krosoft.Extensions.Blocking.Extensions;
 using Krosoft.Extensions.Blocking.Memory.Extensions;
 using Krosoft.Extensions.Cache.Distributed.Redis.Extensions;
 using Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks.Extensions;
+using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Cqrs.Behaviors.Extensions;
 using Krosoft.Extensions.Cqrs.Behaviors.Identity.Extensions;
 using Krosoft.Extensions.Cqrs.Behaviors.Validations.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
 using Krosoft.Extensions.Identity.Extensions;
+using Krosoft.Extensions.Options.Extensions;
 using Krosoft.Extensions.Pdf.Extensions;
 using Krosoft.Extensions.Samples.DotNet9.Api.Data;
 using Krosoft.Extensions.Samples.DotNet9.Api.Extensions;
+using Krosoft.Extensions.Samples.DotNet9.Api.Models;
+using Krosoft.Extensions.Samples.DotNet9.Api.Services;
 using Krosoft.Extensions.Samples.Library.Mappings;
 using Krosoft.Extensions.WebApi.Blocking.Extensions;
 using Krosoft.Extensions.WebApi.Extensions;
@@ -28,6 +32,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Web API.
 builder.Services
+       .AddOptionsValidator<AppSettings, AppSettingsValidateOptions>(builder.Configuration)
        .AddWebApi(builder.Configuration, currentAssembly, typeof(CompteProfile).Assembly)
        //CQRS.
        .AddBehaviors(options => options.AddLogging()
@@ -59,6 +64,7 @@ builder.Services
        .AddDistributedCacheExt()
 
 //Autres
+       .AddDateTimeService()
        .AddZip()
        .AddPdf()
        .AddCorsPolicyAccessor()
@@ -77,7 +83,7 @@ app.UseWebApi(builder.Environment, builder.Configuration,
    .UseBlocking();
 
 await app.AddModules()
-         .AddEndpoints()
+         .AddEndpoints(currentAssembly)
          .RunAsync();
 
 namespace Krosoft.Extensions.Samples.DotNet9.Api
