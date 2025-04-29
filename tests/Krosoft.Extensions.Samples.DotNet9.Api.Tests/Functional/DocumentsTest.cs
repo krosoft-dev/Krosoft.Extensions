@@ -1,4 +1,4 @@
-using System.Net;
+ï»¿using System.Net;
 using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Models.Dto;
 using Krosoft.Extensions.Samples.DotNet9.Api.Tests.Core;
@@ -48,7 +48,7 @@ public class DocumentsTest : SampleBaseApiTest<Program>
         var error = await response.Content.ReadAsJsonAsync<DepotDto>();
         Check.That(error).IsNotNull();
         Check.That(error!.Numero).IsEqualTo(null);
-        Check.That(error.Message).StartsWith("Fichier créé sur temp");
+        Check.That(error.Message).StartsWith("Fichier crÃ©Ã© sur temp");
     }
 
     [TestMethod]
