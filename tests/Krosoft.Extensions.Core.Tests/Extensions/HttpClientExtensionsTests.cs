@@ -152,7 +152,7 @@ public class HttpClientExtensionsTests : BaseTest
     public async Task EnsureStreamAsync_Ok()
     {
         var content = "Test content";
-        var contentType = "application/json";
+        var contentType = HttpClientExtensions.MediaTypeJson;
         var fileName = "test.json";
 
         var cancellationToken = CancellationToken.None;
@@ -176,7 +176,7 @@ public class HttpClientExtensionsTests : BaseTest
     public async Task EnsureStreamAsync_Ok_OnError()
     {
         var content = "Test content";
-        var contentType = "application/json";
+        var contentType = HttpClientExtensions.MediaTypeJson;
         var fileName = "test.json";
 
         var cancellationToken = CancellationToken.None;
