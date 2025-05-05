@@ -26,7 +26,9 @@ public static class ValidatorExtensions
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if (validationResult != null)
         {
-            action(validationResult.Errors.Select(er => er.ErrorMessage).ToHashSet());
+            var validatorType = typeof(T).Name;
+            var errors = validationResult.Errors.Select(er => $"{validatorType}.{er.PropertyName} : {er.ErrorMessage}").ToHashSet();
+            action(errors);
         }
     }
 }

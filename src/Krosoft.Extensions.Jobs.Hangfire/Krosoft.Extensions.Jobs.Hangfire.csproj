@@ -30,7 +30,5 @@
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="13.0.1" />
 	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Krosoft.Extensions.Mapping\Krosoft.Extensions.Mapping.csproj" />
-	</ItemGroup>
+ 
 </Project>
