@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Models.Dto;
 using Krosoft.Extensions.Samples.DotNet9.Api.Tests.Core;
@@ -50,7 +50,7 @@ public class HelloControllerTests : SampleBaseApiTest<Program>
         Check.That(error).IsNotNull();
         Check.That(error!.Code).IsEqualTo(400);
         Check.That(error.Errors)
-             .ContainsExactly("'Name' ne doit pas �tre vide.",
+             .ContainsExactly("'Name' ne doit pas être vide.",
                               "'Name' ne doit pas avoir la valeur null.");
     }
 
