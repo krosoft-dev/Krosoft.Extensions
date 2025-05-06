@@ -8,6 +8,7 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Krosoft.Extensions.Core" Version="2025.5.5.1450" />
 		<PackageReference Include="MediatR" Version="12.4.1" />
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
 	</ItemGroup>
