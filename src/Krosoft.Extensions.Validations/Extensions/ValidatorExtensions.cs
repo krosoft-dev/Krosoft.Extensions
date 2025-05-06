@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Core.Models.Exceptions;
 
 namespace Krosoft.Extensions.Validations.Extensions;
@@ -9,25 +10,32 @@ public static class ValidatorExtensions
                                                           T item,
                                                           CancellationToken cancellationToken)
     {
-        await validator.ValidateMoreAsync(item, failures =>
+        await validator.ValidateMoreAsync(item, errorsDetail =>
         {
-            if (failures.Any())
+            if (errorsDetail.Any())
             {
-                throw new KrosoftFunctionalException(failures);
+                var errors = errorsDetail.SelectMany(x => x.Errors).ToHashSet();
+                throw new KrosoftFunctionalDetailedException(errors, errorsDetail);
             }
         }, cancellationToken);
     }
 
     public static async Task ValidateMoreAsync<T>(this IValidator<T> validator,
                                                   T request,
-                                                  Action<ISet<string>> action,
+                                                  Action<ISet<ErrorDetail>> action,
                                                   CancellationToken cancellationToken)
     {
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if (validationResult != null)
         {
             var validatorType = typeof(T).Name;
-            var errors = validationResult.Errors.Select(er => $"{validatorType}.{er.PropertyName} : {er.ErrorMessage}").ToHashSet();
+            var g = validationResult.Errors.GroupBy(x => x.PropertyName);
+            var errors = new HashSet<ErrorDetail>();
+            foreach (var grouping in g)
+            {
+                errors.Add(new ErrorDetail(validatorType, grouping.Key, grouping.Select(x => x.ErrorMessage).ToList()));
+            }
+
             action(errors);
         }
     }
