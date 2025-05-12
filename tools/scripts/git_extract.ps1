@@ -4,6 +4,7 @@
 $projectName = "Krosoft.Extensions.WebApi"
 $commitMessage = "Extraction du projet $projectName depuis Krosoft.Extensions"
 $targetBranch = "feat/init"  
+$SourceBranch = "feat/Krosoft.Extensions.WebApi"
 $sourceRepoUrl = "https://github.com/krosoft-dev/Krosoft.Extensions.git"
 $targetRepoUrl = "https://github.com/krosoft-dev/$projectName.git"
 $targetDir = "C:\Dev\$projectName"
@@ -244,7 +245,8 @@ function Copy-FilteredRepository {
     param (
         [Parameter(Mandatory = $true)][string]$SourceUrl,
         [Parameter(Mandatory = $true)][string]$TargetPath,
-        [Parameter(Mandatory = $true)][string[]]$PathsToKeep
+        [Parameter(Mandatory = $true)][string[]]$PathsToKeep,
+        [Parameter(Mandatory = $false)][string]$SourceBranch
     )
     
     try {
@@ -257,7 +259,7 @@ function Copy-FilteredRepository {
         $folderToKeep = $folderToKeep | Select-Object -Unique
 
         # Cloner le dépôt original
-        git clone $SourceUrl $TargetPath
+        git clone -b $SourceBranch $SourceUrl $TargetPath
         Set-Location $TargetPath
         Write-Log "Repository clone dans : $TargetPath" -Color Green
 
@@ -309,7 +311,7 @@ if (Test-Path $targetDir) {
 }
 
 
-Copy-FilteredRepository -SourceUrl $sourceRepoUrl -TargetPath $targetDir -PathsToKeep $pathsToKeep
+Copy-FilteredRepository -SourceUrl $sourceRepoUrl -TargetPath $targetDir -PathsToKeep $pathsToKeep -SourceBranch $SourceBranch
 
 #Rename sln file with project name
 Rename-SolutionFile -Path $targetDir -NewName $projectName
