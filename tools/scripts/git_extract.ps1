@@ -1,12 +1,15 @@
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 # Configuration
+$organizationName = "krosoft-dev"
 $projectName = "Krosoft.Extensions.WebApi"
 $commitMessage = "Extraction du projet $projectName depuis Krosoft.Extensions"
 $targetBranch = "feat/init"  
 $SourceBranch = "feat/Krosoft.Extensions.WebApi"
 $sourceRepoUrl = "https://github.com/krosoft-dev/Krosoft.Extensions.git"
+$sourceRepoGit = "git@krosoft-dev:krosoft-dev/Krosoft.Extensions.git"
 $targetRepoUrl = "https://github.com/krosoft-dev/$projectName.git"
+
 $targetDir = "C:\Dev\$projectName"
 $pathsToKeep = @( 
     # Fichiers communs    
@@ -52,7 +55,8 @@ $pathsToKeep = @(
 
 function Update-GitRepository {
     param (
-        [Parameter(Mandatory = $true)][string]$NewRemoteUrl,
+        [Parameter(Mandatory = $true)][string]$OrganizationName,
+        [Parameter(Mandatory = $true)][string]$ProjectName,
         [Parameter(Mandatory = $true)][string]$BranchName,
         [Parameter(Mandatory = $true)][string]$CommitMessage
     )
@@ -61,9 +65,8 @@ function Update-GitRepository {
         # Supprime l'ancien remote
         git remote remove origin
         
-        # Ajoute le nouveau remote
-        git remote add origin $NewRemoteUrl
-        
+        # Ajoute le nouveau remote 
+        git remote add origin "git@${OrganizationName}:${OrganizationName}/${ProjectName}.git"
         # Crée une nouvelle branche et bascule dessus
         git checkout -b $BranchName
         
@@ -73,9 +76,7 @@ function Update-GitRepository {
         # Crée un commit
         git commit -m $CommitMessage
         
-        Write-Log "Repository configure avec succes" -Color Green
-        Write-Log "- Remote : $NewRemoteUrl" -Color Green
-        Write-Log "- Branche : $BranchName" -Color Green
+
     }
     catch {
         Write-Log "Erreur lors de la configuration git : $_" -Color Red
@@ -311,7 +312,7 @@ if (Test-Path $targetDir) {
 }
 
 
-Copy-FilteredRepository -SourceUrl $sourceRepoUrl -TargetPath $targetDir -PathsToKeep $pathsToKeep -SourceBranch $SourceBranch
+Copy-FilteredRepository -SourceUrl $sourceRepoGit -TargetPath $targetDir -PathsToKeep $pathsToKeep -SourceBranch $SourceBranch
 
 #Rename sln file with project name
 Rename-SolutionFile -Path $targetDir -NewName $projectName
@@ -327,7 +328,11 @@ Update-SonarConfiguration -Path $targetDir -NewName $projectName
  
 
 # git config
-Update-GitRepository -NewRemoteUrl $targetRepoUrl -BranchName $targetBranch -CommitMessage $commitMessage
+Update-GitRepository -OrganizationName $organizationName -ProjectName $projectName -BranchName $targetBranch -CommitMessage $commitMessage
+
 
  
+ 
 Write-Log "Projet extrait : '$targetDir' sur la branche '$targetBranch' de $targetRepoUrl" -Color Green
+Write-Host 
+Write-Host "git push -u origin $targetBranch" -ForegroundColor Cyan
