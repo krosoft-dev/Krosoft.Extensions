@@ -11,7 +11,7 @@ trigger:
       - "**/KRO_PACKAGE_NAME/*"
 
 extends:
-  template: ./templates/pipelines/nuget-template.yml
+    template: tools/devops/templates/pipelines/nuget-template.yml@Krosoft.Extensions
   parameters:
     packages:
 KRO_PACKAGES

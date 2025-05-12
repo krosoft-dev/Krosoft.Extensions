@@ -11,7 +11,7 @@ trigger:
       - "**/Krosoft.Extensions.Data.EntityFramework.PostgreSql/*"
 
 extends:
-  template: ./templates/pipelines/nuget-template.yml
+    template: tools/devops/templates/pipelines/nuget-template.yml@Krosoft.Extensions
   parameters:
     packages:
       - "Krosoft.Extensions.Data.Abstractions"

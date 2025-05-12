@@ -128,6 +128,100 @@ function Rename-SolutionFile {
 
 }
 
+function Update-SonarConfiguration {
+    param (
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][string]$NewName
+    )
+    
+    try {
+        $varsPath = Join-Path $Path "tools\devops\vars\vars.yml"
+        
+        if (Test-Path $varsPath) {
+            # Lire le contenu du fichier
+            $content = Get-Content $varsPath -Raw
+            
+            # Remplacer les valeurs Sonar
+            $content = $content -replace 'sonarCloudProjectKey: "krosoft-dev_Krosoft.Extensions"', "sonarCloudProjectKey: `"krosoft-dev_$NewName`""
+            $content = $content -replace 'sonarCloudProjectName: "Krosoft.Extensions"', "sonarCloudProjectName: `"$NewName`""
+            
+            # Sauvegarder les modifications
+            Set-Content -Path $varsPath -Value $content
+            Write-Log "Configuration Sonar mise a jour avec : $NewName" -Color Green
+        }
+        else {
+            Write-Log "Fichier vars.yml non trouve" -Color Red
+        }
+    }
+    catch {
+        Write-Log "Erreur lors de la mise a jour de la configuration Sonar : $_" -Color Red
+    }
+}
+
+
+function Update-BuildPipelineName {
+    param (
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][string]$NewName
+    )
+    
+    try {
+        $pipelinePath = Join-Path $Path "tools\devops\build-pipeline.yml"
+        
+        if (Test-Path $pipelinePath) {
+            # Lire le contenu du fichier
+            $content = Get-Content $pipelinePath -Raw
+            
+            # Remplacer le nom du pipeline
+            $oldName = "name: Build 'Krosoft.Extensions'"
+            $newName = "name: Build '$NewName'"
+            
+            $content = $content -replace $oldName, $newName
+            
+            # Sauvegarder les modifications
+            Set-Content -Path $pipelinePath -Value $content
+            Write-Log "Pipeline name mis a jour avec : $NewName" -Color Green
+        }
+        else {
+            Write-Log "Fichier build-pipeline.yml non trouve" -Color Red
+        }
+    }
+    catch {
+        Write-Log "Erreur lors de la mise a jour du pipeline name : $_" -Color Red
+    }
+}
+
+function Update-BuildPropsRepository {
+    param (
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][string]$OldRepositoryUrl,
+        [Parameter(Mandatory = $true)][string]$NewRepositoryUrl
+    )
+    
+    try {
+        $buildPropsPath = Join-Path $Path "Directory.Build.props"
+        
+        if (Test-Path $buildPropsPath) {
+            # Lire le contenu du fichier
+            $content = Get-Content $buildPropsPath -Raw
+            
+            # Remplacer l'URL du repository
+ 
+            $content = $content -replace $oldRepositoryUrl, $NewRepositoryUrl
+            
+            # Sauvegarder les modifications
+            Set-Content -Path $buildPropsPath -Value $content
+            Write-Log "Directory.Build.props mis a jour avec : $NewRepositoryUrl" -Color Green
+        }
+        else {
+            Write-Log "Fichier Directory.Build.props non trouve" -Color Red
+        }
+    }
+    catch {
+        Write-Log "Erreur lors de la mise a jour de Directory.Build.props : $_" -Color Red
+    }
+}
+
 function Update-ReadmeFile {
     param (
         [Parameter(Mandatory = $true)][string]$Path,
@@ -222,6 +316,13 @@ Rename-SolutionFile -Path $targetDir -NewName $projectName
 
 # Update README.md
 Update-ReadmeFile -Path $targetDir -NewName $projectName
+
+#Update Directory.Build.props
+Update-BuildPropsRepository -Path $targetDir -OldRepositoryUrl $sourceRepoUrl -NewRepositoryUrl $targetRepoUrl  
+
+Update-BuildPipelineName -Path $targetDir -NewName $projectName
+Update-SonarConfiguration -Path $targetDir -NewName $projectName
+ 
 
 # git config
 Update-GitRepository -NewRemoteUrl $targetRepoUrl -BranchName $targetBranch -CommitMessage $commitMessage
