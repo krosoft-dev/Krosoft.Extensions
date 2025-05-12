@@ -2,6 +2,13 @@ name: Nuget 'Krosoft.Extensions.Application.Cache.Distributed.Redis' - $(Date:yy
 
 pr: none
 
+resources:
+  repositories:
+    - repository: Krosoft.Extensions
+      type: github
+      name: krosoft-dev/Krosoft.Extensions
+      endpoint: krosoft-dev
+
 trigger:
   branches:
     include:
