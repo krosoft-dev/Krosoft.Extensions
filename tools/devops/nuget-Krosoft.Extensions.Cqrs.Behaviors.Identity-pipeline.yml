@@ -21,9 +21,7 @@ extends:
   template: tools/devops/templates/pipelines/nuget-template.yml@Krosoft.Extensions
   parameters:
     packages:
-     
-     - "Krosoft.Extensions.Cqrs"
-     - "Krosoft.Extensions.Cqrs.Behaviors"
-     - "Krosoft.Extensions.Cqrs.Behaviors.Identity"
-     - "Krosoft.Extensions.Identity.Abstractions"
-
+      - "Krosoft.Extensions.Cqrs"
+      - "Krosoft.Extensions.Cqrs.Behaviors"
+      - "Krosoft.Extensions.Cqrs.Behaviors.Identity"
+      - "Krosoft.Extensions.Identity.Abstractions"
