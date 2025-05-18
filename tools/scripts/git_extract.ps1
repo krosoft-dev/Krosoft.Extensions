@@ -2,7 +2,7 @@
 
 # Configuration
 $organizationName = "krosoft-dev"
-$projectName = "Krosoft.Extensions.WebApi"
+$projectName = "Krosoft.Extensions.Data"
 $commitMessage = "Extraction du projet $projectName depuis Krosoft.Extensions"
 $targetBranch = "main"  
 $SourceBranch = "main"
@@ -30,26 +30,35 @@ $pathsToKeep = @(
     "tools\scripts\git_pull.ps1",
 
     # Fichiers sources  
-    "src\Krosoft.Extensions.WebApi",
-    "src\Krosoft.Extensions.WebApi.Blocking",
-    "src\Krosoft.Extensions.WebApi.HealthChecks",
-    "src\Krosoft.Extensions.WebApi.Identity",
-    "src\Krosoft.Extensions.WebApi.Swagger",
-    "src\Krosoft.Extensions.WebApi.Swagger.HealthChecks", 
+    "src\Krosoft.Extensions.Data.Abstractions",
+    "src\Krosoft.Extensions.Data.EntityFramework", 
+    "src\Krosoft.Extensions.Data.EntityFramework.InMemory",
+    "src\Krosoft.Extensions.Data.EntityFramework.PostgreSql",
+    "src\Krosoft.Extensions.Data.EntityFramework.Sqlite",
+    "src\Krosoft.Extensions.Data.EntityFramework.SqlServer",
+    "src\Krosoft.Extensions.Data.Json",
+
+  
   
     # Fichiers tests
-    "tests\Krosoft.Extensions.WebApi.Identity.Tests",
-    "tests\Krosoft.Extensions.WebApi.Tests",
+    "tests\Krosoft.Extensions.Data.Abstractions.Tests",
+    "tests\Krosoft.Extensions.Data.EntityFramework.InMemory.Tests",
+    "tests\Krosoft.Extensions.Data.EntityFramework.Tests",
+    "tests\Krosoft.Extensions.Data.Json.Tests",
+     
 
     # Fichiers devops
     "tools\devops\vars\vars.yml",
-    "tools\devops\build-pipeline.yml",       
-    "tools\devops\nuget-Krosoft.Extensions.WebApi-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.Blocking-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.HealthChecks-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.Identity-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.Swagger-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.Swagger.HealthChecks-pipeline.yml" 
+    "tools\devops\build-pipeline.yml",        
+    "tools\devops\nuget-Krosoft.Extensions.Data.Abstractions-pipeline.yml",
+    "tools\devops\nuget-Krosoft.Extensions.Data.EntityFramework-pipeline.yml",
+    "tools\devops\nuget-Krosoft.Extensions.Data.EntityFramework.InMemory-pipeline.yml",
+    "tools\devops\nuget-Krosoft.Extensions.Data.EntityFramework.PostgreSql-pipeline.yml",
+    "tools\devops\nuget-Krosoft.Extensions.Data.EntityFramework.Sqlite-pipeline.yml",
+    "tools\devops\nuget-Krosoft.Extensions.Data.EntityFramework.SqlServer-pipeline.yml",
+    "tools\devops\nuget-Krosoft.Extensions.Data.Json-pipeline.yml"
+ 
+ 
 ) 
 
 
