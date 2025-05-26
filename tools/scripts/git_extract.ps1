@@ -2,7 +2,7 @@
 
 # Configuration
 $organizationName = "krosoft-dev"
-$projectName = "Krosoft.Extensions.WebApi"
+$projectName = "Krosoft.Extensions.Jobs"
 $commitMessage = "Extraction du projet $projectName depuis Krosoft.Extensions"
 $targetBranch = "main"  
 $SourceBranch = "main"
@@ -30,26 +30,14 @@ $pathsToKeep = @(
     "tools\scripts\git_pull.ps1",
 
     # Fichiers sources  
-    "src\Krosoft.Extensions.WebApi",
-    "src\Krosoft.Extensions.WebApi.Blocking",
-    "src\Krosoft.Extensions.WebApi.HealthChecks",
-    "src\Krosoft.Extensions.WebApi.Identity",
-    "src\Krosoft.Extensions.WebApi.Swagger",
-    "src\Krosoft.Extensions.WebApi.Swagger.HealthChecks", 
-  
-    # Fichiers tests
-    "tests\Krosoft.Extensions.WebApi.Identity.Tests",
-    "tests\Krosoft.Extensions.WebApi.Tests",
+    "src\Krosoft.Extensions.Jobs",
+    "src\Krosoft.Extensions.Jobs.Hangfire", 
+ 
 
     # Fichiers devops
     "tools\devops\vars\vars.yml",
     "tools\devops\build-pipeline.yml",       
-    "tools\devops\nuget-Krosoft.Extensions.WebApi-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.Blocking-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.HealthChecks-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.Identity-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.Swagger-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.WebApi.Swagger.HealthChecks-pipeline.yml" 
+    "tools\devops\nuget-Krosoft.Extensions.Jobs-pipeline.yml"
 ) 
 
 
