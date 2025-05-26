@@ -9,6 +9,8 @@ $SourceBranch = "main"
 $sourceRepoUrl = "https://github.com/krosoft-dev/Krosoft.Extensions.git"
 $sourceRepoGit = "git@krosoft-dev:krosoft-dev/Krosoft.Extensions.git"
 $targetRepoUrl = "https://github.com/krosoft-dev/$projectName.git"
+$currentGitUser = git config user.name
+$currentGitEmail = git config user.email
 
 $targetDir = "C:\Dev\$projectName"
 $pathsToKeep = @( 
@@ -46,7 +48,9 @@ function Update-GitRepository {
         [Parameter(Mandatory = $true)][string]$OrganizationName,
         [Parameter(Mandatory = $true)][string]$ProjectName,
         [Parameter(Mandatory = $true)][string]$BranchName,
-        [Parameter(Mandatory = $true)][string]$CommitMessage
+        [Parameter(Mandatory = $true)][string]$CommitMessage,
+        [Parameter(Mandatory = $true)][string]$UserName,
+        [Parameter(Mandatory = $true)][string]$UserEmail
     )
     
     try {
@@ -60,10 +64,17 @@ function Update-GitRepository {
         
         # Ajoute tous les fichiers modifiés
         git add .
+
+        git config user.name $UserName
+        git config user.email $UserEmail       
         
         # Crée un commit
         git commit -m $CommitMessage
-        
+
+        Write-Log "Git config user.name : $(git config user.name)" -Color Green
+        Write-Log "Git config user.email : $(git config user.email)" -Color Green 
+        Write-Log "Git commit : " -Color Green 
+        git log -1 --pretty=oneline
 
     }
     catch {
@@ -314,13 +325,9 @@ Update-BuildPropsRepository -Path $targetDir -OldRepositoryUrl $sourceRepoUrl -N
 Update-BuildPipelineName -Path $targetDir -NewName $projectName
 Update-SonarConfiguration -Path $targetDir -NewName $projectName
  
-
 # git config
-Update-GitRepository -OrganizationName $organizationName -ProjectName $projectName -BranchName $targetBranch -CommitMessage $commitMessage
-
-
- 
- 
+Update-GitRepository -OrganizationName $organizationName -ProjectName $projectName -BranchName $targetBranch -CommitMessage $commitMessage -UserName $currentGitUser -UserEmail $currentGitEmail
+  
 Write-Log "Projet extrait : '$targetDir' sur la branche '$targetBranch' de $targetRepoUrl" -Color Green
 Write-Host 
 Write-Host "git push -u origin $targetBranch" -ForegroundColor Cyan
