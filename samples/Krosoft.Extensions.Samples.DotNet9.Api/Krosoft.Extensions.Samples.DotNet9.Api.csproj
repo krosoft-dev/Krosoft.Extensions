@@ -9,7 +9,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2025.8.20.1714" />
-		<PackageReference Include="Krosoft.Extensions.Options" Version="2025.4.30.1411" />
+		<PackageReference Include="Krosoft.Extensions.Options" Version="2025.8.19.1623" />
 		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.5.13.1505" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.5.13.1501" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2025.5.13.1506" />
