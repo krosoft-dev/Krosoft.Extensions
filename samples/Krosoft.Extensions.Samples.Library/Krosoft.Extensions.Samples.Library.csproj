@@ -46,7 +46,5 @@
     <PackageReference Include="LinqKit.Core" Version="1.2.8" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Krosoft.Extensions.Cqrs\Krosoft.Extensions.Cqrs.csproj" />
-  </ItemGroup>
+  
 </Project>
