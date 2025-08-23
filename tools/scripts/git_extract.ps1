@@ -2,7 +2,7 @@
 
 # Configuration
 $organizationName = "krosoft-dev"
-$projectName = "Krosoft.Extensions.Blocking"
+$projectName = "Krosoft.Extensions.Testing"
 $commitMessage = "Extraction du projet $projectName depuis Krosoft.Extensions"
 $targetBranch = "main"  
 $SourceBranch = "main"
@@ -34,22 +34,21 @@ $pathsToKeep = @(
     "tools\scripts\git_pull.ps1",
 
     # Fichiers sources   
-    "src\Krosoft.Extensions.Blocking", 
-    "src\Krosoft.Extensions.Blocking.Abstractions", 
-    "src\Krosoft.Extensions.Blocking.Memory", 
-    "src\Krosoft.Extensions.Blocking.Redis",  
+    "src\Krosoft.Extensions.Testing",  
+    "src\Krosoft.Extensions.Testing.WebApi", 
+    "src\Krosoft.Extensions.Testing.Cqrs",  
+    "src\Krosoft.Extensions.Testing.Data.EntityFramework",  
        
     # Fichiers tests        
-    "tests\Krosoft.Extensions.Blocking.Tests",
-    "tests\Krosoft.Extensions.Blocking.Memory.Tests",  
+    "tests\Krosoft.Extensions.Testing.Tests", 
 
     # Fichiers devops
     "tools\devops\vars\vars.yml",
     "tools\devops\build-pipeline.yml",        
-    "tools\devops\nuget-Krosoft.Extensions.Blocking-pipeline.yml",
-    "tools\devops\nuget-Krosoft.Extensions.Blocking.Abstractions-pipeline.yml", 
-    "tools\devops\nuget-Krosoft.Extensions.Blocking.Memory-pipeline.yml", 
-    "tools\devops\nuget-Krosoft.Extensions.Blocking.Redis-pipeline.yml"
+    "tools\devops\nuget-Krosoft.Extensions.Testing-pipeline.yml",
+    "tools\devops\nuget-Krosoft.Extensions.Testing.WebApi-pipeline.yml", 
+    "tools\devops\nuget-Krosoft.Extensions.Testing.Cqrs-pipeline.yml", 
+    "tools\devops\nuget-Krosoft.Extensions.Testing.Data.EntityFramework-pipeline.yml"
     
 ) 
 
@@ -244,6 +243,8 @@ function Update-ReadmeFile {
     if (Test-Path $readmePath) {
         $content = Get-Content $readmePath -Raw
         $content = $content -replace "# Krosoft.Extensions", "# $NewName"
+        $content = $content -replace "krosoft-dev_Krosoft.Extensions", "krosoft-dev_$NewName"
+
         Set-Content -Path $readmePath -Value $content
         Write-Log "README.md mis a jour avec : $NewName" -Color Green
     }

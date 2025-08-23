@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Krosoft.Extensions.Testing\Krosoft.Extensions.Testing.csproj" />
+		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.8.23.2367" />
+	</ItemGroup>
+	<ItemGroup>
 		<ProjectReference Include="..\..\src\Krosoft.Extensions.Zip\Krosoft.Extensions.Zip.csproj" />
 	</ItemGroup>
 	<ItemGroup>

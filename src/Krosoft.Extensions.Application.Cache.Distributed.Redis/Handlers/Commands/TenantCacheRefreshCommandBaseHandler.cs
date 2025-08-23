@@ -38,7 +38,7 @@ public abstract class TenantCacheRefreshCommandBaseHandler : IRequestHandler<Ten
 
         await BeforeAsync(cancellationToken);
 
-        if (string.IsNullOrEmpty(request.TenantId))
+        if (string.IsNullOrEmpty(request.CurrentTenantId))
         {
             //On récupére tous les tenants.
             var tenantsId = await GetTenantsIdAsync(cancellationToken)!.ToList();
@@ -52,7 +52,7 @@ public abstract class TenantCacheRefreshCommandBaseHandler : IRequestHandler<Ten
         else
         {
             //Uniquement pour le tenant donné.
-            await HandleRefreshAsync(request.TenantId, cancellationToken);
+            await HandleRefreshAsync(request.CurrentTenantId, cancellationToken);
         }
 
         _logger.LogInformation($"Refresh du cache en {sw.Elapsed.ToShortString()}");

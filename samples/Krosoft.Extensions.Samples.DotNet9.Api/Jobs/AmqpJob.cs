@@ -22,7 +22,7 @@ internal class AmqpJob : IRecurringJob
 
     public string Type => JobTypeCode.Amqp.ToString();
 
-    public async Task ExecuteAsync(string identifiant)
+    public async Task<JobResult> ExecuteAsync(string identifiant)
     {
         Guard.IsNotNull(nameof(identifiant), identifiant);
 
@@ -41,10 +41,13 @@ internal class AmqpJob : IRecurringJob
 
             _logger.LogInformation($"Exécution du job '{identifiant}'...");
             await Task.Delay(2000, cancellationToken);
+
+            return new JobResult("OK", sw.Elapsed, null);
         }
         catch (Exception e)
         {
             _logger.LogError($"Exécution du job '{identifiant}' en erreur : {e.Message}.", e);
+            throw;
         }
         finally
         {

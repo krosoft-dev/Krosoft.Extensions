@@ -9,7 +9,6 @@ namespace Krosoft.Extensions.Samples.DotNet6.Api.Handlers.Queries;
 public class LogicielsExportPdfQueryHandler : IRequestHandler<LogicielsExportPdfQuery, IFileStream>
 {
     private readonly ILogger<LogicielsExportPdfQueryHandler> _logger;
-
     private readonly IPdfService _pdfService;
 
     public LogicielsExportPdfQueryHandler(ILogger<LogicielsExportPdfQueryHandler> logger, IPdfService pdfService)

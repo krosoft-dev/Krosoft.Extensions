@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Files\Categorie.json" />
@@ -38,15 +38,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.6.3" />
+    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2025.8.23.2339" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
-    <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
-    <PackageReference Include="Krosoft.Extensions.Core" Version="2025.8.19.1582" />
-    <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2025.8.20.1758" />
-    <PackageReference Include="Krosoft.Extensions.Mapping" Version="2025.8.19.1647" />
+    <PackageReference Include="JetBrains.Annotations" Version="2025.2.0" />
+    <PackageReference Include="Krosoft.Extensions.Core" Version="2025.8.22.2201" />
+    <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2025.8.23.2286" />
+    <PackageReference Include="Krosoft.Extensions.Mapping" Version="2025.8.22.2207" />
     <PackageReference Include="LinqKit.Core" Version="1.2.8" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Krosoft.Extensions.Cqrs\Krosoft.Extensions.Cqrs.csproj" />
   </ItemGroup>
 </Project>
