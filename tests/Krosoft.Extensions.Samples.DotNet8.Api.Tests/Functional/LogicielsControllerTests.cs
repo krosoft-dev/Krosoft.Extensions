@@ -62,7 +62,7 @@ public class LogicielsControllerTests : SampleBaseApiTest<Startup>
         const string nom = "Excel";
 
         var httpClient = Factory.CreateClient();
-        var response = await httpClient.GetAsync($"/Logiciels?Nom={nom}");
+        var response = await httpClient.GetAsync($"/Logiciels?Text={nom}");
 
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
         var result = await response.Content.ReadAsNewtonsoftJsonAsync<PaginationResult<LogicielDto>>(CancellationToken.None);

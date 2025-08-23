@@ -24,7 +24,7 @@ public class TenantRefreshCacheEventHandler : INotificationHandler<TenantRefresh
 
         var command = new TenantCacheRefreshCommand(false)
         {
-            TenantId = notification.TenantId
+            CurrentTenantId = notification.TenantId
         };
 
         await _mediator.Send(command, cancellationToken);

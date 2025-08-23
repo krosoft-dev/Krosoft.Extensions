@@ -2,7 +2,6 @@
 using Krosoft.Extensions.Samples.Library.Models.Dto;
 using Krosoft.Extensions.Samples.Library.Models.Queries;
 using Krosoft.Extensions.WebApi.Interfaces;
-using MediatR;
 
 namespace Krosoft.Extensions.Samples.DotNet6.Api.Handlers.Queries;
 

@@ -29,7 +29,7 @@ public class PayloadCacheRefreshCommandHandler : IRequestHandler<PayloadCacheRef
             _logger.LogInformation($"Refresh du cache pour le tenant {message.TenantId}");
             var command = new AuthCacheRefreshCommand(false, false)
             {
-                TenantId = message.TenantId
+                CurrentTenantId = message.TenantId
             };
 
             await _mediator.Send(command, cancellationToken);
