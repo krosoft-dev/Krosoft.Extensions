@@ -8,5 +8,5 @@ public record LogicielDto
     public string? Nom { get; set; }
     public string? Description { get; set; }
     public StatutCode StatutCode { get; set; }
-    public DateTime DateCreation { get; set; }
+    public DateTimeOffset CreationDate { get; set; }
 }

@@ -13,8 +13,7 @@ public static class LogicielFactory
                     .RuleFor(p => p.Id, _ => SequentialGuid.NewGuid())
                     .RuleFor(u => u.Nom, (f, _) => f.Company.CompanyName())
                     .RuleFor(u => u.Description, (f, _) => f.Company.CompanyName())
-                    .RuleFor(u => u.StatutCode, f => f.PickRandom<StatutCode>())
-                    .RuleFor(u => u.DateCreation, f => f.Date.Past())
+                    .RuleFor(u => u.StatutCode, f => f.PickRandom<StatutCode>()) 
                     .RuleFor(u => u.TenantId, _ => tenantId);
 
         return faker.Generate(nb);
