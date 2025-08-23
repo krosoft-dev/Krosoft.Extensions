@@ -17,7 +17,7 @@ public class LogicielProfile : Profile
             .ForMember(dest => dest.Nom, o => o.MapFrom(src => src.Nom))
             .ForMember(dest => dest.Description, o => o.MapFrom(src => src.Description))
             .ForMember(dest => dest.StatutCode, o => o.MapFrom(src => src.StatutCode))
-            .ForMember(dest => dest.DateCreation, o => o.MapFrom(src => src.DateCreation))
+            .ForMember(dest => dest.CreationDate, o => o.MapFrom(src => src.CreatedAt))
             .ForAllOtherMembers(m => m.Ignore());
 
         CreateMap<Logiciel, LogicielCsvDto>()

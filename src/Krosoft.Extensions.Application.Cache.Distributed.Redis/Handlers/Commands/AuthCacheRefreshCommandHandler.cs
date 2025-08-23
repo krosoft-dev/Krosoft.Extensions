@@ -22,7 +22,7 @@ internal class AuthCacheRefreshCommandHandler : IRequestHandler<AuthCacheRefresh
 
         var command = new TenantCacheRefreshCommand(false)
         {
-            TenantId = request.TenantId
+            CurrentTenantId = request.CurrentTenantId
         };
 
         await _mediator.Send(command, cancellationToken);

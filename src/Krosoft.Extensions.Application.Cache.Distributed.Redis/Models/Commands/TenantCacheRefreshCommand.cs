@@ -5,17 +5,17 @@ namespace Krosoft.Extensions.Application.Cache.Distributed.Redis.Models.Commands
 
 public record TenantCacheRefreshCommand : AuthBaseCommand<Unit>
 {
-    public TenantCacheRefreshCommand(bool isAuthenticationRequired, bool isTenantRequired)
+    public TenantCacheRefreshCommand(bool isUserIdRequired, bool isTenantRequired)
     {
-        IsUtilisateurRequired = isAuthenticationRequired;
-        IsTenantRequired = isTenantRequired;
+        IsUserIdRequired = isUserIdRequired;
+        IsTenantIdRequired = isTenantRequired;
     }
 
-    public TenantCacheRefreshCommand(bool isAuthenticationRequired)
-        : this(isAuthenticationRequired, false)
+    public TenantCacheRefreshCommand(bool isUserIdRequired)
+        : this(isUserIdRequired, false)
     {
     }
 
-    public override bool IsUtilisateurRequired { get; }
-    public override bool IsTenantRequired { get; }
+    public override bool IsUserIdRequired { get; }
+    public override bool IsTenantIdRequired { get; }
 }

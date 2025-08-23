@@ -19,13 +19,16 @@ public class KrosoftTokenRefreshCacheEventHandler : INotificationHandler<Krosoft
 
     public async Task Handle(KrosoftTokenRefreshCacheEvent notification, CancellationToken cancellationToken)
     {
-        _logger.LogInformation($"Mise à jour du cache pour le tenant {notification.KrosoftToken.TenantId}...");
+        _logger.LogInformation("Mise à jour du cache pour {TenantsCount} tenants...", notification.KrosoftToken.TenantsId.Count);
 
-        var command = new TenantCacheRefreshCommand(false)
+        foreach (var tenantId in notification.KrosoftToken.TenantsId)
         {
-            TenantId = notification.KrosoftToken.TenantId
-        };
+            var command = new TenantCacheRefreshCommand(false)
+            {
+                CurrentTenantId = tenantId
+            };
 
-        await _mediator.Send(command, cancellationToken);
+            await _mediator.Send(command, cancellationToken);
+        }
     }
 }

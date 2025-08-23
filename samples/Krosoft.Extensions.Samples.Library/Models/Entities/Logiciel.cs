@@ -9,7 +9,7 @@ public record Logiciel : TenantAuditableEntity
     public string? Nom { get; set; }
     public string? Description { get; set; }
     public Guid CategorieId { get; set; }
-    public Categorie Categorie { get; set; } = null!;
+    public Categorie? Categorie { get; set; } 
     public StatutCode StatutCode { get; set; }
-    public DateTime DateCreation { get; set; }
+ 
 }

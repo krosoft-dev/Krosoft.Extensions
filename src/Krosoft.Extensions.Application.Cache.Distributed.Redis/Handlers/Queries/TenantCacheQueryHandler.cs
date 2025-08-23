@@ -18,13 +18,13 @@ public class TenantCacheQueryHandler : IRequestHandler<TenantCacheQuery, IDictio
 
     public async Task<IDictionary<string, long>> Handle(TenantCacheQuery request, CancellationToken cancellationToken)
     {
-        _logger.LogInformation($"Récupération du contenu du cache du tenant {request.TenantId}...");
+        _logger.LogInformation($"Récupération du contenu du cache du tenant {request.CurrentTenantId}...");
 
         var lengthByKey = new Dictionary<string, long>();
-        var keys = _tenantDistributedCacheProvider.GetKeys(request.TenantId!, string.Empty);
+        var keys = _tenantDistributedCacheProvider.GetKeys(request.CurrentTenantId!, string.Empty);
         foreach (var key in keys)
         {
-            var length = await _tenantDistributedCacheProvider.GetLengthAsync(request.TenantId!, key, cancellationToken);
+            var length = await _tenantDistributedCacheProvider.GetLengthAsync(request.CurrentTenantId!, key, cancellationToken);
             lengthByKey.Add(key, length);
         }
 

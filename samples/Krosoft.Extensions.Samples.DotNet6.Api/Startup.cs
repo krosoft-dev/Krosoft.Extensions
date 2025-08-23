@@ -73,7 +73,7 @@ public class Startup
                 .AddMemoryBlockingStorage();
 
         //Identity.
-        services.AddIdentityEx().AddWebApiIdentityEx();
+        services.AddWebApiIdentityEx();
 
         //Data.
         services.AddRepositories();

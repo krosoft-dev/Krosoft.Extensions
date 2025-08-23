@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Krosoft.Extensions.Core.Models;
+using Krosoft.Extensions.Data.Abstractions.Extensions;
 using Krosoft.Extensions.Data.Abstractions.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Samples.Library.Models.Dto;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Samples.Library.Models.Queries;
-using MediatR;
 
 namespace Krosoft.Extensions.Samples.DotNet6.Api.Handlers.Queries;
 
@@ -32,7 +32,7 @@ public class LogicielsQueryHandler : IRequestHandler<LogicielsQuery, PaginationR
         await Task.Delay(2000, cancellationToken);
 
         var result = await _repository.Query()
-                                      .AsQueryable()
+                                      .Search(request.Text, x => x.Nom)
                                       .ToPaginationAsync<Logiciel, LogicielDto>(request,
                                                                                 _mapper.ConfigurationProvider,
                                                                                 cancellationToken);
