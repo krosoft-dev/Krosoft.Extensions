@@ -11,9 +11,9 @@
 		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2025.8.20.1761" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.8.23.2467" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2025.8.19.1570" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2025.8.23.2337" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2025.8.23.2335" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2025.8.23.2336" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2025.8.24.2482" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2025.8.24.2481" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2025.8.24.2482" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2025.8.23.2286" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.8.23.2282" />
 		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.8.23.2366" />
