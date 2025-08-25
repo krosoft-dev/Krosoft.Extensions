@@ -15,10 +15,10 @@
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2025.8.23.2286" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.8.23.2282" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.8" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.8.23.2366" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.8.24.2492" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2025.8.23.2364" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.8.23.2467" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.8.25.2536" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2025.8.19.1570" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
 		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.19" />
