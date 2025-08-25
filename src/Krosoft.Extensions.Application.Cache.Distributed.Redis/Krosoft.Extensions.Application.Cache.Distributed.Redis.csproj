@@ -25,7 +25,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.8.25.2536" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs" Version="2025.8.24.2481" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs" Version="2025.8.25.2555" />
 	</ItemGroup>
 	<ItemGroup>
 		 	<ProjectReference Include="..\Krosoft.Extensions.Hosting\Krosoft.Extensions.Hosting.csproj" />

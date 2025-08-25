@@ -38,7 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.6.3" />
-    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2025.8.24.2481" />
+    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2025.8.25.2555" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.0" />
     <PackageReference Include="Krosoft.Extensions.Core" Version="2025.8.22.2201" />
