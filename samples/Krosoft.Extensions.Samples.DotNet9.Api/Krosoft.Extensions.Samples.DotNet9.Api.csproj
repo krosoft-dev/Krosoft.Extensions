@@ -9,19 +9,19 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2025.8.20.1761" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2025.9.18.3095" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2025.9.18.3092" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2025.9.18.3094" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2025.9.18.3126" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2025.9.18.3227" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2025.9.18.3227" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2025.9.18.3195" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2025.9.18.3174" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.9.9.2852" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2025.9.18.3107" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2025.9.18.3212" />
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2025.9.9.2895" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.9.18.3146" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.9.18.3207" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2025.9.9.2909" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2025.9.18.3146" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2025.9.18.3207" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.8" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.9.18.3118" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.9.18.3224" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2025.9.9.2867" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
 		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.9" />
