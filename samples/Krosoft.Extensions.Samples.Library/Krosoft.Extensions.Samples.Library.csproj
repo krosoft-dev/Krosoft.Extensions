@@ -45,6 +45,5 @@
     <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2025.9.18.3126" />
     <PackageReference Include="Krosoft.Extensions.Mapping" Version="2025.9.18.3105" />
     <PackageReference Include="LinqKit.Core" Version="1.2.8" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 </Project>
