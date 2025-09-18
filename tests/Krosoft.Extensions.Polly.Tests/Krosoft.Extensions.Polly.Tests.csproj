@@ -3,7 +3,7 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.9.8.2770" />
+		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.9.18.3121" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
 	</ItemGroup>
 	<ItemGroup>
