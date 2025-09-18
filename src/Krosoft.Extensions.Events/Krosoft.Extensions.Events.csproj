@@ -23,6 +23,6 @@
 		
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="Krosoft.Extensions.Jobs" Version="2025.8.23.2290" />
+	  <PackageReference Include="Krosoft.Extensions.Jobs" Version="2025.9.9.2860" />
 	</ItemGroup>
 </Project>
