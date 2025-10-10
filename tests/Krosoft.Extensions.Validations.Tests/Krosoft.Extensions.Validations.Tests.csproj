@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.10.4.3456" />
+		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.10.10.3560" />
 		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.9.18.3207" />
 	</ItemGroup>
 	<ItemGroup>

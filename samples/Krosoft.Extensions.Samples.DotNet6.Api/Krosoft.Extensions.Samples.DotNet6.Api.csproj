@@ -14,7 +14,7 @@
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2025.9.18.3292" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2025.9.18.3227" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2025.9.18.3292" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2025.9.18.3174" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2025.10.10.3563" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.9.9.2852" />
 		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.9.18.3207" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
