@@ -18,7 +18,7 @@
 		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.11.5.3814" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2025.10.15.3675" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.10.16.3773" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.11.6.3891" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2025.10.15.3662" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
 		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.21" />
