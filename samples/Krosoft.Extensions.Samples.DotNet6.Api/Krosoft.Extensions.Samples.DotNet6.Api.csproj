@@ -9,8 +9,8 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2025.8.20.1761" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.11.6.3891" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2025.10.15.3662" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.11.12.4064" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2025.11.12.4063" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2025.11.12.3949" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2025.10.15.3729" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2025.11.5.3868" />
