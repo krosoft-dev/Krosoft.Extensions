@@ -4,7 +4,7 @@
 //using Krosoft.Extensions.Samples.Library.Models.Commands;
 //using Krosoft.Extensions.Samples.Library.Models.Entities;
 
-//namespace Krosoft.Extensions.Samples.DotNet8.Api.Handlers.Commands.Positive.Extensions.Samples.Api.Handlers.Commands;
+//namespace Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Commands.Positive.Extensions.Samples.Api.Handlers.Commands;
 
 //internal class LogicielCreateCommandHandler : CreateCommandHandler<LogicielCreateCommand, Logiciel, Guid>
 //{
