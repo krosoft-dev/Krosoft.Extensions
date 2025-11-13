@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileTag>krosoft-extensions.samples.dotnet10.api</DockerfileTag>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2025.8.20.1761" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2025.11.12.3949" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2025.10.15.3729" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2025.11.5.3868" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2025.11.12.3980" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.11.12.3976" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2025.11.12.4004" />
+		<PackageReference Include="Krosoft.Extensions.Options" Version="2025.11.12.4028" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.11.12.3998" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2025.11.12.3999" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2025.11.12.3998" />
+		<PackageReference Include="LinqKit.Core" Version="1.2.8" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.11.12.4064" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2025.11.12.4063" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.11" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.11">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\Krosoft.Extensions.Pdf\Krosoft.Extensions.Pdf.csproj" />
+		<ProjectReference Include="..\..\src\Krosoft.Extensions.Reporting.Csv\Krosoft.Extensions.Reporting.Csv.csproj" />
+		<ProjectReference Include="..\..\src\Krosoft.Extensions.Zip\Krosoft.Extensions.Zip.csproj" />
+		<ProjectReference Include="..\Krosoft.Extensions.Samples.Library\Krosoft.Extensions.Samples.Library.csproj" />
+	</ItemGroup>
+</Project>

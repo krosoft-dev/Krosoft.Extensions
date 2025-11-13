@@ -1,11 +1,4 @@
 services:
-  # krosoft-extensions.postgres:
-  #   volumes:
-  #     - ../:/data
-  #     - ./postgres-data:/var/lib/postgresql/data
-  #   ports:
-  #     - "5433:5432"
-
   krosoft-extensions.redis:
     ports:
       - "6377:6379"
@@ -20,18 +13,15 @@ services:
     ports:
       - "6006:5000"
 
-
-# -
-#   krosoft-extensions.samples.dotnet7.api:
-#     build:
-#       context: ..
-#       dockerfile: Krosoft.Extensions.Samples.DotNet7.Api/Dockerfile
-#     environment:
-#       - ASPNETCORE_ENVIRONMENT=Development
-#       - ASPNETCORE_URLS=http://+:5000
-#     ports:
-#       - "6002:5000"
-
+  krosoft-extensions.samples.dotnet7.api:
+    build:
+      context: ..
+      dockerfile: Krosoft.Extensions.Samples.DotNet7.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "6007:5000"
 
   krosoft-extensions.samples.dotnet8.api:
     build:
@@ -53,8 +43,6 @@ services:
     ports:
       - "5008:5000"
 
-
-      
   krosoft-extensions.samples.dotnet9.api:
     build:
       context: ..
@@ -64,3 +52,13 @@ services:
       - ASPNETCORE_URLS=http://+:5000
     ports:
       - "6009:5000"
+
+  krosoft-extensions.samples.dotnet10.api:
+    build:
+      context: ..
+      dockerfile: Krosoft.Extensions.Samples.DotNet10.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "6010:5000"
