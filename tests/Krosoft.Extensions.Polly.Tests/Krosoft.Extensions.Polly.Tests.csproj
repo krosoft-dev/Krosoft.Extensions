@@ -3,7 +3,7 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.11.12.3959" />
+		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.11.13.4244" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Krosoft.Extensions.Polly\Krosoft.Extensions.Polly.csproj" />
