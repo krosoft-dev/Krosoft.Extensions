@@ -1,10 +1,10 @@
 using JetBrains.Annotations;
-using Krosoft.Extensions.Samples.DotNet9.Api.Modules;
+using Krosoft.Extensions.Samples.DotNet10.Api.Modules;
 using Krosoft.Extensions.Samples.Library.Models.Queries;
 using Krosoft.Extensions.Testing;
 using MediatR;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Unit.Modules;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Tests.Unit.Modules;
 
 [TestClass]
 [TestSubject(typeof(HelloModule))]

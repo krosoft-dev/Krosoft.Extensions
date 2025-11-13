@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Krosoft.Extensions.Jobs.Hangfire.Interfaces;
 using Krosoft.Extensions.Jobs.Hangfire.Models;
-using Krosoft.Extensions.Samples.DotNet9.Api.Models;
+using Krosoft.Extensions.Samples.DotNet10.Api.Models;
 using Microsoft.Extensions.Options;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Services;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Services;
 
 internal class SettingsJobsSettingStorageProvider : IJobsSettingStorageProvider
 {

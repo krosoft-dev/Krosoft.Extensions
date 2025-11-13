@@ -1,6 +1,6 @@
 ﻿using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
-using Krosoft.Extensions.Samples.DotNet9.Api.Data;
+using Krosoft.Extensions.Samples.DotNet10.Api.Data;
 using Krosoft.Extensions.Samples.Library.Models.Commands;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Samples.Library.Models.Messages;
@@ -8,7 +8,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Handlers.Commands;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Commands;
 
 internal class UpdateStatLogicielCommandHandler : IRequestHandler<UpdateStatLogicielCommand>
 {

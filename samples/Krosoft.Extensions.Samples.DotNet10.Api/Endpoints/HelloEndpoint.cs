@@ -1,9 +1,9 @@
-﻿using Krosoft.Extensions.Samples.DotNet9.Api.Models.Dto;
+﻿using Krosoft.Extensions.Samples.DotNet10.Api.Models.Dto;
 using Krosoft.Extensions.Samples.Library.Models.Commands;
 using Krosoft.Extensions.WebApi.Interfaces;
 using MediatR;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Endpoints;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Endpoints;
 
 internal class HelloEndpoint : IEndpoint
 {

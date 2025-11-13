@@ -2,9 +2,9 @@
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 using Krosoft.Extensions.Data.EntityFramework.Services;
-using Krosoft.Extensions.Samples.DotNet9.Api.Data;
-using Krosoft.Extensions.Samples.DotNet9.Api.Handlers.Commands;
-using Krosoft.Extensions.Samples.DotNet9.Api.Tests.Core;
+using Krosoft.Extensions.Samples.DotNet10.Api.Data;
+using Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Commands;
+using Krosoft.Extensions.Samples.DotNet10.Api.Tests.Core;
 using Krosoft.Extensions.Samples.Library.Models.Commands;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Samples.Library.Models.Messages;
@@ -17,7 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Unit.Handlers.Commands;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Tests.Unit.Handlers.Commands;
 
 [TestClass]
 public class UpdateStatLogicielCommandHandlerTests : SampleBaseTest<Program>

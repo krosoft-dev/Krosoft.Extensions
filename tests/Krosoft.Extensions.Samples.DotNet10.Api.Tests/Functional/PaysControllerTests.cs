@@ -1,9 +1,9 @@
 using System.Net;
 using Krosoft.Extensions.Core.Extensions;
-using Krosoft.Extensions.Samples.DotNet9.Api.Tests.Core;
+using Krosoft.Extensions.Samples.DotNet10.Api.Tests.Core;
 using Krosoft.Extensions.Samples.Library.Models.Dto;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Tests.Functional;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Tests.Functional;
 
 [TestClass]
 public class PaysControllerTests : SampleBaseApiTest<Program>

@@ -16,11 +16,11 @@ using Krosoft.Extensions.Jobs.Hangfire.Models;
 using Krosoft.Extensions.Jobs.Hangfire.Profiles;
 using Krosoft.Extensions.Options.Extensions;
 using Krosoft.Extensions.Pdf.Extensions;
-using Krosoft.Extensions.Samples.DotNet9.Api.Data;
-using Krosoft.Extensions.Samples.DotNet9.Api.Extensions;
-using Krosoft.Extensions.Samples.DotNet9.Api.Jobs;
-using Krosoft.Extensions.Samples.DotNet9.Api.Models;
-using Krosoft.Extensions.Samples.DotNet9.Api.Services;
+using Krosoft.Extensions.Samples.DotNet10.Api.Data;
+using Krosoft.Extensions.Samples.DotNet10.Api.Extensions;
+using Krosoft.Extensions.Samples.DotNet10.Api.Jobs;
+using Krosoft.Extensions.Samples.DotNet10.Api.Models;
+using Krosoft.Extensions.Samples.DotNet10.Api.Services;
 using Krosoft.Extensions.Samples.Library.Mappings;
 using Krosoft.Extensions.WebApi.Blocking.Extensions;
 using Krosoft.Extensions.WebApi.Extensions;
@@ -110,7 +110,7 @@ await app.AddModules()
          .AddEndpoints(currentAssembly)
          .RunAsync();
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api
+namespace Krosoft.Extensions.Samples.DotNet10.Api
 {
     public class Program;
 }

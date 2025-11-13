@@ -4,7 +4,7 @@ using Krosoft.Extensions.Samples.Library.Models.Dto;
 using Krosoft.Extensions.Samples.Library.Models.Queries;
 using MediatR;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Handlers.Commands;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Commands;
 
 internal class DeposerFichierCommandHandler : IRequestHandler<DeposerFichierCommand, DepotDto>
 {

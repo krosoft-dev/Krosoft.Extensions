@@ -2,12 +2,12 @@
 using Krosoft.Extensions.Core.Extensions;
 using Krosoft.Extensions.Core.Tools;
 using Krosoft.Extensions.Jobs.Hangfire.Models;
-using Krosoft.Extensions.Samples.DotNet9.Api.Models;
+using Krosoft.Extensions.Samples.DotNet10.Api.Models;
 using Krosoft.Extensions.Samples.Library.Models.Enums;
 using Krosoft.Extensions.Samples.Library.Models.Exceptions;
 using Microsoft.Extensions.Options;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Jobs;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Jobs;
 
 internal class AmqpJob : IRecurringJob
 {

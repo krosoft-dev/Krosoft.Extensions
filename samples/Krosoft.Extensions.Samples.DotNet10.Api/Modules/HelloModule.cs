@@ -1,7 +1,7 @@
 ﻿using Krosoft.Extensions.Samples.Library.Models.Queries;
 using MediatR;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Modules;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Modules;
 
 internal static class HelloModule
 {

@@ -6,7 +6,7 @@ using Krosoft.Extensions.Zip.Interfaces;
 using MediatR;
 using Newtonsoft.Json;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Handlers.Queries;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Queries;
 
 public class LogicielsExportZipQueryHandler : IRequestHandler<LogicielsExportZipQuery, IFileStream>
 {

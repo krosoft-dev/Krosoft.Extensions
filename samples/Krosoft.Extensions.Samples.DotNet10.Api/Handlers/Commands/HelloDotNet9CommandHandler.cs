@@ -1,7 +1,7 @@
 ﻿using Krosoft.Extensions.Samples.Library.Models.Commands;
 using MediatR;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Handlers.Commands;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Commands;
 
 public class HelloDotNet9CommandHandler : IRequestHandler<HelloDotNet9Command, string>
 {

@@ -4,7 +4,7 @@ using Krosoft.Extensions.WebApi.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Endpoints;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Endpoints;
 
 internal class JobsEndpoint : IEndpoint
 {

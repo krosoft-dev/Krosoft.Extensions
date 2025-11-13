@@ -3,7 +3,7 @@ using Krosoft.Extensions.Samples.Library.Models.Commands;
 using Krosoft.Extensions.Samples.Library.Models.Exceptions;
 using MediatR;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Handlers.Commands;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Commands;
 
 public class JobTriggerCommandHandler : IRequestHandler<JobTriggerCommand>
 {

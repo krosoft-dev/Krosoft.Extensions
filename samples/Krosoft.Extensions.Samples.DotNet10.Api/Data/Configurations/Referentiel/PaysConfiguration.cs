@@ -2,7 +2,7 @@
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Data.Configurations.Referentiel;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Data.Configurations.Referentiel;
 
 public class PaysConfiguration : ReferentielEntityTypeConfiguration<Pays>
 {

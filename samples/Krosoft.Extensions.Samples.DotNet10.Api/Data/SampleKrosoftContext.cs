@@ -3,7 +3,7 @@ using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Data;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Data;
 
 public class SampleKrosoftContext : KrosoftContext
 {

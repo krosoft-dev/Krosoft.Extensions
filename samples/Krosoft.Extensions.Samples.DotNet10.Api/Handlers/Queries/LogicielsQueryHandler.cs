@@ -7,7 +7,7 @@ using Krosoft.Extensions.Samples.Library.Models.Entities;
 using Krosoft.Extensions.Samples.Library.Models.Queries;
 using MediatR;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Handlers.Queries;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Queries;
 
 public class LogicielsQueryHandler : IRequestHandler<LogicielsQuery, PaginationResult<LogicielDto>>
 {

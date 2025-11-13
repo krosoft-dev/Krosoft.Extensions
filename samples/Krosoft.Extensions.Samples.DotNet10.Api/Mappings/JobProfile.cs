@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Krosoft.Extensions.Jobs.Hangfire.Models;
 using Krosoft.Extensions.Mapping.Extensions;
-using Krosoft.Extensions.Samples.DotNet9.Api.Models;
+using Krosoft.Extensions.Samples.DotNet10.Api.Models;
 using Krosoft.Extensions.Samples.Library.Models.Dto;
 using Krosoft.Extensions.Samples.Library.Models.Enums;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Mappings;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Mappings;
 
 public class JobProfile : Profile
 {

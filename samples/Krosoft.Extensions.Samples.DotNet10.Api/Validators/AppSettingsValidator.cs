@@ -1,7 +1,7 @@
 using FluentValidation;
-using Krosoft.Extensions.Samples.DotNet9.Api.Models;
+using Krosoft.Extensions.Samples.DotNet10.Api.Models;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Validators;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Validators;
 
 internal class AppSettingsValidator : AbstractValidator<AppSettings>
 {

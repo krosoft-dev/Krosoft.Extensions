@@ -1,7 +1,7 @@
-﻿using Krosoft.Extensions.Samples.DotNet9.Api.Modules;
+﻿using Krosoft.Extensions.Samples.DotNet10.Api.Modules;
 using Krosoft.Extensions.WebApi.Identity.Extensions;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Extensions;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Extensions;
 
 internal static class WebApplicationExtensions
 {

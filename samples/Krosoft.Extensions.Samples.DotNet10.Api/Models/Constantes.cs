@@ -1,4 +1,4 @@
-﻿namespace Krosoft.Extensions.Samples.DotNet9.Api.Models;
+﻿namespace Krosoft.Extensions.Samples.DotNet10.Api.Models;
 
 internal static class Constantes
 {

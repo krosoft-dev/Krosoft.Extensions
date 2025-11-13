@@ -1,6 +1,6 @@
 ﻿using Krosoft.Extensions.Data.EntityFramework.Interfaces;
 
-namespace Krosoft.Extensions.Samples.DotNet9.Api.Data;
+namespace Krosoft.Extensions.Samples.DotNet10.Api.Data;
 
 public class SampleKrosoftContextSeedService : ISeedService<SampleKrosoftContext>
 {
