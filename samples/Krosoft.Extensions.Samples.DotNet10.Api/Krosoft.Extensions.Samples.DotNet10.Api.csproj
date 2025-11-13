@@ -4,7 +4,7 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<NoWarn>$(NoWarn);1591</NoWarn>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-		<DockerfileTag>krosoft-extensions.samples.dotnet9.api</DockerfileTag>
+		<DockerfileTag>krosoft-extensions.samples.dotnet10.api</DockerfileTag>
 		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
 	</PropertyGroup>
 	<ItemGroup>
@@ -31,7 +31,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-		 	<ProjectReference Include="..\..\src\Krosoft.Extensions.Pdf\Krosoft.Extensions.Pdf.csproj" />
+		<ProjectReference Include="..\..\src\Krosoft.Extensions.Pdf\Krosoft.Extensions.Pdf.csproj" />
 		<ProjectReference Include="..\..\src\Krosoft.Extensions.Reporting.Csv\Krosoft.Extensions.Reporting.Csv.csproj" />
 		<ProjectReference Include="..\..\src\Krosoft.Extensions.Zip\Krosoft.Extensions.Zip.csproj" />
 		<ProjectReference Include="..\Krosoft.Extensions.Samples.Library\Krosoft.Extensions.Samples.Library.csproj" />
