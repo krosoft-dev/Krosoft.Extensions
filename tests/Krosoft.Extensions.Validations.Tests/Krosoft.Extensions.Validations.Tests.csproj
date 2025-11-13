@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.11.13.4244" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.11.13.4237" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.11.13.4291" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\samples\Krosoft.Extensions.Samples.Library\Krosoft.Extensions.Samples.Library.csproj" />
