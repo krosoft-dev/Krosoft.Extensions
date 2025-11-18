@@ -6,10 +6,10 @@
 		<Folder Include="Files\" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Testing.Data.EntityFramework" Version="2025.11.17.4346" />
-		<PackageReference Include="Krosoft.Extensions.Testing.WebApi" Version="2025.11.13.4314" />
+		<PackageReference Include="Krosoft.Extensions.Testing.Data.EntityFramework" Version="2025.11.18.4420" />
+		<PackageReference Include="Krosoft.Extensions.Testing.WebApi" Version="2025.11.18.4421" />
 		<PackageReference Include="Krosoft.Extensions.Testing.Cqrs" Version="2025.11.17.4364" />
-		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.11.17.4364" />
+		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.11.18.4422" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.11.17.4351" />
 	</ItemGroup>
 	<ItemGroup>
