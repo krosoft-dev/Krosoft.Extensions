@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.11.17.4351" />
-		<PackageReference Include="Krosoft.Extensions.Testing.Cqrs" Version="2025.11.18.4459" />
-		<PackageReference Include="Krosoft.Extensions.Testing.Data.EntityFramework" Version="2025.11.18.4458" />
+		<PackageReference Include="Krosoft.Extensions.Testing.Cqrs" Version="2025.11.21.4519" />
+		<PackageReference Include="Krosoft.Extensions.Testing.Data.EntityFramework" Version="2025.11.21.4518" />
 		<PackageReference Include="Krosoft.Extensions.Testing.WebApi" Version="2025.11.18.4460" />
-		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.11.18.4460" />
+		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.11.21.4519" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\samples\Krosoft.Extensions.Samples.DotNet8.Api\Krosoft.Extensions.Samples.DotNet8.Api.csproj" />
