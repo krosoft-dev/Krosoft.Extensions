@@ -16,10 +16,10 @@
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.11.17.4351" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2025.11.18.4450" />
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2025.11.13.4150" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.11.18.4435" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.12.2.4583" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2025.11.13.4272" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2025.11.18.4435" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2025.12.2.4583" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.9" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.11.18.4414" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2025.11.13.4184" />
