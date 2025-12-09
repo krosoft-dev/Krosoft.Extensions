@@ -14,6 +14,7 @@ using Krosoft.Extensions.Jobs.Hangfire.Extensions;
 using Krosoft.Extensions.Jobs.Hangfire.Interfaces;
 using Krosoft.Extensions.Jobs.Hangfire.Models;
 using Krosoft.Extensions.Jobs.Hangfire.Profiles;
+using Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory.Extensions;
 using Krosoft.Extensions.Options.Extensions;
 using Krosoft.Extensions.Pdf.Extensions;
 using Krosoft.Extensions.Samples.DotNet9.Api.Data;
@@ -82,7 +83,8 @@ builder.Services
            [
                Constantes.QueuesKeys.Default
            ];
-           options.WorkerCount = 1;
+           options.WorkerCount = 1; 
+           options.UseInMemoryStorage();
        })
        .AddTransient<IJobsSettingStorageProvider, SettingsJobsSettingStorageProvider>()
        .AddTransient<IRecurringJob, AmqpJob>()
