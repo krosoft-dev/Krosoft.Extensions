@@ -1,6 +1,9 @@
 ﻿using Krosoft.Extensions.Cache.Distributed.Redis.Interfaces;
 using Krosoft.Extensions.Cache.Distributed.Redis.Services;
 using Krosoft.Extensions.Core.Models;
+using Krosoft.Extensions.Jobs.Hangfire.Extensions;
+using Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory.Extensions;
+using Krosoft.Extensions.Samples.DotNet9.Api.Models;
 using Krosoft.Extensions.Testing.WebApi;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,8 +24,18 @@ public abstract class SampleBaseApiTest<TEntry> : BaseApiTest<TEntry, TEntry> wh
         //services.AddSeedService<KrosoftExtensionTenantContext, SampleSeedService>();
 
         // Remove Redis registration.
-        //services.MockRedis();
         services.AddTransient<IDistributedCacheProvider, DictionaryCacheProvider>();
+
+        // Force InMemory pour les tests.
+        services.AddHangfireExt(options =>
+        {
+            options.Queues =
+            [
+                Constantes.QueuesKeys.Default
+            ];
+            options.WorkerCount = 1;
+            options.UseInMemoryStorage();
+        });
 
         //// Remove IHostedService registration.
         //services.RemoveService(d => d.ImplementationType == typeof(SampleBackgroundService));
