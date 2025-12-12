@@ -9,18 +9,18 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2025.8.20.1761" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2025.12.10.4776" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2025.12.8.4646" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2025.12.11.4811" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2025.12.11.4811" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2025.11.18.4463" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2025.12.9.4753" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.12.9.4749" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2025.12.9.4728" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2025.12.8.4700" />
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2025.12.4.4619" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.12.8.4644" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2025.12.10.4791" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2025.11.13.4272" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2025.12.8.4644" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2025.12.10.4791" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.9" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2025.12.9.4715" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2025.12.9.4715" />
