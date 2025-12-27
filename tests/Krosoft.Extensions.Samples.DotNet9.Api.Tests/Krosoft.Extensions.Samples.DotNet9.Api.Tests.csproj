@@ -7,9 +7,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Testing.Data.EntityFramework" Version="2025.12.11.4808" />
-		<PackageReference Include="Krosoft.Extensions.Testing.WebApi" Version="2025.12.14.4871" />
+		<PackageReference Include="Krosoft.Extensions.Testing.WebApi" Version="2025.12.27.4921" />
 		<PackageReference Include="Krosoft.Extensions.Testing.Cqrs" Version="2025.12.12.4827" />
-		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.12.14.4871" />
+		<PackageReference Include="Krosoft.Extensions.Testing" Version="2025.12.27.4921" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2025.12.9.4749" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2025.12.8.4700" />
 	</ItemGroup>
