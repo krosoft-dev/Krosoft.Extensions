@@ -20,6 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="33.1.0" />
-    <PackageReference Include="Krosoft.Extensions.Core" Version="2025.11.17.4348" />
+    <PackageReference Include="Krosoft.Extensions.Core" Version="2026.1.9.4969" />
   </ItemGroup>
 </Project>
