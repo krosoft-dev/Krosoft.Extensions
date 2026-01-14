@@ -6,7 +6,7 @@
     <DockerfileTag>krosoft-extensions.samples.dotnet8.blazorapp</DockerfileTag>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Krosoft.Extensions.Core" Version="2026.1.9.4969" />
+    <PackageReference Include="Krosoft.Extensions.Core" Version="2026.1.14.4995" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
   </ItemGroup>
 </Project>
