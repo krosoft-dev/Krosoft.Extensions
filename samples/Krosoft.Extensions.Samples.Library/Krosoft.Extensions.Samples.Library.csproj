@@ -41,12 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.6.5" />
-    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2025.12.11.4811" />
+    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.1.14.5081" />
     <PackageReference Include="FluentValidation" Version="11.12.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
     <PackageReference Include="Krosoft.Extensions.Core" Version="2026.1.14.4995" />
-    <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2025.12.9.4753" />
-    <PackageReference Include="Krosoft.Extensions.Mapping" Version="2025.11.18.4432" />
+    <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2026.1.16.5099" />
+    <PackageReference Include="Krosoft.Extensions.Mapping" Version="2026.1.14.5000" />
     <PackageReference Include="LinqKit.Core" Version="1.2.9" />
   </ItemGroup>
 </Project>
