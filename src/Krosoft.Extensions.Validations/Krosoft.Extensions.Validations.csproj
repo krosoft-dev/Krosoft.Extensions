@@ -8,6 +8,6 @@
 		<PackageReference Include="FluentValidation" Version="11.12.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="Krosoft.Extensions.Core" Version="2026.1.9.4969" />
+	  <PackageReference Include="Krosoft.Extensions.Core" Version="2026.1.14.4995" />
 	</ItemGroup>
 </Project>
