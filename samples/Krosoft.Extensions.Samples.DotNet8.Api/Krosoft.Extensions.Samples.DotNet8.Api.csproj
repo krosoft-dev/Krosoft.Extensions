@@ -9,9 +9,9 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2025.8.20.1761" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.1.14.5083" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.1.19.5113" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.1.14.5080" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.1.14.5082" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.1.19.5113" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.1.16.5099" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.1.14.5020" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.9" />
