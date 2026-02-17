@@ -14,9 +14,9 @@
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.2.17.5562" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.2.17.5559" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.2.17.5561" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.2.4.5368" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.2.3.5276" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.2.4.5398" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.2.17.5610" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.2.17.5599" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.2.17.5583" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.1.19.5179" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
