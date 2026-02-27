@@ -9,14 +9,14 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2025.8.20.1761" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.2.17.5638" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.2.27.5723" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.2.17.5551" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.2.17.5664" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.2.17.5664" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.2.17.5561" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.2.17.5610" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.2.27.5730" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.2.27.5727" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.2.27.5729" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.2.23.5702" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.2.17.5599" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.2.17.5658" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.2.27.5741" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.2.17.5644" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
