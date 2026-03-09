@@ -30,7 +30,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.3.2.5779" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.3.4.5826" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.3.6.5870" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Krosoft.Extensions.Hosting\Krosoft.Extensions.Hosting.csproj" />
