@@ -29,7 +29,7 @@
 		<PackageReference Include="MediatR" Version="12.5.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.3.2.5779" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.3.17.5989" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.3.6.5870" />
 	</ItemGroup>
 	<ItemGroup>
