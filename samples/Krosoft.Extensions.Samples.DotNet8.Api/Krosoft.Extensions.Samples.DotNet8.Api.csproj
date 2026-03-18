@@ -15,7 +15,7 @@
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.3.17.6109" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.3.17.6008" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.3.17.6117" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.3.18.6155" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.3.17.5982" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.3.17.6111" />
