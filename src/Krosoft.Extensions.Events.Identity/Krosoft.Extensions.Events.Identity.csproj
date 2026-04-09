@@ -19,7 +19,7 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.5" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Identity.Abstractions" Version="2026.3.26.6248" />
+		<PackageReference Include="Krosoft.Extensions.Identity.Abstractions" Version="2026.4.7.6427" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Krosoft.Extensions.Events\Krosoft.Extensions.Events.csproj" />
