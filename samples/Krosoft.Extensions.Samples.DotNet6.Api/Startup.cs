@@ -8,7 +8,6 @@ using Krosoft.Extensions.Cqrs.Behaviors.Identity.Extensions;
 using Krosoft.Extensions.Cqrs.Behaviors.Validations.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.Extensions;
 using Krosoft.Extensions.Data.EntityFramework.InMemory.Extensions;
-using Krosoft.Extensions.Identity.Extensions;
 using Krosoft.Extensions.Pdf.Extensions;
 using Krosoft.Extensions.Samples.DotNet6.Api.Data;
 using Krosoft.Extensions.Samples.Library.Mappings;
