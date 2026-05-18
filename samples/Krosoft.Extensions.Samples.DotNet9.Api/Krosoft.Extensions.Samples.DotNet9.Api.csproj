@@ -12,9 +12,9 @@
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.5.5.7111" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.5.5.7111" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.4.24.7016" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.4.23.6952" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.4.23.6952" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.4.27.7047" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.5.18.7218" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.5.18.7218" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.5.18.7215" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.4.13.6550" />
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2026.4.22.6764" />
 		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.4.23.6968" />
@@ -22,8 +22,8 @@
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.4.16.6632" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.4.23.6968" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.4.23.6942" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.4.16.6620" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.5.18.7258" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.5.18.7257" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
 		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.15" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.15">
