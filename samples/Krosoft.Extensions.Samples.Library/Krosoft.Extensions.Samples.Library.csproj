@@ -43,7 +43,7 @@
     <PackageReference Include="Bogus" Version="35.6.5" />
     <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.5.27.7407" />
     <PackageReference Include="FluentValidation" Version="11.12.0" />
-    <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
+    <PackageReference Include="JetBrains.Annotations" Version="2026.2.0" />
     <PackageReference Include="Krosoft.Extensions.Core" Version="2026.6.2.7473" />
     <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2026.5.18.7298" />
     <PackageReference Include="Krosoft.Extensions.Mapping" Version="2026.6.1.7461" />
