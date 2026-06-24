@@ -40,6 +40,7 @@
     <Project Path="tests/Krosoft.Extensions.Samples.DotNet8.Api.Tests/Krosoft.Extensions.Samples.DotNet8.Api.Tests.csproj" />
     <Project Path="tests/Krosoft.Extensions.Samples.DotNet9.Api.Tests/Krosoft.Extensions.Samples.DotNet9.Api.Tests.csproj" />
     <Project Path="tests/Krosoft.Extensions.Validations.Tests/Krosoft.Extensions.Validations.Tests.csproj" />
+    <Project Path="tests/Krosoft.Extensions.Yarp.Tests/Krosoft.Extensions.Yarp.Tests.csproj" />
     <Project Path="tests/Krosoft.Extensions.Zip.Tests/Krosoft.Extensions.Zip.Tests.csproj" />
   </Folder>
 </Solution>

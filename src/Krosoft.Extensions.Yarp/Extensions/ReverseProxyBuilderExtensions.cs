@@ -56,6 +56,23 @@ public static class ReverseProxyBuilderExtensions
 
         builder.LoadFromMemory(routes, clusters);
 
+        // Chaque service est exposé sous le préfixe /{clusterId}, retiré du chemin avant
+        // d'être forwardé. On réexpose ce préfixe en PathBase : le transform X-Forwarded
+        // natif de YARP émet alors X-Forwarded-Prefix vers le service, ce qui permet à ce
+        // dernier (Swagger, génération de liens, ...) de reconstruire ses URLs publiques.
+        builder.AddTransforms(context =>
+        {
+            var routeId = context.Route.RouteId;
+            if (!string.IsNullOrWhiteSpace(routeId))
+            {
+                context.AddRequestTransform(transformContext =>
+                {
+                    transformContext.HttpContext.Request.PathBase = "/" + routeId;
+                    return ValueTask.CompletedTask;
+                });
+            }
+        });
+
         return builder;
     }
 }
