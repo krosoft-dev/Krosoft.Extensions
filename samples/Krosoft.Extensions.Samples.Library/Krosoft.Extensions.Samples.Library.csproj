@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Files\Categorie.json" />
@@ -41,12 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.6.5" />
-    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.5.27.7407" />
+    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.6.25.7818" />
     <PackageReference Include="FluentValidation" Version="11.12.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2026.2.0" />
-    <PackageReference Include="Krosoft.Extensions.Core" Version="2026.6.2.7473" />
+    <PackageReference Include="Krosoft.Extensions.Core" Version="2026.6.25.7814" />
     <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2026.5.18.7298" />
-    <PackageReference Include="Krosoft.Extensions.Mapping" Version="2026.6.1.7461" />
+    <PackageReference Include="Krosoft.Extensions.Mapping" Version="2026.6.20.7704" />
     <PackageReference Include="LinqKit.Core" Version="1.2.11" />
   </ItemGroup>
 </Project>

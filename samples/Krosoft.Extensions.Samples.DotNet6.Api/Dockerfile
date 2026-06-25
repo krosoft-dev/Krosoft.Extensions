@@ -1,4 +1,4 @@
-ARG VERSION=6.0-alpine3.16
+ARG VERSION=10.0-alpine
 
 FROM mcr.microsoft.com/dotnet/aspnet:$VERSION AS base
 WORKDIR /app

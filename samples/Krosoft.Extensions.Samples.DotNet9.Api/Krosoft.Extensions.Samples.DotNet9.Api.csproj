@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<NoWarn>$(NoWarn);1591</NoWarn>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -9,24 +9,24 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2025.8.20.1761" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.5.5.7111" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.5.5.7111" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.4.24.7016" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.6.25.7820" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.6.25.7818" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.6.25.7819" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.5.18.7298" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.5.18.7298" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.6.2.7484" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.4.13.6550" />
-		<PackageReference Include="Krosoft.Extensions.Options" Version="2026.4.22.6764" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.6.18.7559" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.6.25.7866" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.6.25.7865" />
+		<PackageReference Include="Krosoft.Extensions.Options" Version="2026.6.25.7816" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.6.25.7860" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.5.18.7325" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.5.18.7352" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.6.25.7859" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.6.25.7858" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.6.2.7482" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.5.18.7257" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.6.25.7847" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.6.25.7846" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
-		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.17" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.17">
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="10.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.9">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

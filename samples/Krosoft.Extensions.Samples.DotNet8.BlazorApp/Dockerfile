@@ -1,4 +1,4 @@
-ARG VERSION=8.0-alpine3.18
+ARG VERSION=10.0-alpine
 
 FROM mcr.microsoft.com/dotnet/aspnet:$VERSION AS base
 USER app
