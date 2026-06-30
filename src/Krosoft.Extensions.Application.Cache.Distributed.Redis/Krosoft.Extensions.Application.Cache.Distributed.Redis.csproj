@@ -9,8 +9,8 @@
 		<PackageReference Include="MediatR" Version="12.5.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.6.25.7847" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.6.25.7818" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.6.25.7910" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.6.25.7914" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Krosoft.Extensions.Hosting\Krosoft.Extensions.Hosting.csproj" />
