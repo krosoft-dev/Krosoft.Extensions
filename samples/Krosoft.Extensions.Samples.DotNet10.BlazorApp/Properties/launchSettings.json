@@ -12,7 +12,7 @@
       },
       "httpPort": 5008,
       "useSSL": false,
-      "DockerfileRunArguments": "--name krosoft-extensions.samples.dotnet8.blazorapp"
+      "DockerfileRunArguments": "--name krosoft-extensions.samples.dotnet10.blazorapp"
     }
   }, 
   "$schema": "https://json.schemastore.org/launchsettings.json"

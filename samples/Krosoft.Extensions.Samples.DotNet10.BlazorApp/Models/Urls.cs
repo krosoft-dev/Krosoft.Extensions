@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
 
-namespace Krosoft.Extensions.Samples.DotNet8.BlazorApp.Models;
+namespace Krosoft.Extensions.Samples.DotNet10.BlazorApp.Models;
 
 public readonly struct Urls
 {

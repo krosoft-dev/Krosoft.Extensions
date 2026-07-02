@@ -1,8 +1,8 @@
-using Krosoft.Extensions.Samples.DotNet8.BlazorApp.Components;
-using Krosoft.Extensions.Samples.DotNet8.BlazorApp.Interfaces;
-using Krosoft.Extensions.Samples.DotNet8.BlazorApp.Services;
+using Krosoft.Extensions.Samples.DotNet10.BlazorApp.Components;
+using Krosoft.Extensions.Samples.DotNet10.BlazorApp.Interfaces;
+using Krosoft.Extensions.Samples.DotNet10.BlazorApp.Services;
 
-namespace Krosoft.Extensions.Samples.DotNet8.BlazorApp;
+namespace Krosoft.Extensions.Samples.DotNet10.BlazorApp;
 
 public static class Program
 {

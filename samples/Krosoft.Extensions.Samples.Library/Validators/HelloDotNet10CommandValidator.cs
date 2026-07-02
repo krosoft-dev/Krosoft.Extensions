@@ -3,9 +3,9 @@ using Krosoft.Extensions.Samples.Library.Models.Commands;
 
 namespace Krosoft.Extensions.Samples.Library.Validators;
 
-internal class HelloDotNet9CommandValidator : AbstractValidator<HelloDotNet9Command>
+internal class HelloDotNet10CommandValidator : AbstractValidator<HelloDotNet10Command>
 {
-    public HelloDotNet9CommandValidator()
+    public HelloDotNet10CommandValidator()
     { 
         RuleFor(c => c.Name).NotEmpty().NotNull();
     }

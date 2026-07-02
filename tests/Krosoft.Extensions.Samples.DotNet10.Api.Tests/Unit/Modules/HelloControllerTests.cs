@@ -16,12 +16,12 @@ public class HelloControllerTests : BaseTest
         var expectedOutput = "Hello-World";
 
         var mock = new Mock<IMediator>();
-        mock.Setup(x => x.Send(It.IsAny<HelloDotNet9Query>(), CancellationToken.None))
+        mock.Setup(x => x.Send(It.IsAny<HelloDotNet10Query>(), CancellationToken.None))
             .ReturnsAsync(() => expectedOutput);
 
         var result = await HelloModule.Hello(mock.Object, CancellationToken.None);
 
-        mock.Verify(x => x.Send(It.IsAny<HelloDotNet9Query>(), CancellationToken.None), Times.Once());
+        mock.Verify(x => x.Send(It.IsAny<HelloDotNet10Query>(), CancellationToken.None), Times.Once());
 
         Check.That(result).IsNotNull();
         Check.That(result).IsEqualTo(expectedOutput);

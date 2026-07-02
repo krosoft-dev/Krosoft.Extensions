@@ -1,10 +1,10 @@
 ﻿using Krosoft.Extensions.Core.Models;
 using Krosoft.Extensions.Core.Models.Exceptions.Http;
-using Krosoft.Extensions.Samples.DotNet8.BlazorApp.Interfaces;
-using Krosoft.Extensions.Samples.DotNet8.BlazorApp.Models;
+using Krosoft.Extensions.Samples.DotNet10.BlazorApp.Interfaces;
+using Krosoft.Extensions.Samples.DotNet10.BlazorApp.Models;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace Krosoft.Extensions.Samples.DotNet8.BlazorApp.Services;
+namespace Krosoft.Extensions.Samples.DotNet10.BlazorApp.Services;
 
 public class LogicielsHttpService : ILogicielsHttpService
 {

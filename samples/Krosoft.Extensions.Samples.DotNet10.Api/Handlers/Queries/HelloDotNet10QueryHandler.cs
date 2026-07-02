@@ -3,20 +3,20 @@ using MediatR;
 
 namespace Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Queries;
 
-public class HelloDotNet9QueryHandler : IRequestHandler<HelloDotNet9Query, string>
+public class HelloDotNet10QueryHandler : IRequestHandler<HelloDotNet10Query, string>
 {
-    private readonly ILogger<HelloDotNet9QueryHandler> _logger;
+    private readonly ILogger<HelloDotNet10QueryHandler> _logger;
 
-    public HelloDotNet9QueryHandler(ILogger<HelloDotNet9QueryHandler> logger)
+    public HelloDotNet10QueryHandler(ILogger<HelloDotNet10QueryHandler> logger)
     {
         _logger = logger;
     }
 
-    public Task<string> Handle(HelloDotNet9Query request,
+    public Task<string> Handle(HelloDotNet10Query request,
                                CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Hello DotNet9...");
+        _logger.LogInformation("Hello DotNet10...");
 
-        return Task.FromResult("Hello DotNet9");
+        return Task.FromResult("Hello DotNet10");
     }
 }

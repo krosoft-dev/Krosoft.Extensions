@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Krosoft.Extensions.Samples.DotNet8.BlazorApp.Models;
+namespace Krosoft.Extensions.Samples.DotNet10.BlazorApp.Models;
 
 public record Logiciel
 {

@@ -1,7 +1,7 @@
 ﻿using Krosoft.Extensions.Core.Models;
-using Krosoft.Extensions.Samples.DotNet8.BlazorApp.Models;
+using Krosoft.Extensions.Samples.DotNet10.BlazorApp.Models;
 
-namespace Krosoft.Extensions.Samples.DotNet8.BlazorApp.Interfaces;
+namespace Krosoft.Extensions.Samples.DotNet10.BlazorApp.Interfaces;
 
 public interface ILogicielsHttpService
 {

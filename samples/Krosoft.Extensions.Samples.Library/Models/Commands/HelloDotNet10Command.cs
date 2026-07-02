@@ -2,4 +2,4 @@
 
 namespace Krosoft.Extensions.Samples.Library.Models.Commands;
 
-public record HelloDotNet9Command(string Name) : BaseCommand<string>;
+public record HelloDotNet10Command(string Name) : BaseCommand<string>;

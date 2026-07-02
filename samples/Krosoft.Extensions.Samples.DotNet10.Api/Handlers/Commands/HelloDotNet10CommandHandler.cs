@@ -3,16 +3,16 @@ using MediatR;
 
 namespace Krosoft.Extensions.Samples.DotNet10.Api.Handlers.Commands;
 
-public class HelloDotNet9CommandHandler : IRequestHandler<HelloDotNet9Command, string>
+public class HelloDotNet10CommandHandler : IRequestHandler<HelloDotNet10Command, string>
 {
-    private readonly ILogger<HelloDotNet9CommandHandler> _logger;
+    private readonly ILogger<HelloDotNet10CommandHandler> _logger;
 
-    public HelloDotNet9CommandHandler(ILogger<HelloDotNet9CommandHandler> logger)
+    public HelloDotNet10CommandHandler(ILogger<HelloDotNet10CommandHandler> logger)
     {
         _logger = logger;
     }
 
-    public Task<string> Handle(HelloDotNet9Command request,
+    public Task<string> Handle(HelloDotNet10Command request,
                                CancellationToken cancellationToken)
     {
         _logger.LogInformation($"Hello {request.Name}...");
