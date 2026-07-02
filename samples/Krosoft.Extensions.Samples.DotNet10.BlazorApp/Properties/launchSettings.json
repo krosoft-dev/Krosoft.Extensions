@@ -10,10 +10,10 @@
         "ASPNETCORE_URLS": "http://+:5000",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "httpPort": 6001,
+      "httpPort": 5008,
       "useSSL": false,
-      "DockerfileRunArguments": "--name krosoft-extensions.samples.dotnet10.api"
+      "DockerfileRunArguments": "--name krosoft-extensions.samples.dotnet10.blazorapp"
     }
-  },
+  }, 
   "$schema": "https://json.schemastore.org/launchsettings.json"
 }      

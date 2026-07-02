@@ -9,10 +9,10 @@ internal class HelloEndpoint : IEndpoint
 {
     public void Register(RouteGroupBuilder group)
     {
-        group.MapPost("/", (HelloDotNet9CommandDto dto,
+        group.MapPost("/", (HelloDotNet10CommandDto dto,
                             IMediator mediator,
                             CancellationToken cancellationToken)
-                          => mediator.Send(new HelloDotNet9Command(dto.Name), cancellationToken));
+                          => mediator.Send(new HelloDotNet10Command(dto.Name), cancellationToken));
     }
 
     public RouteGroupBuilder DefineGroup(WebApplication app) => app.MapGroup("/Hello")

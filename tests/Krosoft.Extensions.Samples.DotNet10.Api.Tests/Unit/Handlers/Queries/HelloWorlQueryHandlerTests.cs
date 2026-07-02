@@ -12,8 +12,8 @@ public class HelloWorlQueryHandlerTests : SampleBaseTest<Program>
     {
         var serviceProvider = CreateServiceCollection();
 
-        var result = await this.SendQueryAsync(serviceProvider, new HelloDotNet9Query());
+        var result = await this.SendQueryAsync(serviceProvider, new HelloDotNet10Query());
         Check.That(result).IsNotNull();
-        Check.That(result).IsEqualTo("Hello DotNet9");
+        Check.That(result).IsEqualTo("Hello DotNet10");
     }
 }

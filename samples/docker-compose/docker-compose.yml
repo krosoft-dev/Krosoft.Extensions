@@ -3,20 +3,8 @@ services:
     image: redis:7.2.5-alpine3.19
     restart: on-failure
 
-  krosoft-extensions.samples.dotnet6.api:
-    image: ${DOCKER_REGISTRY-}krosoft-extensions.samples.dotnet6.api:${TAG_VERSION}
-
-  krosoft-extensions.samples.dotnet7.api:
-    image: ${DOCKER_REGISTRY-}krosoft-extensions.samples.dotnet7.api:${TAG_VERSION}
-
-  krosoft-extensions.samples.dotnet8.api:
-    image: ${DOCKER_REGISTRY-}krosoft-extensions.samples.dotnet8.api:${TAG_VERSION}
-
-  krosoft-extensions.samples.dotnet8.blazorapp:
-    image: ${DOCKER_REGISTRY-}krosoft-extensions.samples.dotnet8.blazorapp:${TAG_VERSION}
-
-  krosoft-extensions.samples.dotnet9.api:
-    image: ${DOCKER_REGISTRY-}krosoft-extensions.samples.dotnet9.api:${TAG_VERSION}
-
   krosoft-extensions.samples.dotnet10.api:
     image: ${DOCKER_REGISTRY-}krosoft-extensions.samples.dotnet10.api:${TAG_VERSION}
+
+  krosoft-extensions.samples.dotnet10.blazorapp:
+    image: ${DOCKER_REGISTRY-}krosoft-extensions.samples.dotnet10.blazorapp:${TAG_VERSION}
