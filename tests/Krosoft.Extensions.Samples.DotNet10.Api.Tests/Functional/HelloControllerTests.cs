@@ -19,7 +19,7 @@ public class HelloControllerTests : SampleBaseApiTest<Program>
 
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
         var result = await response.Content.ReadAsStringAsync(CancellationToken.None);
-        Check.That(result).IsEqualTo("Hello DotNet9");
+        Check.That(result).IsEqualTo("Hello DotNet10");
     }
 
     [TestMethod]
@@ -65,7 +65,7 @@ public class HelloControllerTests : SampleBaseApiTest<Program>
 
         Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
         var result = await response.Content.ReadAsStringAsync(CancellationToken.None);
-        Check.That(result).IsEqualTo("Hello DotNet9");
+        Check.That(result).IsEqualTo("Hello DotNet10");
     }
 
     [TestMethod]
