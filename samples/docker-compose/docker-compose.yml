@@ -1,6 +1,6 @@
 services:
   krosoft-extensions.redis:
-    image: redis:7.2.5-alpine3.19
+    image: redis:8.6.5-alpine3.23 
     restart: on-failure
 
   krosoft-extensions.samples.dotnet10.api:
