@@ -42,6 +42,13 @@ stages:
           vmImage: ${{ parameters.vmImage }}
         steps:
           - ${{ if eq(parameters.runSonarCloudAnalyze, true) }}:
+              - task: JavaToolInstaller@0
+                displayName: "Use Java 21 (required by SonarQube Cloud)"
+                inputs:
+                  versionSpec: "21"
+                  jdkArchitectureOption: "x64"
+                  jdkSourceOption: "PreInstalled"
+
               - template: ../steps/sonarCloud-prepare-template.yml
                 parameters:
                   endpoint: ${{ parameters.sonarCloudEndpoint }}
