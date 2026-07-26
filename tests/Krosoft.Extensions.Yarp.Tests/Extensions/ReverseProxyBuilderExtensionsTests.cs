@@ -79,9 +79,9 @@ public class ReverseProxyBuilderExtensionsTests
     public void LoadFromCustomConfig_DestinationVide_LeveUneException()
     {
         Check.ThatCode(() => BuildProxyConfig(new Dictionary<string, string?>
-              {
-                  ["CustomReverseProxySettings:Services:Domotique:Destination"] = ""
-              }))
+             {
+                 ["CustomReverseProxySettings:Services:Domotique:Destination"] = ""
+             }))
              .Throws<KrosoftTechnicalException>()
              .WithMessage("Destination du service 'Domotique' non renseigné !");
     }

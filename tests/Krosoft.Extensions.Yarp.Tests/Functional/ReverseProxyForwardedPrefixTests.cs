@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Krosoft.Extensions.Yarp.Tests.Functional;
@@ -37,11 +36,11 @@ public class ReverseProxyForwardedPrefixTests
     private static async Task<WebApplication> StartGatewayAsync(string destination)
     {
         var configuration = new ConfigurationBuilder()
-                           .AddInMemoryCollection(new Dictionary<string, string?>
-                           {
-                               ["CustomReverseProxySettings:Services:Domotique:Destination"] = destination
-                           })
-                           .Build();
+                            .AddInMemoryCollection(new Dictionary<string, string?>
+                            {
+                                ["CustomReverseProxySettings:Services:Domotique:Destination"] = destination
+                            })
+                            .Build();
 
         var builder = WebApplication.CreateBuilder();
         builder.WebHost.UseUrls("http://127.0.0.1:0");
