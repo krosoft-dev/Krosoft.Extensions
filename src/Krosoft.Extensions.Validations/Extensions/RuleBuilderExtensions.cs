@@ -19,8 +19,6 @@ public static class RuleBuilderExtensions
                .WithMessage($"'{{PropertyName}}' must be one of these values: {formattedOptions}");
     }
 
- 
-
     private static string FormatValidOptions<TProperty>(TProperty[] validOptions)
     {
         return validOptions.Length switch
