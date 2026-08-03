@@ -31,10 +31,8 @@ steps:
       assemblyfilters: "-*Tests*;-*Samples*"
       filefilters: "-**/samples/**;-**/Migrations/**"
 
-  - task: PublishCodeCoverageResults@1
+  - task: PublishCodeCoverageResults@2
     displayName: "Publish code coverage"
     inputs:
-      codeCoverageTool: Cobertura
       summaryFileLocation: "$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml"
-      reportDirectory: "$(Build.SourcesDirectory)/CodeCoverage"
       failIfCoverageEmpty: true
