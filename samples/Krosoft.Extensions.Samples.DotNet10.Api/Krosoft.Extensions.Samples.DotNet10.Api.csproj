@@ -8,7 +8,7 @@
 		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2025.8.20.1761" />
+		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2026.8.4.8815" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.7.19.8449" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.7.19.8444" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.7.19.8448" />
@@ -20,7 +20,7 @@
 		<PackageReference Include="Krosoft.Extensions.Pdf" Version="2026.7.18.8398" />
 		<PackageReference Include="Krosoft.Extensions.Reporting.Csv" Version="2026.7.18.8395" />
 		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.7.26.8536" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2025.8.23.2366" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2026.8.3.8797" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.6.25.7859" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.7.19.8445" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
