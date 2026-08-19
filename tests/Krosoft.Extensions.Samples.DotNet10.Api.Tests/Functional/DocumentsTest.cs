@@ -15,10 +15,10 @@ public class DocumentsTest : SampleBaseApiTest<Program>
         using var content = new MultipartFormDataContent();
         content.Add(new StringContent("1000"), "TenantId");
         var response = await Factory.CreateClient().PostAsync("/Documents/Deposer/Fichier", content);
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.BadRequest);
         var error = await response.Content.ReadAsNewtonsoftJsonAsync<ErrorDto>();
         Check.That(error).IsNotNull();
-        Check.That(error!.Code).IsEqualTo(500);
+        Check.That(error!.Code).IsEqualTo(400);
         Check.That(error.Errors).ContainsExactly("Required parameter \"long FichierId\" was not provided from form.");
     }
 
@@ -28,10 +28,10 @@ public class DocumentsTest : SampleBaseApiTest<Program>
         using var content = new MultipartFormDataContent();
         content.Add(new StringContent("2000"), "FichierId");
         var response = await Factory.CreateClient().PostAsync("/Documents/Deposer/Fichier", content);
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.BadRequest);
         var error = await response.Content.ReadAsNewtonsoftJsonAsync<ErrorDto>();
         Check.That(error).IsNotNull();
-        Check.That(error!.Code).IsEqualTo(500);
+        Check.That(error!.Code).IsEqualTo(400);
         Check.That(error.Errors)
              .ContainsExactly("Required parameter \"IFormFile File\" was not provided from form file.");
     }
@@ -57,10 +57,10 @@ public class DocumentsTest : SampleBaseApiTest<Program>
         using var content = new MultipartFormDataContent();
         content.Add(new StringContent("ABC"), "FichierId");
         var response = await Factory.CreateClient().PostAsync("/Documents/Deposer/Fichier", content);
-        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.InternalServerError);
+        Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.BadRequest);
         var error = await response.Content.ReadAsNewtonsoftJsonAsync<ErrorDto>();
         Check.That(error).IsNotNull();
-        Check.That(error!.Code).IsEqualTo(500);
+        Check.That(error!.Code).IsEqualTo(400);
         Check.That(error.Errors).ContainsExactly("Failed to bind parameter \"long FichierId\" from \"ABC\".");
     }
 }
