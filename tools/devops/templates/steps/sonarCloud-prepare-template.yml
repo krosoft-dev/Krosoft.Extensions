@@ -12,16 +12,17 @@ parameters:
     default: $(Build.BuildNumber)
 
 steps:
-  - task: SonarCloudPrepare@2
+  - task: SonarCloudPrepare@4
     displayName: "Prepare SonarCloud"
     inputs:
       SonarCloud: ${{ parameters.endpoint }}
       organization: ${{ parameters.organization }}
-      scannerMode: "MSBuild"
+      scannerMode: "dotnet"
       projectKey: ${{ parameters.projectKey }}
       projectName: ${{ parameters.projectName }}
       projectVersion: ${{ parameters.version }}
       extraProperties: |
         sonar.cs.opencover.reportsPaths="$(Build.SourcesDirectory)/**/coverage.opencover.xml"
         sonar.coverage.exclusions="samples/**"
+        sonar.exclusions="**/CodeCoverage/**,**/TestResults/**"
         sonar.verbose=false

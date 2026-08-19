@@ -26,15 +26,13 @@ steps:
     displayName: Create Code coverage report
     inputs:
       reports: $(Build.SourcesDirectory)/**/coverage.cobertura.xml
-      targetdir: $(Build.SourcesDirectory)/CodeCoverage
+      targetdir: $(Agent.TempDirectory)/CodeCoverage
       reporttypes: HtmlInline_AzurePipelines;Cobertura
       assemblyfilters: "-*Tests*;-*Samples*"
       filefilters: "-**/samples/**;-**/Migrations/**"
 
-  - task: PublishCodeCoverageResults@1
+  - task: PublishCodeCoverageResults@2
     displayName: "Publish code coverage"
     inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: "$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml"
-      reportDirectory: "$(Build.SourcesDirectory)/CodeCoverage"
+      summaryFileLocation: "$(Agent.TempDirectory)/CodeCoverage/Cobertura.xml"
       failIfCoverageEmpty: true

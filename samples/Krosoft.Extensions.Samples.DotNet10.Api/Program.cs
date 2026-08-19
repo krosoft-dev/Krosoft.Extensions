@@ -1,5 +1,4 @@
 using System.Reflection;
-using Krosoft.Extensions.Blocking.Extensions;
 using Krosoft.Extensions.Blocking.Memory.Extensions;
 using Krosoft.Extensions.Cache.Distributed.Redis.Extensions;
 using Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks.Extensions;
@@ -57,9 +56,7 @@ builder.Services
                                                       .AddSecurityBearer()
                                                       .AddSecurityApiKey())
        //Blocking.
-       .AddBlocking()
-       .AddWepApiBlocking()
-       .AddMemoryBlockingStorage()
+       .AddWepApiBlocking(options => options.UseMemoryStorage())
 
 //Identity.
        .AddIdentityEx()
