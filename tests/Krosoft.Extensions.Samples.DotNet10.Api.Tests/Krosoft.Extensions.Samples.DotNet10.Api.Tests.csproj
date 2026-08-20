@@ -6,10 +6,10 @@
 		<Folder Include="Files\" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Testing.Data.EntityFramework" Version="2026.8.19.9348" />
-		<PackageReference Include="Krosoft.Extensions.Testing.WebApi" Version="2026.8.19.9348" />
-		<PackageReference Include="Krosoft.Extensions.Testing.Cqrs" Version="2026.8.19.9348" />
-		<PackageReference Include="Krosoft.Extensions.Testing" Version="2026.8.19.9348" />
+		<PackageReference Include="Krosoft.Extensions.Testing.Data.EntityFramework" Version="2026.8.20.9407" />
+		<PackageReference Include="Krosoft.Extensions.Testing.WebApi" Version="2026.8.20.9407" />
+		<PackageReference Include="Krosoft.Extensions.Testing.Cqrs" Version="2026.8.20.9407" />
+		<PackageReference Include="Krosoft.Extensions.Testing" Version="2026.8.20.9407" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.8.19.9254" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.8.19.9252" />
 		
