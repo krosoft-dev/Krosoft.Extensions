@@ -8,10 +8,10 @@
 		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2026.8.19.9342" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.8.20.9415" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.8.20.9415" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.8.20.9415" />
+		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2026.8.22.9590" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.8.22.9592" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.8.22.9592" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.8.22.9592" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.8.22.9564" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.8.22.9564" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.8.22.9571" />
@@ -19,10 +19,10 @@
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2026.8.18.9205" />
 		<PackageReference Include="Krosoft.Extensions.Pdf" Version="2026.8.21.9479" />
 		<PackageReference Include="Krosoft.Extensions.Reporting.Csv" Version="2026.8.21.9481" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.8.21.9524" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2026.8.21.9524" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.8.21.9524" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.8.21.9524" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.8.23.9620" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2026.8.23.9620" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.8.23.9620" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.8.23.9620" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.8.21.9527" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.8.21.9527" />
