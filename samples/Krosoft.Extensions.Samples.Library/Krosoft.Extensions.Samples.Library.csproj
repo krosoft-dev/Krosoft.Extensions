@@ -30,7 +30,7 @@
     <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.8.22.9592" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="JetBrains.Annotations" Version="2026.2.0" />
-    <PackageReference Include="Krosoft.Extensions.Core" Version="2026.8.21.9466" />
+    <PackageReference Include="Krosoft.Extensions.Core" Version="2026.8.24.9632" />
     <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2026.8.22.9564" />
     <PackageReference Include="Krosoft.Extensions.Mapping" Version="2026.8.21.9531" />
     <PackageReference Include="LinqKit.Core" Version="1.2.11" />
