@@ -18,7 +18,7 @@
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.8.22.9571" />
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2026.8.18.9205" />
 		<PackageReference Include="Krosoft.Extensions.Pdf" Version="2026.8.21.9479" />
-		<PackageReference Include="Krosoft.Extensions.Reporting.Csv" Version="2026.8.21.9481" />
+		<PackageReference Include="Krosoft.Extensions.Reporting.Csv" Version="2026.8.24.9648" />
 		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.8.23.9620" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2026.8.23.9620" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.8.23.9620" />
