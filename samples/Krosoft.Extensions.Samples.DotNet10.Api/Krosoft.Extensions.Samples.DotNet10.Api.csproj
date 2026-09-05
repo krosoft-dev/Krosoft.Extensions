@@ -8,25 +8,25 @@
 		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2026.8.28.9865" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.8.29.9930" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.8.29.9930" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.8.29.9930" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.8.30.10013" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.8.30.10013" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.8.28.9888" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.8.28.9888" />
+		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2026.9.1.10147" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.9.1.10153" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.9.1.10153" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.9.1.10153" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.9.1.10126" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.9.1.10126" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.9.1.10142" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.9.1.10142" />
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2026.8.18.9205" />
-		<PackageReference Include="Krosoft.Extensions.Pdf" Version="2026.8.28.9832" />
-		<PackageReference Include="Krosoft.Extensions.Reporting.Csv" Version="2026.8.28.9797" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.8.28.9881" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2026.8.28.9881" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.8.28.9881" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.8.28.9881" />
+		<PackageReference Include="Krosoft.Extensions.Pdf" Version="2026.9.1.10136" />
+		<PackageReference Include="Krosoft.Extensions.Reporting.Csv" Version="2026.9.1.10134" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.9.2.10168" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2026.9.2.10168" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.9.2.10168" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.9.2.10168" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.8.28.9812" />
-		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.8.28.9812" />
-		<PackageReference Include="Krosoft.Extensions.Zip" Version="2026.8.28.9805" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.9.1.10096" />
+		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.9.1.10096" />
+		<PackageReference Include="Krosoft.Extensions.Zip" Version="2026.9.1.10120" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
 		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="10.0.11" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.11">

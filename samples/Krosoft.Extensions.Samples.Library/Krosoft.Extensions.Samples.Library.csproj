@@ -27,12 +27,12 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="Bogus" Version="35.6.5" />
-    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.8.29.9930" />
+    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.9.1.10153" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="JetBrains.Annotations" Version="2026.2.0" />
-    <PackageReference Include="Krosoft.Extensions.Core" Version="2026.8.27.9744" />
-    <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2026.8.30.10013" />
-    <PackageReference Include="Krosoft.Extensions.Mapping" Version="2026.8.28.9815" />
+    <PackageReference Include="Krosoft.Extensions.Core" Version="2026.8.31.10083" />
+    <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2026.9.1.10126" />
+    <PackageReference Include="Krosoft.Extensions.Mapping" Version="2026.8.31.10085" />
     <PackageReference Include="LinqKit.Core" Version="1.2.11" />
   </ItemGroup>
 </Project>
