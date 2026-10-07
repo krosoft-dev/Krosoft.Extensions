@@ -23,7 +23,7 @@
 		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2026.10.4.11027" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.10.4.11027" />
 		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.10.4.11027" />
-		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
+		<PackageReference Include="LinqKit.Core" Version="1.3.0" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.9.20.10796" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.9.20.10796" />
 		<PackageReference Include="Krosoft.Extensions.Zip" Version="2026.9.13.10516" />
