@@ -10,7 +10,7 @@
 		<PackageReference Include="Krosoft.Extensions.Testing.WebApi" Version="2026.9.21.10826" />
 		<PackageReference Include="Krosoft.Extensions.Testing.Cqrs" Version="2026.9.21.10826" />
 		<PackageReference Include="Krosoft.Extensions.Testing" Version="2026.9.21.10826" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.10.14.11379" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.10.15.11545" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.10.14.11460" />
 		
 		<!--  CVE-2026-33116 / CVE-2026-26171 : System.Security.Cryptography.Xml DoS vulnerabilities -->
