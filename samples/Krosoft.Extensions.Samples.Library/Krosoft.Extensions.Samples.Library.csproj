@@ -28,7 +28,7 @@
     <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="Bogus" Version="35.6.5" />
     <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.10.3.11007" />
-    <PackageReference Include="FluentValidation" Version="12.1.1" />
+    <PackageReference Include="FluentValidation" Version="12.2.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2026.2.0" />
     <PackageReference Include="Krosoft.Extensions.Core" Version="2026.9.12.10423" />
     <PackageReference Include="Krosoft.Extensions.Data.Abstractions" Version="2026.9.13.10619" />
