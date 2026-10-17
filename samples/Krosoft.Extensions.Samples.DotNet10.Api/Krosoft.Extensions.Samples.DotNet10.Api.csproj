@@ -14,15 +14,15 @@
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.10.16.11672" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.10.16.11666" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.10.16.11666" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.10.15.11613" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.10.15.11613" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.10.16.11693" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.10.16.11693" />
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2026.10.14.11401" />
 		<PackageReference Include="Krosoft.Extensions.Pdf" Version="2026.10.15.11607" />
 		<PackageReference Include="Krosoft.Extensions.Reporting.Csv" Version="2026.10.16.11630" />
-		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.10.15.11611" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2026.10.15.11611" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.10.15.11611" />
-		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.10.15.11611" />
+		<PackageReference Include="Krosoft.Extensions.WebApi" Version="2026.10.16.11681" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Blocking" Version="2026.10.16.11681" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Swagger.HealthChecks" Version="2026.10.16.11681" />
+		<PackageReference Include="Krosoft.Extensions.WebApi.Identity" Version="2026.10.16.11681" />
 		<PackageReference Include="LinqKit.Core" Version="1.3.0" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis" Version="2026.10.16.11645" />
 		<PackageReference Include="Krosoft.Extensions.Cache.Distributed.Redis.HealthChecks" Version="2026.10.16.11645" />
