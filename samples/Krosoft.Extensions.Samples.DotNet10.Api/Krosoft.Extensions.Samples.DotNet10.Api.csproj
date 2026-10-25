@@ -12,8 +12,8 @@
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.10.21.11778" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.10.21.11778" />
 		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.10.21.11778" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.10.21.11776" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.10.21.11776" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.10.25.11854" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.10.25.11854" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.10.21.11780" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.10.21.11780" />
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2026.10.14.11401" />
