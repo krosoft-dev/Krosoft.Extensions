@@ -10,7 +10,7 @@ parameters:
     default: 5
 
 steps:
-  - task: BuildQualityChecks@9
+  - task: BuildQualityChecks@10
     displayName: "Check build quality"
     continueOnError: true
     inputs:
