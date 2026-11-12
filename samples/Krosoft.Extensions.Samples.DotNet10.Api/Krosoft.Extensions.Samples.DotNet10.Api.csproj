@@ -9,9 +9,9 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2026.11.11.12961" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.11.11.12964" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.11.11.12964" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.11.11.12964" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.11.12.13139" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.11.12.13139" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.11.12.13139" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.11.11.12966" />
 		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.11.11.12966" />
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.11.11.13073" />

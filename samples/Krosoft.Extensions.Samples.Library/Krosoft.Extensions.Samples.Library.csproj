@@ -27,7 +27,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="Bogus" Version="35.6.5" />
-    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.11.11.12964" />
+    <PackageReference Include="Krosoft.Extensions.Cqrs" Version="2026.11.12.13139" />
     <PackageReference Include="FluentValidation" Version="12.2.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2026.2.0" />
     <PackageReference Include="Krosoft.Extensions.Core" Version="2026.11.11.12872" />
