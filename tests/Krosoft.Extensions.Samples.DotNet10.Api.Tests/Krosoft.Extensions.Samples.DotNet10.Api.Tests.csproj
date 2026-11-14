@@ -14,7 +14,7 @@
 		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.11.13.13276" />
 		
 		<!--  CVE-2026-33116 / CVE-2026-26171 : System.Security.Cryptography.Xml DoS vulnerabilities -->
-		<PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.15" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="11.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="Files\Hello.txt">
