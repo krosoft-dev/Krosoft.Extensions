@@ -1,0 +1,29 @@
+parameters:
+  - name: runUnitTests
+    type: boolean
+    default: true
+  - name: runSonarCloudAnalyze
+    type: boolean
+    default: true
+
+variables:
+  - template: tools/devops/vars/vars.yml@self
+
+stages:
+  - template: ../stages/build-template.yml
+    parameters:
+      vmImage: ${{ variables.vmImage }}
+      dotNetVersion: ${{ variables.dotNetVersion }}
+      dotNetRuntimes: ${{ coalesce(variables.dotNetRuntimes, '') }}
+      buildConfiguration: ${{ variables.buildConfiguration }}
+      buildPlatform: ${{ variables.buildPlatform }}
+      buildProjects: ${{ variables.buildProjects }}
+      testProjects: ${{ variables.testProjects }}
+      warningThreshold: ${{ variables.warningThreshold }}
+      coverageThreshold: ${{ variables.coverageThreshold }}
+      sonarCloudEndpoint: ${{ variables.sonarCloudEndpoint }}
+      sonarCloudOrganization: ${{ variables.sonarCloudOrganization }}
+      sonarCloudProjectKey: ${{ variables.sonarCloudProjectKey }}
+      sonarCloudProjectName: ${{ variables.sonarCloudProjectName }}
+      runUnitTests: ${{ parameters.runUnitTests }}
+      runSonarCloudAnalyze: ${{ parameters.runSonarCloudAnalyze }}

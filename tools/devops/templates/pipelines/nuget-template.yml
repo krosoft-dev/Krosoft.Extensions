@@ -1,22 +1,15 @@
 parameters:
   - name: packages
     type: object
-  - name: dotNetVersion
-    type: string
-    default: ""
-  - name: dotNetRuntimes
-    type: object
-    default: []
 
 variables:
-  - template: ../../vars/vars.yml
+  - template: tools/devops/vars/vars.yml@self
 
 stages:
   - template: ../stages/pack-template.yml
     parameters:
       vmImage: ${{ variables.vmImage }}
-      dotNetVersion: ${{ coalesce(parameters.dotNetVersion, variables.dotNetVersion) }}
-      dotNetRuntimes: ${{ parameters.dotNetRuntimes }}
+      dotNetVersion: ${{ variables.dotNetVersion }}
       buildConfiguration: ${{ variables.buildConfiguration }}
       buildPlatform: ${{ variables.buildPlatform }}
       buildProjects: ${{ variables.buildProjects }}

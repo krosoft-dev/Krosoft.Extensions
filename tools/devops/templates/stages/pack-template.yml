@@ -4,8 +4,8 @@ parameters:
   - name: dotNetVersion
     type: string
   - name: dotNetRuntimes
-    type: object
-    default: []
+    type: string
+    default: ""
   - name: buildConfiguration
     type: string
   - name: buildPlatform
