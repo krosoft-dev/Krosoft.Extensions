@@ -3,7 +3,7 @@ parameters:
     type: string
   - name: dotNetVersion
     type: string
-  - name: dotNetRuntimes
+  - name: dotNetAdditionalSdks
     type: string
     default: ""
   - name: buildConfiguration
@@ -62,7 +62,7 @@ stages:
           - template: ../steps/build-template.yml
             parameters:
               dotNetVersion: ${{ parameters.dotNetVersion }}
-              dotNetRuntimes: ${{ parameters.dotNetRuntimes }}
+              dotNetAdditionalSdks: ${{ parameters.dotNetAdditionalSdks }}
               buildConfiguration: ${{ parameters.buildConfiguration }}
               buildPlatform: ${{ parameters.buildPlatform }}
               buildProjects: ${{ parameters.buildProjects }}

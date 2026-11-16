@@ -7,18 +7,18 @@ parameters:
     type: string
   - name: buildProjects
     type: string
-  - name: dotNetRuntimes
+  - name: dotNetAdditionalSdks
     type: string
     default: ""
 
 steps:
-  - ${{ each runtime in split(parameters.dotNetRuntimes, ',') }}:
-      - ${{ if ne(trim(runtime), '') }}:
+  - ${{ each sdk in split(parameters.dotNetAdditionalSdks, ',') }}:
+      - ${{ if ne(trim(sdk), '') }}:
           - task: UseDotNet@2
-            displayName: "Install SDK ${{ trim(runtime) }}"
+            displayName: "Install SDK ${{ trim(sdk) }}"
             inputs:
               packageType: "sdk"
-              version: ${{ trim(runtime) }}
+              version: ${{ trim(sdk) }}
 
   - task: UseDotNet@2
     displayName: "Install SDK ${{ parameters.dotNetVersion }}"
