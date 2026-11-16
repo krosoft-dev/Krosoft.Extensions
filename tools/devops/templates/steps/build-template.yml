@@ -15,9 +15,9 @@ steps:
   - ${{ each runtime in split(parameters.dotNetRuntimes, ',') }}:
       - ${{ if ne(trim(runtime), '') }}:
           - task: UseDotNet@2
-            displayName: "Install runtime ${{ trim(runtime) }}"
+            displayName: "Install SDK ${{ trim(runtime) }}"
             inputs:
-              packageType: "runtime"
+              packageType: "sdk"
               version: ${{ trim(runtime) }}
 
   - task: UseDotNet@2
