@@ -7,8 +7,18 @@ parameters:
     type: string
   - name: buildProjects
     type: string
+  - name: dotNetRuntimes
+    type: object
+    default: []
 
 steps:
+  - ${{ each runtime in parameters.dotNetRuntimes }}:
+      - task: UseDotNet@2
+        displayName: "Install runtime ${{ runtime }}"
+        inputs:
+          packageType: "runtime"
+          version: ${{ runtime }}
+
   - task: UseDotNet@2
     displayName: "Install SDK ${{ parameters.dotNetVersion }}"
     inputs:
