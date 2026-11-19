@@ -9,13 +9,13 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krosoft.Extensions.Blocking.Memory" Version="2026.11.16.13907" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.11.16.13902" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.11.16.13902" />
-		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.11.16.13902" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.11.11.12966" />
-		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.11.11.12966" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.11.16.13827" />
-		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.11.16.13827" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors" Version="2026.11.18.14105" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Identity" Version="2026.11.18.14105" />
+		<PackageReference Include="Krosoft.Extensions.Cqrs.Behaviors.Validations" Version="2026.11.18.14105" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework" Version="2026.11.18.14077" />
+		<PackageReference Include="Krosoft.Extensions.Data.EntityFramework.InMemory" Version="2026.11.18.14077" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire" Version="2026.11.18.14072" />
+		<PackageReference Include="Krosoft.Extensions.Jobs.Hangfire.Storage.InMemory" Version="2026.11.18.14072" />
 		<PackageReference Include="Krosoft.Extensions.Options" Version="2026.11.17.13919" />
 		<PackageReference Include="Krosoft.Extensions.Pdf" Version="2026.11.16.13817" />
 		<PackageReference Include="Krosoft.Extensions.Reporting.Csv" Version="2026.11.16.13876" />
